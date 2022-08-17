@@ -12,7 +12,7 @@
 ### GUI
 
 * [ ] Open a Windows
-* [ ] Display the map and the data (life of the player)
+* [ ] Display the map and the data
 
 ## Second Round !
 
