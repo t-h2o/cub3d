@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/18 17:14:35 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/18 17:20:28 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static char	**read_map(int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		ft_printf("%s\n", line);
+		ft_printf("%s", line);
+		free(line);
 		line = get_next_line(fd);
 	}
 	return ((char**)1);
