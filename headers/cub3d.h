@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/22 15:24:51 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/22 15:47:02 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ typedef struct s_info {
 	void	*mlx[2];
 }	t_info;
 
-// check_map.c
+//check_map
+int	check_extension(char *mapname);
+
+//get_map
 char	**get_map(char *mapname);
 
 // window.c
