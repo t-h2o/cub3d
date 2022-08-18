@@ -35,7 +35,6 @@ endif
 
 LIBEXT	+=	libs/libft/libft.a
 
-
 #	Headers
 
 INCD	=	headers
@@ -83,6 +82,9 @@ $(LIBEXT):
 	@echo "$(YELLOW)Preparing MiniLibX..$(DEFAULT)"
 	@make -C $(DIR_LIB_MLX) 1>/dev/null 2>/dev/null
 	@echo "$(CYAN)---> MiniLibX ready$(DEFAULT)"
+
+$(LIBFT):
+	@make -C libs/libft
 
 clean:
 	@$(RM) $(OBJD)
