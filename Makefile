@@ -44,7 +44,7 @@ vpath %.c $(SRCD)
 all : $(NAME)
 
 $(NAME):	$(OBJS) $(LIBFT)
-	$(CC) $(OFLAGS) $(OBJS) $(CLIB) -o $(NAME)
+	$(CC) $(OFLAGS) $^ -o $(NAME)
 
 $(OBJD)/%.o : %.c | $(OBJD)
 	$(CC) $(CFLAGS) -I $(INCD) -o $@ -c $^
