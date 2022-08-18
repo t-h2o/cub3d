@@ -1,15 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/18 21:15:57 by melogr@phy       ###   ########.fr       */
+/*   Created: 2021/10/22 16:09:59 by gudias            #+#    #+#             */
+/*   Updated: 2021/10/27 13:52:31 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"stdio.h"
+#include<unistd.h>
 
-# include "../libs/libft/includes/libft.h"
+void	ft_putnbr_fd(int n, int fd)
+{
+	unsigned int	nb;
+	char			c;
+
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		nb = -n;
+	}
+	else
+	{
+		nb = n;
+	}
+	if (nb > 9)
+	{
+		ft_putnbr_fd(nb / 10, fd);
+		ft_putnbr_fd(nb % 10, fd);
+	}
+	else
+	{
+		c = nb + '0';
+		write(fd, &c, 1);
+	}
+}

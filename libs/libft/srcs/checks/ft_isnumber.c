@@ -1,15 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_isnumber.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/18 21:15:57 by melogr@phy       ###   ########.fr       */
+/*   Created: 2022/01/19 23:23:51 by gudias            #+#    #+#             */
+/*   Updated: 2022/01/20 02:51:34 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"stdio.h"
+#include "libft.h"
 
-# include "../libs/libft/includes/libft.h"
+int	ft_isnumber(char *str)
+{
+	if (!str)
+		return (0);
+	if ((*str == '+' || *str == '-') && *(str + 1))
+		str++;
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (0);
+		str++;
+	}
+	return (1);
+}

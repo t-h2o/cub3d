@@ -1,15 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/18 21:15:57 by melogr@phy       ###   ########.fr       */
+/*   Created: 2021/10/22 16:09:34 by gudias            #+#    #+#             */
+/*   Updated: 2022/01/17 18:17:35 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"stdio.h"
+#include<unistd.h>
+#include "libft.h"
 
-# include "../libs/libft/includes/libft.h"
+void	ft_putendl(char *str)
+{	
+	ft_putstr(str);
+	write(1, "\n", 1);
+}

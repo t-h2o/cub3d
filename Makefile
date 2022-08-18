@@ -12,6 +12,10 @@ CFLAGS	+=	-g
 
 OFLAGS	=	-fsanitize=address
 
+#	Libraries
+
+LIBFT	=	libs/libft/libft.a
+
 
 #	Headers
 
@@ -39,8 +43,8 @@ vpath %.c $(SRCD)
 
 all : $(NAME)
 
-$(NAME):	$(OBJS)
-	$(CC) $(OFLAGS) $(OBJS) $(CLIB) -o $(NAME)
+$(NAME):	$(OBJS) $(LIBFT)
+	$(CC) $(OFLAGS) $^ -o $(NAME)
 
 $(OBJD)/%.o : %.c | $(OBJD)
 	$(CC) $(CFLAGS) -I $(INCD) -o $@ -c $^
@@ -48,11 +52,21 @@ $(OBJD)/%.o : %.c | $(OBJD)
 $(OBJD) :
 	mkdir -p $(OBJD)
 
+$(LIBFT):
+	@make -C libs/libft
+
 clean:
+	@$(RM) $(OBJD)
 	@echo Clean the objets...
 
 fclean: clean
+	@$(RM) $(NAME)
 	@echo Clean the program...
+
+libclean:
+	@make fclean -C libs/libft
+
+fullclean: fclean libclean
 
 re:	fclean all
 

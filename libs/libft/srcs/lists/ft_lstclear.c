@@ -1,15 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/18 21:15:57 by melogr@phy       ###   ########.fr       */
+/*   Created: 2021/10/27 12:13:07 by gudias            #+#    #+#             */
+/*   Updated: 2021/10/27 12:13:11 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"stdio.h"
+#include "libft.h"
 
-# include "../libs/libft/includes/libft.h"
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*next;
+	t_list	*list;
+
+	if (lst)
+	{
+		list = *lst;
+		while (list)
+		{	
+			next = list->next;
+			del(list->content);
+			free(list);
+			list = next;
+		}
+		*lst = NULL;
+	}
+}

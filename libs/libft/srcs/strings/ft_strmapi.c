@@ -1,15 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/18 21:15:57 by melogr@phy       ###   ########.fr       */
+/*   Created: 2021/10/22 12:23:38 by gudias            #+#    #+#             */
+/*   Updated: 2021/10/22 17:37:14 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"stdio.h"
+#include "libft.h"
 
-# include "../libs/libft/includes/libft.h"
+char	*ft_strmapi(char const *str, char (*f)(unsigned int, char))
+{
+	char	*newstring;
+	int		i;
+
+	if (!str || !f)
+		return (NULL);
+	newstring = ft_strdup(str);
+	if (!newstring)
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		newstring[i] = f(i, str[i]);
+		i++;
+	}
+	newstring[i] = '\0';
+	return (newstring);
+}

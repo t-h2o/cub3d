@@ -1,15 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/18 21:15:57 by melogr@phy       ###   ########.fr       */
+/*   Created: 2021/10/22 12:21:52 by gudias            #+#    #+#             */
+/*   Updated: 2021/10/27 13:18:29 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"stdio.h"
+void	ft_striteri(char *str, char (*f)(unsigned int, char*))
+{
+	unsigned int	i;
 
-# include "../libs/libft/includes/libft.h"
+	if (str && f)
+	{
+		i = 0;
+		while (str[i] != '\0')
+		{
+			f(i, str + i);
+			i++;
+		}
+	}
+}
