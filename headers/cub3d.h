@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/20 09:39:18 by user42           ###   ########.fr       */
+/*   Updated: 2022/08/22 15:24:51 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 // HEADERS
 
 # include	<stdio.h>
+# include	<fcntl.h>
 # include	"keys.h"
-# include "../libs/libft/includes/libft.h"
+# include	"../libs/libft/includes/libft.h"
 
 # ifdef __APPLE__
 #  include	"../libs/mlx-apple/mlx.h"
@@ -30,6 +31,7 @@
 
 // DEFINE
 
+# define MAPSDIR	"./assets/maps/"
 # define W_WIDTH	1024
 # define W_HEIGHT	768
 
@@ -45,8 +47,10 @@ typedef struct s_info {
 	void	*mlx[2];
 }	t_info;
 
-// WINDOW
+// check_map.c
+char	**get_map(char *mapname);
 
-int	start_window(t_info *info);
+// window.c
+int		start_window(t_info *info);
 
 #endif /* CUB3D_H */
