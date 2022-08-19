@@ -98,4 +98,4 @@ norm:
 	@(norminette $(INCS) $(SRCS) | grep -v  OK\!) || true
 
 db: all
-	${DB} $(NAME)
+	$(DB) $(NAME)
