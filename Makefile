@@ -40,6 +40,7 @@ LIBEXT	+=	libs/libft/libft.a
 INCD	=	./headers
 
 INCS	=	$(INCD)/cub3d.h
+INCS	+=	$(INCD)/keys.h
 
 
 #	Sources

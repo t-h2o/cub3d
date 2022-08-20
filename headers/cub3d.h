@@ -16,6 +16,7 @@
 // HEADERS
 
 # include	<stdio.h>
+# include	"keys.h"
 # include "../libs/libft/includes/libft.h"
 
 # ifdef __APPLE__
