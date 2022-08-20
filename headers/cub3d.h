@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/22 16:01:41 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/22 16:12:00 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ int	check_side_borders(char *line);
 int	check_charset(char c);
 int	check_line_data(t_game *game, char *line);
 
-// close.c
+//close.c
 void	free_map(char **map);
+void	exit_error(char *error_msg);
 
 // get_map.c
 void	get_map(t_game *game, char *mapname);
