@@ -12,9 +12,27 @@ CFLAGS	+=	-g
 
 OFLAGS	=	-fsanitize=address
 
+# Find the os
+UNAME_S := $(shell uname -s)
+
+# Linux
+ifeq ($(UNAME_S),Linux)
+  LIBEXT	+=	libs/mlx-linux/libmlx.a
+  LIBEXT	+=	libs/mlx-linux/libmlx_Linux.a
+  DIR_LIB_MLX	=	libs/mlx-linux
+  OFLAGS	   +=	-L$(DIR_LIB_MLX) -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+endif
+
+# Apple
+ifeq ($(UNAME_S),Darwin)
+  DIR_LIB_MLX     =	libs/mlx-apple
+  OFLAGS	   +=	-L$(DIR_LIB_MLX) -lmlx -framework OpenGL -framework AppKit
+endif
+
+
 #	Libraries
 
-LIBFT	=	libs/libft/libft.a
+LIBEXT	+=	libs/libft/libft.a
 
 
 #	Headers
@@ -43,17 +61,18 @@ vpath %.c $(SRCD)
 
 all : $(NAME)
 
-$(NAME):	$(OBJS) $(LIBFT)
+$(NAME):	$(OBJS) $(LIBEXT)
 	$(CC) $(OFLAGS) $^ -o $(NAME)
 
 $(OBJD)/%.o : %.c | $(OBJD)
-	$(CC) $(CFLAGS) -I $(INCD) -o $@ -c $^
+	$(CC) $(CFLAGS) -I$(INCD) -o $@ -c $^
 
 $(OBJD) :
 	mkdir -p $(OBJD)
 
-$(LIBFT):
+$(LIBEXT):
 	@make -C libs/libft
+	@make -C libs/mlx-linux
 
 clean:
 	@$(RM) $(OBJD)
@@ -65,6 +84,7 @@ fclean: clean
 
 libclean:
 	@make fclean -C libs/libft
+	@make clean -C libs/mlx-linux
 
 fullclean: fclean libclean
 
