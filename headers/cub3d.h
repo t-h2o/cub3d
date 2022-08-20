@@ -6,10 +6,16 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/18 21:15:57 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/08/20 09:39:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"stdio.h"
+#ifndef CUB3D_H
+# define CUB3D_H
 
+// HEADERS
+
+# include	<stdio.h>
 # include "../libs/libft/includes/libft.h"
+
+#endif /* CUB3D_H */
