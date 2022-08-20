@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/22 15:47:02 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/22 16:01:41 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,36 @@ typedef struct s_info {
 	void	*mlx[2];
 }	t_info;
 
-//check_map
-int	check_extension(char *mapname);
+typedef struct	s_player
+{
+	int	x;
+	int	y;
+	char	dir;
+}	t_player;
 
-//get_map
-char	**get_map(char *mapname);
+typedef struct	s_game
+{
+	char		**map;
+	int			map_h;	
+	t_player	player;
+	
+}	t_game;
+
+// check_map.c
+int	check_extension(char *mapname);
+int	check_walls(char *line);
+int	check_side_borders(char *line);
+int	check_charset(char c);
+int	check_line_data(t_game *game, char *line);
+
+// close.c
+void	free_map(char **map);
+
+// get_map.c
+void	get_map(t_game *game, char *mapname);
+
+// init.c
+void	init_game(t_game *game);
 
 // window.c
 int		start_window(t_info *info);

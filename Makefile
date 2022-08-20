@@ -48,8 +48,10 @@ INCS	+=	$(INCD)/keys.h
 SRCD	=	srcs
 
 SRCS	=	$(SRCD)/main.c
-SRCS	+=	$(SRCD)/get_map.c
 SRCS	+=	$(SRCD)/check_map.c
+SRCS	+=	$(SRCD)/close.c
+SRCS	+=	$(SRCD)/get_map.c
+SRCS	+=	$(SRCD)/init.c
 SRCS	+=	$(SRCD)/window.c
 
 

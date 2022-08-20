@@ -1,46 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 18:47:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/22 15:54:44 by gudias           ###   ########.fr       */
+/*   Created: 2022/08/20 17:44:17 by gudias            #+#    #+#             */
+/*   Updated: 2022/08/20 17:51:07 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"cub3d.h"
+#include "cub3d.h"
 
-int	main(int ac, char **av)
+void	init_game(t_game *game)
 {
-	t_info	info;
-	t_game	game;
-	char	**map;
-	
-	ft_putstr("Cub3D\n");
-	
-	if (ac != 2)
-		exit_error("Invalid argument");
-
-	if (start_window(&info))
-		return (1);
-	
-	init_game(&game);
-
-	get_map(&game, av[1]);
-
-	//print the map	
-	if (game.map)
-	{
-		int i = 0;
-		while (game.map[i])
-		{
-			ft_printf("%s", game.map[i]);
-			i++;
-		}	
-	}
-
-	free_map(game.map);	
-	return (0);
+	game->map = NULL;
+	game->player.x = -1;
+	game->map_h = 0;
 }

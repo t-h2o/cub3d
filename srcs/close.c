@@ -1,46 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 18:47:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/22 15:54:44 by gudias           ###   ########.fr       */
+/*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
+/*   Updated: 2022/08/20 17:55:49 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"cub3d.h"
+#include "cub3d.h"
 
-int	main(int ac, char **av)
+void	free_map(char **map)
 {
-	t_info	info;
-	t_game	game;
-	char	**map;
-	
-	ft_putstr("Cub3D\n");
-	
-	if (ac != 2)
-		exit_error("Invalid argument");
+	int	i;
 
-	if (start_window(&info))
-		return (1);
-	
-	init_game(&game);
-
-	get_map(&game, av[1]);
-
-	//print the map	
-	if (game.map)
+	i = 0;
+	if (map)
 	{
-		int i = 0;
-		while (game.map[i])
+		while (map[i])
 		{
-			ft_printf("%s", game.map[i]);
+			free(map[i]);
 			i++;
-		}	
+		}
+		free(map);
 	}
+}
 
-	free_map(game.map);	
-	return (0);
+void	exit_error(char *error_msg)
+{
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd(error_msg, 2);
+	exit(1);
 }
