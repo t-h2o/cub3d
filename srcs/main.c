@@ -14,5 +14,10 @@
 
 int	main(void)
 {
+	t_info	info;
+
 	ft_putstr("Cub3D\n");
+	if (start_window(&info))
+		return (1);
+	return (0);
 }
