@@ -18,4 +18,13 @@
 # include	<stdio.h>
 # include "../libs/libft/includes/libft.h"
 
+# ifdef __APPLE__
+#  include	"../libs/mlx-apple/mlx.h"
+
+# elif __linux__
+#  include	"../libs/mlx-linux/mlx.h"
+#  include	"../libs/mlx-linux/mlx_int.h"
+
+# endif
+
 #endif /* CUB3D_H */
