@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/20 17:36:12 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/21 15:13:23 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ static void	save_line_data(t_game *game, char *line)
 	tmp = game->map;
 	game->map = malloc(sizeof (char *) * (game->map_h + 1));
 	if (!game->map)
-	{
-		ft_printf("Error\nMalloc :x\n");
-		return ;
-	}
+		exit_error("Malloc :x");
 	i = 0;
 	if (tmp)
 	{
@@ -68,34 +65,22 @@ static void	read_map(t_game *game, int fd)
 
 	line = get_next_line(fd);
 	if (!line)
-	{
-		ft_printf("Error\nMap is empty!\n");
-		return ;
-	}
+		exit_error("Map is empty!");
 	if (check_walls(line))
-	{
-		ft_printf("Error\nFirst line should be walls only\n");
-		return ;
-	}
+		exit_error("First line should be walls only");
 	save_line_data(game, line);
 	line = get_next_line(fd);
 	while (line)
 	{
 		if (check_side_borders(line))
-		{
-			ft_printf("Error\nBoth sides of the mal should be walls\n");
-			return ;
-		}
+			exit_error("Both sides of the map should be walls");
 		if (check_line_data(game, line))
 			return ;
 		save_line_data(game, line);
 		line = get_next_line(fd);
 	}
 	if (check_walls(game->map[game->map_h - 1]))
-	{
-		ft_printf("Error\nLast line should be walls only\n");
-		return ;
-	}
+		exit_error("Last line should be walls only");
 }
 
 void	get_map(t_game *game, char *mapname)
@@ -103,15 +88,10 @@ void	get_map(t_game *game, char *mapname)
 	int	fd;
 
 	if (check_extension(mapname))
-	{
-		ft_printf("Error\nInvalid map extension, must be .cub\n");
-		return ;
-	}
+		exit_error("Invalid map extension, must be .cub");
 	fd = open_map(mapname);
 	if (fd <= 0)
-	{
-		ft_printf("Error\nCouldn't find map in %s\n", MAPSDIR);
-		return ;
-	}
+		exit_error("Couldn't find map in "MAPSDIR);
 	read_map(game, fd);
+	close(fd);
 }

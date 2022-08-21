@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/20 17:26:37 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/21 15:17:32 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,10 @@ int	check_line_data(t_game *game, char *line)
 	while (*line && *line != '\n')
 	{
 		if (check_charset(*line))
-		{
-			ft_printf("Error\nInvalid character in map\n");
-			return (1);
-		}
+			exit_error("Invalid character in map");
 		if ((*line == 'N' || *line == 'S' || *line == 'E'
 				|| *line == 'W') && game->player.x != -1)
-		{
-			ft_printf("Error\nMore than 1 player\n");
-			return (1);
-		}
+			exit_error("More than 1 player");
 		line++;
 	}
 	return (0);
