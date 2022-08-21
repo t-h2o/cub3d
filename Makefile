@@ -74,7 +74,8 @@ $(OBJD) :
 
 $(LIBEXT):
 	@make -C libs/libft
-	@make -C libs/mlx-linux
+	@if [ "$(shell uname -s)" = Linux ]; then ; make -C libs/mlx-linux; fi
+	@if [ "$(shell uname -s)" = Darwin ]; then ; make -C libs/mlx-apple; fi
 
 clean:
 	@$(RM) $(OBJD)
@@ -87,6 +88,8 @@ fclean: clean
 libclean:
 	@make fclean -C libs/libft
 	@make clean -C libs/mlx-linux
+	@if [ "$(shell uname -s)" = Linux ]; then ; make -C libs/mlx-linux; fi
+	@if [ "$(shell uname -s)" = Darwin ]; then ; make -C libs/mlx-apple; fi
 
 fullclean: fclean libclean
 
