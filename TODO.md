@@ -11,7 +11,7 @@
 
 ### GUI
 
-* [ ] Open a Windows
+* [x] Open a Windows
 * [ ] Display the map and the data
 
 ## Second Round !
