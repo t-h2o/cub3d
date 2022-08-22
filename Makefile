@@ -65,39 +65,55 @@ vpath %.c $(SRCD)
 all : $(NAME)
 
 $(NAME):	$(OBJS) $(LIBEXT)
-	$(CC) $(OFLAGS) $^ -o $(NAME)
+	@echo "$(YELLOW)Creating executable..$(DEFAULT)"
+	@$(CC) $(OFLAGS) $^ -o $(NAME)
+	@echo "$(GREEN)---> ./$(NAME) is ready$(DEFAULT)"
 
 $(OBJD)/%.o : %.c | $(OBJD)
-	$(CC) $(CFLAGS) -I$(INCD) -o $@ -c $^
+	@echo "$(YELLOW)Compiling $(DEFAULT)$<"
+	@$(CC) $(CFLAGS) -I$(INCD) -o $@ -c $<
 
 $(OBJD) :
-	mkdir -p $(OBJD)
+	@mkdir -p $(OBJD)
 
 $(LIBEXT):
-	@make -C libs/libft
-	@make -C $(DIR_LIB_MLX)
+	@echo "$(YELLOW)Preparing Libft..$(DEFAULT)"
+	@make -C libs/libft 1>/dev/null 2>/dev/null
+	@echo "$(CYAN)---> Libft ready$(DEFAULT)"
+	@echo "$(YELLOW)Preparing MiniLibX..$(DEFAULT)"
+	@make -C $(DIR_LIB_MLX) 1>/dev/null 2>/dev/null
+	@echo "$(CYAN)---> MiniLibX ready$(DEFAULT)"
 
 clean:
 	@$(RM) $(OBJD)
-	@echo Clean the objets...
+	@echo "$(RED)Removed $(CYAN)objs/$(DEFAULT)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo Clean the program...
+	@echo "$(RED)Removed $(CYAN)./$(NAME)$(DEFAULT)"
 
 libclean:
-	@make fclean -C libs/libft
-	@make clean -C libs/mlx-linux
-	@make -C clean $(DIR_LIB_MLX)
+	@make fclean -C libs/libft 1>/dev/null 2>/dev/null
+	@echo "$(RED)Removed $(CYAN)Libft$(DEFAULT)"
+	@make clean -C $(DIR_LIB_MLX) 1>/dev/null 2>/dev/null
+	@echo "$(RED)Removed $(CYAN)MiniLibX$(DEFAULT)"
 
 fullclean: fclean libclean
 
 re:	fclean all
 
-
 norm:
-	clear
+	@clear
 	@(norminette $(INCS) $(SRCS) | grep -v  OK\!) || true
 
 db: all
 	$(DB) $(NAME)
+
+.PHONY: all clean fclean libclean fullclean
+
+#COLORS
+RED = \033[1;31m
+GREEN = \033[1;32m
+YELLOW = \033[1;33m
+CYAN = \033[1;36m
+DEFAULT = \033[0m
