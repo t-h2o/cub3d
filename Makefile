@@ -25,6 +25,7 @@ endif
 
 # Apple
 ifeq ($(UNAME_S),Darwin)
+  LIBEXT	+=	libs/mlx-apple/libmlx.a
   DIR_LIB_MLX     =	libs/mlx-apple
   OFLAGS	   +=	-L$(DIR_LIB_MLX) -lmlx -framework OpenGL -framework AppKit
 endif
@@ -74,8 +75,7 @@ $(OBJD) :
 
 $(LIBEXT):
 	@make -C libs/libft
-	@if [ "$(shell uname -s)" = Linux ]; then ; make -C libs/mlx-linux; fi
-	@if [ "$(shell uname -s)" = Darwin ]; then ; make -C libs/mlx-apple; fi
+	@make -C $(DIR_LIB_MLX)
 
 clean:
 	@$(RM) $(OBJD)
@@ -88,8 +88,7 @@ fclean: clean
 libclean:
 	@make fclean -C libs/libft
 	@make clean -C libs/mlx-linux
-	@if [ "$(shell uname -s)" = Linux ]; then ; make -C libs/mlx-linux; fi
-	@if [ "$(shell uname -s)" = Darwin ]; then ; make -C libs/mlx-apple; fi
+	@make -C clean $(DIR_LIB_MLX)
 
 fullclean: fclean libclean
 
