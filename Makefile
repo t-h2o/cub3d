@@ -38,7 +38,7 @@ LIBEXT	+=	libs/libft/libft.a
 
 #	Headers
 
-INCD	=	./headers
+INCD	=	headers
 
 INCS	=	$(INCD)/cub3d.h
 INCS	+=	$(INCD)/keys.h
@@ -46,7 +46,7 @@ INCS	+=	$(INCD)/keys.h
 
 #	Sources
 
-SRCD	=	./srcs
+SRCD	=	srcs
 
 SRCS	=	$(SRCD)/main.c
 SRCS	+=	$(SRCD)/window.c
@@ -54,7 +54,7 @@ SRCS	+=	$(SRCD)/window.c
 
 #	Objets
 
-OBJD	=	./objs
+OBJD	=	objs
 OBJS	=	$(addprefix $(OBJD)/, $(notdir $(SRCS:.c=.o)))
 
 RM		=	rm -rf
@@ -67,7 +67,7 @@ all : $(NAME)
 $(NAME):	$(LIBEXT) $(OBJS)
 	@echo "$(YELLOW)Creating executable..$(DEFAULT)"
 	@$(CC) $(OFLAGS) $^ -o $(NAME)
-	@echo "$(GREEN)---> ./$(NAME) is ready$(DEFAULT)"
+	@echo "$(GREEN)---> $(NAME) is ready$(DEFAULT)"
 
 $(OBJD)/%.o : %.c | $(OBJD)
 	@echo "$(YELLOW)Compiling $(DEFAULT)$<"
@@ -86,11 +86,11 @@ $(LIBEXT):
 
 clean:
 	@$(RM) $(OBJD)
-	@echo "$(RED)Removed $(CYAN)objs/$(DEFAULT)"
+	@echo "$(RED)Removed $(CYAN)$(OBJD)$(DEFAULT)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(RED)Removed $(CYAN)./$(NAME)$(DEFAULT)"
+	@echo "$(RED)Removed $(CYAN)$(NAME)$(DEFAULT)"
 
 libclean:
 	@make fclean -C libs/libft 1>/dev/null 2>/dev/null
