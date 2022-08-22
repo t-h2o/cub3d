@@ -64,7 +64,7 @@ vpath %.c $(SRCD)
 
 all : $(NAME)
 
-$(NAME):	$(OBJS) $(LIBEXT)
+$(NAME):	$(LIBEXT) $(OBJS)
 	@echo "$(YELLOW)Creating executable..$(DEFAULT)"
 	@$(CC) $(OFLAGS) $^ -o $(NAME)
 	@echo "$(GREEN)---> ./$(NAME) is ready$(DEFAULT)"
