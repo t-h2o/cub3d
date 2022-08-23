@@ -6,12 +6,13 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/23 14:10:53 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/23 14:18:47 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+//will move in check_map.c
 static int	check_extension(char *mapname)
 {
 	int	len;
@@ -32,42 +33,6 @@ static int	open_map(char *mapname)
 	free(path);
 	return (fd);
 }
-
-/*static void	save_line_data(t_game *game, char *line)
-{
-	int	i;
-	char	**tmp;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E'
-				|| line[i] == 'W')
-		{
-			game->player.x = i;
-			game->player.y = game->map_h;
-			game->player.dir = line[i];
-		}
-		i++;
-	}
-	game->map_h++;
-	tmp = game->map;
-	game->map = malloc(sizeof (char *) * (game->map_h + 1));
-	if (!game->map)
-		exit_error("Malloc :x");
-	i = 0;
-	if (tmp)
-	{
-		while (i < game->map_h - 1)
-		{
-			game->map[i] = tmp[i];
-			i++;
-		}
-		free(tmp);
-	}
-	game->map[i] = line;
-	game->map[i + 1] = NULL;
-}*/
 
 static int	save_line(t_game *game, char *line)
 {
@@ -99,14 +64,9 @@ static int	is_map_valid(t_game *game)
 	if (!game->map)
 		return(error_msg("Map is empty!"));
 	/* WIPP
-	if (check_walls(line))
-		exit_error("First line should be walls only");
-	if (check_side_borders(line))
-		exit_error("Both sides of the map should be walls");
-	if (check_line_data(game, line))
-		return ;
-	if (check_walls(game->map[game->map_h - 1]))
-		exit_error("Last line should be walls only");
+		
+	   checks will be called HERE
+
 	*/
 	return (0);
 }
