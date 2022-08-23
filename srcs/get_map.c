@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/23 21:53:47 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/08/23 22:43:31 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,16 @@ static int	check_extension(char *mapname)
 	return (0);
 }
 
-static int	open_map(char *mapname)
+static int	open_map(char *mapname, int *fd)
 {
-	int		fd;
 	char	*path;
 
 	path = ft_strjoin(MAPSDIR, mapname);
-	fd = open(path, O_RDONLY);
+	*fd = open(path, O_RDONLY);
 	free(path);
-	return (fd);
+	if (*fd <= 0)
+		return (error_msg("Couldn't find map in "MAPSDIR));
+	return (0);
 }
 
 static int	save_line(t_game *game, char *line)
@@ -93,9 +94,8 @@ int	get_map(t_game *game, char *mapname)
 
 	if (check_extension(mapname))
 		return (1);
-	fd = open_map(mapname);
-	if (fd <= 0)
-		return (error_msg("Couldn't find map in "MAPSDIR));
+	if (open_map(mapname, &fd))
+		return (1);
 	read_map(game, fd);
 	close(fd);
 	if (is_map_valid(game))
