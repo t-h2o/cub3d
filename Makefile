@@ -17,16 +17,11 @@ UNAME_S := $(shell uname -s)
 
 # Linux
 ifeq ($(UNAME_S),Linux)
-  LIBEXT	+=	libs/mlx-linux/libmlx.a
-  LIBEXT	+=	libs/mlx-linux/libmlx_Linux.a
-  DIR_LIB_MLX	=	libs/mlx-linux
-  OFLAGS	   +=	-L$(DIR_LIB_MLX) -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+  OFLAGS	   +=	-lmlx -lXext -lX11 -lm
 endif
 
 # Apple
 ifeq ($(UNAME_S),Darwin)
-  LIBEXT	+=	libs/mlx-apple/libmlx.a
-  DIR_LIB_MLX     =	libs/mlx-apple
   OFLAGS	   +=	-L$(DIR_LIB_MLX) -lmlx -framework OpenGL -framework AppKit
 endif
 
@@ -66,7 +61,7 @@ all : $(NAME)
 
 $(NAME):	$(LIBEXT) $(OBJS)
 	@echo "$(YELLOW)Creating executable..$(DEFAULT)"
-	@$(CC) $(OFLAGS) $(OBJS) $(LIBEXT) -o $(NAME)
+	@$(CC) $(OBJS) $(LIBEXT) $(OFLAGS) -o $(NAME)
 	@echo "$(GREEN)---> $(NAME) is ready$(DEFAULT)"
 
 $(OBJD)/%.o : %.c | $(OBJD)
@@ -81,7 +76,6 @@ $(LIBEXT):
 	@make -C libs/libft 1>/dev/null 2>/dev/null
 	@echo "$(CYAN)---> Libft ready$(DEFAULT)"
 	@echo "$(YELLOW)Preparing MiniLibX..$(DEFAULT)"
-	@make -C $(DIR_LIB_MLX) 1>/dev/null 2>/dev/null
 	@echo "$(CYAN)---> MiniLibX ready$(DEFAULT)"
 
 clean:
@@ -95,7 +89,6 @@ fclean: clean
 libclean:
 	@make fclean -C libs/libft 1>/dev/null 2>/dev/null
 	@echo "$(RED)Removed $(CYAN)Libft$(DEFAULT)"
-	@make clean -C $(DIR_LIB_MLX) 1>/dev/null 2>/dev/null
 	@echo "$(RED)Removed $(CYAN)MiniLibX$(DEFAULT)"
 
 fullclean: fclean libclean

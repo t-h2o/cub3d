@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/20 09:39:18 by user42           ###   ########.fr       */
+/*   Updated: 2022/08/23 13:25:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,9 @@
 // HEADERS
 
 # include	<stdio.h>
+# include	<mlx.h>
 # include	"keys.h"
 # include "../libs/libft/includes/libft.h"
-
-# ifdef __APPLE__
-#  include	"../libs/mlx-apple/mlx.h"
-
-# elif __linux__
-#  include	"../libs/mlx-linux/mlx.h"
-#  include	"../libs/mlx-linux/mlx_int.h"
-
-# endif
 
 // DEFINE
 
