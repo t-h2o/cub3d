@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/23 21:52:22 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/08/23 22:17:05 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 
 // DEFINE
 
-# define MAPSDIR	"./assets/maps/"
+# define MAPSDIR	"assets/maps/"
 # define W_WIDTH	1024
 # define W_HEIGHT	768
 
