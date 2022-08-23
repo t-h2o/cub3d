@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/23 14:18:47 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/23 21:53:47 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	save_line(t_game *game, char *line)
 static int	is_map_valid(t_game *game)
 {
 	if (!game->map)
-		return(error_msg("Map is empty!"));
+		return (error_msg("Map is empty!"));
 	/* WIPP
 		
 	   checks will be called HERE
@@ -71,7 +71,7 @@ static int	is_map_valid(t_game *game)
 	return (0);
 }
 
-static void read_map(t_game *game, int fd)
+static void	read_map(t_game *game, int fd)
 {
 	char	*line;
 
@@ -95,7 +95,7 @@ int	get_map(t_game *game, char *mapname)
 		return (1);
 	fd = open_map(mapname);
 	if (fd <= 0)
-		return(error_msg("Couldn't find map in "MAPSDIR));
+		return (error_msg("Couldn't find map in "MAPSDIR));
 	read_map(game, fd);
 	close(fd);
 	if (is_map_valid(game))

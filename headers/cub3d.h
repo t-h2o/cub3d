@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/23 14:11:16 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/23 21:52:22 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,19 @@ typedef struct s_info {
 	void	*mlx[2];
 }	t_info;
 
-typedef struct	s_player
+typedef struct s_player
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	char	dir;
 }	t_player;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	char		**map;
-	int			map_h;	
+	int			map_h;
 	t_player	player;
-	
+
 }	t_game;
 
 //close.c
