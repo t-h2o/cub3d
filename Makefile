@@ -66,7 +66,7 @@ all : $(NAME)
 
 $(NAME):	$(LIBEXT) $(OBJS)
 	@echo "$(YELLOW)Creating executable..$(DEFAULT)"
-	@$(CC) $(OFLAGS) $^ -o $(NAME)
+	@$(CC) $(OFLAGS) $(OBJS) $(LIBEXT) -o $(NAME)
 	@echo "$(GREEN)---> $(NAME) is ready$(DEFAULT)"
 
 $(OBJD)/%.o : %.c | $(OBJD)
