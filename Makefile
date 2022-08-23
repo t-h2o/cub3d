@@ -13,16 +13,16 @@ CFLAGS	+=	-g
 OFLAGS	=	-fsanitize=address
 
 # Find the os
-UNAME_S := $(shell uname -s)
+UNAME_S	:=	$(shell uname -s)
 
 # Linux
 ifeq ($(UNAME_S),Linux)
-  OFLAGS	   +=	-lmlx -lXext -lX11 -lm
+  OFLAGS	+=	-lmlx -lXext -lX11 -lm
 endif
 
 # Apple
 ifeq ($(UNAME_S),Darwin)
-  OFLAGS	   +=	-L$(DIR_LIB_MLX) -lmlx -framework OpenGL -framework AppKit
+  OFLAGS	+=	-lmlx -framework OpenGL -framework AppKit
 endif
 
 
