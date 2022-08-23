@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/20 17:55:49 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/23 13:06:35 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,14 @@ void	free_map(char **map)
 	}
 }
 
-void	exit_error(char *error_msg)
+int		error_msg(char *msg)
 {
 	ft_putendl_fd("Error", 2);
-	ft_putendl_fd(error_msg, 2);
-	exit(1);
+	ft_putendl_fd(msg, 2);
+	return (1);
+}
+
+void	exit_error(char *msg)
+{
+	exit(error_msg(msg));
 }

@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/21 15:17:32 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/23 13:56:20 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_extension(char *mapname)
 
 	len = ft_strlen(mapname);
 	if (ft_strncmp(mapname + (len - 4), ".cub", 4) != 0)
-		return (1);
+		return (error_msg("Invalid map extension, must be .cub"));
 	return (0);
 }
 
@@ -27,7 +27,7 @@ int	check_walls(char *line)
 	while (*line && *line != '\n')
 	{
 		if (*line != '1' && *line != ' ')
-			return (1);
+			return (error_msg("First & last line should be walls only"));
 		line++;
 	}
 	return (0);
@@ -38,12 +38,12 @@ int	check_side_borders(char *line)
 	while (*line && *line == ' ')
 		line++;
 	if (line[0] != '1' || line[ft_strlen(line) - 2] != '1')
-		return (1);
+		return (error_msg("Both sides of the map should be walls"));
 	while (*line)
 	{
 		if (*line == ' ' && *(line - 1) != '1' && *(line - 1) != ' '
 				&& *(line + 1) != '1' && *(line + 1) != ' ')
-			return (1);
+			return (error_msg("Both sides of the map should be walls"));
 		line++;
 	}
 	return (0);
@@ -53,7 +53,7 @@ int	check_charset(char c)
 {
 	if (c != '0' && c != '1' && c != 'N' && c != 'S'
 			&& c != 'E' && c != 'W' && c != ' ')
-		return (1);
+		return (error_msg("Invalid character in map"));
 	return (0);
 }
 
@@ -62,10 +62,10 @@ int	check_line_data(t_game *game, char *line)
 	while (*line && *line != '\n')
 	{
 		if (check_charset(*line))
-			exit_error("Invalid character in map");
+			return (error_msg("Invalid character in map"));
 		if ((*line == 'N' || *line == 'S' || *line == 'E'
 				|| *line == 'W') && game->player.x != -1)
-			exit_error("More than 1 player");
+			return (error_msg("More than 1 player"));
 		line++;
 	}
 	return (0);
