@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/23 22:43:31 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/08/23 22:44:16 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ static void	read_map(t_game *game, int fd)
 		}
 		line = get_next_line(fd);
 	}
+	close(fd);
 }
 
 int	get_map(t_game *game, char *mapname)
@@ -97,7 +98,6 @@ int	get_map(t_game *game, char *mapname)
 	if (open_map(mapname, &fd))
 		return (1);
 	read_map(game, fd);
-	close(fd);
 	if (is_map_valid(game))
 	{
 		free(game->map);
