@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:47:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/25 14:36:34 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/25 21:39:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ int	main(int ac, char **av)
 			i++;
 		}
 	}
-	free_map(info.map);
-
 	if (start_window(&info))
 		return (1);
-
 	return (0);
 }
