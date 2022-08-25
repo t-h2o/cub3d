@@ -4,10 +4,10 @@
 
 ### Parsing
 
-* [ ] Read the file
-  * [ ] Just the map
+* [X] Read the file
+  * [X] Just the map
 * [ ] Check the error
-* [ ] Fill `char **map` with the file
+* [X] Fill `char **map` with the file
 
 ### GUI
 

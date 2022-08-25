@@ -35,7 +35,6 @@ endif
 
 LIBEXT	+=	libs/libft/libft.a
 
-
 #	Headers
 
 INCD	=	headers
@@ -49,6 +48,9 @@ INCS	+=	$(INCD)/keys.h
 SRCD	=	srcs
 
 SRCS	=	$(SRCD)/main.c
+SRCS	+=	$(SRCD)/close.c
+SRCS	+=	$(SRCD)/get_map.c
+SRCS	+=	$(SRCD)/init.c
 SRCS	+=	$(SRCD)/window.c
 
 
@@ -83,6 +85,9 @@ $(LIBEXT):
 	@echo "$(YELLOW)Preparing MiniLibX..$(DEFAULT)"
 	@make -C $(DIR_LIB_MLX) 1>/dev/null 2>/dev/null
 	@echo "$(CYAN)---> MiniLibX ready$(DEFAULT)"
+
+$(LIBFT):
+	@make -C libs/libft
 
 clean:
 	@$(RM) $(OBJD)
