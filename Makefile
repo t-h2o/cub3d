@@ -51,6 +51,8 @@ SRCS	=	$(SRCD)/main.c
 SRCS	+=	$(SRCD)/close.c
 SRCS	+=	$(SRCD)/get_map.c
 SRCS	+=	$(SRCD)/init.c
+SRCS	+=	$(SRCD)/mini_map.c
+SRCS	+=	$(SRCD)/utils_mini_map.c
 SRCS	+=	$(SRCD)/window.c
 
 

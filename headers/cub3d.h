@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/25 21:54:10 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/08/25 21:57:25 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,18 @@ enum e_mlx {
 	WINDOW
 };
 
+// Mini map texture
+enum e_mm {
+	SPACE,
+	EMPTY,
+	WALL
+};
+
 // mlx: pointer on informations of the window
 typedef struct s_info {
 	void	*mlx[2];
 	char	**map;
+	void	*mm[3];
 	int		map_h;
 }	t_info;
 
@@ -58,6 +66,11 @@ typedef struct s_info {
 void	free_map(char **map);
 int		error_msg(char *msg);
 void	exit_error(char *msg);
+
+// mini_map.c
+
+int		mini_map(t_info *info);
+int		load_texture(t_info *info);
 
 // get_map.c
 int		get_map(t_info *info, char *mapname);
