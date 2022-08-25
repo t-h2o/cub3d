@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/25 18:32:29 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/25 18:49:17 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_extension(char *mapname)
 		return (error_msg("Invalid map extension, must be .cub"));
 	return (0);
 }
-
+/*
 int	check_walls(char *line)
 {
 	while (*line && *line != '\n')
@@ -69,7 +69,7 @@ int	check_line_data(t_game *game, char *line)
 		line++;
 	}
 	return (0);
-}
+}*/
 
 /*
 	while (line[i])
