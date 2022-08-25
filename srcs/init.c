@@ -6,15 +6,14 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:44:17 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/20 17:51:07 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/25 14:46:40 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_game(t_game *game)
+void	init_game(t_info *info)
 {
-	game->map = NULL;
-	game->player.x = -1;
-	game->map_h = 0;
+	info->map = NULL;
+	info->map_h = 0;
 }
