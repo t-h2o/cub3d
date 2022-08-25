@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:47:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/23 21:53:17 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/08/25 14:36:34 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int ac, char **av)
 {
 	t_info	info;
-	t_game	game;
 	int		i;
 
 	ft_putstr("Cub3D\n");
@@ -23,22 +22,22 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		exit_error("Invalid argument");
 
-	init_game(&game);
+	init_game(&info);
 
-	if (get_map(&game, av[1]))
+	if (get_map(&info, av[1]))
 		return (1);
 
 	//print the map	
-	if (game.map)
+	if (info.map)
 	{
 		i = 0;
-		while (game.map[i])
+		while (info.map[i])
 		{
-			ft_printf("%s", game.map[i]);
+			ft_printf("%s", info.map[i]);
 			i++;
 		}
 	}
-	free_map(game.map);
+	free_map(info.map);
 
 	if (start_window(&info))
 		return (1);
