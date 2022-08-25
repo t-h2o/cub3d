@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/23 22:44:16 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/08/25 14:44:40 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,36 +35,36 @@ static int	open_map(char *mapname, int *fd)
 	return (0);
 }
 
-static int	save_line(t_game *game, char *line)
+static int	save_line(t_info *info, char *line)
 {
 	int		i;
 	char	**tmp;
 
-	game->map_h++;
-	tmp = game->map;
-	game->map = malloc(sizeof (char *) * (game->map_h + 1));
-	if (!game->map)
+	info->map_h++;
+	tmp = info->map;
+	info->map = malloc(sizeof (char *) * (info->map_h + 1));
+	if (!info->map)
 		return (error_msg("Malloc :x"));
 	i = 0;
 	if (tmp)
 	{
-		while (i < game->map_h - 1)
+		while (i < info->map_h - 1)
 		{
-			game->map[i] = tmp[i];
+			info->map[i] = tmp[i];
 			i++;
 		}
 		free(tmp);
 	}
-	game->map[i] = line;
-	game->map[i + 1] = NULL;
+	info->map[i] = line;
+	info->map[i + 1] = NULL;
 	return (0);
 }
 
-static int	is_map_valid(t_game *game)
+static int	is_map_valid(t_info *info)
 {
-	if (!game->map)
+	if (!info->map)
 		return (error_msg("Map is empty!"));
-	/* WIPP
+	/* WIP
 		
 	   checks will be called HERE
 
@@ -72,14 +72,14 @@ static int	is_map_valid(t_game *game)
 	return (0);
 }
 
-static void	read_map(t_game *game, int fd)
+static void	read_map(t_info *info, int fd)
 {
 	char	*line;
 
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (save_line(game, line))
+		if (save_line(info, line))
 		{
 			free(line);
 			return ;
@@ -89,7 +89,7 @@ static void	read_map(t_game *game, int fd)
 	close(fd);
 }
 
-int	get_map(t_game *game, char *mapname)
+int	get_map(t_info *info, char *mapname)
 {
 	int	fd;
 
@@ -97,10 +97,10 @@ int	get_map(t_game *game, char *mapname)
 		return (1);
 	if (open_map(mapname, &fd))
 		return (1);
-	read_map(game, fd);
-	if (is_map_valid(game))
+	read_map(info, fd);
+	if (is_map_valid(info))
 	{
-		free(game->map);
+		free_map(info->map);
 		return (1);
 	}
 	return (0);
