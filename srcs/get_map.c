@@ -6,22 +6,11 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/25 14:44:40 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/25 18:27:49 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-//will move in check_map.c
-static int	check_extension(char *mapname)
-{
-	int	len;
-
-	len = ft_strlen(mapname);
-	if (ft_strncmp(mapname + (len - 4), ".cub", 4) != 0)
-		return (error_msg("Invalid map extension, must be .cub"));
-	return (0);
-}
 
 static int	open_map(char *mapname, int *fd)
 {
