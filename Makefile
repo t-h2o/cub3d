@@ -67,41 +67,41 @@ vpath %.c $(SRCD)
 all : $(NAME)
 
 $(NAME):	$(LIBEXT) $(OBJS)
-	@echo "$(YELLOW)Creating executable..$(DEFAULT)"
+	@printf "$(YELLOW)Creating executable..$(DEFAULT)\n"
 	@$(CC) $(OFLAGS) $(OBJS) $(LIBEXT) -o $(NAME)
-	@echo "$(GREEN)---> $(NAME) is ready$(DEFAULT)"
+	@printf "$(GREEN)---> $(NAME) is ready$(DEFAULT)\n"
 
 $(OBJD)/%.o : %.c | $(OBJD)
-	@echo "$(YELLOW)Compiling $(DEFAULT)$<"
+	@printf "$(YELLOW)Compiling $(DEFAULT)$<\n"
 	@$(CC) $(CFLAGS) -I$(INCD) -o $@ -c $<
 
 $(OBJD) :
 	@mkdir -p $(OBJD)
 
 $(LIBEXT):
-	@echo "$(YELLOW)Preparing Libft..$(DEFAULT)"
+	@printf "$(YELLOW)Preparing Libft..$(DEFAULT)\n"
 	@make -C libs/libft 1>/dev/null 2>/dev/null
-	@echo "$(CYAN)---> Libft ready$(DEFAULT)"
-	@echo "$(YELLOW)Preparing MiniLibX..$(DEFAULT)"
+	@printf "$(CYAN)---> Libft ready$(DEFAULT)\n"
+	@printf "$(YELLOW)Preparing MiniLibX..$(DEFAULT)\n"
 	@make -C $(DIR_LIB_MLX) 1>/dev/null 2>/dev/null
-	@echo "$(CYAN)---> MiniLibX ready$(DEFAULT)"
+	@printf "$(CYAN)---> MiniLibX ready$(DEFAULT)\n"
 
 $(LIBFT):
 	@make -C libs/libft
 
 clean:
 	@$(RM) $(OBJD)
-	@echo "$(RED)Removed $(CYAN)$(OBJD)$(DEFAULT)"
+	@printf "$(RED)Removed $(CYAN)$(OBJD)$(DEFAULT)\n"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(RED)Removed $(CYAN)$(NAME)$(DEFAULT)"
+	@printf "$(RED)Removed $(CYAN)$(NAME)$(DEFAULT)\n"
 
 libclean:
 	@make fclean -C libs/libft 1>/dev/null 2>/dev/null
-	@echo "$(RED)Removed $(CYAN)Libft$(DEFAULT)"
+	@printf "$(RED)Removed $(CYAN)Libft$(DEFAULT)\n"
 	@make clean -C $(DIR_LIB_MLX) 1>/dev/null 2>/dev/null
-	@echo "$(RED)Removed $(CYAN)MiniLibX$(DEFAULT)"
+	@printf "$(RED)Removed $(CYAN)MiniLibX$(DEFAULT)\n"
 
 fullclean: fclean libclean
 
