@@ -40,6 +40,13 @@
 # define W_WIDTH	1024
 # define W_HEIGHT	768
 
+// Location of the Minimap from the top left
+# define MM_TOP		10
+# define MM_LEFT	10
+
+// Size of sqare of mini map
+# define MM_SQUARE	10
+
 // STRUCTURE
 
 enum e_mlx {
