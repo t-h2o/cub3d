@@ -35,9 +35,9 @@ static int
 int	start_window(t_info *info)
 {
 	info->mlx[INIT] = mlx_init();
-	info->mlx[WINDOW]
-		= mlx_new_window(info->mlx[INIT], W_WIDTH, W_HEIGHT, "Cub3D");
-	mlx_key_hook(info->mlx[WINDOW], deal_key, (void *)info);
+	info->mlx[WINDOW] = mlx_new_window
+		(info->mlx[INIT], W_WIDTH, W_HEIGHT, "Cub3D");
+	mlx_key_hook(info->mlx[WINDOW], deal_key, info);
 	mini_map(info);
 	mlx_loop(info->mlx[INIT]);
 	return (0);
