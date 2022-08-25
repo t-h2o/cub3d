@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:01:59 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/08/20 09:59:53 by user42           ###   ########.fr       */
+/*   Updated: 2022/08/22 16:27:01 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	start_window(t_info *info)
 	info->mlx[WINDOW]
 		= mlx_new_window(info->mlx[INIT], W_WIDTH, W_HEIGHT, "Cub3D");
 	mlx_key_hook(info->mlx[WINDOW], deal_key, (void *)info);
+	mini_map(info);
 	mlx_loop(info->mlx[INIT]);
 	return (0);
 }
