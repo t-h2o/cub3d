@@ -39,6 +39,13 @@
 # define W_WIDTH	1024
 # define W_HEIGHT	768
 
+// Location of the Minimap from the top left
+# define MM_TOP		10
+# define MM_LEFT	10
+
+// Size of sqare of mini map
+# define MM_SQUARE	10
+
 // STRUCTURE
 
 enum e_mlx {
@@ -46,10 +53,17 @@ enum e_mlx {
 	WINDOW
 };
 
+// Mini map texture
+enum e_mm {
+	EMPTY,
+	WALL
+};
+
 // mlx: pointer on informations of the window
 typedef struct s_info {
 	void	*mlx[2];
 	char	**map;
+	void	*mm[2];
 	int		map_h;
 }	t_info;
 
@@ -62,7 +76,7 @@ void	exit_error(char *msg);
 int		get_map(t_info *info, char *mapname);
 
 // init.c
-void	init_game(t_info *info);
+int		init_game(t_info *info);
 
 // window.c
 int		start_window(t_info *info);
