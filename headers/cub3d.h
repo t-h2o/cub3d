@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/25 14:33:56 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/26 16:17:29 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@
 # endif
 
 // DEFINE
+
+// Path for texture of mini map
+# define PMM_EMPTY	"assets/mini_map/empty.xpm"
+# define PMM_WALL	"assets/mini_map/wall.xpm"
 
 # define MAPSDIR	"assets/maps/"
 # define W_WIDTH	1024
