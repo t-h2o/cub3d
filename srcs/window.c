@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:01:59 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/08/20 09:59:53 by user42           ###   ########.fr       */
+/*   Updated: 2022/08/26 16:23:37 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static int
 // Start the infinite loop of the window
 int	start_window(t_info *info)
 {
-	info->mlx[INIT] = mlx_init();
 	info->mlx[WINDOW]
 		= mlx_new_window(info->mlx[INIT], W_WIDTH, W_HEIGHT, "Cub3D");
 	mlx_key_hook(info->mlx[WINDOW], deal_key, (void *)info);

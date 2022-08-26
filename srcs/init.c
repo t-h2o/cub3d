@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:44:17 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/25 14:46:40 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/26 16:21:35 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@ void	init_game(t_info *info)
 {
 	info->map = NULL;
 	info->map_h = 0;
+	info->mlx[INIT] = mlx_init();
 }
