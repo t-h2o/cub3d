@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/08/26 16:17:13 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/08/26 17:44:47 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // Position:
 //   x: Size * x_char + distance from the left
 //   y: Size * y_char + distance from the top
-static int	print_sqare(t_info *info, char c, int y, int x)
+static void	print_sqare(t_info *info, char c, int y, int x)
 {
 	if (c == '0' || c == 'N' || c == 'E' || c == 'S' || c == 'W')
 		mlx_put_image_to_window(info->mlx[0], info->mlx[1],
@@ -24,11 +24,10 @@ static int	print_sqare(t_info *info, char c, int y, int x)
 	if (c == '1')
 		mlx_put_image_to_window(info->mlx[0], info->mlx[1],
 			info->mm[WALL], x * MM_SQUARE + MM_LEFT, y * MM_SQUARE + MM_TOP);
-	return (0);
 }
 
 // Print the mini map
-static int	print_map(t_info *info)
+static void	print_map(t_info *info)
 {
 	int		pos_x;
 	int		pos_y;
@@ -40,11 +39,9 @@ static int	print_map(t_info *info)
 		while (info->map[pos_y][++pos_x])
 			print_sqare(info, info->map[pos_y][pos_x], pos_y, pos_x);
 	}
-	return (0);
 }
 
-int	mini_map(t_info *info)
+void	mini_map(t_info *info)
 {
 	print_map(info);
-	return (0);
 }

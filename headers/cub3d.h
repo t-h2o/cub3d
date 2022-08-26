@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/26 16:17:29 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/08/26 17:46:26 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	exit_error(char *msg);
 
 // mini_map.c
 
-int		mini_map(t_info *info);
+void	mini_map(t_info *info);
 
 // get_map.c
 int		get_map(t_info *info, char *mapname);
