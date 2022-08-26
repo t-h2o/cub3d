@@ -36,6 +36,8 @@
 # define PMM_WALL	"assets/mini_map/wall.xpm"
 
 # define MAPSDIR	"assets/maps/"
+
+// Window size [px]
 # define W_WIDTH	1024
 # define W_HEIGHT	768
 
@@ -48,6 +50,7 @@
 
 // STRUCTURE
 
+// Mlx pointer for the window
 enum e_mlx {
 	INIT,
 	WINDOW

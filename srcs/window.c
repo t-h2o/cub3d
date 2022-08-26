@@ -34,9 +34,9 @@ static int
 // Start the infinite loop of the window
 int	start_window(t_info *info)
 {
-	info->mlx[WINDOW]
-		= mlx_new_window(info->mlx[INIT], W_WIDTH, W_HEIGHT, "Cub3D");
-	mlx_key_hook(info->mlx[WINDOW], deal_key, (void *)info);
+	info->mlx[WINDOW] = mlx_new_window
+		(info->mlx[INIT], W_WIDTH, W_HEIGHT, "Cub3D");
+	mlx_key_hook(info->mlx[WINDOW], deal_key, info);
 	if (mini_map(info))
 		return (1);
 	mlx_loop(info->mlx[INIT]);
