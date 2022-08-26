@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/08/25 21:49:54 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/08/26 12:25:20 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	print_sqare(t_info *info, char c, int y, int x)
 	if (c == ' ')
 		mlx_put_image_to_window(info->mlx[0], info->mlx[1],
 			info->mm[SPACE], x * MM_SQUARE + MM_LEFT, y * MM_SQUARE + MM_TOP);
-	if (c == '0')
+	if (c == '0' || c == 'N' || c == 'E' || c == 'S' || c == 'W')
 		mlx_put_image_to_window(info->mlx[0], info->mlx[1],
 			info->mm[EMPTY], x * MM_SQUARE + MM_LEFT, y * MM_SQUARE + MM_TOP);
 	if (c == '1')
