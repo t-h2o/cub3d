@@ -38,10 +38,7 @@ int	main(int ac, char **av)
 			i++;
 		}
 	}
-	free_map(info.map);
-
 	if (start_window(&info))
 		return (1);
-
 	return (0);
 }
