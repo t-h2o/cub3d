@@ -72,6 +72,10 @@ void	free_map(char **map);
 int		error_msg(char *msg);
 void	exit_error(char *msg);
 
+// mini_map.c
+
+int		mini_map(t_info *info);
+
 // get_map.c
 int		get_map(t_info *info, char *mapname);
 
