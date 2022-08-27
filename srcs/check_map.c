@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/27 19:11:15 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/27 20:16:56 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,28 @@ int	check_extension(char *mapname)
 	return (0);
 }
 
-static int	check_charset(char data)
+static int	check_charset(t_info *info, int x, int y)
 {
-	if (data != '0' && data != '1' && data != 'N' && data != 'S'
-			&& data != 'E' && data != 'W' && data != ' ')
-		return (1);
+	char	data;
+
+	data = info->map[y][x];
+	if (data != '0' && data != '1')
+	{
+		if (data != 'N' && data != 'S' && data != 'E'
+				&& data != 'W' && data != ' ')
+			return (error_msg("Invalid character in map"));
+		else if (data != ' ')
+		{
+			if (info->player.x != -1.0f)
+				return (error_msg("More than 1 player"));
+			else
+			{
+				info->player.x = (float) x;
+				info->player.y = (float) y;
+				//info->player.dir = info->map[y][x];
+			}	
+		}
+	}
 	return (0);
 }
 
@@ -41,10 +58,14 @@ int	check_map_data(t_info *info)
 		x = -1;
 		while (info->map[y][++x] && info->map[y][x] != '\n')
 		{	
-			if (check_charset(info->map[y][x]))
-				return (error_msg("Invalid character in map"));
+			if (check_charset(info, x, y))
+				return (1);
+
 		}
 	}
+	if (info->player.x == -1.0f)
+		return (error_msg("No player in map"));
+
 	return (0);
 }
 

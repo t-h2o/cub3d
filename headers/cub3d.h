@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 14:43:06 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/01 14:48:38 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,18 +73,13 @@ enum e_mm {
 	PLAYER
 };
 
-// position player
-// position X and Y
-// A is the angle
-// Player delta X
-// Player delta Y
-enum e_pp {
-	X,
-	Y,
-	A,
-	DX,
-	DY
-};
+typedef struct s_player {
+	float	x;
+	float	y;
+	float	angle;
+	float	dx;
+	float	dy;
+}	t_player;
 
 // mlx: pointer on informations of the window
 typedef struct s_info {
@@ -92,9 +87,9 @@ typedef struct s_info {
 	char	**map;
 	void	*mm_img[3];
 	int		map_h;
-	float	pos_player[5];
+	t_player	player;
 }	t_info;
-
+	
 // check_map.c
 int	check_extension(char *mapname);
 int	check_map_data(t_info *info);
