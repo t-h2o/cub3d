@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/25 18:49:17 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/27 19:11:15 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,33 @@ int	check_extension(char *mapname)
 		return (error_msg("Invalid map extension, must be .cub"));
 	return (0);
 }
+
+static int	check_charset(char data)
+{
+	if (data != '0' && data != '1' && data != 'N' && data != 'S'
+			&& data != 'E' && data != 'W' && data != ' ')
+		return (1);
+	return (0);
+}
+
+int	check_map_data(t_info *info)
+{
+	int	x;
+	int	y;
+	
+	y = -1;
+	while (info->map[++y])
+	{
+		x = -1;
+		while (info->map[y][++x] && info->map[y][x] != '\n')
+		{	
+			if (check_charset(info->map[y][x]))
+				return (error_msg("Invalid character in map"));
+		}
+	}
+	return (0);
+}
+
 /*
 int	check_walls(char *line)
 {
@@ -49,48 +76,4 @@ int	check_side_borders(char *line)
 	return (0);
 }
 
-int	check_charset(char c)
-{
-	if (c != '0' && c != '1' && c != 'N' && c != 'S'
-			&& c != 'E' && c != 'W' && c != ' ')
-		return (error_msg("Invalid character in map"));
-	return (0);
-}
-
-int	check_line_data(t_game *game, char *line)
-{
-	while (*line && *line != '\n')
-	{
-		if (check_charset(*line))
-			return (error_msg("Invalid character in map"));
-		if ((*line == 'N' || *line == 'S' || *line == 'E'
-				|| *line == 'W') && game->player.x != -1)
-			return (error_msg("More than 1 player"));
-		line++;
-	}
-	return (0);
-}*/
-
-/*
-	while (line[i])
-	{
-		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E'
-				|| line[i] == 'W')
-		{
-			game->player.x = i;
-			game->player.y = game->map_h;
-			game->player.dir = line[i];
-		}
-		i++;
-	}
-
-		if (check_side_borders(line))
-			exit_error("Both sides of the map should be walls");
-		if (check_line_data(game, line))
-			return ;
-		save_line_data(game, line);
-		line = get_next_line(fd);
-	}
-	if (check_walls(game->map[game->map_h - 1]))
-		exit_error("Last line should be walls only");
-}*/
+*/

@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/25 18:27:49 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/27 19:10:25 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static int	is_map_valid(t_info *info)
 {
 	if (!info->map)
 		return (error_msg("Map is empty!"));
+	if (check_map_data(info))
+		return (1);
 	/* WIP
 		
 	   checks will be called HERE

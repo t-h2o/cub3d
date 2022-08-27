@@ -45,6 +45,7 @@ test_map_error () {
 
 	test_error "File do no exist" "nomap.cub"
 	test_error "Invalid map extension" "invalid_map"
+	test_error "Invalid character" "invalid/badchar.cub"
 
 }
 
