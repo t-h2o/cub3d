@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:44:17 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/27 12:14:10 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/27 12:55:21 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	init_game(t_info *info)
 	info->map = NULL;
 	info->map_h = 0;
 	info->mlx[INIT] = mlx_init();
+	if (!info->mlx[INIT])
+		return (error_msg("Couldn't init mlx"));
 	if (load_textures(info))
 		return (1);
 	return (0);

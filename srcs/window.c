@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:01:59 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/08/26 17:45:14 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/08/27 12:54:01 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	start_window(t_info *info)
 {
 	info->mlx[WINDOW] = mlx_new_window
 		(info->mlx[INIT], W_WIDTH, W_HEIGHT, "Cub3D");
+	if (!info->mlx[WINDOW])
+		return (error_msg("Couldn't create window"));
 	mlx_key_hook(info->mlx[WINDOW], deal_key, info);
 	mini_map(info);
 	mlx_loop(info->mlx[INIT]);
