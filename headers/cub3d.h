@@ -46,7 +46,7 @@
 # define MM_POS_X	10
 
 // Size of a square of the mini map
-# define MM_TILESIZE	10 
+# define MM_TILESIZE	10
 
 // STRUCTURE
 
@@ -74,7 +74,7 @@ typedef struct s_info {
 void	free_map(char **map);
 int		error_msg(char *msg);
 void	exit_error(char *msg);
-int 	close_game(t_info *info);
+int		close_game(t_info *info);
 
 // mini_map.c
 
@@ -88,6 +88,6 @@ int		init_game(t_info *info);
 
 // window.c
 int		start_window(t_info *info);
-void		destroy_window(t_info *info);
+void	destroy_window(t_info *info);
 
 #endif /* CUB3D_H */
