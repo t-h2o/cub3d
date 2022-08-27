@@ -1,5 +1,5 @@
 /* XPM */
-static char * empty_xpm[] = {
+static char * ground_xpm[] = {
 "10 10 1 1",
 " 	c #FF0000",
 "          ",

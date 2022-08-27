@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:44:17 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/26 16:21:35 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/08/27 12:14:10 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ static int	check_square(int height, int width)
 	return (0);
 }
 
-// Load texture for the mini map
-static int	load_texture(t_info *info)
+// Load textures for the mini map
+static int	load_textures(t_info *info)
 {
 	int		img_width;
 	int		img_height;
 
-	info->mm[EMPTY] = mlx_xpm_file_to_image
-		(info->mlx[INIT], PMM_EMPTY, &img_width, &img_height);
+	info->mm_img[GROUND] = mlx_xpm_file_to_image
+		(info->mlx[INIT], MM_GROUND, &img_width, &img_height);
 	if (check_square(img_height, img_width))
 		return (1);
-	info->mm[WALL] = mlx_xpm_file_to_image
-		(info->mlx[INIT], PMM_WALL, &img_width, &img_height);
+	info->mm_img[WALL] = mlx_xpm_file_to_image
+		(info->mlx[INIT], MM_WALL, &img_width, &img_height);
 	if (check_square(img_height, img_width))
 		return (1);
 	return (0);
@@ -39,13 +39,13 @@ static int	load_texture(t_info *info)
 
 // Init default value of the struct
 // Init mlx
-// Load texture for the minimap
+// Load textures for the minimap
 int	init_game(t_info *info)
 {
 	info->map = NULL;
 	info->map_h = 0;
 	info->mlx[INIT] = mlx_init();
-	if (load_texture(info))
+	if (load_textures(info))
 		return (1);
 	return (0);
 }

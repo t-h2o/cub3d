@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/26 17:46:26 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/08/27 12:25:14 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@
 
 // DEFINE
 
-// Path for texture of mini map
-# define PMM_EMPTY	"assets/mini_map/empty.xpm"
-# define PMM_WALL	"assets/mini_map/wall.xpm"
+// Path for textures
+# define MM_GROUND	"assets/textures/minimap/ground.xpm"
+# define MM_WALL	"assets/textures/minimap/wall.xpm"
 
 # define MAPSDIR	"assets/maps/"
 
@@ -41,12 +41,12 @@
 # define W_WIDTH	1024
 # define W_HEIGHT	768
 
-// Location of the Minimap from the top left
-# define MM_TOP		10
-# define MM_LEFT	10
+// Location of the Minimap from the top left corner
+# define MM_POS_Y	10
+# define MM_POS_X	10
 
-// Size of sqare of mini map
-# define MM_SQUARE	10
+// Size of a square of the mini map
+# define MM_TILESIZE	10 
 
 // STRUCTURE
 
@@ -58,7 +58,7 @@ enum e_mlx {
 
 // Mini map texture
 enum e_mm {
-	EMPTY,
+	GROUND,
 	WALL
 };
 
@@ -66,7 +66,7 @@ enum e_mm {
 typedef struct s_info {
 	void	*mlx[2];
 	char	**map;
-	void	*mm[2];
+	void	*mm_img[2];
 	int		map_h;
 }	t_info;
 
