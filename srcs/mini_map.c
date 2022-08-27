@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/08/27 17:28:00 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/27 17:40:45 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	print_square(t_info *info, char c, int y, int x)
 {
 	if (c == '0' || c == 'N' || c == 'E' || c == 'S' || c == 'W')
 		mlx_put_image_to_window(info->mlx[0], info->mlx[1],
-				info->mm_img[GROUND],
-				x * MM_TILESIZE + MM_POS_X,
-				y * MM_TILESIZE + MM_POS_Y);
+			info->mm_img[GROUND],
+			x * MM_TILESIZE + MM_POS_X,
+			y * MM_TILESIZE + MM_POS_Y);
 	if (c == '1')
 		mlx_put_image_to_window(info->mlx[0], info->mlx[1],
 			info->mm_img[WALL],
