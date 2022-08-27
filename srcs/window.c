@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:01:59 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/08/27 13:39:29 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/27 16:55:05 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	start_window(t_info *info)
 	if (!info->mlx[WINDOW])
 		return (error_msg("Couldn't create window"));
 	mlx_key_hook(info->mlx[WINDOW], deal_key, info);
+	mlx_hook(info->mlx[WINDOW], 17, 0L << 0, close_game, info);
 	mini_map(info);
 	mlx_loop(info->mlx[INIT]);
 	return (0);

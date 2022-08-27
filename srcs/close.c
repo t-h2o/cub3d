@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/27 13:57:35 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/27 17:01:56 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ void	exit_error(char *msg)
 	exit(error_msg(msg));
 }
 
-void	close_game(t_info *info)
+int	close_game(t_info *info)
 {
 	free_map(info->map);
 	destroy_window(info);
 	destroy_images(info);
 	exit(0);
+	return (0);
 }

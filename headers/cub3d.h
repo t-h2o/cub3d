@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/27 13:56:27 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/27 17:02:19 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_info {
 void	free_map(char **map);
 int		error_msg(char *msg);
 void	exit_error(char *msg);
-void 	close_game(t_info *info);
+int 	close_game(t_info *info);
 
 // mini_map.c
 
