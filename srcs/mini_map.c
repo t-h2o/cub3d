@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/08/27 12:26:10 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/27 17:28:00 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	print_square(t_info *info, char c, int y, int x)
 }
 
 // Print the mini map
-static void	print_minimap(t_info *info)
+void	print_minimap(t_info *info)
 {
 	int		pos_x;
 	int		pos_y;
@@ -43,9 +43,4 @@ static void	print_minimap(t_info *info)
 		while (info->map[pos_y][++pos_x])
 			print_square(info, info->map[pos_y][pos_x], pos_y, pos_x);
 	}
-}
-
-void	mini_map(t_info *info)
-{
-	print_minimap(info);
 }
