@@ -6,11 +6,17 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/23 21:51:21 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/08/28 09:06:13 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	destroy_images(t_info *info)
+{
+	mlx_destroy_image(info->mlx[INIT], info->mm_img[GROUND]);
+	mlx_destroy_image(info->mlx[INIT], info->mm_img[WALL]);
+}
 
 void	free_map(char **map)
 {
@@ -38,4 +44,13 @@ int	error_msg(char *msg)
 void	exit_error(char *msg)
 {
 	exit(error_msg(msg));
+}
+
+int	close_game(t_info *info)
+{
+	free_map(info->map);
+	mlx_destroy_window(info->mlx[INIT], info->mlx[WINDOW]);
+	destroy_images(info);
+	exit(0);
+	return (0);
 }

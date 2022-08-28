@@ -12,7 +12,7 @@
 ### GUI
 
 * [x] Open a Windows
-* [ ] Display the map and the data
+* [x] Display the map
 
 ## Second Round !
 

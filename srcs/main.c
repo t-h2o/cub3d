@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:47:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/25 14:36:34 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/26 16:17:43 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		exit_error("Invalid argument");
 
-	init_game(&info);
+	if (init_game(&info))
+		return (1);
 
 	if (get_map(&info, av[1]))
 		return (1);
@@ -37,10 +38,7 @@ int	main(int ac, char **av)
 			i++;
 		}
 	}
-	free_map(info.map);
-
 	if (start_window(&info))
 		return (1);
-
 	return (0);
 }
