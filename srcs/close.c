@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/27 17:01:56 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/28 09:06:13 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	exit_error(char *msg)
 int	close_game(t_info *info)
 {
 	free_map(info->map);
-	destroy_window(info);
+	mlx_destroy_window(info->mlx[INIT], info->mlx[WINDOW]);
 	destroy_images(info);
 	exit(0);
 	return (0);

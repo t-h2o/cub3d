@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/27 17:28:27 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/28 09:06:39 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,5 @@ int		init_game(t_info *info);
 
 // window.c
 int		start_window(t_info *info);
-void	destroy_window(t_info *info);
 
 #endif /* CUB3D_H */
