@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/27 20:16:56 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/29 16:53:47 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,18 @@ int	check_map_data(t_info *info)
 	return (0);
 }
 
-/*
 int	check_walls(char *line)
 {
 	while (*line && *line != '\n')
 	{
 		if (*line != '1' && *line != ' ')
-			return (error_msg("First & last line should be walls only"));
+			return (1);
 		line++;
 	}
 	return (0);
 }
 
+/*
 int	check_side_borders(char *line)
 {
 	while (*line && *line == ' ')

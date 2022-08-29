@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 15:11:11 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/01 15:12:22 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ typedef struct s_info {
 // check_map.c
 int	check_extension(char *mapname);
 int	check_map_data(t_info *info);
-//int	check_walls(char *line);
+int	check_walls(char *line);
 //int	check_side_borders(char *line);
 //int	check_charset(char c);
 //int	check_line_data(t_info *info, char *line);
