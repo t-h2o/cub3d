@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/29 17:23:33 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/08/29 17:24:00 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 # endif
 
-// DEFINE
+// Define
 
 // Path for textures
 # define MM_GROUND	"assets/textures/minimap/ground.xpm"
@@ -50,7 +50,7 @@
 # define SS_MAP		10
 # define SS_PLAYER	4
 
-// STRUCTURE
+// Structure
 
 // Mlx pointer for the window
 enum e_mlx {
@@ -80,7 +80,6 @@ void	exit_error(char *msg);
 int		close_game(t_info *info);
 
 // mini_map.c
-
 void	print_minimap(t_info *info);
 
 // get_map.c
