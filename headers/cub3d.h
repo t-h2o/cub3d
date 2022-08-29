@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 14:54:12 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/01 15:11:11 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,15 @@ enum e_mm {
 	PLAYER
 };
 
+typedef struct s_texture {
+	char	*north;
+	char	*south;
+	char	*east;
+	char	*west;
+	char	*floor;
+	char	*ceil;
+}	t_texture;
+
 typedef struct s_player {
 	float	x;
 	float	y;
@@ -88,6 +97,7 @@ typedef struct s_info {
 	void	*mm_img[3];
 	int		map_h;
 	t_player	player;
+	t_texture	texture;
 }	t_info;
 	
 // check_map.c
