@@ -78,7 +78,7 @@ void	print_minimap(t_info *info)
 	int		pos_y;
 
 	mlx_clear_window
-		(((t_info *)info)->mlx[INIT], ((t_info *)info)->mlx[WINDOW]);
+		(info->mlx[INIT], info->mlx[WINDOW]);
 	pos_y = -1;
 	while (info->map[++pos_y])
 	{
