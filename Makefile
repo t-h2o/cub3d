@@ -34,6 +34,7 @@ endif
 #	Libraries
 
 LIBEXT	+=	libs/libft/libft.a
+CLIB	=	-lm
 
 #	Headers
 
@@ -69,7 +70,7 @@ all : $(NAME)
 
 $(NAME):	$(LIBEXT) $(OBJS)
 	@printf "$(YELLOW)Creating executable..$(DEFAULT)\n"
-	@$(CC) $(OFLAGS) $(OBJS) $(LIBEXT) -o $(NAME)
+	@$(CC) $(OFLAGS) $(OBJS) $(LIBEXT) $(CLIB) -o $(NAME)
 	@printf "$(GREEN)---> $(NAME) is ready$(DEFAULT)\n"
 
 $(OBJD)/%.o : %.c | $(OBJD)
