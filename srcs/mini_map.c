@@ -52,9 +52,26 @@ static void	print_player(t_info *info)
 		MM_POS_Y + info->pos_player[Y]);
 }
 
+// Position player
+static void	print_info(t_info *info)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin("Position X: ", ft_itoa((int)info->pos_player[X]));
+	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW], 500, 10, CO_WHITE, tmp);
+	free(tmp);
+	tmp = ft_strjoin("Position Y: ", ft_itoa((int)info->pos_player[Y]));
+	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW], 500, 20, CO_WHITE, tmp);
+	free(tmp);
+	tmp = ft_strjoin("    Angle : ", ft_itoa((int)info->pos_player[A]));
+	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW], 500, 30, CO_WHITE, tmp);
+	free(tmp);
+}
+
 // Clear the window
 // Print the mini map
 // Print the player
+// Print the data
 void	print_minimap(t_info *info)
 {
 	int		pos_x;
@@ -70,4 +87,5 @@ void	print_minimap(t_info *info)
 			print_square(info, info->map[pos_y][pos_x], pos_y, pos_x);
 	}
 	print_player(info);
+	print_info(info);
 }

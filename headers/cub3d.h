@@ -38,6 +38,9 @@
 
 # define MAPSDIR	"assets/maps/"
 
+// Color
+# define CO_WHITE		0x00FFFFFF
+
 // Window size [px]
 # define W_WIDTH	1024
 # define W_HEIGHT	768
