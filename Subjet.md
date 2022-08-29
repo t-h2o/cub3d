@@ -158,7 +158,7 @@ Cub3D Mon premier RayCaster avec la minilibX
 du personnage)
 ```
 ```
-◦ Appuyer sur la toucheESC doit fermer la fenêtre et quitter le programme
+◦ Appuyer sur la touche ESC doit fermer la fenêtre et quitter le programme
 proprement
 ```
 ```
@@ -166,7 +166,7 @@ proprement
 programme proprement
 ```
 ```
-◦ L’utilisation d’imagesde laminilibXest fortement recommandée.
+◦ L’utilisation d’images de la minilibX est fortement recommandée.
 ```
 - Votre programme doit prendre en premier argument un fichier de description de
     scène avec pour extension.cub
