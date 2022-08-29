@@ -30,12 +30,15 @@ static void	print_square(t_info *info, char c, int y, int x)
 			y * SS_MAP + MM_POS_Y);
 }
 
+// Clear the window
 // Print the mini map
 void	print_minimap(t_info *info)
 {
 	int		pos_x;
 	int		pos_y;
 
+	mlx_clear_window
+		(((t_info *)info)->mlx[INIT], ((t_info *)info)->mlx[WINDOW]);
 	pos_y = -1;
 	while (info->map[++pos_y])
 	{
