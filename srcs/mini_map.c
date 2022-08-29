@@ -21,13 +21,13 @@ static void	print_square(t_info *info, char c, int y, int x)
 	if (c == '0' || c == 'N' || c == 'E' || c == 'S' || c == 'W')
 		mlx_put_image_to_window(info->mlx[0], info->mlx[1],
 			info->mm_img[GROUND],
-			x * MM_TILESIZE + MM_POS_X,
-			y * MM_TILESIZE + MM_POS_Y);
+			x * SS_MAP + MM_POS_X,
+			y * SS_MAP + MM_POS_Y);
 	if (c == '1')
 		mlx_put_image_to_window(info->mlx[0], info->mlx[1],
 			info->mm_img[WALL],
-			x * MM_TILESIZE + MM_POS_X,
-			y * MM_TILESIZE + MM_POS_Y);
+			x * SS_MAP + MM_POS_X,
+			y * SS_MAP + MM_POS_Y);
 }
 
 // Print the mini map
