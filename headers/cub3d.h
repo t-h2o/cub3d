@@ -44,6 +44,11 @@
 // Color
 # define CO_WHITE		0x00FFFFFF
 
+// Sensibility
+//   rotation = (PI / 8)
+# define SENSE_MOVE		1.0f
+# define SENSE_ROTATION	0.392699081699f
+
 // Window size [px]
 # define W_WIDTH	1024
 # define W_HEIGHT	768
