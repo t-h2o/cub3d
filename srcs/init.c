@@ -48,6 +48,7 @@ int	init_game(t_info *info)
 {
 	info->map = NULL;
 	info->map_h = 0;
+	info->pos_player[X] = -1.0f;
 	info->mlx[INIT] = mlx_init();
 	if (!info->mlx[INIT])
 		return (error_msg("Couldn't init mlx"));
