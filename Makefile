@@ -54,6 +54,7 @@ SRCS	+=	$(SRCD)/close.c
 SRCS	+=	$(SRCD)/get_map.c
 SRCS	+=	$(SRCD)/init.c
 SRCS	+=	$(SRCD)/mini_map.c
+SRCS	+=	$(SRCD)/parse_utils.c
 SRCS	+=	$(SRCD)/player.c
 SRCS	+=	$(SRCD)/window.c
 

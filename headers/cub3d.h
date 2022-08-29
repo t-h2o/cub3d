@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 14:48:38 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/01 14:54:12 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,18 +104,21 @@ int		error_msg(char *msg);
 void	exit_error(char *msg);
 int		close_game(t_info *info);
 
-// mini_map.c
-void	print_minimap(t_info *info);
-
-// player.c
-void	player_move(t_info *info, float distance);
-void	player_rotate(t_info *info, float rotation);
-
 // get_map.c
 int		get_map(t_info *info, char *mapname);
 
 // init.c
 int		init_game(t_info *info);
+
+// mini_map.c
+void	print_minimap(t_info *info);
+
+// parse_utils.c
+char	*skip_whitespaces(char *str);
+
+// player.c
+void	player_move(t_info *info, float distance);
+void	player_rotate(t_info *info, float rotation);
 
 // window.c
 int		start_window(t_info *info);
