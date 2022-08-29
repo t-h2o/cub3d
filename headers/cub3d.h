@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/29 17:23:03 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/08/29 17:23:17 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 // Path for textures
 # define MM_GROUND	"assets/textures/minimap/ground.xpm"
 # define MM_WALL	"assets/textures/minimap/wall.xpm"
+# define MM_PLAYER	"assets/textures/minimap/player.xpm"
 
 # define MAPSDIR	"assets/maps/"
 
@@ -46,7 +47,8 @@
 # define MM_POS_X	10
 
 // Size of a square of the mini map
-# define MM_TILESIZE	10
+# define SS_MAP		10
+# define SS_PLAYER	4
 
 // STRUCTURE
 
