@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/29 17:24:31 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/08/29 17:24:41 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@
 # define MM_PLAYER	"assets/textures/minimap/player.xpm"
 
 # define MAPSDIR	"assets/maps/"
+
+// Math
+# define PI			3.14159
 
 // Color
 # define CO_WHITE		0x00FFFFFF
@@ -98,6 +101,10 @@ int		close_game(t_info *info);
 
 // mini_map.c
 void	print_minimap(t_info *info);
+
+// player.c
+void	player_move(t_info *info, float distance);
+void	player_angle(t_info *info, float rotation);
 
 // get_map.c
 int		get_map(t_info *info, char *mapname);
