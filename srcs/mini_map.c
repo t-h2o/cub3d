@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/09/01 14:57:19 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/05 23:44:53 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,21 @@ static void	print_player(t_info *info)
 static void	print_info(t_info *info)
 {
 	char	*tmp;
+	char	*itoa;
 
-	tmp = ft_strjoin("Position X: ", ft_itoa((int)info->player.x));
+	itoa = ft_itoa((int)info->player.x);
+	tmp = ft_strjoin("Position X: ", itoa);
+	free(itoa);
 	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW], 500, 10, CO_WHITE, tmp);
 	free(tmp);
-	tmp = ft_strjoin("Position Y: ", ft_itoa((int)info->player.y));
+	itoa = ft_itoa((int)info->player.y);
+	tmp = ft_strjoin("Position Y: ", itoa);
+	free(itoa);
 	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW], 500, 20, CO_WHITE, tmp);
 	free(tmp);
-	tmp = ft_strjoin("    Angle : ", ft_itoa((int)info->player.angle));
+	itoa = ft_itoa((int)info->player.angle);
+	tmp = ft_strjoin("    Angle : ", itoa);
+	free(itoa);
 	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW], 500, 30, CO_WHITE, tmp);
 	free(tmp);
 }
