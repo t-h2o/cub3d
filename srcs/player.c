@@ -14,8 +14,8 @@
 #include	<math.h>
 
 // Move player
-// X = X + delta X * SENSE_MOVE
-// Y = Y + delta Y * SENSE_MOVE
+// X = X + delta X * PS_MOVE
+// Y = Y + delta Y * PS_MOVE
 void
 	player_move(t_info *info, float distance)
 {

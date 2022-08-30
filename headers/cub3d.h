@@ -43,8 +43,8 @@
 
 // Sensibility
 //   rotation = (PI / 8)
-# define SENSE_MOVE		1.0f
-# define SENSE_ROTATION	0.392699081699f
+# define PS_MOVE		1.0f
+# define PS_ROTATE	0.392699081699f
 
 // Window size [px]
 # define W_WIDTH	1024
