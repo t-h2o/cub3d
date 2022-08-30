@@ -31,9 +31,9 @@ void
 {
 	info->pos_player[A] += rotation;
 	if (info->pos_player[A] < 0)
-		info->pos_player[A] += 2 * PI;
-	if (2 * PI < info->pos_player[A])
-		info->pos_player[A] -= 2 * PI;
+		info->pos_player[A] += 2 * M_PI;
+	if (2 * M_PI < info->pos_player[A])
+		info->pos_player[A] -= 2 * M_PI;
 	info->pos_player[PDX] = cos(info->pos_player[A]) * 5;
 	info->pos_player[PDY] = sin(info->pos_player[A]) * 5;
 	print_minimap(info);

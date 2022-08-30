@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/29 17:24:41 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/08/30 12:03:26 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@
 # define MM_PLAYER	"assets/textures/minimap/player.xpm"
 
 # define MAPSDIR	"assets/maps/"
-
-// Math
-# define PI			3.14159
 
 // Color
 # define CO_WHITE		0x00FFFFFF
