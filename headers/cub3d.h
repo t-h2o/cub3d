@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/28 09:06:39 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/08/30 12:57:28 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,22 @@
 
 # endif
 
-// DEFINE
+// Define
 
 // Path for textures
 # define MM_GROUND	"assets/textures/minimap/ground.xpm"
 # define MM_WALL	"assets/textures/minimap/wall.xpm"
+# define MM_PLAYER	"assets/textures/minimap/player.xpm"
 
 # define MAPSDIR	"assets/maps/"
+
+// Color
+# define CO_WHITE		0x00FFFFFF
+
+// Sensibility
+//   rotation = (PI / 8)
+# define PS_MOVE		1.0f
+# define PS_ROTATE	0.392699081699f
 
 // Window size [px]
 # define W_WIDTH	1024
@@ -46,9 +55,10 @@
 # define MM_POS_X	10
 
 // Size of a square of the mini map
-# define MM_TILESIZE	10
+# define MM_SIZE_TILE	10
+# define MM_SIZE_PLAYER	4
 
-// STRUCTURE
+// Structure
 
 // Mlx pointer for the window
 enum e_mlx {
@@ -59,15 +69,30 @@ enum e_mlx {
 // Mini map texture
 enum e_mm {
 	GROUND,
-	WALL
+	WALL,
+	PLAYER
+};
+
+// position player
+// position X and Y
+// A is the angle
+// Player delta X
+// Player delta Y
+enum e_pp {
+	X,
+	Y,
+	A,
+	DX,
+	DY
 };
 
 // mlx: pointer on informations of the window
 typedef struct s_info {
 	void	*mlx[2];
 	char	**map;
-	void	*mm_img[2];
+	void	*mm_img[3];
 	int		map_h;
+	float	pos_player[5];
 }	t_info;
 
 //close.c
@@ -77,8 +102,11 @@ void	exit_error(char *msg);
 int		close_game(t_info *info);
 
 // mini_map.c
-
 void	print_minimap(t_info *info);
+
+// player.c
+void	player_move(t_info *info, float distance);
+void	player_rotate(t_info *info, float rotation);
 
 // get_map.c
 int		get_map(t_info *info, char *mapname);

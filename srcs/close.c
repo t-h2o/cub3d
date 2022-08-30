@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/28 09:06:13 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/08/29 16:58:13 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	destroy_images(t_info *info)
 {
 	mlx_destroy_image(info->mlx[INIT], info->mm_img[GROUND]);
 	mlx_destroy_image(info->mlx[INIT], info->mm_img[WALL]);
+	mlx_destroy_image(info->mlx[INIT], info->mm_img[PLAYER]);
 }
 
 void	free_map(char **map)

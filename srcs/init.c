@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:44:17 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/27 12:55:21 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/29 09:24:49 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ static int	load_textures(t_info *info)
 		(info->mlx[INIT], MM_WALL, &img_width, &img_height);
 	if (check_square(img_height, img_width))
 		return (1);
+	info->mm_img[PLAYER] = mlx_xpm_file_to_image
+		(info->mlx[INIT], MM_PLAYER, &img_width, &img_height);
+	if (check_square(img_height, img_width))
+		return (1);
 	return (0);
 }
 
@@ -44,6 +48,7 @@ int	init_game(t_info *info)
 {
 	info->map = NULL;
 	info->map_h = 0;
+	info->pos_player[X] = -1.0f;
 	info->mlx[INIT] = mlx_init();
 	if (!info->mlx[INIT])
 		return (error_msg("Couldn't init mlx"));

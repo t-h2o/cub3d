@@ -34,6 +34,7 @@ endif
 #	Libraries
 
 LIBEXT	+=	libs/libft/libft.a
+CLIB	=	-lm
 
 #	Headers
 
@@ -52,6 +53,7 @@ SRCS	+=	$(SRCD)/close.c
 SRCS	+=	$(SRCD)/get_map.c
 SRCS	+=	$(SRCD)/init.c
 SRCS	+=	$(SRCD)/mini_map.c
+SRCS	+=	$(SRCD)/player.c
 SRCS	+=	$(SRCD)/window.c
 
 
@@ -69,7 +71,7 @@ all : $(NAME)
 
 $(NAME):	$(LIBEXT) $(OBJS)
 	@printf "$(YELLOW)Creating executable..$(DEFAULT)\n"
-	@$(CC) $(OFLAGS) $(OBJS) $(LIBEXT) -o $(NAME)
+	@$(CC) $(OFLAGS) $(OBJS) $(LIBEXT) $(CLIB) -o $(NAME)
 	@printf "$(GREEN)---> $(NAME) is ready$(DEFAULT)\n"
 
 $(OBJD)/%.o : %.c | $(OBJD)
