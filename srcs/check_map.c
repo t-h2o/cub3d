@@ -22,6 +22,7 @@ int	check_extension(char *mapname)
 	return (0);
 }
 
+// check the char set of the map
 static int	check_charset(t_info *info, int x, int y)
 {
 	char	data;
@@ -55,6 +56,8 @@ static int	check_charset(t_info *info, int x, int y)
 	return (0);
 }
 
+// Iteration lines of the map
+//   check each char in the line
 int	check_map_data(t_info *info)
 {
 	int	x;
@@ -68,15 +71,17 @@ int	check_map_data(t_info *info)
 		{	
 			if (check_charset(info, x, y))
 				return (1);
-
 		}
+		if (check_borders(info, y))
+			return (1);
 	}
 	if (info->player.x == -1.0f)
-		return (error_msg("No player in map"));
+		return (error_msg("No player in the map"));
 
 	return (0);
 }
 
+// Check if the 1st and last line of the map has only 1 or spaces
 int	check_walls(char *line)
 {
 	while (*line && *line != '\n')
@@ -88,21 +93,25 @@ int	check_walls(char *line)
 	return (0);
 }
 
-/*
-int	check_side_borders(char *line)
+int	check_borders(t_info *info, int y)
 {
-	while (*line && *line == ' ')
-		line++;
-	if (line[0] != '1' || line[ft_strlen(line) - 2] != '1')
-		return (error_msg("Both sides of the map should be walls"));
-	while (*line)
+	int		x;
+
+	x = 0;
+	while (info->map[y][x] && info->map[y][x] != '\n')
 	{
-		if (*line == ' ' && *(line - 1) != '1' && *(line - 1) != ' '
-				&& *(line + 1) != '1' && *(line + 1) != ' ')
-			return (error_msg("Both sides of the map should be walls"));
-		line++;
+		if (info->map[y][x] == '0')
+		{
+			if ((x == 0) || (y == info->map_h - 1) ||
+				(x > 0 && info->map[y][x - 1] == ' ') ||
+				(info->map[y][x + 1] != '0' && info->map[y][x + 1] != '1') ||
+				(y > 0 && (int) ft_strlen(info->map[y - 1]) > x && info->map[y - 1][x] == ' ') ||
+				(y > 0 && (int) ft_strlen(info->map[y - 1]) <= x) ||
+				(y < info->map_h && (int) ft_strlen(info->map[y + 1]) > x && info->map[y + 1][x] == ' ') ||
+				(y < info->map_h && (int) ft_strlen(info->map[y + 1]) <= x))
+				return (error_msg("Map isn't closed by walls"));
+		}
+		x++;
 	}
 	return (0);
-}
 
-*/

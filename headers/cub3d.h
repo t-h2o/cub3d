@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 15:12:22 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/01 15:12:59 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # include	<stdio.h>
 # include	<fcntl.h>
+# include	<math.h>
 # include	"keys.h"
 # include	"../libs/libft/includes/libft.h"
 
@@ -104,7 +105,7 @@ typedef struct s_info {
 int	check_extension(char *mapname);
 int	check_map_data(t_info *info);
 int	check_walls(char *line);
-//int	check_side_borders(char *line);
+int	check_borders(t_info *info, int y);
 //int	check_charset(char c);
 //int	check_line_data(t_info *info, char *line);
 
