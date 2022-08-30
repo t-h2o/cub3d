@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/08/29 14:41:45 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/08/30 12:58:42 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,21 @@ static void	print_square(t_info *info, char c, int y, int x)
 	if (c == '0' || c == 'N' || c == 'E' || c == 'S' || c == 'W')
 		mlx_put_image_to_window(info->mlx[0], info->mlx[1],
 			info->mm_img[GROUND],
-			x * SS_MAP + MM_POS_X,
-			y * SS_MAP + MM_POS_Y);
+			x * MM_SIZE_TILE + MM_POS_X,
+			y * MM_SIZE_TILE + MM_POS_Y);
 	if (c == '1')
 		mlx_put_image_to_window(info->mlx[0], info->mlx[1],
 			info->mm_img[WALL],
-			x * SS_MAP + MM_POS_X,
-			y * SS_MAP + MM_POS_Y);
+			x * MM_SIZE_TILE + MM_POS_X,
+			y * MM_SIZE_TILE + MM_POS_Y);
 	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 	{
 		if (info->pos_player[X] == -1.0f)
 		{
-			info->pos_player[X]
-				= (float)(x * SS_MAP) + ((SS_MAP - SS_PLAYER) / 2);
-			info->pos_player[Y]
-				= (float)(y * SS_MAP) + ((SS_MAP - SS_PLAYER) / 2);
+			info->pos_player[X] = (float)(x * MM_SIZE_TILE)
+				+ ((MM_SIZE_TILE - MM_SIZE_PLAYER) / 2);
+			info->pos_player[Y] = (float)(y * MM_SIZE_TILE)
+				+ ((MM_SIZE_TILE - MM_SIZE_PLAYER) / 2);
 			info->pos_player[A] = 0.0f;
 		}
 	}

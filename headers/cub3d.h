@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/30 12:03:26 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/08/30 12:57:28 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@
 # define MM_POS_X	10
 
 // Size of a square of the mini map
-# define SS_MAP		10
-# define SS_PLAYER	4
+# define MM_SIZE_TILE	10
+# define MM_SIZE_PLAYER	4
 
 // Structure
 
