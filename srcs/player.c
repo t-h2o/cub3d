@@ -27,7 +27,7 @@ void
 // When the player change his rotation,
 // That update the delta X and Y when the player move
 void
-	player_angle(t_info *info, float rotation)
+	player_rotate(t_info *info, float rotation)
 {
 	info->pos_player[A] += rotation;
 	if (info->pos_player[A] < 0)

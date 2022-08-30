@@ -23,9 +23,9 @@ static int
 	if (key == KEY_S || key == KEY_DOWN)
 		player_move(info, -SENSE_MOVE);
 	if (key == KEY_D || key == KEY_RIGHT)
-		player_angle(info, SENSE_ROTATION);
+		player_rotate(info, SENSE_ROTATION);
 	if (key == KEY_A || key == KEY_LEFT)
-		player_angle(info, -SENSE_ROTATION);
+		player_rotate(info, -SENSE_ROTATION);
 	return (0);
 }
 

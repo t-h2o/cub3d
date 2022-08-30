@@ -106,7 +106,7 @@ void	print_minimap(t_info *info);
 
 // player.c
 void	player_move(t_info *info, float distance);
-void	player_angle(t_info *info, float rotation);
+void	player_rotate(t_info *info, float rotation);
 
 // get_map.c
 int		get_map(t_info *info, char *mapname);
