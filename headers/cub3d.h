@@ -82,8 +82,8 @@ enum e_pp {
 	X,
 	Y,
 	A,
-	PDX,
-	PDY
+	DX,
+	DY
 };
 
 // mlx: pointer on informations of the window

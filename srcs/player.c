@@ -19,8 +19,8 @@
 void
 	player_move(t_info *info, float distance)
 {
-	info->pos_player[X] += distance * info->pos_player[PDX];
-	info->pos_player[Y] += distance * info->pos_player[PDY];
+	info->pos_player[X] += distance * info->pos_player[DX];
+	info->pos_player[Y] += distance * info->pos_player[DY];
 	print_minimap(info);
 }
 
@@ -34,7 +34,7 @@ void
 		info->pos_player[A] += 2 * M_PI;
 	if (2 * M_PI < info->pos_player[A])
 		info->pos_player[A] -= 2 * M_PI;
-	info->pos_player[PDX] = cos(info->pos_player[A]) * 5;
-	info->pos_player[PDY] = sin(info->pos_player[A]) * 5;
+	info->pos_player[DX] = cos(info->pos_player[A]) * 5;
+	info->pos_player[DY] = sin(info->pos_player[A]) * 5;
 	print_minimap(info);
 }
