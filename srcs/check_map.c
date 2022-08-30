@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/29 16:53:47 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/30 18:10:29 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,15 @@ static int	check_charset(t_info *info, int x, int y)
 			{
 				info->player.x = (float) x;
 				info->player.y = (float) y;
-				//info->player.dir = info->map[y][x];
+				if (data == 'N')
+					info->player.direction = 0.0f;
+				else if (data == 'S')
+					info->player.direction = M_PI;
+				else if (data == 'E')
+					info->player.direction = M_PI / 2;
+				else if (data == 'W')
+					info->player.direction = (3 * M_PI) / 2;
+				info->map[y][x] = '0';
 			}	
 		}
 	}
