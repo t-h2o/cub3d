@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:01:59 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/08/29 16:48:42 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/08/30 12:20:17 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static int
 {
 	if (key == KEY_ESC)
 		close_game(info);
-	if (key == KEY_W || key == KEY_UP)
+	else if (key == KEY_W || key == KEY_UP)
 		player_move(info, SENSE_MOVE);
-	if (key == KEY_S || key == KEY_DOWN)
+	else if (key == KEY_S || key == KEY_DOWN)
 		player_move(info, -SENSE_MOVE);
-	if (key == KEY_D || key == KEY_RIGHT)
+	else if (key == KEY_D || key == KEY_RIGHT)
 		player_rotate(info, SENSE_ROTATION);
-	if (key == KEY_A || key == KEY_LEFT)
+	else if (key == KEY_A || key == KEY_LEFT)
 		player_rotate(info, -SENSE_ROTATION);
 	return (0);
 }
