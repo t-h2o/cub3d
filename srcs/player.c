@@ -6,16 +6,24 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 12:26:36 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/06 16:02:40 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/06 16:03:15 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 #include	<math.h>
 
+// pos X Y 
+enum e_pos {
+	X,
+	Y
+};
+
 // Move player
-// X = X + delta X * PS_MOVE
-// Y = Y + delta Y * PS_MOVE
+// X = X + delta X * distance
+// Y = Y + delta Y * distance
+// If the next move is into a wall
+//   The player location isn't update
 void
 	player_move(t_info *info, float distance)
 {

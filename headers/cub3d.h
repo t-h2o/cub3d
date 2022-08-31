@@ -50,7 +50,7 @@
 
 // Color
 # define CO_WHITE		0x00FFFFFF
-# define CO_GREENIT		0x000000FF
+# define CO_BLUE		0x000000FF
 
 // Sensibility
 //   rotation = (PI / 8)
