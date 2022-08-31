@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:47:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/29 16:17:19 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/31 18:34:20 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 	if (init_game(&info))
 		return (1);
 
-	if (get_map(&info, av[1]))
+	if (load_map(&info, av[1]))
 		return (1);
 	
 	//print map informations

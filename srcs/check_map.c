@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/30 18:10:29 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/31 19:35:18 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	check_map_data(t_info *info)
 	int	x;
 	int	y;
 	
+	if (!info->map)
+		return (error_msg("Map is empty!"));
 	y = -1;
 	while (info->map[++y])
 	{
@@ -77,19 +79,6 @@ int	check_map_data(t_info *info)
 	}
 	if (info->player.x == -1.0f)
 		return (error_msg("No player in the map"));
-
-	return (0);
-}
-
-// Check if the 1st and last line of the map has only 1 or spaces
-int	check_walls(char *line)
-{
-	while (*line && *line != '\n')
-	{
-		if (*line != '1' && *line != ' ')
-			return (1);
-		line++;
-	}
 	return (0);
 }
 
@@ -114,4 +103,4 @@ int	check_borders(t_info *info, int y)
 		x++;
 	}
 	return (0);
-
+}
