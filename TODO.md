@@ -17,4 +17,8 @@
 
 ## Second Round !
 
+* [x] Player
+  * [x] Create a ray from him to a wall
+  * [x] Collision with walls
+
 ### Play with the Raycasting, experience
