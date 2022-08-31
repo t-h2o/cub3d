@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/31 19:41:24 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/31 23:51:36 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	save_map_data(t_info *info, char *line)
 {
 	int		i;
 	char	**tmp;
-	
+
 	info->map_h++;
 	tmp = info->map;
 	info->map = malloc(sizeof (char *) * (info->map_h + 1));
@@ -52,7 +52,7 @@ static int	save_map_data(t_info *info, char *line)
 static int	save_map_info(t_info *info, char *line)
 {
 	char	*str;
-	int	ret;
+	int		ret;
 
 	ret = 0;
 	str = skip_whitespaces(line);

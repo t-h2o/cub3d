@@ -6,16 +6,16 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:30:28 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/29 15:14:57 by gudias           ###   ########.fr       */
+/*   Updated: 2022/08/31 23:54:41 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int		is_whitespace(char c)
+static int	is_whitespace(char c)
 {
 	if (c == ' ' || c == '\n' || c == '\t' || c == '\v'
-			|| c == '\f'|| c == '\r')
+		|| c == '\f' || c == '\r')
 		return (1);
 	else
 		return (0);
