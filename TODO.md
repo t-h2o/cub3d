@@ -6,7 +6,7 @@
 
 * [X] Read the file
   * [X] Just the map
-* [ ] Check the error
+* [X] Check the error
 * [X] Fill `char **map` with the file
 
 ### GUI
