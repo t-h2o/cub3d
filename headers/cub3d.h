@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/07 22:49:07 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/09/10 18:30:40 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // HEADERS
 
 # include	<stdio.h>
+# include	<stdbool.h>
 # include	<fcntl.h>
 # include	<math.h>
 # include	"keys.h"
@@ -131,6 +132,7 @@ typedef struct s_info {
 	int			map_h;
 	t_player	player;
 	t_texture	texture[6];
+	bool	active_map;
 }	t_info;
 
 // check_map.c
@@ -142,14 +144,17 @@ void	free_array(char **array);
 int		error_msg(char *msg);
 void	close_game(t_info *info, int exit_code);
 
-// parsing.c
-int		load_map(t_info *info, char *mapname);
-
 // init.c
 int		init_game(t_info *info, char *mapname);
 
+// frame.c
+void	print_frame(t_info *info);
+
 // mini_map.c
 void	print_minimap(t_info *info);
+
+// parsing.c
+int		load_map(t_info *info, char *mapname);
 
 // player.c
 void	player_move(t_info *info, float distance);

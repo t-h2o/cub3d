@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/09/10 18:12:31 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/09/10 18:53:20 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,12 @@ static void	print_square(t_info *info, char c, int y, int x)
 			y * MM_SIZE_TILE + MM_POS_Y);
 }
 
-static void	print_player(t_info *info)
+static void	print_mm_player(t_info *info)
 {
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
 		info->mm_img[PLAYER],
 		MM_POS_X + info->player.x * MM_SIZE_TILE - MM_SIZE_PLAYER / 2,
 		MM_POS_Y + info->player.y * MM_SIZE_TILE - MM_SIZE_PLAYER / 2);
-}
-
-// Position player
-static void	print_info(t_info *info)
-{
-	char	message[255];
-
-	ft_memset(message, 0, 255);
-	sprintf(message, "Position X: %f", info->player.x);
-	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW],
-		500, 10, CO_WHITE, message);
-	ft_memset(message, 0, 255);
-	sprintf(message, "Position Y: %f", info->player.y);
-	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW],
-		500, 20, CO_WHITE, message);
-	ft_memset(message, 0, 255);
-	sprintf(message, "P. angle  : %f", info->player.angle);
-	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW],
-		500, 30, CO_WHITE, message);
 }
 
 // Clear the window
@@ -69,8 +50,6 @@ void	print_minimap(t_info *info)
 	int		pos_x;
 	int		pos_y;
 
-	mlx_clear_window
-		(info->mlx[INIT], info->mlx[WINDOW]);
 	pos_y = -1;
 	while (info->map[++pos_y])
 	{
@@ -78,7 +57,6 @@ void	print_minimap(t_info *info)
 		while (info->map[pos_y][++pos_x])
 			print_square(info, info->map[pos_y][pos_x], pos_y, pos_x);
 	}
-	print_player(info);
+	print_mm_player(info);
 	player_ray(info);
-	print_info(info);
 }
