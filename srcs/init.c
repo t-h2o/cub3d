@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:44:17 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 16:21:14 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/01 16:36:21 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ static int	check_square(int height, int width)
 static void	set_default_textures(t_info *info)
 {
 	if (!info->texture.north)
-		info->texture.north = TX_NORTH;
+		info->texture.north = ft_strdup(TX_NORTH);
 	if (!info->texture.south)
-		info->texture.south = TX_SOUTH;
+		info->texture.south = ft_strdup(TX_SOUTH);
 	if (!info->texture.east)
-		info->texture.east = TX_EAST;
+		info->texture.east = ft_strdup(TX_EAST);
 	if (!info->texture.west)
-		info->texture.west = TX_WEST;
+		info->texture.west = ft_strdup(TX_WEST);
 	if (!info->texture.floor)
-		info->texture.north = TX_FLOOR;
+		info->texture.floor = ft_strdup(TX_FLOOR);
 	if (!info->texture.ceil)
-		info->texture.ceil = TX_CEIL;
+		info->texture.ceil = ft_strdup(TX_CEIL);
 }
 
 // Load textures for the mini map
@@ -55,6 +55,7 @@ static int	load_textures(t_info *info)
 		(info->mlx[INIT], MM_PLAYER, &img_width, &img_height);
 	if (check_square(img_height, img_width))
 		return (1);
+	set_default_textures(info);
 	return (0);
 }
 
