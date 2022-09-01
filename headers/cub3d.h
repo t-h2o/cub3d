@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 18:14:57 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/09/05 16:02:19 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,18 @@
 // Define
 
 // Path for textures
+// minimap textures
 # define MM_GROUND	"assets/textures/minimap/ground.xpm"
 # define MM_WALL	"assets/textures/minimap/wall.xpm"
 # define MM_PLAYER	"assets/textures/minimap/player.xpm"
+
+// game textures
+# define TX_NORTH	"assets/textures/default_north.xpm"
+# define TX_SOUTH	"assets/textures/default_south.xpm"
+# define TX_EAST	"assets/textures/default_east.xpm"
+# define TX_WEST	"assets/textures/default_west.xpm"
+# define TX_FLOOR	"assets/textures/default_floor.xpm"
+# define TX_CEIL	"assets/textures/default_ceil.xpm"
 
 # define MAPSDIR	"assets/maps/"
 

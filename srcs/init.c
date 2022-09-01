@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:44:17 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 15:11:29 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/01 16:21:14 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,23 @@ static int	check_square(int height, int width)
 	if (height != width)
 		return (error_msg("Texture of the mini map is not a square"));
 	return (0);
+}
+
+// Set default values for game textures if not defined
+static void	set_default_textures(t_info *info)
+{
+	if (!info->texture.north)
+		info->texture.north = TX_NORTH;
+	if (!info->texture.south)
+		info->texture.south = TX_SOUTH;
+	if (!info->texture.east)
+		info->texture.east = TX_EAST;
+	if (!info->texture.west)
+		info->texture.west = TX_WEST;
+	if (!info->texture.floor)
+		info->texture.north = TX_FLOOR;
+	if (!info->texture.ceil)
+		info->texture.ceil = TX_CEIL;
 }
 
 // Load textures for the mini map
