@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:44:17 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 16:36:21 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/01 17:07:37 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	load_textures(t_info *info)
 // Init default value of the struct
 // Init mlx
 // Load textures for the minimap
-int	init_game(t_info *info)
+int	init_game(t_info *info, char *mapname)
 {
 	info->map = NULL;
 	info->map_h = 0;
@@ -76,7 +76,7 @@ int	init_game(t_info *info)
 	info->mlx[INIT] = mlx_init();
 	if (!info->mlx[INIT])
 		return (error_msg("Couldn't init mlx"));
-	if (load_textures(info))
+	if (load_map(info, mapname) || load_textures(info))
 		return (1);
 	return (0);
 }
