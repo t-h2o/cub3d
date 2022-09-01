@@ -6,6 +6,7 @@
 
 * [X] Read the file
   * [X] Just the map
+  * [ ] Set default value for optional data
 * [X] Check the error
 * [X] Fill `char **map` with the file
 
