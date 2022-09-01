@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 12:26:36 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/06 16:03:15 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/06 16:04:08 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ void
 
 	next[X] = info->player.x + distance * info->player.dx;
 	next[Y] = info->player.y + distance * info->player.dy;
-	if (info->map[(int)((next[Y] - MM_SIZE_PLAYER / 2) / MM_SIZE_TILE)]
-		[(int)((next[X] - MM_SIZE_PLAYER / 2) / MM_SIZE_TILE)] == '1')
+	if (info->map[(int)(next[Y])][(int)(next[X])] == '1')
 		return ;
 	info->player.x = next[X];
 	info->player.y = next[Y];
