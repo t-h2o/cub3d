@@ -111,7 +111,7 @@ int		error_msg(char *msg);
 void	exit_error(char *msg);
 int		close_game(t_info *info);
 
-// get_map.c
+// parsing.c
 int		load_map(t_info *info, char *mapname);
 
 // init.c
