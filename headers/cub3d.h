@@ -85,11 +85,17 @@ enum e_mm {
 
 typedef struct s_texture {
 	char	*north;
+	void	*img_north;
 	char	*south;
+	void	*img_south;
 	char	*east;
+	void	*img_east;
 	char	*west;
+	void	*img_west;
 	char	*floor;
+	void	*img_floor;
 	char	*ceil;
+	void	*img_ceil;
 }	t_texture;
 
 typedef struct s_player {
