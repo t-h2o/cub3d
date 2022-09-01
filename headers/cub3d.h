@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/05 16:03:12 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/05 16:04:43 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,9 @@ char	*skip_whitespaces(char *str);
 // player.c
 void	player_move(t_info *info, float distance);
 void	player_rotate(t_info *info, float rotation);
+
+// textures.c
+
 
 // window.c
 int		start_window(t_info *info);
