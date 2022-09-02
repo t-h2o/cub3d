@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/02 14:46:36 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/02 15:32:29 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_square(int height, int width)
 }
 
 // Load an image from xpm file
-// check if the image is a square
+// Check if the image is a square
 static int	load_xpm_image(t_info *info, void **img, char *path)
 {
 	int		img_width;
@@ -34,13 +34,12 @@ static int	load_xpm_image(t_info *info, void **img, char *path)
 	return (0);
 }
 
-// Load textures
-int	load_textures(t_info *info)
+// Load textures for the minimap
+static int	load_mm_textures(t_info *info)
 {
 	int		img_width;
 	int		img_height;
-
-// load MM textures
+	
 	info->mm_img[GROUND] = mlx_xpm_file_to_image
 		(info->mlx[INIT], MM_GROUND, &img_width, &img_height);
 	if (check_square(img_height, img_width))
@@ -53,9 +52,14 @@ int	load_textures(t_info *info)
 		(info->mlx[INIT], MM_PLAYER, &img_width, &img_height);
 	if (check_square(img_height, img_width))
 		return (1);
-// load GAME textures
+	return (0);
+}
+
+// Load textures for the game
 // 	try to load from path defined in mapfile
 // 	or fallback to default texture if failed
+static int	load_game_textures(t_info *info)
+{
 	if (load_xpm_image(info, &(info->texture.img_north), info->texture.north)
 		&& load_xpm_image(info, &(info->texture.img_north), TX_NORTH))
 		return (error_msg("Couldn't load texture"));
@@ -82,5 +86,15 @@ int	load_textures(t_info *info)
 	if ((!(info->texture.img_ceil)) || check_square(img_height, img_width))
 		return (error_msg("Couldn't load texture"));
 */
+	return (0);
+}
+
+// Load all the textures
+int	load_textures(t_info *info)
+{
+	if (load_mm_textures(info))
+		return (1);
+	if (load_game_textures(info))
+		return (1);
 	return (0);
 }
