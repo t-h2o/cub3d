@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/02 16:15:15 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/02 18:01:18 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,40 @@ static int	check_square(int height, int width)
 		return (error_msg("Texture of the mini map is not a square"));
 	return (0);
 }
+
+// Create an image from a single color
+/*
+static int	create_color_image(t_info *info, void **img, char *path)
+{
+	int	color;
+	int	x;
+	int	y;
+	t_img	new;
+
+	//define color:
+	// ft_split(path, ',')
+	// for all 3 strings: atoi then to hex, then to hexa
+	// combine all 3 hex number to -> 0x00FF9A02
+	color = convert_to_hex_color(path);
+	if (color < 0)
+		return (1);
+	new.img = mlx_new_image(info->mlx[INIT], 50, 50);
+	new.addr = mlx_get_data_addr(new.img, &new.bits_per_pixel,
+			&new.line_length, &new.endian);
+	y = -1;
+	while (++y < 50)
+	{
+		x = -1;
+		while (++x < 50)
+		{
+			dst = new->addr + (y * new->line_lenght + x * (new->bits_per_pixel / 8));
+			*(unsigned int *)dst = color;
+		}
+	}
+	*img = new.img;
+	return (0);
+}
+*/
 
 // Load an image from xpm file
 // Check if the image is a square
@@ -71,15 +105,11 @@ static int	load_game_textures(t_info *info)
 
 /* NEED to draw an image based on the color instead of loading a texture
  * for the FLOOR and the CEILLING
-
-	info->texture.img_floor = mlx_xpm_file_to_image
-		(info->mlx[INIT], info->texture.floor, &img_width, &img_height);
-	if ((!(info->texture.img_floor)) || check_square(img_height, img_width))
+	if (create_color_image(&(info->texture.img_floor), info->texture.floor)
+		&& create_color_image((&info->texture.img_floor, TX_FLOOR))
 		return (error_msg("Couldn't load texture"));
-
-	info->texture.img_ceil = mlx_xpm_file_to_image
-		(info->mlx[INIT], info->texture.ceil, &img_width, &img_height);
-	if ((!(info->texture.img_ceil)) || check_square(img_height, img_width))
+	if (create_color_image(&(info->texture.img_ceil), info->texture.ceil)
+		&& create_color_image((&info->texture.img_ceil, TX_CEIL))
 		return (error_msg("Couldn't load texture"));
 */
 	return (0);
