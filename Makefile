@@ -74,7 +74,7 @@ all : $(NAME)
 
 $(NAME):	$(LIBEXT) $(OBJS)
 	@printf "$(YELLOW)Creating executable..$(DEFAULT)\n"
-	@$(CC) $(OFLAGS) $(OBJS) $(LIBEXT) $(CLIB) -o $(NAME)
+	@$(CC) $(OBJS) $(OFLAGS) $(LIBEXT) $(CLIB) -o $(NAME)
 	@printf "$(GREEN)---> $(NAME) is ready$(DEFAULT)\n"
 
 $(OBJD)/%.o : %.c | $(OBJD)
