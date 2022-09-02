@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 15:15:03 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/01 18:14:57 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,17 +93,17 @@ typedef struct s_player {
 
 // mlx: pointer on informations of the window
 typedef struct s_info {
-	void	*mlx[2];
-	char	**map;
-	void	*mm_img[3];
-	int		map_h;
+	void		*mlx[2];
+	char		**map;
+	void		*mm_img[3];
+	int			map_h;
 	t_player	player;
 	t_texture	texture;
 }	t_info;
-	
+
 // check_map.c
-int	check_extension(char *mapname);
-int	check_map_data(t_info *info);
+int		check_extension(char *mapname);
+int		check_map_data(t_info *info);
 
 //close.c
 void	free_map(char **map);
@@ -111,7 +111,7 @@ int		error_msg(char *msg);
 void	exit_error(char *msg);
 int		close_game(t_info *info);
 
-// get_map.c
+// parsing.c
 int		load_map(t_info *info, char *mapname);
 
 // init.c

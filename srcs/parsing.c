@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/31 23:51:36 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/01 20:36:20 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static int	open_map(char *mapname, int *fd)
 	return (0);
 }
 
+// Save the map into a double pointer
 static int	save_map_data(t_info *info, char *line)
 {
 	int		i;
@@ -49,6 +50,7 @@ static int	save_map_data(t_info *info, char *line)
 	return (0);
 }
 
+// Read the texture path and the color of the floor and the ceilling
 static int	save_map_info(t_info *info, char *line)
 {
 	char	*str;
@@ -77,6 +79,8 @@ static int	save_map_info(t_info *info, char *line)
 	return (ret);
 }
 
+// 1. Get the optional informations
+// 2. Get the map
 static void	read_mapfile(t_info *info, int fd)
 {
 	char	*line;
