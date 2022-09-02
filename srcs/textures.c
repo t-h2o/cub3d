@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/02 15:32:29 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/02 16:15:15 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,24 @@ static int	load_xpm_image(t_info *info, void **img, char *path)
 
 	*img = mlx_xpm_file_to_image
 		(info->mlx[INIT], path, &img_width, &img_height);
-	if (!img || check_square(img_width, img_height))
+	if (!(*img))
 		return (1);
+	if (check_square(img_width, img_height))
+	{
+		mlx_destroy_image(info->mlx[INIT], *img);
+		return (1);
+	}
 	return (0);
 }
 
 // Load textures for the minimap
 static int	load_mm_textures(t_info *info)
 {
-	int		img_width;
-	int		img_height;
-	
-	info->mm_img[GROUND] = mlx_xpm_file_to_image
-		(info->mlx[INIT], MM_GROUND, &img_width, &img_height);
-	if (check_square(img_height, img_width))
+	if (load_xpm_image(info, &(info->mm_img[GROUND]), MM_GROUND))
 		return (1);
-	info->mm_img[WALL] = mlx_xpm_file_to_image
-		(info->mlx[INIT], MM_WALL, &img_width, &img_height);
-	if (check_square(img_height, img_width))
+	if (load_xpm_image(info, &(info->mm_img[WALL]), MM_WALL))
 		return (1);
-	info->mm_img[PLAYER] = mlx_xpm_file_to_image
-		(info->mlx[INIT], MM_PLAYER, &img_width, &img_height);
-	if (check_square(img_height, img_width))
+	if (load_xpm_image(info, &(info->mm_img[PLAYER]), MM_PLAYER))
 		return (1);
 	return (0);
 }

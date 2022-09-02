@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 17:54:57 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/02 16:36:21 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,32 @@
 
 static void	destroy_images(t_info *info)
 {
-	mlx_destroy_image(info->mlx[INIT], info->mm_img[GROUND]);
-	mlx_destroy_image(info->mlx[INIT], info->mm_img[WALL]);
-	mlx_destroy_image(info->mlx[INIT], info->mm_img[PLAYER]);
-
-	free(info->texture.north);
-	free(info->texture.south);
-	free(info->texture.east);
-	free(info->texture.west);
-	free(info->texture.floor);
-	free(info->texture.ceil);
-
-	mlx_destroy_image(info->mlx[INIT], info->texture.img_north);
-	mlx_destroy_image(info->mlx[INIT], info->texture.img_south);
-	mlx_destroy_image(info->mlx[INIT], info->texture.img_east);
-	mlx_destroy_image(info->mlx[INIT], info->texture.img_west);
+	if (info->mm_img[GROUND])
+		mlx_destroy_image(info->mlx[INIT], info->mm_img[GROUND]);
+	if (info->mm_img[WALL])
+		mlx_destroy_image(info->mlx[INIT], info->mm_img[WALL]);
+	if (info->mm_img[PLAYER])
+		mlx_destroy_image(info->mlx[INIT], info->mm_img[PLAYER]);
+	if (info->texture.north)
+		free(info->texture.north);
+	if (info->texture.south)
+		free(info->texture.south);
+	if (info->texture.east)
+		free(info->texture.east);
+	if (info->texture.west)
+		free(info->texture.west);
+	if (info->texture.floor)
+		free(info->texture.floor);
+	if (info->texture.ceil)
+		free(info->texture.ceil);
+	if (info->texture.img_north)
+		mlx_destroy_image(info->mlx[INIT], info->texture.img_north);
+	if (info->texture.img_south)
+		mlx_destroy_image(info->mlx[INIT], info->texture.img_south);
+	if (info->texture.img_east)
+		mlx_destroy_image(info->mlx[INIT], info->texture.img_east);
+	if (info->texture.img_west)
+		mlx_destroy_image(info->mlx[INIT], info->texture.img_west);
 	//mlx_destroy_image(info->mlx[INIT], info->texture.img_floor);
 	//mlx_destroy_image(info->mlx[INIT], info->texture.img_ceil);
 }
@@ -56,15 +67,11 @@ int	error_msg(char *msg)
 	return (1);
 }
 
-void	exit_error(char *msg)
-{
-	exit(error_msg(msg));
-}
-
 int	close_game(t_info *info)
 {
 	free_map(info->map);
-	mlx_destroy_window(info->mlx[INIT], info->mlx[WINDOW]);
+	if (info->mlx[WINDOW])
+		mlx_destroy_window(info->mlx[INIT], info->mlx[WINDOW]);
 	destroy_images(info);
 	exit(0);
 	return (0);

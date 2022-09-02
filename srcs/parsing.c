@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 20:36:20 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/09/05 16:13:39 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,6 @@ int	load_map(t_info *info, char *mapname)
 		return (1);
 	read_mapfile(info, fd);
 	if (check_map_data(info))
-	{
-		free_map(info->map);
 		return (1);
-	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:47:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 17:06:27 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/02 16:40:55 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	main(int ac, char **av)
 	ft_putstr("Cub3D\n");
 
 	if (ac != 2)
-		exit_error("Invalid argument");
+		exit(error_msg("Invalid argument"));
 
 	if (init_game(&info, av[1]))
-		return (1);
+		close_game(&info);
 	
 	//print map informations
 	printf("NO: %s\nSO: %s\nEA: %s\nWE: %s\nF: %s\nC: %s\n", info.texture.north, info.texture.south, info.texture.east, info.texture.west, info.texture.floor, info.texture.ceil);
@@ -39,6 +39,6 @@ int	main(int ac, char **av)
 		}
 	}
 	if (start_window(&info))
-		return (1);
+		close_game(&info);
 	return (0);
 }
