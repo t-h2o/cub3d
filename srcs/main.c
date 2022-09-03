@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:47:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/31 18:34:20 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/03 11:32:23 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,11 @@ int	main(int ac, char **av)
 	//print map informations
 	printf("NO: %s\nSO: %s\nEA: %s\nWE: %s\nF: %s\nC: %s\n", info.texture.north, info.texture.south, info.texture.east, info.texture.west, info.texture.floor, info.texture.ceil);
 	
-	//print the map	
-	if (info.map)
+	i = 0;
+	while (info.map[i])
 	{
-		i = 0;
-		while (info.map[i])
-		{
-			ft_printf("%s", info.map[i]);
-			i++;
-		}
+		ft_printf("%s", info.map[i]);
+		i++;
 	}
 	if (start_window(&info))
 		return (1);
