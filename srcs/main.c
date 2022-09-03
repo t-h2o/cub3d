@@ -37,6 +37,8 @@ int	main(int ac, char **av)
 		ft_printf("%s", info.map[i]);
 		i++;
 	}
+	if (init_window(&info))
+		return (1);
 	if (start_window(&info))
 		return (1);
 	return (0);
