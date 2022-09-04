@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/04 15:38:47 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/05 01:34:04 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,6 @@ static void	destroy_images(t_info *info)
 		mlx_destroy_image(info->mlx[INIT], info->mm_img[WALL]);
 	if (info->mm_img[PLAYER])
 		mlx_destroy_image(info->mlx[INIT], info->mm_img[PLAYER]);
-	if (info->texture.north)
-		free(info->texture.north);
-	if (info->texture.south)
-		free(info->texture.south);
-	if (info->texture.east)
-		free(info->texture.east);
-	if (info->texture.west)
-		free(info->texture.west);
-	if (info->texture.floor)
-		free(info->texture.floor);
-	if (info->texture.ceil)
-		free(info->texture.ceil);
 	if (info->texture.img_north)
 		mlx_destroy_image(info->mlx[INIT], info->texture.img_north);
 	if (info->texture.img_south)
@@ -44,6 +32,22 @@ static void	destroy_images(t_info *info)
 		mlx_destroy_image(info->mlx[INIT], info->texture.img_floor);
 	if (info->texture.img_ceil)
 		mlx_destroy_image(info->mlx[INIT], info->texture.img_ceil);
+}
+
+static void	free_textures_path(t_info *info)
+{
+	if (info->texture.north)
+		free(info->texture.north);
+	if (info->texture.south)
+		free(info->texture.south);
+	if (info->texture.east)
+		free(info->texture.east);
+	if (info->texture.west)
+		free(info->texture.west);
+	if (info->texture.floor)
+		free(info->texture.floor);
+	if (info->texture.ceil)
+		free(info->texture.ceil);
 }
 
 void	free_array(char **array)
@@ -75,6 +79,7 @@ int	close_game(t_info *info)
 	if (info->mlx[WINDOW])
 		mlx_destroy_window(info->mlx[INIT], info->mlx[WINDOW]);
 	destroy_images(info);
+	free_textures_path(info);
 	exit(0);
 	return (0);
 }

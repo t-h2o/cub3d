@@ -6,26 +6,18 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/04 15:41:30 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/05 01:35:43 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// Check if the texture is a square
-static int	check_square(int height, int width)
-{
-	if (height != width)
-		return (error_msg("Texture of the mini map is not a square"));
-	return (0);
-}
-
 // Create an image from a single color
-static int	create_color_image(t_info *info, void **img, char *path)
+static int	create_image(t_info *info, void **img, char *path)
 {
-	int		color;
-	int		x;
-	int		y;
+	int			color;
+	int			x;
+	int			y;
 	t_img_data	new;
 	char		*dst;
 
@@ -41,7 +33,8 @@ static int	create_color_image(t_info *info, void **img, char *path)
 		x = -1;
 		while (++x < 10)
 		{
-			dst = new.addr + (y * new.line_length + x * (new.bits_per_pixel / 8));
+			dst = new.addr + (y * new.line_length
+					+ x * (new.bits_per_pixel / 8));
 			*(unsigned int *)dst = color;
 		}
 	}
@@ -60,10 +53,10 @@ static int	load_xpm_image(t_info *info, void **img, char *path)
 		(info->mlx[INIT], path, &img_width, &img_height);
 	if (!(*img))
 		return (1);
-	if (check_square(img_width, img_height))
+	if (img_height != img_width)
 	{
 		mlx_destroy_image(info->mlx[INIT], *img);
-		return (1);
+		return (error_msg("Texture of the mini map is not a square"));
 	}
 	return (0);
 }
@@ -97,10 +90,10 @@ static int	load_game_textures(t_info *info)
 	if (load_xpm_image(info, &(info->texture.img_west), info->texture.west)
 		&& load_xpm_image(info, &(info->texture.img_west), TX_WEST))
 		return (error_msg("Couldn't load texture"));
-	if (create_color_image(info, &(info->texture.img_floor), info->texture.floor)
+	if (create_image(info, &(info->texture.img_floor), info->texture.floor)
 		&& load_xpm_image(info, &(info->texture.img_floor), TX_FLOOR))
 		return (error_msg("Couldn't load texture"));
-	if (create_color_image(info, &(info->texture.img_ceil), info->texture.ceil)
+	if (create_image(info, &(info->texture.img_ceil), info->texture.ceil)
 		&& load_xpm_image(info, &(info->texture.img_ceil), TX_CEIL))
 		return (error_msg("Couldn't load texture"));
 	return (0);

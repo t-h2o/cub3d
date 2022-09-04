@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:30:28 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/04 15:43:48 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/04 21:28:38 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	ft_atoi_pos(char *str)
 			return (-1);
 		str++;
 	}
-	return (num);	
+	return (num);
 }
 
 char	*skip_whitespaces(char *line)
@@ -61,12 +61,13 @@ char	*skip_whitespaces(char *line)
 int	convert_rgb(char *rgb)
 {
 	char	**splitted;
-	int	r;
-	int	g;
-	int	b;
+	int		r;
+	int		g;
+	int		b;
 
 	splitted = ft_split(rgb, ',');
-	if (!splitted || !splitted[0] || !splitted[1] || !splitted[2] || splitted[3])
+	if (!splitted || !splitted[0] || !splitted[1]
+		|| !splitted[2] || splitted[3])
 	{
 		free_array(splitted);
 		return (-1);
