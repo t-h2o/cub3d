@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/02 16:36:21 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/04 15:38:47 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,25 @@ static void	destroy_images(t_info *info)
 		mlx_destroy_image(info->mlx[INIT], info->texture.img_east);
 	if (info->texture.img_west)
 		mlx_destroy_image(info->mlx[INIT], info->texture.img_west);
-	//mlx_destroy_image(info->mlx[INIT], info->texture.img_floor);
-	//mlx_destroy_image(info->mlx[INIT], info->texture.img_ceil);
+	if (info->texture.img_floor)
+		mlx_destroy_image(info->mlx[INIT], info->texture.img_floor);
+	if (info->texture.img_ceil)
+		mlx_destroy_image(info->mlx[INIT], info->texture.img_ceil);
 }
 
-void	free_map(char **map)
+void	free_array(char **array)
 {
 	int	i;
 
 	i = 0;
-	if (map)
+	if (array)
 	{
-		while (map[i])
+		while (array[i])
 		{
-			free(map[i]);
+			free(array[i]);
 			i++;
 		}
-		free(map);
+		free(array);
 	}
 }
 
@@ -69,7 +71,7 @@ int	error_msg(char *msg)
 
 int	close_game(t_info *info)
 {
-	free_map(info->map);
+	free_array(info->map);
 	if (info->mlx[WINDOW])
 		mlx_destroy_window(info->mlx[INIT], info->mlx[WINDOW]);
 	destroy_images(info);

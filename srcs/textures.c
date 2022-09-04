@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/02 18:01:18 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/04 15:41:30 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,38 +21,33 @@ static int	check_square(int height, int width)
 }
 
 // Create an image from a single color
-/*
 static int	create_color_image(t_info *info, void **img, char *path)
 {
-	int	color;
-	int	x;
-	int	y;
-	t_img	new;
+	int		color;
+	int		x;
+	int		y;
+	t_img_data	new;
+	char		*dst;
 
-	//define color:
-	// ft_split(path, ',')
-	// for all 3 strings: atoi then to hex, then to hexa
-	// combine all 3 hex number to -> 0x00FF9A02
-	color = convert_to_hex_color(path);
-	if (color < 0)
+	color = convert_rgb(path);
+	if (color == -1)
 		return (1);
-	new.img = mlx_new_image(info->mlx[INIT], 50, 50);
-	new.addr = mlx_get_data_addr(new.img, &new.bits_per_pixel,
-			&new.line_length, &new.endian);
+	new.img = mlx_new_image(info->mlx[INIT], 10, 10);
+	new.addr = mlx_get_data_addr(new.img, &(new.bits_per_pixel),
+			&(new.line_length), &(new.endian));
 	y = -1;
-	while (++y < 50)
+	while (++y < 10)
 	{
 		x = -1;
-		while (++x < 50)
+		while (++x < 10)
 		{
-			dst = new->addr + (y * new->line_lenght + x * (new->bits_per_pixel / 8));
+			dst = new.addr + (y * new.line_length + x * (new.bits_per_pixel / 8));
 			*(unsigned int *)dst = color;
 		}
 	}
 	*img = new.img;
 	return (0);
 }
-*/
 
 // Load an image from xpm file
 // Check if the image is a square
@@ -102,16 +97,12 @@ static int	load_game_textures(t_info *info)
 	if (load_xpm_image(info, &(info->texture.img_west), info->texture.west)
 		&& load_xpm_image(info, &(info->texture.img_west), TX_WEST))
 		return (error_msg("Couldn't load texture"));
-
-/* NEED to draw an image based on the color instead of loading a texture
- * for the FLOOR and the CEILLING
-	if (create_color_image(&(info->texture.img_floor), info->texture.floor)
-		&& create_color_image((&info->texture.img_floor, TX_FLOOR))
+	if (create_color_image(info, &(info->texture.img_floor), info->texture.floor)
+		&& load_xpm_image(info, &(info->texture.img_floor), TX_FLOOR))
 		return (error_msg("Couldn't load texture"));
-	if (create_color_image(&(info->texture.img_ceil), info->texture.ceil)
-		&& create_color_image((&info->texture.img_ceil, TX_CEIL))
+	if (create_color_image(info, &(info->texture.img_ceil), info->texture.ceil)
+		&& load_xpm_image(info, &(info->texture.img_ceil), TX_CEIL))
 		return (error_msg("Couldn't load texture"));
-*/
 	return (0);
 }
 

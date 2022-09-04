@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/05 16:05:12 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/05 16:15:46 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,18 @@ enum e_mm {
 	PLAYER
 };
 
+// data struct to draw into an image
+typedef struct s_img_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_img_data;
+
+// Store all the textures informations:
+// - the path to the texture
+// - the pointer to the image
 typedef struct s_texture {
 	char	*north;
 	void	*img_north;
@@ -121,7 +133,7 @@ int		check_extension(char *mapname);
 int		check_map_data(t_info *info);
 
 //close.c
-void	free_map(char **map);
+void	free_array(char **array);
 int		error_msg(char *msg);
 void	exit_error(char *msg);
 int		close_game(t_info *info);
@@ -137,6 +149,7 @@ void	print_minimap(t_info *info);
 
 // parse_utils.c
 char	*skip_whitespaces(char *str);
+int		convert_rgb(char *rgb);
 
 // player.c
 void	player_move(t_info *info, float distance);
