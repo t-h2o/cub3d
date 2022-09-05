@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 12:26:36 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/08/29 13:27:13 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/01 14:59:55 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 void
 	player_move(t_info *info, float distance)
 {
-	info->pos_player[X] += distance * info->pos_player[DX];
-	info->pos_player[Y] += distance * info->pos_player[DY];
+	info->player.x += distance * info->player.dx;
+	info->player.y += distance * info->player.dy;
 	print_minimap(info);
 }
 
@@ -29,12 +29,12 @@ void
 void
 	player_rotate(t_info *info, float rotation)
 {
-	info->pos_player[A] += rotation;
-	if (info->pos_player[A] < 0)
-		info->pos_player[A] += 2 * M_PI;
-	if (2 * M_PI < info->pos_player[A])
-		info->pos_player[A] -= 2 * M_PI;
-	info->pos_player[DX] = cos(info->pos_player[A]) * 5;
-	info->pos_player[DY] = sin(info->pos_player[A]) * 5;
+	info->player.angle += rotation;
+	if (info->player.angle < 0)
+		info->player.angle += 2 * M_PI;
+	if (2 * M_PI < info->player.angle)
+		info->player.angle -= 2 * M_PI;
+	info->player.dx = cos(info->player.angle) * 5;
+	info->player.dy = sin(info->player.angle) * 5;
 	print_minimap(info);
 }

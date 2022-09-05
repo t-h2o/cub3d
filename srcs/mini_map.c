@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/08/30 12:58:42 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/01 14:57:19 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ static void	print_square(t_info *info, char c, int y, int x)
 			y * MM_SIZE_TILE + MM_POS_Y);
 	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 	{
-		if (info->pos_player[X] == -1.0f)
+		if (info->player.x == -1.0f)
 		{
-			info->pos_player[X] = (float)(x * MM_SIZE_TILE)
+			info->player.x = (float)(x * MM_SIZE_TILE)
 				+ ((MM_SIZE_TILE - MM_SIZE_PLAYER) / 2);
-			info->pos_player[Y] = (float)(y * MM_SIZE_TILE)
+			info->player.y = (float)(y * MM_SIZE_TILE)
 				+ ((MM_SIZE_TILE - MM_SIZE_PLAYER) / 2);
-			info->pos_player[A] = 0.0f;
+			info->player.angle = 0.0f;
 		}
 	}
 }
@@ -48,8 +48,8 @@ static void	print_player(t_info *info)
 {
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
 		info->mm_img[PLAYER],
-		MM_POS_X + info->pos_player[X],
-		MM_POS_Y + info->pos_player[Y]);
+		MM_POS_X + info->player.x,
+		MM_POS_Y + info->player.y);
 }
 
 // Position player
@@ -57,13 +57,13 @@ static void	print_info(t_info *info)
 {
 	char	*tmp;
 
-	tmp = ft_strjoin("Position X: ", ft_itoa((int)info->pos_player[X]));
+	tmp = ft_strjoin("Position X: ", ft_itoa((int)info->player.x));
 	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW], 500, 10, CO_WHITE, tmp);
 	free(tmp);
-	tmp = ft_strjoin("Position Y: ", ft_itoa((int)info->pos_player[Y]));
+	tmp = ft_strjoin("Position Y: ", ft_itoa((int)info->player.y));
 	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW], 500, 20, CO_WHITE, tmp);
 	free(tmp);
-	tmp = ft_strjoin("    Angle : ", ft_itoa((int)info->pos_player[A]));
+	tmp = ft_strjoin("    Angle : ", ft_itoa((int)info->player.angle));
 	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW], 500, 30, CO_WHITE, tmp);
 	free(tmp);
 }

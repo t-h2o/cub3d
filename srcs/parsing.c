@@ -1,27 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/25 14:44:40 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/01 20:36:20 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-//will move in check_map.c
-static int	check_extension(char *mapname)
-{
-	int	len;
-
-	len = ft_strlen(mapname);
-	if (ft_strncmp(mapname + (len - 4), ".cub", 4) != 0)
-		return (error_msg("Invalid map extension, must be .cub"));
-	return (0);
-}
 
 static int	open_map(char *mapname, int *fd)
 {
@@ -35,7 +24,8 @@ static int	open_map(char *mapname, int *fd)
 	return (0);
 }
 
-static int	save_line(t_info *info, char *line)
+// Save the map into a double pointer
+static int	save_map_data(t_info *info, char *line)
 {
 	int		i;
 	char	**tmp;
@@ -60,36 +50,53 @@ static int	save_line(t_info *info, char *line)
 	return (0);
 }
 
-static int	is_map_valid(t_info *info)
+// Read the texture path and the color of the floor and the ceilling
+static int	save_map_info(t_info *info, char *line)
 {
-	if (!info->map)
-		return (error_msg("Map is empty!"));
-	/* WIP
-		
-	   checks will be called HERE
+	char	*str;
+	int		ret;
 
-	*/
-	return (0);
+	ret = 0;
+	str = skip_whitespaces(line);
+	if (str)
+	{
+		if (ft_strncmp(str, "NO", 2) == 0)
+			info->texture.north = skip_whitespaces(str + 2);
+		else if (ft_strncmp(str, "SO", 2) == 0)
+			info->texture.south = skip_whitespaces(str + 2);
+		else if (ft_strncmp(str, "EA", 2) == 0)
+			info->texture.east = skip_whitespaces(str + 2);
+		else if (ft_strncmp(str, "WE", 2) == 0)
+			info->texture.west = skip_whitespaces(str + 2);
+		else if (*str == 'F')
+			info->texture.floor = skip_whitespaces(str + 1);
+		else if (*str == 'C')
+			info->texture.ceil = skip_whitespaces(str + 1);
+		else
+			ret = 1;
+		free(str);
+	}
+	return (ret);
 }
 
-static void	read_map(t_info *info, int fd)
+// 1. Get the optional informations
+// 2. Get the map
+static void	read_mapfile(t_info *info, int fd)
 {
 	char	*line;
 
 	line = get_next_line(fd);
-	while (line)
+	while (line && !save_map_info(info, line))
 	{
-		if (save_line(info, line))
-		{
-			free(line);
-			return ;
-		}
+		free(line);
 		line = get_next_line(fd);
 	}
+	while (line && !save_map_data(info, line))
+		line = get_next_line(fd);
 	close(fd);
 }
 
-int	get_map(t_info *info, char *mapname)
+int	load_map(t_info *info, char *mapname)
 {
 	int	fd;
 
@@ -97,8 +104,8 @@ int	get_map(t_info *info, char *mapname)
 		return (1);
 	if (open_map(mapname, &fd))
 		return (1);
-	read_map(info, fd);
-	if (is_map_valid(info))
+	read_mapfile(info, fd);
+	if (check_map_data(info))
 	{
 		free_map(info->map);
 		return (1);

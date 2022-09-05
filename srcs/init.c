@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:44:17 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/29 09:24:49 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/01 15:11:29 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,13 @@ int	init_game(t_info *info)
 {
 	info->map = NULL;
 	info->map_h = 0;
-	info->pos_player[X] = -1.0f;
+	info->player.x = -1.0f;
+	info->texture.north = NULL;
+	info->texture.south = NULL;
+	info->texture.east = NULL;
+	info->texture.west = NULL;
+	info->texture.floor = NULL;
+	info->texture.ceil = NULL;
 	info->mlx[INIT] = mlx_init();
 	if (!info->mlx[INIT])
 		return (error_msg("Couldn't init mlx"));

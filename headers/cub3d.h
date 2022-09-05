@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/30 12:57:28 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/01 18:14:57 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # include	<stdio.h>
 # include	<fcntl.h>
+# include	<math.h>
 # include	"keys.h"
 # include	"../libs/libft/includes/libft.h"
 
@@ -73,27 +74,36 @@ enum e_mm {
 	PLAYER
 };
 
-// position player
-// position X and Y
-// A is the angle
-// Player delta X
-// Player delta Y
-enum e_pp {
-	X,
-	Y,
-	A,
-	DX,
-	DY
-};
+typedef struct s_texture {
+	char	*north;
+	char	*south;
+	char	*east;
+	char	*west;
+	char	*floor;
+	char	*ceil;
+}	t_texture;
+
+typedef struct s_player {
+	float	x;
+	float	y;
+	float	angle;
+	float	dx;
+	float	dy;
+}	t_player;
 
 // mlx: pointer on informations of the window
 typedef struct s_info {
-	void	*mlx[2];
-	char	**map;
-	void	*mm_img[3];
-	int		map_h;
-	float	pos_player[5];
+	void		*mlx[2];
+	char		**map;
+	void		*mm_img[3];
+	int			map_h;
+	t_player	player;
+	t_texture	texture;
 }	t_info;
+
+// check_map.c
+int		check_extension(char *mapname);
+int		check_map_data(t_info *info);
 
 //close.c
 void	free_map(char **map);
@@ -101,18 +111,21 @@ int		error_msg(char *msg);
 void	exit_error(char *msg);
 int		close_game(t_info *info);
 
+// parsing.c
+int		load_map(t_info *info, char *mapname);
+
+// init.c
+int		init_game(t_info *info);
+
 // mini_map.c
 void	print_minimap(t_info *info);
+
+// parse_utils.c
+char	*skip_whitespaces(char *str);
 
 // player.c
 void	player_move(t_info *info, float distance);
 void	player_rotate(t_info *info, float rotation);
-
-// get_map.c
-int		get_map(t_info *info, char *mapname);
-
-// init.c
-int		init_game(t_info *info);
 
 // window.c
 int		start_window(t_info *info);
