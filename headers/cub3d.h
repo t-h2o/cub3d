@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/05 23:39:57 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/09/05 23:51:46 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void	player_move(t_info *info, float distance);
 void	player_rotate(t_info *info, float rotation);
 
 // textures.c
-int	load_textures(t_info *info);
+int		load_textures(t_info *info);
 
 //utils_mlx.c
 void	my_destroy_image(void *mlx, void *img);
