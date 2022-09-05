@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/05 19:03:20 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/05 23:39:57 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ int		check_map_data(t_info *info);
 void	free_array(char **array);
 int		error_msg(char *msg);
 void	exit_error(char *msg);
-int		close_game(t_info *info);
+int		close_game(t_info *info, int exit_code);
 
 // parsing.c
 int		load_map(t_info *info, char *mapname);
