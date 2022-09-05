@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/09/06 16:03:59 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/06 16:05:11 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 //   y: Size * y_char + ((SQUARE_MAP - SQUARE_PLAYER) / 2)
 static void	print_square(t_info *info, char c, int y, int x)
 {
-	if (c == '0' || c == 'N' || c == 'E' || c == 'S' || c == 'W')
+	if (c == '0')
 		mlx_put_image_to_window(info->mlx[0], info->mlx[1],
 			info->mm_img[GROUND],
 			x * MM_SIZE_TILE + MM_POS_X,
