@@ -21,12 +21,12 @@ int	init_game(t_info *info, char *mapname)
 	info->map = NULL;
 	info->map_h = 0;
 	info->player.x = -1.0f;
-	info->texture.north = NULL;
-	info->texture.south = NULL;
-	info->texture.east = NULL;
-	info->texture.west = NULL;
-	info->texture.floor = NULL;
-	info->texture.ceil = NULL;
+	info->texture[NO].path = NULL;
+	info->texture[SO].path = NULL;
+	info->texture[EA].path = NULL;
+	info->texture[WE].path = NULL;
+	info->texture[FL].path = NULL;
+	info->texture[CE].path = NULL;
 	info->mlx[INIT] = mlx_init();
 	if (!info->mlx[INIT])
 		return (error_msg("Couldn't init mlx"));

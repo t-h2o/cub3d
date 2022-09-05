@@ -61,17 +61,17 @@ static int	save_map_info(t_info *info, char *line)
 	if (str)
 	{
 		if (ft_strncmp(str, "NO", 2) == 0)
-			info->texture.north = skip_whitespaces(str + 2);
+			info->texture[NO].path = skip_whitespaces(str + 2);
 		else if (ft_strncmp(str, "SO", 2) == 0)
-			info->texture.south = skip_whitespaces(str + 2);
+			info->texture[SO].path = skip_whitespaces(str + 2);
 		else if (ft_strncmp(str, "EA", 2) == 0)
-			info->texture.east = skip_whitespaces(str + 2);
+			info->texture[EA].path = skip_whitespaces(str + 2);
 		else if (ft_strncmp(str, "WE", 2) == 0)
-			info->texture.west = skip_whitespaces(str + 2);
+			info->texture[WE].path = skip_whitespaces(str + 2);
 		else if (*str == 'F')
-			info->texture.floor = skip_whitespaces(str + 1);
+			info->texture[FL].path = skip_whitespaces(str + 1);
 		else if (*str == 'C')
-			info->texture.ceil = skip_whitespaces(str + 1);
+			info->texture[CE].path = skip_whitespaces(str + 1);
 		else
 			ret = 1;
 		free(str);

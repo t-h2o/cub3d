@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 		close_game(&info);
 	
 	//print map informations
-	printf("NO: %s\nSO: %s\nEA: %s\nWE: %s\nF: %s\nC: %s\n", info.texture.north, info.texture.south, info.texture.east, info.texture.west, info.texture.floor, info.texture.ceil);
+	printf("NO: %s\nSO: %s\nEA: %s\nWE: %s\nF: %s\nC: %s\n", info.texture[NO].path, info.texture[SO].path, info.texture[EA].path, info.texture[WE].path, info.texture[FL].path, info.texture[CE].path);
 	
 	//print the map	
 	if (info.map)

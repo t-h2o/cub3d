@@ -78,23 +78,23 @@ static int	load_mm_textures(t_info *info)
 // 	or fallback to default texture if failed
 static int	load_game_textures(t_info *info)
 {
-	if (load_xpm_image(info, &(info->texture.img_north), info->texture.north)
-		&& load_xpm_image(info, &(info->texture.img_north), TX_NORTH))
+	if (load_xpm_image(info, &(info->texture[NO].img), info->texture[NO].path)
+		&& load_xpm_image(info, &(info->texture[NO].img), TX_NORTH))
 		return (error_msg("Couldn't load texture"));
-	if (load_xpm_image(info, &(info->texture.img_south), info->texture.south)
-		&& load_xpm_image(info, &(info->texture.img_south), TX_SOUTH))
+	if (load_xpm_image(info, &(info->texture[SO].img), info->texture[SO].path)
+		&& load_xpm_image(info, &(info->texture[SO].img), TX_SOUTH))
 		return (error_msg("Couldn't load texture"));
-	if (load_xpm_image(info, &(info->texture.img_east), info->texture.east)
-		&& load_xpm_image(info, &(info->texture.img_east), TX_EAST))
+	if (load_xpm_image(info, &(info->texture[EA].img), info->texture[EA].path)
+		&& load_xpm_image(info, &(info->texture[EA].img), TX_EAST))
 		return (error_msg("Couldn't load texture"));
-	if (load_xpm_image(info, &(info->texture.img_west), info->texture.west)
-		&& load_xpm_image(info, &(info->texture.img_west), TX_WEST))
+	if (load_xpm_image(info, &(info->texture[WE].img), info->texture[WE].path)
+		&& load_xpm_image(info, &(info->texture[WE].img), TX_WEST))
 		return (error_msg("Couldn't load texture"));
-	if (create_image(info, &(info->texture.img_floor), info->texture.floor)
-		&& load_xpm_image(info, &(info->texture.img_floor), TX_FLOOR))
+	if (create_image(info, &(info->texture[FL].img), info->texture[FL].path)
+		&& load_xpm_image(info, &(info->texture[FL].img), TX_FLOOR))
 		return (error_msg("Couldn't load texture"));
-	if (create_image(info, &(info->texture.img_ceil), info->texture.ceil)
-		&& load_xpm_image(info, &(info->texture.img_ceil), TX_CEIL))
+	if (create_image(info, &(info->texture[CE].img), info->texture[CE].path)
+		&& load_xpm_image(info, &(info->texture[CE].img), TX_CEIL))
 		return (error_msg("Couldn't load texture"));
 	return (0);
 }

@@ -20,34 +20,34 @@ static void	destroy_images(t_info *info)
 		mlx_destroy_image(info->mlx[INIT], info->mm_img[WALL]);
 	if (info->mm_img[PLAYER])
 		mlx_destroy_image(info->mlx[INIT], info->mm_img[PLAYER]);
-	if (info->texture.img_north)
-		mlx_destroy_image(info->mlx[INIT], info->texture.img_north);
-	if (info->texture.img_south)
-		mlx_destroy_image(info->mlx[INIT], info->texture.img_south);
-	if (info->texture.img_east)
-		mlx_destroy_image(info->mlx[INIT], info->texture.img_east);
-	if (info->texture.img_west)
-		mlx_destroy_image(info->mlx[INIT], info->texture.img_west);
-	if (info->texture.img_floor)
-		mlx_destroy_image(info->mlx[INIT], info->texture.img_floor);
-	if (info->texture.img_ceil)
-		mlx_destroy_image(info->mlx[INIT], info->texture.img_ceil);
+	if (info->texture[NO].img)
+		mlx_destroy_image(info->mlx[INIT], info->texture[NO].img);
+	if (info->texture[SO].img)
+		mlx_destroy_image(info->mlx[INIT], info->texture[SO].img);
+	if (info->texture[EA].img)
+		mlx_destroy_image(info->mlx[INIT], info->texture[EA].img);
+	if (info->texture[WE].img)
+		mlx_destroy_image(info->mlx[INIT], info->texture[WE].img);
+	if (info->texture[FL].img)
+		mlx_destroy_image(info->mlx[INIT], info->texture[FL].img);
+	if (info->texture[CE].img)
+		mlx_destroy_image(info->mlx[INIT], info->texture[CE].img);
 }
 
 static void	free_textures_path(t_info *info)
 {
-	if (info->texture.north)
-		free(info->texture.north);
-	if (info->texture.south)
-		free(info->texture.south);
-	if (info->texture.east)
-		free(info->texture.east);
-	if (info->texture.west)
-		free(info->texture.west);
-	if (info->texture.floor)
-		free(info->texture.floor);
-	if (info->texture.ceil)
-		free(info->texture.ceil);
+	if (info->texture[NO].path)
+		free(info->texture[NO].path);
+	if (info->texture[SO].path)
+		free(info->texture[SO].path);
+	if (info->texture[EA].path)
+		free(info->texture[EA].path);
+	if (info->texture[WE].path)
+		free(info->texture[WE].path);
+	if (info->texture[FL].path)
+		free(info->texture[FL].path);
+	if (info->texture[CE].path)
+		free(info->texture[CE].path);
 }
 
 void	free_array(char **array)

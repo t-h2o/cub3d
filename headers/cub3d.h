@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/05 16:15:46 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/05 18:42:21 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,15 @@ enum e_mm {
 	PLAYER
 };
 
+enum e_tx {
+	NO,
+	SO,
+	EA,
+	WE,
+	FL,
+	CE
+};
+
 // data struct to draw into an image
 typedef struct s_img_data {
 	void	*img;
@@ -96,18 +105,8 @@ typedef struct s_img_data {
 // - the path to the texture
 // - the pointer to the image
 typedef struct s_texture {
-	char	*north;
-	void	*img_north;
-	char	*south;
-	void	*img_south;
-	char	*east;
-	void	*img_east;
-	char	*west;
-	void	*img_west;
-	char	*floor;
-	void	*img_floor;
-	char	*ceil;
-	void	*img_ceil;
+	char	*path;
+	void	*img;
 }	t_texture;
 
 typedef struct s_player {
@@ -125,7 +124,7 @@ typedef struct s_info {
 	void		*mm_img[3];
 	int			map_h;
 	t_player	player;
-	t_texture	texture;
+	t_texture	texture[6];
 }	t_info;
 
 // check_map.c
