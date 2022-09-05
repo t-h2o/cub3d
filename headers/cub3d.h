@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/05 18:49:40 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/05 19:03:20 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,10 +146,6 @@ int		init_game(t_info *info, char *mapname);
 // mini_map.c
 void	print_minimap(t_info *info);
 
-// parse_utils.c
-char	*skip_whitespaces(char *str);
-int		convert_rgb(char *rgb);
-
 // player.c
 void	player_move(t_info *info, float distance);
 void	player_rotate(t_info *info, float rotation);
@@ -159,6 +155,10 @@ int	load_textures(t_info *info);
 
 //utils_mlx.c
 void	my_destroy_image(void *mlx, void *img);
+
+// utils_parsing.c
+char	*skip_whitespaces(char *str);
+int		convert_rgb(char *rgb);
 
 // window.c
 int		start_window(t_info *info);
