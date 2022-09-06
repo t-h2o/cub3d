@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/06 10:33:40 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/06 10:57:18 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
 
 // Sensibility
 //   rotation = (PI / 8)
-# define PS_MOVE		1.0f
+# define PS_MOVE		0.5f
 # define PS_ROTATE	0.392699081699f
 
 // Window size [px]

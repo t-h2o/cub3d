@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/09/05 23:44:53 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/09/06 10:06:16 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,14 @@ static void	print_square(t_info *info, char c, int y, int x)
 			info->mm_img[WALL],
 			x * MM_SIZE_TILE + MM_POS_X,
 			y * MM_SIZE_TILE + MM_POS_Y);
-	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
-	{
-		if (info->player.x == -1.0f)
-		{
-			info->player.x = (float)(x * MM_SIZE_TILE)
-				+ ((MM_SIZE_TILE - MM_SIZE_PLAYER) / 2);
-			info->player.y = (float)(y * MM_SIZE_TILE)
-				+ ((MM_SIZE_TILE - MM_SIZE_PLAYER) / 2);
-			info->player.angle = 0.0f;
-		}
-	}
 }
 
 static void	print_player(t_info *info)
 {
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
 		info->mm_img[PLAYER],
-		MM_POS_X + info->player.x,
-		MM_POS_Y + info->player.y);
+		MM_POS_X + info->player.x * MM_SIZE_TILE - MM_SIZE_PLAYER / 2,
+		MM_POS_Y + info->player.y * MM_SIZE_TILE - MM_SIZE_PLAYER / 2);
 }
 
 // Position player
