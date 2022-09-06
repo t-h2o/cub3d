@@ -6,59 +6,39 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:44:17 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 15:11:29 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/05 23:31:44 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// Check if the texture is a square
-static int	check_square(int height, int width)
-{
-	if (height != width)
-		return (error_msg("Texture of the mini map is not a square"));
-	return (0);
-}
-
-// Load textures for the mini map
-static int	load_textures(t_info *info)
-{
-	int		img_width;
-	int		img_height;
-
-	info->mm_img[GROUND] = mlx_xpm_file_to_image
-		(info->mlx[INIT], MM_GROUND, &img_width, &img_height);
-	if (check_square(img_height, img_width))
-		return (1);
-	info->mm_img[WALL] = mlx_xpm_file_to_image
-		(info->mlx[INIT], MM_WALL, &img_width, &img_height);
-	if (check_square(img_height, img_width))
-		return (1);
-	info->mm_img[PLAYER] = mlx_xpm_file_to_image
-		(info->mlx[INIT], MM_PLAYER, &img_width, &img_height);
-	if (check_square(img_height, img_width))
-		return (1);
-	return (0);
-}
-
 // Init default value of the struct
 // Init mlx
-// Load textures for the minimap
-int	init_game(t_info *info)
+// Load the map
+// Load textures
+int	init_game(t_info *info, char *mapname)
 {
 	info->map = NULL;
 	info->map_h = 0;
 	info->player.x = -1.0f;
-	info->texture.north = NULL;
-	info->texture.south = NULL;
-	info->texture.east = NULL;
-	info->texture.west = NULL;
-	info->texture.floor = NULL;
-	info->texture.ceil = NULL;
+	info->texture[NO].path = NULL;
+	info->texture[SO].path = NULL;
+	info->texture[EA].path = NULL;
+	info->texture[WE].path = NULL;
+	info->texture[FL].path = NULL;
+	info->texture[CE].path = NULL;
+	info->texture[NO].img = NULL;
+	info->texture[SO].img = NULL;
+	info->texture[EA].img = NULL;
+	info->texture[WE].img = NULL;
+	info->texture[FL].img = NULL;
+	info->texture[CE].img = NULL;
 	info->mlx[INIT] = mlx_init();
+	info->mlx[WINDOW] = 0;
+	ft_memset(&(info->mm_img), 0, (sizeof(void *) * 3));
 	if (!info->mlx[INIT])
 		return (error_msg("Couldn't init mlx"));
-	if (load_textures(info))
+	if (load_map(info, mapname) || load_textures(info))
 		return (1);
 	return (0);
 }

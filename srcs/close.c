@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/08/29 16:58:13 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/06 10:32:37 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,40 @@
 
 static void	destroy_images(t_info *info)
 {
-	mlx_destroy_image(info->mlx[INIT], info->mm_img[GROUND]);
-	mlx_destroy_image(info->mlx[INIT], info->mm_img[WALL]);
-	mlx_destroy_image(info->mlx[INIT], info->mm_img[PLAYER]);
+	my_destroy_image(info->mlx[INIT], info->mm_img[GROUND]);
+	my_destroy_image(info->mlx[INIT], info->mm_img[WALL]);
+	my_destroy_image(info->mlx[INIT], info->mm_img[PLAYER]);
+	my_destroy_image(info->mlx[INIT], info->texture[NO].img);
+	my_destroy_image(info->mlx[INIT], info->texture[SO].img);
+	my_destroy_image(info->mlx[INIT], info->texture[EA].img);
+	my_destroy_image(info->mlx[INIT], info->texture[WE].img);
+	my_destroy_image(info->mlx[INIT], info->texture[FL].img);
+	my_destroy_image(info->mlx[INIT], info->texture[CE].img);
 }
 
-void	free_map(char **map)
+static void	free_textures_path(t_info *info)
+{
+	free(info->texture[NO].path);
+	free(info->texture[SO].path);
+	free(info->texture[EA].path);
+	free(info->texture[WE].path);
+	free(info->texture[FL].path);
+	free(info->texture[CE].path);
+}
+
+void	free_array(char **array)
 {
 	int	i;
 
 	i = 0;
-	if (map)
+	if (array)
 	{
-		while (map[i])
+		while (array[i])
 		{
-			free(map[i]);
+			free(array[i]);
 			i++;
 		}
-		free(map);
+		free(array);
 	}
 }
 
@@ -42,16 +58,12 @@ int	error_msg(char *msg)
 	return (1);
 }
 
-void	exit_error(char *msg)
+void	close_game(t_info *info, int exit_code)
 {
-	exit(error_msg(msg));
-}
-
-int	close_game(t_info *info)
-{
-	free_map(info->map);
-	mlx_destroy_window(info->mlx[INIT], info->mlx[WINDOW]);
+	free_array(info->map);
+	if (info->mlx[WINDOW])
+		mlx_destroy_window(info->mlx[INIT], info->mlx[WINDOW]);
 	destroy_images(info);
-	exit(0);
-	return (0);
+	free_textures_path(info);
+	exit(exit_code);
 }

@@ -1,19 +1,24 @@
 
-NO	./assets/NORTH_TEXTURE
+NO	./assets/textures/wrong_path.xpm
 
-	SO./pathtotextureSO							
- WE.assets/path
-
+		SO ./assets/textures/defablshitth.xpm      
 
 
 
 
-EA should be erased
+    WE				 ./assets/textures/default_west.xpm
+EA   this should be erased
+
+
+
+
+
+
 
 F	255,30,30		
 C 122, 112, 112
 
-EA ./assets/texture/east.xpm
+EA./assets/textures/default_east.xpm
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001

@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 20:36:20 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/09/05 16:13:39 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,17 @@ static int	save_map_info(t_info *info, char *line)
 	if (str)
 	{
 		if (ft_strncmp(str, "NO", 2) == 0)
-			info->texture.north = skip_whitespaces(str + 2);
+			info->texture[NO].path = skip_whitespaces(str + 2);
 		else if (ft_strncmp(str, "SO", 2) == 0)
-			info->texture.south = skip_whitespaces(str + 2);
+			info->texture[SO].path = skip_whitespaces(str + 2);
 		else if (ft_strncmp(str, "EA", 2) == 0)
-			info->texture.east = skip_whitespaces(str + 2);
+			info->texture[EA].path = skip_whitespaces(str + 2);
 		else if (ft_strncmp(str, "WE", 2) == 0)
-			info->texture.west = skip_whitespaces(str + 2);
+			info->texture[WE].path = skip_whitespaces(str + 2);
 		else if (*str == 'F')
-			info->texture.floor = skip_whitespaces(str + 1);
+			info->texture[FL].path = skip_whitespaces(str + 1);
 		else if (*str == 'C')
-			info->texture.ceil = skip_whitespaces(str + 1);
+			info->texture[CE].path = skip_whitespaces(str + 1);
 		else
 			ret = 1;
 		free(str);
@@ -106,9 +106,6 @@ int	load_map(t_info *info, char *mapname)
 		return (1);
 	read_mapfile(info, fd);
 	if (check_map_data(info))
-	{
-		free_map(info->map);
 		return (1);
-	}
 	return (0);
 }

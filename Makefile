@@ -54,8 +54,10 @@ SRCS	+=	$(SRCD)/close.c
 SRCS	+=	$(SRCD)/parsing.c
 SRCS	+=	$(SRCD)/init.c
 SRCS	+=	$(SRCD)/mini_map.c
-SRCS	+=	$(SRCD)/parse_utils.c
 SRCS	+=	$(SRCD)/player.c
+SRCS	+=	$(SRCD)/textures.c
+SRCS	+=	$(SRCD)/utils_mlx.c
+SRCS	+=	$(SRCD)/utils_parsing.c
 SRCS	+=	$(SRCD)/window.c
 
 
@@ -73,7 +75,7 @@ all : $(NAME)
 
 $(NAME):	$(LIBEXT) $(OBJS)
 	@printf "$(YELLOW)Creating executable..$(DEFAULT)\n"
-	@$(CC) $(OFLAGS) $(OBJS) $(LIBEXT) $(CLIB) -o $(NAME)
+	@$(CC) $(OBJS) $(OFLAGS) $(LIBEXT) $(CLIB) -o $(NAME)
 	@printf "$(GREEN)---> $(NAME) is ready$(DEFAULT)\n"
 
 $(OBJD)/%.o : %.c | $(OBJD)
