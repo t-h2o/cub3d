@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/05 19:03:20 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/06 10:33:40 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,7 @@ int		check_map_data(t_info *info);
 //close.c
 void	free_array(char **array);
 int		error_msg(char *msg);
-void	exit_error(char *msg);
-int		close_game(t_info *info);
+void	close_game(t_info *info, int exit_code);
 
 // parsing.c
 int		load_map(t_info *info, char *mapname);
@@ -151,7 +150,7 @@ void	player_move(t_info *info, float distance);
 void	player_rotate(t_info *info, float rotation);
 
 // textures.c
-int	load_textures(t_info *info);
+int		load_textures(t_info *info);
 
 //utils_mlx.c
 void	my_destroy_image(void *mlx, void *img);

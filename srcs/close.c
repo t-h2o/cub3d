@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/05 18:56:45 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/06 10:32:37 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,12 @@ int	error_msg(char *msg)
 	return (1);
 }
 
-int	close_game(t_info *info)
+void	close_game(t_info *info, int exit_code)
 {
 	free_array(info->map);
 	if (info->mlx[WINDOW])
 		mlx_destroy_window(info->mlx[INIT], info->mlx[WINDOW]);
 	destroy_images(info);
 	free_textures_path(info);
-	exit(0);
-	return (0);
+	exit(exit_code);
 }
