@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/01 15:16:01 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/06 09:43:49 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static int	save_player_info(t_info *info, int x, int y)
 		return (error_msg("More than 1 player"));
 	else
 	{
-		info->player.x = (float) x;
-		info->player.y = (float) y;
+		info->player.x = (float) x + 0.5f;
+		info->player.y = (float) y + 0.5f;
 		if (info->map[y][x] == 'N')
 			info->player.angle = 0.0f;
 		else if (info->map[y][x] == 'S')
