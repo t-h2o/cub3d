@@ -53,7 +53,7 @@
 
 // Sensibility
 //   rotation = (PI / 8)
-# define PS_MOVE		0.5f
+# define PS_MOVE	0.5f
 # define PS_ROTATE	0.392699081699f
 
 // Window size [px]
@@ -131,7 +131,7 @@ typedef struct s_info {
 int		check_extension(char *mapname);
 int		check_map_data(t_info *info);
 
-//close.c
+// close.c
 void	free_array(char **array);
 int		error_msg(char *msg);
 void	close_game(t_info *info, int exit_code);
@@ -149,13 +149,16 @@ void	print_minimap(t_info *info);
 void	player_move(t_info *info, float distance);
 void	player_rotate(t_info *info, float rotation);
 
+// ray.c
+void	player_ray(t_info *info);
+
 // textures.c
 int		load_textures(t_info *info);
 
 // utils_math.c
 void	angle_delta(float angle, float *dx, float *dy);
 
-//utils_mlx.c
+// utils_mlx.c
 void	my_destroy_image(void *mlx, void *img);
 
 // utils_parsing.c
