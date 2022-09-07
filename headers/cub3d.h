@@ -50,6 +50,7 @@
 
 // Color
 # define CO_WHITE		0x00FFFFFF
+# define CO_BLUE		0x00000070
 
 // Sensibility
 //   rotation = (PI / 8)
@@ -90,6 +91,11 @@ enum e_tx {
 	WE,
 	FL,
 	CE
+};
+
+enum e_axis {
+	X,
+	Y,
 };
 
 // data struct to draw into an image
