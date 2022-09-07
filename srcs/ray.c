@@ -6,37 +6,50 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/08 00:21:13 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/09/08 01:17:39 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 
+static float	horizontal_dist(int line, float px, float py, float dx, float dy)
+{
+	float	hit_pos[2];
+	float	ratio;
 
+	ratio = (line - py) / dy;
+	hit_pos[X] = px + ratio * dx;
+	hit_pos[Y] = line;
+	printf("hit: (%f, %f)\n", hit_pos[X], hit_pos[Y]);
+	return (distance_pos(px, py, hit_pos[X], hit_pos[Y]));
+}
+
+static void	next_tile(float ray[2], int line[2], float dx, float dy)
+{
+	line[X] = ray[X];
+	line[Y] = ray[Y];
+	if (0 < dx && 0 < dy)
+	{
+		line[X] = ray[X] + 1;
+		line[Y] = ray[Y] + 1;
+	}
+	else if (0 < dy)
+		line[Y] = ray[Y] + 1;
+	else if (0 < dx)
+		line[X] = ray[X] + 1;
+}
 
 static void	ray(t_info *info, float dx, float dy)
 {
 	float	distance;
 	float	ray[2];
-	int		next_tile[2];
+	int		line[2];
 
 	ray[X] = info->player.x;
 	ray[Y] = info->player.y;
 
-	next_tile[X] = ray[X];
-	next_tile[Y] = ray[Y];
-
-	if (0 < dx && 0 < dy)
-	{
-		next_tile[X] = ray[X] + 1;
-		next_tile[Y] = ray[Y] + 1;
-	}
-	else if (0 < dy)
-		next_tile[Y] = ray[Y] + 1;
-	else if (0 < dx)
-		next_tile[X] = ray[X] + 1;
-
-	distance = distance_pos(ray[X], ray[Y], (float)next_tile[X], (float)next_tile[Y]);
+	next_tile(ray, line, dx, dy);
+	distance = horizontal_dist(line[Y], ray[X], ray[Y], dx, dy);
 
 	printf("dis: %f\n", distance);
 
