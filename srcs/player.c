@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 12:26:36 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/06 10:08:15 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/07 22:49:00 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void
 		info->player.angle += 2 * M_PI;
 	if (2 * M_PI < info->player.angle)
 		info->player.angle -= 2 * M_PI;
-	info->player.dx = cos(info->player.angle);
-	info->player.dy = sin(info->player.angle);
+	angle_delta(info->player.angle, &(info->player.dx), &(info->player.dy));
 	print_minimap(info);
 }
