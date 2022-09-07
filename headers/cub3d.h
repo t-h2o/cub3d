@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/07 22:49:07 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/09/08 00:10:41 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ int		load_textures(t_info *info);
 
 // utils_math.c
 void	angle_delta(float angle, float *dx, float *dy);
+float	distance_pos(float ax, float ay, float bx, float by);
 
 // utils_mlx.c
 void	my_destroy_image(void *mlx, void *img);
