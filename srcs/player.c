@@ -19,8 +19,14 @@
 void
 	player_move(t_info *info, float distance)
 {
-	info->player.x += distance * info->player.dx;
-	info->player.y += distance * info->player.dy;
+	float	next[2];
+
+	next[X] = info->player.x + distance * info->player.dx;
+	next[Y] = info->player.y + distance * info->player.dy;
+	if (info->map[(int)(next[Y])][(int)(next[X])] == '1')
+		return ;
+	info->player.x = next[X];
+	info->player.y = next[Y];
 	print_minimap(info);
 }
 
