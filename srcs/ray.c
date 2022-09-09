@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/07 22:31:12 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/09/09 14:15:28 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,18 @@
 // ray_x: where the player is locate
 static void	ray(t_info *info, float dx, float dy)
 {
-	float	ray_x;
-	float	ray_y;
+	float	ray[2];
 
-	ray_x = info->player.x;
-	ray_y = info->player.y;
-	while (info->map[(int)(ray_y)][(int)(ray_x)] != '1')
+	ray[X] = info->player.x;
+	ray[Y] = info->player.y;
+	while (info->map[(int)(ray[Y])][(int)(ray[X])] != '1')
 	{
 		mlx_pixel_put(info->mlx[INIT], info->mlx[WINDOW],
-			ray_x * MM_SIZE_TILE + MM_POS_X,
-			ray_y * MM_SIZE_TILE + MM_POS_Y,
+			ray[X] * MM_SIZE_TILE + MM_POS_X,
+			ray[Y] * MM_SIZE_TILE + MM_POS_Y,
 			CO_BLUE);
-		ray_x += dx / MM_SIZE_TILE;
-		ray_y += dy / MM_SIZE_TILE;
+		ray[X] += dx / MM_SIZE_TILE;
+		ray[Y] += dy / MM_SIZE_TILE;
 	}
 }
 
