@@ -12,9 +12,7 @@
 
 #include	"cub3d.h"
 
-// Print random ray
-// ind: index
-// ray_x: where the player is locate
+// ray[X, Y]: The position of the ray
 static void	ray(t_info *info, float dx, float dy)
 {
 	float	ray[2];
