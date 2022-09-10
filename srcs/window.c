@@ -14,11 +14,8 @@
 
 // If the ESC key is pressed, the window closes
 static int
-	deal_key(int key, void *params)
+	deal_key(int key, t_info *info)
 {
-	t_info	*info;
-
-	info = params;
 	if (key == KEY_ESC)
 		close_game(info, 0);
 	else if (key == KEY_W || key == KEY_UP)
