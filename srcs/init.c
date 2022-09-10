@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:44:17 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/10 20:30:33 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/10 23:01:16 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,12 @@
 // Load textures
 int	init_game(t_info *info, char *mapname)
 {
-	info->map = NULL;
-	info->map_h = 0;
+	ft_memset(info, 0, (sizeof(t_info)));
 	info->active_map = true;
 	info->player.x = -1.0f;
 	info->player.dx = -1.0f;
 	info->player.dy = -1.0f;
-	info->texture[NO].path = NULL;
-	info->texture[SO].path = NULL;
-	info->texture[EA].path = NULL;
-	info->texture[WE].path = NULL;
-	info->texture[FL].path = NULL;
-	info->texture[CE].path = NULL;
-	info->texture[NO].img = NULL;
-	info->texture[SO].img = NULL;
-	info->texture[EA].img = NULL;
-	info->texture[WE].img = NULL;
-	info->texture[FL].img = NULL;
-	info->texture[CE].img = NULL;
 	info->mlx[INIT] = mlx_init();
-	info->mlx[WINDOW] = 0;
-	ft_memset(&(info->mm_img), 0, (sizeof(void *) * 3));
 	if (!info->mlx[INIT])
 		return (error_msg("Couldn't init mlx"));
 	if (load_map(info, mapname) || load_textures(info))
