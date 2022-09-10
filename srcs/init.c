@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:44:17 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/07 21:38:25 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/09/10 20:30:33 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	init_game(t_info *info, char *mapname)
 {
 	info->map = NULL;
 	info->map_h = 0;
+	info->active_map = true;
 	info->player.x = -1.0f;
 	info->player.dx = -1.0f;
 	info->player.dy = -1.0f;

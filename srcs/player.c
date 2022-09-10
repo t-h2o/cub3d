@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 12:26:36 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/07 22:49:00 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/09/10 18:08:01 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void
 		return ;
 	info->player.x = next[X];
 	info->player.y = next[Y];
-	print_minimap(info);
+	print_frame(info);
 }
 
 // When the player change his rotation,
@@ -41,5 +41,5 @@ void
 	if (2 * M_PI < info->player.angle)
 		info->player.angle -= 2 * M_PI;
 	angle_delta(info->player.angle, &(info->player.dx), &(info->player.dy));
-	print_minimap(info);
+	print_frame(info);
 }

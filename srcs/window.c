@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:01:59 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/09/05 23:40:09 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/09/10 18:39:30 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // If the ESC key is pressed, the window closes
 static int
-	deal_key(int key, void *info)
+	deal_key(int key, t_info *info)
 {
 	if (key == KEY_ESC)
 		close_game(info, 0);
@@ -26,6 +26,11 @@ static int
 		player_rotate(info, PS_ROTATE);
 	else if (key == KEY_A || key == KEY_LEFT)
 		player_rotate(info, -PS_ROTATE);
+	else if (key == KEY_TAB)
+	{
+		info->active_map = !info->active_map;
+		print_frame(info);
+	}
 	return (0);
 }
 
@@ -47,7 +52,7 @@ int	start_window(t_info *info)
 		return (error_msg("Couldn't create window"));
 	mlx_hook(info->mlx[WINDOW], 2, 1, deal_key, info);
 	mlx_hook(info->mlx[WINDOW], 17, 0L << 0, red_cross, info);
-	print_minimap(info);
+	print_frame(info);
 	mlx_loop(info->mlx[INIT]);
 	return (0);
 }

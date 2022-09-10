@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:21:41 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/08/18 11:22:59 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/09/10 18:39:03 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
 #  define KEY_DOWN		125
 #  define KEY_RIGHT		124
 #  define KEY_UP		126
+
 #  define KEY_ESC		53
+#  define KEY_TAB		48
 
 # elif __linux__
 
@@ -37,7 +39,9 @@
 #  define KEY_DOWN		65364
 #  define KEY_RIGHT		65363
 #  define KEY_UP		65362
+
 #  define KEY_ESC		65307
+#  define KEY_TAB		65289
 
 # endif
 

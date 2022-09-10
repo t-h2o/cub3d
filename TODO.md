@@ -6,7 +6,7 @@
 
 * [X] Read the file
   * [X] Just the map
-  * [ ] Set default value for optional data
+  * [X] Set default value for optional data
 * [X] Check the error
 * [X] Fill `char **map` with the file
 
@@ -14,6 +14,7 @@
 
 * [x] Open a Windows
 * [x] Display the map
+* [ ] Scale the minimap
 
 ## Second Round !
 
