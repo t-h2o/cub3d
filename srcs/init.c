@@ -24,7 +24,6 @@ int	init_game(t_info *info, char *mapname)
 	info->player.dx = -1.0f;
 	info->player.dy = -1.0f;
 	info->mlx[INIT] = mlx_init();
-	info->mlx[WINDOW] = 0;
 	if (!info->mlx[INIT])
 		return (error_msg("Couldn't init mlx"));
 	if (load_map(info, mapname) || load_textures(info))
