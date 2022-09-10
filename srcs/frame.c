@@ -6,13 +6,13 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:40:59 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/10 19:05:59 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/10 19:25:50 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 
-// Position player
+// Print infos: player position (x, y, angle)
 static void	print_info(t_info *info)
 {
 	char	message[255];
@@ -31,8 +31,8 @@ static void	print_info(t_info *info)
 		500, 30, CO_WHITE, message);
 }
 
-// 1. Print floor and ceilling
-// 2. Print walls
+// 1. Draw rays to get view informations
+// 2. Render the view (walls, floor & ceilling)
 // 3. Print minimap
 // 4. Print informations
 void	print_frame(t_info *info)
@@ -41,5 +41,9 @@ void	print_frame(t_info *info)
 	if (info->active_map)
 		print_minimap(info);
 	player_ray(info);
+	//catch ray infos ---> then render stuff
+
+	//here the minimap would be overwritten by what we render
+	//but atm if we print the minimap at the end, it will overwrite the ray
 	print_info(info);
 }
