@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:47:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/10 18:05:22 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/10 20:30:17 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int ac, char **av)
 	t_info	info;
 	int		i;
 
-	info.active_map = true;
 	ft_putstr("Cub3D\n");
 
 	if (ac != 2)
