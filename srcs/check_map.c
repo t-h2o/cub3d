@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/06 09:43:49 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/07 21:47:53 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int	save_player_info(t_info *info, int x, int y)
 		else if (info->map[y][x] == 'W')
 			info->player.angle = (3 * M_PI) / 2;
 		info->map[y][x] = '0';
+		angle_delta(info->player.angle, &(info->player.dx), &(info->player.dy));
 	}
 	return (0);
 }
