@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:40:59 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/10 18:53:05 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/10 19:05:59 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ void	print_frame(t_info *info)
 	mlx_clear_window(info->mlx[INIT], info->mlx[WINDOW]);
 	if (info->active_map)
 		print_minimap(info);
+	player_ray(info);
 	print_info(info);
 }

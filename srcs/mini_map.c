@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/09/10 18:57:53 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/10 18:59:24 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,4 @@ void	print_minimap(t_info *info)
 			print_square(info, info->map[pos_y][pos_x], pos_y, pos_x);
 	}
 	print_mm_player(info);
-	player_ray(info);
 }
