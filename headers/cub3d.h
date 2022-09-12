@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/10 19:09:01 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/12 16:35:49 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,16 @@ enum e_axis {
 	Y,
 };
 
+// distance between the player and the wall
+// wall: NEWS
+typedef struct s_ray {
+	float	angle;
+	float	delta[2];
+	float	hit[2];
+	float	distance;
+	char	wall;
+}	t_ray;
+
 // data struct to draw into an image
 typedef struct s_img_data {
 	void	*img;
@@ -125,6 +135,7 @@ typedef struct s_player {
 }	t_player;
 
 // mlx: pointer on informations of the window
+// rays number is equal to W_WIDTH: rays[W_WIDTH]
 typedef struct s_info {
 	void		*mlx[2];
 	char		**map;
@@ -133,6 +144,7 @@ typedef struct s_info {
 	t_player	player;
 	t_texture	texture[6];
 	bool		active_map;
+	t_ray		rays[1024];
 }	t_info;
 
 // check_map.c
