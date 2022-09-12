@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/12 16:51:40 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/12 16:58:13 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	ray(t_info *info, int column, float dx, float dy)
 	}
 	info->rays[column].hit[X] = ray[X];
 	info->rays[column].hit[Y] = ray[Y];
+	info->rays[column].distance
+		= sqrt_points(info->player.x, info->player.y, ray[X], ray[Y]);
 }
 
 void	player_ray(t_info *info)
