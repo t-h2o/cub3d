@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/10 19:09:01 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/15 14:13:18 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ int		load_textures(t_info *info);
 
 // utils_math.c
 void	angle_delta(float angle, float delta[2]);
+float	angle_sum(float angle_a, float angle_b);
 
 // utils_mlx.c
 void	my_destroy_image(void *mlx, void *img);

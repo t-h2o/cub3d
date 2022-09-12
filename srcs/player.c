@@ -35,11 +35,7 @@ void
 void
 	player_rotate(t_info *info, float rotation)
 {
-	info->player.angle += rotation;
-	if (info->player.angle < 0)
-		info->player.angle += 2 * M_PI;
-	if (2 * M_PI < info->player.angle)
-		info->player.angle -= 2 * M_PI;
+	info->player.angle = angle_sum(info->player.angle, rotation);
 	angle_delta(info->player.angle, info->player.delta);
 	print_frame(info);
 }
