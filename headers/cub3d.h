@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/12 16:35:49 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/12 16:38:06 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@
 //   rotation = (PI / 8)
 # define PS_MOVE	0.5f
 # define PS_ROTATE	0.392699081699f
+
+// Field of view ~70 degrees
+# define FOV		1.2f
 
 // Window size [px]
 # define W_WIDTH	1024
