@@ -6,14 +6,14 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/09 14:15:28 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/12 16:37:02 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 
 // ray[X, Y]: The position of the ray
-static void	ray(t_info *info, float dx, float dy)
+static void	ray(t_info *info, int column, float dx, float dy)
 {
 	float	ray[2];
 
@@ -28,9 +28,28 @@ static void	ray(t_info *info, float dx, float dy)
 		ray[X] += dx / MM_SIZE_TILE;
 		ray[Y] += dy / MM_SIZE_TILE;
 	}
+	info->rays[column].hit[X] = ray[X];
+	info->rays[column].hit[Y] = ray[Y];
 }
 
 void	player_ray(t_info *info)
 {
-	ray(info, info->player.dx, info->player.dy);
+	int		column;
+
+	column = 0;
+	info->rays[column].angle = info->player.angle - FOV / 2;
+	while (column < W_WIDTH)
+	{
+		if (info->rays[column].angle < 0)
+			info->rays[column].angle += 2 * M_PI;
+		if (2 * M_PI < info->rays[column].angle)
+			info->rays[column].angle -= 2 * M_PI;
+		angle_delta(info->rays[column].angle,
+			&(info->rays[column].delta[X]),
+			&(info->rays[column].delta[Y]));
+		ray(info, column, info->rays[column].delta[X],
+			info->rays[column].delta[Y]);
+		column++;
+		info->rays[column].angle = info->rays[column - 1].angle + FOV / W_WIDTH;
+	}
 }
