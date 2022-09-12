@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:41:17 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/09/12 16:45:37 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/12 16:57:24 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,10 @@ float	angle_sum(float angle_a, float angle_b)
 	if (2 * M_PI < sum)
 		sum -= 2 * M_PI;
 	return (sum);
+}
+
+// Origin (x, y) to Destination (x, y)
+float	sqrt_points(float ox, float oy, float dx, float dy)
+{
+	return (sqrt(pow(dx - ox, 2) + pow(dy - oy, 2)));
 }
