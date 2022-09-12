@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 12:26:36 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/10 18:08:01 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/12 16:48:10 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,7 @@ void
 void
 	player_rotate(t_info *info, float rotation)
 {
-	info->player.angle += rotation;
-	if (info->player.angle < 0)
-		info->player.angle += 2 * M_PI;
-	if (2 * M_PI < info->player.angle)
-		info->player.angle -= 2 * M_PI;
+	info->player.angle = angle_sum(info->player.angle, rotation);
 	angle_delta(info->player.angle, &(info->player.dx), &(info->player.dy));
 	print_frame(info);
 }
