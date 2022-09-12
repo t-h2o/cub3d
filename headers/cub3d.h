@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/12 16:38:06 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/12 16:46:08 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ void	player_ray(t_info *info);
 int		load_textures(t_info *info);
 
 // utils_math.c
+float	angle_sum(float angle_a, float angle_b);
 void	angle_delta(float angle, float *dx, float *dy);
 
 // utils_mlx.c
