@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/13 12:12:30 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/13 12:20:35 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static void	ray(t_info *info, int column, float dx, float dy)
 
 	distance[X] = vertical(info, hit[X], dx, dy);
 	distance[Y] = horizontal(info, hit[Y], dx, dy);
-	if (distance[Y] < distance[X])
+	if (distance[Y] != -1.0f && distance[Y] < distance[X])
 	{
 		ft_memcpy(info->rays[column].hit, hit[Y], 2 * sizeof(float));
 		info->rays[column].distance = distance[Y];
