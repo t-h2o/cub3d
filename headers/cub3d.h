@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/15 14:13:18 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/21 23:38:27 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,8 @@ typedef struct s_info {
 	t_player	player;
 	t_texture	texture[6];
 	bool		active_map;
-	t_ray		ray[1024];
+	t_ray		ray[W_WIDTH];
+	t_img_data	screen;
 }	t_info;
 
 // check_map.c
