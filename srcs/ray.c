@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/13 11:10:43 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/13 12:02:18 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,16 +127,16 @@ static void	ray(t_info *info, int column, float dx, float dy)
 	if (distance[Y] < distance[X])
 	{
 		if (dy > 0)
-			printf("Hit SO\n");
+			info->rays[column].wall = 'S';
 		else
-			printf("Hit NO\n");
+			info->rays[column].wall = 'N';
 	}
 	else
 	{
 		if (dx > 0)
-			printf("Hit ES\n");
+			info->rays[column].wall = 'E';
 		else
-			printf("Hit WE\n");
+			info->rays[column].wall = 'W';
 	}
 }
 
