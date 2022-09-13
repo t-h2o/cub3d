@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/13 12:11:26 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/13 12:12:30 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ static float	horizontal(t_info *info, float hit[2], float dx, float dy)
 	{
 		if (hit[X] < 0 || hit[Y] < 0 || info->map_h - 1 < hit[Y] || ft_strlen(info->map[(int)hit[Y]]) < hit[X])
 			break ;
-		mlx_pixel_put(info->mlx[INIT], info->mlx[WINDOW],
-			hit[X] * MM_SIZE_TILE + MM_POS_X,
-			hit[Y] * MM_SIZE_TILE + MM_POS_Y,
-			CO_WHITE);
 		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
 			break ;
 		if (dy > 0)
@@ -78,10 +74,6 @@ static float	vertical(t_info *info, float hit[2], float dx, float dy)
 	{
 		if (hit[Y] < 0 || info->map_h - 1 < hit[Y])
 			break ;
-		mlx_pixel_put(info->mlx[INIT], info->mlx[WINDOW],
-			hit[X] * MM_SIZE_TILE + MM_POS_X,
-			hit[Y] * MM_SIZE_TILE + MM_POS_Y,
-			CO_WHITE);
 		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
 			break ;
 		if (dx > 0)
