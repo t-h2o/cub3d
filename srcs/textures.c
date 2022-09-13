@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/13 14:42:46 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/13 16:59:35 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ static int	create_image(t_info *info, void **img, char *path)
 	color = convert_rgb(path);
 	if (color == -1)
 		return (1);
-	new.img = mlx_new_image(info->mlx[INIT], 10, 10);
+	new.img = mlx_new_image(info->mlx[INIT], W_WIDTH, W_HEIGHT / 2);
 	new.addr = mlx_get_data_addr(new.img, &(new.bits_per_pixel),
 			&(new.line_length), &(new.endian));
 	y = -1;
-	while (++y < 10)
+	while (++y < W_HEIGHT / 2)
 	{
 		x = -1;
-		while (++x < 10)
+		while (++x <W_WIDTH)
 		{
 			dst = new.addr + (y * new.line_length
 					+ x * (new.bits_per_pixel / 8));
@@ -91,10 +91,10 @@ static int	load_game_textures(t_info *info)
 		&& load_xpm_image(info, &(info->texture[WE].img), TX_WEST))
 		return (error_msg("Couldn't load texture"));
 	if (create_image(info, &(info->texture[FL].img), info->texture[FL].path)
-		&& load_xpm_image(info, &(info->texture[FL].img), TX_FLOOR))
+		&& create_image(info, &(info->texture[FL].img), TX_FLOOR))
 		return (error_msg("Couldn't load texture"));
 	if (create_image(info, &(info->texture[CE].img), info->texture[CE].path)
-		&& load_xpm_image(info, &(info->texture[CE].img), TX_CEIL))
+		&& create_image(info, &(info->texture[CE].img), TX_CEIL))
 		return (error_msg("Couldn't load texture"));
 	return (0);
 }

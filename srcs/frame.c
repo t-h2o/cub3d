@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:40:59 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/21 23:41:39 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/21 23:44:15 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,12 @@ void	print_frame(t_info *info)
 	mlx_clear_window(info->mlx[INIT], info->mlx[WINDOW]);
 	
 	player_ray(info);
-	render_screen(info);
 
+	//basic ceil
+	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->texture[CE].img, 0, 0); 	//basic floor
+	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->texture[FL].img, 0, W_HEIGHT / 2); 
+
+	render_screen(info);
 	// show rendered screen image
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->screen.img, 0, 0);
 
