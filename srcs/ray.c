@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/13 12:02:18 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/13 12:11:26 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 // Delta Y < 0 : Look at left
 // Delta Y > 0 : Look at right
 // Delta Y = 0 : The ray cannot hit a vertical wall
-static float	horizontal(t_info *info, float dx, float dy)
+static float	horizontal(t_info *info, float hit[2], float dx, float dy)
 {
 	float	ratio;
-	float	hit[2];
 	float	side;
 
 	side = (int)(info->player.y) + 1 - info->player.y;
@@ -59,10 +58,9 @@ static float	horizontal(t_info *info, float dx, float dy)
 // Delta X < 0 : Look at left
 // Delta X > 0 : Look at right
 // Delta X = 0 : The ray cannot hit a vertical wall
-static float	vertical(t_info *info, float dx, float dy)
+static float	vertical(t_info *info, float hit[2], float dx, float dy)
 {
 	float	ratio;
-	float	hit[2];
 	float	side;
 
 	side = (int)(info->player.x) + 1 - info->player.x;
@@ -103,29 +101,15 @@ static float	vertical(t_info *info, float dx, float dy)
 // ray[X, Y]: The position of the ray
 static void	ray(t_info *info, int column, float dx, float dy)
 {
+	float	hit[2][2];
 	float	distance[2];
-	float	ray[2];
 
-	vertical(info, dx, dy);
-	ray[X] = info->player.x;
-	ray[Y] = info->player.y;
-	while (info->map[(int)(ray[Y])][(int)(ray[X])] != '1')
-	{
-		mlx_pixel_put(info->mlx[INIT], info->mlx[WINDOW],
-			ray[X] * MM_SIZE_TILE + MM_POS_X,
-			ray[Y] * MM_SIZE_TILE + MM_POS_Y,
-			CO_BLUE);
-		ray[X] += dx / MM_SIZE_TILE;
-		ray[Y] += dy / MM_SIZE_TILE;
-	}
-	info->rays[column].hit[X] = ray[X];
-	info->rays[column].hit[Y] = ray[Y];
-	info->rays[column].distance
-		= sqrt_points(info->player.x, info->player.y, ray[X], ray[Y]);
-	distance[X] = vertical(info, dx, dy);
-	distance[Y] = horizontal(info, dx, dy);
+	distance[X] = vertical(info, hit[X], dx, dy);
+	distance[Y] = horizontal(info, hit[Y], dx, dy);
 	if (distance[Y] < distance[X])
 	{
+		ft_memcpy(info->rays[column].hit, hit[Y], 2 * sizeof(float));
+		info->rays[column].distance = distance[Y];
 		if (dy > 0)
 			info->rays[column].wall = 'S';
 		else
@@ -133,6 +117,8 @@ static void	ray(t_info *info, int column, float dx, float dy)
 	}
 	else
 	{
+		ft_memcpy(info->rays[column].hit, hit[X], 2 * sizeof(float));
+		info->rays[column].distance = distance[X];
 		if (dx > 0)
 			info->rays[column].wall = 'E';
 		else
