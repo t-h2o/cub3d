@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/21 23:38:27 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/21 23:41:26 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,9 @@ void	player_rotate(t_info *info, float rotation);
 
 // ray.c
 void	player_ray(t_info *info);
+
+// rendering.c
+void	render_screen(t_info *info);
 
 // textures.c
 int		load_textures(t_info *info);

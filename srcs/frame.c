@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:40:59 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/21 23:38:57 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/21 23:41:39 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	print_frame(t_info *info)
 	mlx_clear_window(info->mlx[INIT], info->mlx[WINDOW]);
 	
 	player_ray(info);
-	//catch ray infos ---> then render stuff
+	render_screen(info);
 
 	// show rendered screen image
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->screen.img, 0, 0);
