@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:40:59 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/10 19:25:50 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/12 12:39:28 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ static void	print_info(t_info *info)
 	sprintf(message, "P. angle  : %f", info->player.angle);
 	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW],
 		500, 30, CO_WHITE, message);
+	ft_memset(message, 0, 255);
+	sprintf(message, "delta X   : %f", info->player.dx);
+	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW],
+		500, 40, CO_WHITE, message);
+	ft_memset(message, 0, 255);
+	sprintf(message, "delta Y   : %f", info->player.dy);
+	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW],
+		500, 50, CO_WHITE, message);
 }
 
 // 1. Draw rays to get view informations
