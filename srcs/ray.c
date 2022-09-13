@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/13 15:03:18 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/13 15:05:28 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static float	horizontal(t_info *info, float hit[2], float dx, float dy)
 	hit[Y] = info->player.y + ratio * dy;
 	while (1)
 	{
-		if (hit[X] < 0 || hit[Y] < 0 || info->map_h - 1 < hit[Y] || ft_strlen(info->map[(int)hit[Y]]) < hit[X])
-			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
+		if (hit[X] < 0 || hit[Y] < 0 || info->map_h - 1 < hit[Y]
+			|| ft_strlen(info->map[(int)hit[Y]]) < hit[X]
+			|| info->map[(int)hit[Y]][(int)hit[X]] == '1')
 			break ;
 		if (dy > 0)
 		{
@@ -68,9 +68,8 @@ static float	vertical(t_info *info, float hit[2], float dx, float dy)
 	hit[Y] = info->player.y + ratio * dy;
 	while (1)
 	{
-		if (hit[Y] < 0 || info->map_h - 1 < hit[Y])
-			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
+		if (hit[Y] < 0 || info->map_h - 1 < hit[Y]
+			|| info->map[(int)hit[Y]][(int)hit[X]] == '1')
 			break ;
 		if (dx > 0)
 		{
