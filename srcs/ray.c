@@ -6,15 +6,13 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/13 12:20:35 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/13 15:03:18 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 
-// Delta Y < 0 : Look at left
-// Delta Y > 0 : Look at right
-// Delta Y = 0 : The ray cannot hit a vertical wall
+// Return the distance to the next horizontal wall or -1 if there is no distance
 static float	horizontal(t_info *info, float hit[2], float dx, float dy)
 {
 	float	ratio;
@@ -51,9 +49,7 @@ static float	horizontal(t_info *info, float hit[2], float dx, float dy)
 	return (sqrt_points(info->player.x, info->player.y, hit[X], hit[Y]));
 }
 
-// Delta X < 0 : Look at left
-// Delta X > 0 : Look at right
-// Delta X = 0 : The ray cannot hit a vertical wall
+// Return the distance to the next vertical wall or -1 if there is no distance
 static float	vertical(t_info *info, float hit[2], float dx, float dy)
 {
 	float	ratio;
@@ -90,7 +86,9 @@ static float	vertical(t_info *info, float hit[2], float dx, float dy)
 	return (sqrt_points(info->player.x, info->player.y, hit[X], hit[Y]));
 }
 
-// ray[X, Y]: The position of the ray
+// Fill for rays
+//   * distance
+//   * wall orientation
 static void	ray(t_info *info, int column, float dx, float dy)
 {
 	float	hit[2][2];
@@ -118,6 +116,10 @@ static void	ray(t_info *info, int column, float dx, float dy)
 	}
 }
 
+// Fill for rays
+//   * angle
+//   * delta X
+//   * delta Y
 void	player_ray(t_info *info)
 {
 	int		column;
