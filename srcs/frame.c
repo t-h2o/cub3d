@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:40:59 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/21 23:44:15 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/21 23:53:42 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,22 @@ static void	print_info(t_info *info)
 		500, 30, CO_WHITE, message);
 }
 
-// 1. Draw ray to get view informations
-// 2. Render the view (walls, floor & ceilling)
-// 3. Print minimap
-// 4. Print informations
+// 1. Cast rays to get view informations
+// 2. Render the view screen
+// 3. Print the screen
+// 4. Print minimap
+// 5. Print informations
 void	print_frame(t_info *info)
 {
 	mlx_clear_window(info->mlx[INIT], info->mlx[WINDOW]);
-	
 	player_ray(info);
-
-	//basic ceil
-	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->texture[CE].img, 0, 0); 	//basic floor
-	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->texture[FL].img, 0, W_HEIGHT / 2); 
-
 	render_screen(info);
-	// show rendered screen image
+	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
+		info->texture[CE].img, 0, 0);
+	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
+		info->texture[FL].img, 0, W_HEIGHT / 2);
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->screen.img, 0, 0);
-
 	if (info->active_map)
 		print_minimap(info);
-	
 	print_info(info);
 }

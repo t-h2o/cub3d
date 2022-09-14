@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/13 16:59:35 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/14 18:00:45 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	create_image(t_info *info, void **img, char *path)
 	while (++y < W_HEIGHT / 2)
 	{
 		x = -1;
-		while (++x <W_WIDTH)
+		while (++x < W_WIDTH)
 		{
 			dst = new.addr + (y * new.line_length
 					+ x * (new.bits_per_pixel / 8));
@@ -106,10 +106,10 @@ int	load_textures(t_info *info)
 		return (1);
 	if (load_game_textures(info))
 		return (1);
-
-	//INIT SCREEN IMAGE
 	info->screen.img = mlx_new_image(info->mlx[0], W_WIDTH, W_HEIGHT);
-	info->screen.addr = mlx_get_data_addr(info->screen.img, &(info->screen.bits_per_pixel), &(info->screen.line_length), &(info->screen.endian));
-
+	info->screen.addr = mlx_get_data_addr(info->screen.img,
+			&(info->screen.bits_per_pixel),
+			&(info->screen.line_length),
+			&(info->screen.endian));
 	return (0);
 }
