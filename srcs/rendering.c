@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/22 00:19:46 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/22 00:20:38 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,14 @@ static void	draw_wall(t_info *info, int column, void *tx_img)
 	new.addr = mlx_get_data_addr(tx_img, &(new.bits_per_pixel), &(new.line_length), &(new.endian));
 	char *tx_dst;
 	int	line = -1;
+	float tx_X;
+	if (info->ray[column].wall == 'N' || info->ray[column].wall == 'S')
+		tx_X = info->ray[column].hit[X] - (int)info->ray[column].hit[X];
+	if (info->ray[column].wall == 'W' || info->ray[column].wall == 'E')
+		tx_X = info->ray[column].hit[Y] - (int)info->ray[column].hit[Y];
 	while (++line < wall_height)
 	{
-		tx_dst = new.addr + ((int)((float)line / (float)wall_height * 512) *  new.line_length) + (10 * new.bits_per_pixel / 8);
+		tx_dst = new.addr + ((int)((float)line / (float)wall_height * 512) *  new.line_length) + ((int)(tx_X * 512) * new.bits_per_pixel / 8);
 		*(unsigned int *)dst = *(unsigned int *)tx_dst;
 		dst += info->screen.line_length;
 	}
