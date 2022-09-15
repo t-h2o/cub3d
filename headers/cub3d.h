@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/21 23:44:05 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/22 00:17:43 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@
 # define MM_PLAYER	"assets/textures/minimap/player.xpm"
 
 // game textures
-# define TX_NORTH	"assets/textures/default_north.xpm"
-# define TX_SOUTH	"assets/textures/default_south.xpm"
-# define TX_EAST	"assets/textures/default_east.xpm"
-# define TX_WEST	"assets/textures/default_west.xpm"
+# define TX_NORTH	"assets/textures/dark_brick.xpm"
+# define TX_SOUTH	"assets/textures/colorful_brick.xpm"
+# define TX_EAST	"assets/textures/jungle_brick.xpm"
+# define TX_WEST	"assets/textures/handpainted_brick.xpm"
 # define TX_FLOOR	"119, 136, 153"
 # define TX_CEIL	"51, 171, 249"
 
