@@ -20,7 +20,7 @@ int	init_game(t_info *info, char *mapname)
 {
 	ft_memset(info, 0, (sizeof(t_info)));
 	info->active_map = true;
-	info->player.x = -1.0f;
+	info->player.pos[X] = -1.0f;
 	info->player.delta[X] = -1.0f;
 	info->player.delta[Y] = -1.0f;
 	info->mlx[INIT] = mlx_init();

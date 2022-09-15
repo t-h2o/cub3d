@@ -37,8 +37,8 @@ static void	print_mm_player(t_info *info)
 {
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
 		info->mm_img[PLAYER],
-		MM_POS_X + info->player.x * MM_SIZE_TILE - MM_SIZE_PLAYER / 2,
-		MM_POS_Y + info->player.y * MM_SIZE_TILE - MM_SIZE_PLAYER / 2);
+		MM_POS_X + info->player.pos[X] * MM_SIZE_TILE - MM_SIZE_PLAYER / 2,
+		MM_POS_Y + info->player.pos[Y] * MM_SIZE_TILE - MM_SIZE_PLAYER / 2);
 }
 
 // Clear the window

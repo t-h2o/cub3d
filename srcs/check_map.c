@@ -14,12 +14,12 @@
 
 static int	save_player_info(t_info *info, int x, int y)
 {
-	if (info->player.x != -1.0f)
+	if (info->player.pos[X] != -1.0f)
 		return (error_msg("More than 1 player"));
 	else
 	{
-		info->player.x = (float) x + 0.5f;
-		info->player.y = (float) y + 0.5f;
+		info->player.pos[X] = (float) x + 0.5f;
+		info->player.pos[Y] = (float) y + 0.5f;
 		if (info->map[y][x] == 'N')
 			info->player.angle = 0.0f;
 		else if (info->map[y][x] == 'S')
@@ -91,7 +91,7 @@ int	check_map_data(t_info *info)
 		if (check_charset(info, y) || check_borders(info, y))
 			return (1);
 	}
-	if (info->player.x == -1.0f)
+	if (info->player.pos[X] == -1.0f)
 		return (error_msg("No player in the map"));
 	return (0);
 }

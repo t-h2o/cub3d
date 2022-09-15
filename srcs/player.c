@@ -21,12 +21,12 @@ void
 {
 	float	next[2];
 
-	next[X] = info->player.x + distance * info->player.delta[X];
-	next[Y] = info->player.y + distance * info->player.delta[Y];
+	next[X] = info->player.pos[X] + distance * info->player.delta[X];
+	next[Y] = info->player.pos[Y] + distance * info->player.delta[Y];
 	if (info->map[(int)(next[Y])][(int)(next[X])] == '1')
 		return ;
-	info->player.x = next[X];
-	info->player.y = next[Y];
+	info->player.pos[X] = next[X];
+	info->player.pos[Y] = next[Y];
 	print_frame(info);
 }
 

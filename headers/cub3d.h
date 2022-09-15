@@ -117,8 +117,7 @@ typedef struct s_texture {
 }	t_texture;
 
 typedef struct s_player {
-	float	x;
-	float	y;
+	float	pos[2];
 	float	angle;
 	float	delta[2];
 }	t_player;

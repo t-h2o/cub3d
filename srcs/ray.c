@@ -17,8 +17,8 @@ static void	ray(t_info *info, float delta[2])
 {
 	float	ray[2];
 
-	ray[X] = info->player.x;
-	ray[Y] = info->player.y;
+	ray[X] = info->player.pos[X];
+	ray[Y] = info->player.pos[Y];
 	while (info->map[(int)(ray[Y])][(int)(ray[X])] != '1')
 	{
 		mlx_pixel_put(info->mlx[INIT], info->mlx[WINDOW],
