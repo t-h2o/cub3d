@@ -129,6 +129,8 @@ typedef struct s_player {
 // wall: NEWS
 typedef struct s_ray {
 	float	angle;
+	float	delta[2];
+	float	hit[2];
 }	t_ray;
 
 // mlx: pointer on informations of the window

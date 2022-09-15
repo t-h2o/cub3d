@@ -30,7 +30,14 @@ static void	ray(t_info *info, float delta[2], float hit[2])
 
 void	player_ray(t_info *info)
 {
-	float	hit[2];
+	int		column;
 
-	ray(info, info->player.delta, hit);
+	column = 0;
+	while (column < W_WIDTH)
+	{
+		angle_delta(info->player.angle + info->ray[column].angle,
+			info->ray[column].delta);
+		ray(info, info->ray[column].delta, info->ray[column].hit);
+		column++;
+	}
 }
