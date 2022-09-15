@@ -125,6 +125,12 @@ typedef struct s_player {
 	float	delta[2];
 }	t_player;
 
+// distance between the player and the wall
+// wall: NEWS
+typedef struct s_ray {
+	float	angle;
+}	t_ray;
+
 // mlx: pointer on informations of the window
 typedef struct s_info {
 	void		*mlx[2];
@@ -134,6 +140,7 @@ typedef struct s_info {
 	t_player	player;
 	t_texture	texture[6];
 	bool		active_map;
+	t_ray		ray[1024];
 }	t_info;
 
 // check_map.c
