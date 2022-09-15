@@ -58,6 +58,9 @@
 # define PS_MOVE	0.5f
 # define PS_ROTATE	0.392699081699f
 
+// Field of view ~70 degrees
+# define FOV		1.2f
+
 // Window size [px]
 # define W_WIDTH	1024
 # define W_HEIGHT	768
