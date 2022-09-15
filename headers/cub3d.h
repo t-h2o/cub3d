@@ -120,8 +120,7 @@ typedef struct s_player {
 	float	x;
 	float	y;
 	float	angle;
-	float	dx;
-	float	dy;
+	float	delta[2];
 }	t_player;
 
 // mlx: pointer on informations of the window
@@ -167,7 +166,7 @@ void	player_ray(t_info *info);
 int		load_textures(t_info *info);
 
 // utils_math.c
-void	angle_delta(float angle, float *dx, float *dy);
+void	angle_delta(float angle, float delta[2]);
 
 // utils_mlx.c
 void	my_destroy_image(void *mlx, void *img);

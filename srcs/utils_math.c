@@ -13,8 +13,8 @@
 #include	"cub3d.h"
 
 // Calculate the delta from an angle
-void	angle_delta(float angle, float *dx, float *dy)
+void	angle_delta(float angle, float delta[2])
 {
-	*dx = cos(angle);
-	*dy = sin(angle);
+	delta[X] = cos(angle);
+	delta[Y] = sin(angle);
 }

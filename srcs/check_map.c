@@ -29,7 +29,7 @@ static int	save_player_info(t_info *info, int x, int y)
 		else if (info->map[y][x] == 'W')
 			info->player.angle = (3 * M_PI) / 2;
 		info->map[y][x] = '0';
-		angle_delta(info->player.angle, &(info->player.dx), &(info->player.dy));
+		angle_delta(info->player.angle, info->player.delta);
 	}
 	return (0);
 }

@@ -21,8 +21,8 @@ void
 {
 	float	next[2];
 
-	next[X] = info->player.x + distance * info->player.dx;
-	next[Y] = info->player.y + distance * info->player.dy;
+	next[X] = info->player.x + distance * info->player.delta[X];
+	next[Y] = info->player.y + distance * info->player.delta[Y];
 	if (info->map[(int)(next[Y])][(int)(next[X])] == '1')
 		return ;
 	info->player.x = next[X];
@@ -40,6 +40,6 @@ void
 		info->player.angle += 2 * M_PI;
 	if (2 * M_PI < info->player.angle)
 		info->player.angle -= 2 * M_PI;
-	angle_delta(info->player.angle, &(info->player.dx), &(info->player.dy));
+	angle_delta(info->player.angle, info->player.delta);
 	print_frame(info);
 }

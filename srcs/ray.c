@@ -6,14 +6,14 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/09 14:15:28 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/15 10:43:20 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 
 // ray[X, Y]: The position of the ray
-static void	ray(t_info *info, float dx, float dy)
+static void	ray(t_info *info, float delta[2])
 {
 	float	ray[2];
 
@@ -25,12 +25,12 @@ static void	ray(t_info *info, float dx, float dy)
 			ray[X] * MM_SIZE_TILE + MM_POS_X,
 			ray[Y] * MM_SIZE_TILE + MM_POS_Y,
 			CO_BLUE);
-		ray[X] += dx / MM_SIZE_TILE;
-		ray[Y] += dy / MM_SIZE_TILE;
+		ray[X] += delta[X] / MM_SIZE_TILE;
+		ray[Y] += delta[Y] / MM_SIZE_TILE;
 	}
 }
 
 void	player_ray(t_info *info)
 {
-	ray(info, info->player.dx, info->player.dy);
+	ray(info, info->player.delta);
 }
