@@ -12,6 +12,17 @@
 
 #include "cub3d.h"
 
+// Init the angle of the ray
+static void	init_ray(t_info *info)
+{
+	int		column;
+
+	column = -1;
+	while (++column < W_WIDTH)
+		info->ray[column].angle = FOV
+			* ((float)column / (float)(W_WIDTH - 1) - 0.5f);
+}
+
 // Init default value of the struct
 // Init mlx
 // Load the map
@@ -24,6 +35,7 @@ int	init_game(t_info *info, char *mapname)
 	info->player.delta[X] = -1.0f;
 	info->player.delta[Y] = -1.0f;
 	info->mlx[INIT] = mlx_init();
+	init_ray(info);
 	if (!info->mlx[INIT])
 		return (error_msg("Couldn't init mlx"));
 	if (load_map(info, mapname) || load_textures(info))
