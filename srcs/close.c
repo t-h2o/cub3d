@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/06 10:32:37 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/16 14:25:46 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static void	destroy_images(t_info *info)
 {
-	my_destroy_image(info->mlx[INIT], info->mm_img[GROUND]);
-	my_destroy_image(info->mlx[INIT], info->mm_img[WALL]);
-	my_destroy_image(info->mlx[INIT], info->mm_img[PLAYER]);
-	my_destroy_image(info->mlx[INIT], info->texture[NO].img);
-	my_destroy_image(info->mlx[INIT], info->texture[SO].img);
-	my_destroy_image(info->mlx[INIT], info->texture[EA].img);
-	my_destroy_image(info->mlx[INIT], info->texture[WE].img);
-	my_destroy_image(info->mlx[INIT], info->texture[FL].img);
-	my_destroy_image(info->mlx[INIT], info->texture[CE].img);
+	my_destroy_image(info->mlx[INIT], info->mm_img[GROUND].img);
+	my_destroy_image(info->mlx[INIT], info->mm_img[WALL].img);
+	my_destroy_image(info->mlx[INIT], info->mm_img[PLAYER].img);
+	my_destroy_image(info->mlx[INIT], info->texture[NO].img.img);
+	my_destroy_image(info->mlx[INIT], info->texture[SO].img.img);
+	my_destroy_image(info->mlx[INIT], info->texture[EA].img.img);
+	my_destroy_image(info->mlx[INIT], info->texture[WE].img.img);
+	my_destroy_image(info->mlx[INIT], info->texture[FL].img.img);
+	my_destroy_image(info->mlx[INIT], info->texture[CE].img.img);
 }
 
 static void	free_textures_path(t_info *info)

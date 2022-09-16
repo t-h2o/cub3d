@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/22 00:17:43 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/22 00:21:38 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ enum e_axis {
 typedef struct s_img_data {
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
+	int		bpp;
+	int		line_len;
 	int		endian;
 }	t_img_data;
 
@@ -118,8 +118,8 @@ typedef struct s_img_data {
 // - the path to the texture
 // - the pointer to the image
 typedef struct s_texture {
-	char	*path;
-	void	*img;
+	char		*path;
+	t_img_data	img;
 }	t_texture;
 
 typedef struct s_player {
@@ -142,7 +142,7 @@ typedef struct s_ray {
 typedef struct s_info {
 	void		*mlx[2];
 	char		**map;
-	void		*mm_img[3];
+	t_img_data	mm_img[3];
 	int			map_h;
 	t_player	player;
 	t_texture	texture[6];
