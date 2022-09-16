@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:40:59 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/22 00:21:57 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/22 00:26:01 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,9 @@ static void	print_info(t_info *info)
 // 5. Print informations
 void	print_frame(t_info *info)
 {
-	mlx_clear_window(info->mlx[INIT], info->mlx[WINDOW]);
 	player_ray(info);
 	render_screen(info);
-	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
-		info->texture[CE].img.img, 0, 0);
-	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
-		info->texture[FL].img.img, 0, W_HEIGHT / 2);
+	mlx_clear_window(info->mlx[INIT], info->mlx[WINDOW]);
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->screen.img, 0, 0);
 	if (info->active_map)
 		print_minimap(info);
