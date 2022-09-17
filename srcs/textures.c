@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/17 17:50:09 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/17 19:10:19 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,6 @@ static int	load_xpm_image(t_info *info, t_img_data *img, char *path)
 		(info->mlx[INIT], path, &(img->width), &(img->height));
 	if (!(img->img))
 		return (1);
-	if (img->height != img->width)
-	{
-		mlx_destroy_image(info->mlx[INIT], img->img);
-		return (error_msg("Texture of the mini map is not a square"));
-	}
 	img->addr = mlx_get_data_addr(img->img,
 			&(img->bpp), &(img->line_len), &(img->endian));
 	return (0);
@@ -88,10 +83,10 @@ static int	load_game_textures(t_info *info)
 		&& load_xpm_image(info, &(info->texture[WE].img), TX_WEST))
 		return (error_msg("Couldn't load texture"));
 	if (create_image(info, &(info->texture[FL].img), info->texture[FL].path)
-		&& create_image(info, &(info->texture[FL].img), TX_FLOOR))
+		&& load_xpm_image(info, &(info->texture[FL].img), TX_FLOOR))
 		return (error_msg("Couldn't load texture"));
 	if (create_image(info, &(info->texture[CE].img), info->texture[CE].path)
-		&& create_image(info, &(info->texture[CE].img), TX_CEIL))
+		&& load_xpm_image(info, &(info->texture[CE].img), TX_CEIL))
 		return (error_msg("Couldn't load texture"));
 	return (0);
 }

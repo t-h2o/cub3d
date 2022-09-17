@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/22 00:30:19 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/22 00:32:50 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,18 @@ static int	get_tx_pixel(t_img_data *tx, float x_scale, float y_scale)
 }
 
 // Draw a column of the sky
-// single color for now 
 static void	draw_ceil(t_info *info, int column, int offset)
 {
 	int		line;
 	char	*dst;
-	int		color;
 
-	color = *(unsigned int *)(info->texture[CE].img.addr
-			+ (column * info->texture[CE].img.bpp / 8));
 	dst = info->screen.addr + (column * info->screen.bpp / 8);
 	line = -1;
 	while (++line < offset)
 	{
-		*(unsigned int *)dst = color;
+		*(unsigned int *)dst = get_tx_pixel(&(info->texture[CE].img),
+				(float)column / W_WIDTH,
+				(float)line / (W_HEIGHT / 2));
 		dst += info->screen.line_len;
 	}
 }
@@ -85,16 +83,15 @@ static void	draw_floor(t_info *info, int column, int offset)
 {
 	int		line;
 	char	*dst;
-	int		color;
 
-	color = *(unsigned int *)(info->texture[FL].img.addr
-			+ (column * info->texture[FL].img.bpp / 8));
 	dst = info->screen.addr + (offset * info->screen.line_len)
 		+ (column * info->screen.bpp / 8);
 	line = offset - 1;
 	while (++line < W_HEIGHT)
 	{
-		*(unsigned int *)dst = color;
+		*(unsigned int *)dst = get_tx_pixel(&(info->texture[FL].img),
+				(float)column / W_WIDTH,
+				(float)(line - (W_HEIGHT / 2)) / (W_HEIGHT / 2));
 		dst += info->screen.line_len;
 	}
 }
