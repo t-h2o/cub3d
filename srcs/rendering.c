@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/22 00:28:17 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/22 00:30:19 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 // Get the value (color) of a pixel in a texture
 // The position (x,y) in the texture is given by
 // the scaling and the texture size
-static int	get_tx_pixel(t_img_data tx, float x_scale, float y_scale)
+static int	get_tx_pixel(t_img_data *tx, float x_scale, float y_scale)
 {
 	int	pixel_value;
 
-	pixel_value = *(unsigned int *)(tx.addr
-			+ ((int)(y_scale * 512) * tx.line_len)
-			+ ((int)(x_scale * 512) * (tx.bpp / 8)));
+	pixel_value = *(unsigned int *)(tx->addr
+			+ ((int)(y_scale * tx->height) * tx->line_len)
+			+ ((int)(x_scale * tx->width) * (tx->bpp / 8)));
 	return (pixel_value);
 }
 
@@ -54,17 +54,17 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 {
 	int			line;
 	char		*dst;
-	t_img_data	tx;
+	t_img_data	*tx;
 	float		tx_scale;
 
 	if (info->ray[column].wall == 'N')
-		tx = info->texture[NO].img;
+		tx = &(info->texture[NO].img);
 	else if (info->ray[column].wall == 'S')
-		tx = info->texture[SO].img;
+		tx = &(info->texture[SO].img);
 	else if (info->ray[column].wall == 'W')
-		tx = info->texture[WE].img;
+		tx = &(info->texture[WE].img);
 	else if (info->ray[column].wall == 'E')
-		tx = info->texture[EA].img;
+		tx = &(info->texture[EA].img);
 	dst = info->screen.addr + (wall_off * info->screen.line_len)
 		+ (column * info->screen.bpp / 8);
 	if (info->ray[column].wall == 'N' || info->ray[column].wall == 'S')

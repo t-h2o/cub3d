@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/22 00:21:38 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/22 00:29:07 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ enum e_axis {
 typedef struct s_img_data {
 	void	*img;
 	char	*addr;
+	int		width;
+	int		height;
 	int		bpp;
 	int		line_len;
 	int		endian;

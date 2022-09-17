@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/17 14:01:18 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/17 17:50:09 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,11 @@ static int	create_image(t_info *info, t_img_data *img, char *path)
 // Check if the image is a square
 static int	load_xpm_image(t_info *info, t_img_data *img, char *path)
 {
-	int		img_width;
-	int		img_height;
-
 	img->img = mlx_xpm_file_to_image
-		(info->mlx[INIT], path, &img_width, &img_height);
+		(info->mlx[INIT], path, &(img->width), &(img->height));
 	if (!(img->img))
 		return (1);
-	if (img_height != img_width)
+	if (img->height != img->width)
 	{
 		mlx_destroy_image(info->mlx[INIT], img->img);
 		return (error_msg("Texture of the mini map is not a square"));
