@@ -6,21 +6,35 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/22 00:27:12 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/22 00:28:17 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 
+// Get the value (color) of a pixel in a texture
+// The position (x,y) in the texture is given by
+// the scaling and the texture size
+static int	get_tx_pixel(t_img_data tx, float x_scale, float y_scale)
+{
+	int	pixel_value;
+
+	pixel_value = *(unsigned int *)(tx.addr
+			+ ((int)(y_scale * 512) * tx.line_len)
+			+ ((int)(x_scale * 512) * (tx.bpp / 8)));
+	return (pixel_value);
+}
+
 // Draw a column of the sky
 // single color for now 
 static void	draw_ceil(t_info *info, int column, int offset)
 {
-	int	line;
+	int		line;
 	char	*dst;
-	int	color;
-	
-	color = *(unsigned int *)(info->texture[CE].img.addr + (column * info->texture[CE].img.bpp / 8));
+	int		color;
+
+	color = *(unsigned int *)(info->texture[CE].img.addr
+			+ (column * info->texture[CE].img.bpp / 8));
 	dst = info->screen.addr + (column * info->screen.bpp / 8);
 	line = -1;
 	while (++line < offset)
@@ -36,13 +50,12 @@ static void	draw_ceil(t_info *info, int column, int offset)
 // - get corresponding pixel in the texture
 // - draw the pixel
 // - increment by a line
-static void	draw_wall(t_info *info, int column, int wall_height, int wall_offset)
+static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 {
-	int	line;
-	char	*dst;
+	int			line;
+	char		*dst;
 	t_img_data	tx;
-	float tx_scale;
-	char *tx_pixel;
+	float		tx_scale;
 
 	if (info->ray[column].wall == 'N')
 		tx = info->texture[NO].img;
@@ -52,19 +65,17 @@ static void	draw_wall(t_info *info, int column, int wall_height, int wall_offset
 		tx = info->texture[WE].img;
 	else if (info->ray[column].wall == 'E')
 		tx = info->texture[EA].img;
-	dst = info->screen.addr + (wall_offset * info->screen.line_len)
+	dst = info->screen.addr + (wall_off * info->screen.line_len)
 		+ (column * info->screen.bpp / 8);
 	if (info->ray[column].wall == 'N' || info->ray[column].wall == 'S')
 		tx_scale = info->ray[column].hit[X] - (int)info->ray[column].hit[X];
 	else if (info->ray[column].wall == 'W' || info->ray[column].wall == 'E')
 		tx_scale = info->ray[column].hit[Y] - (int)info->ray[column].hit[Y];
 	line = -1;
-	while (++line < wall_height)
-	{
-		tx_pixel = tx.addr
-			+ ((int)((float)line / (float)wall_height * 512) *  tx.line_len)
-			+ ((int)(tx_scale * 512) * tx.bpp / 8);
-		*(unsigned int *)dst = *(unsigned int *)tx_pixel;
+	while (++line < wall_hei)
+	{	
+		*(unsigned int *)dst = get_tx_pixel(tx, tx_scale,
+				(float)line / wall_hei);
 		dst += info->screen.line_len;
 	}
 }
@@ -72,12 +83,14 @@ static void	draw_wall(t_info *info, int column, int wall_height, int wall_offset
 // Draw a column of the floor (single color atm)
 static void	draw_floor(t_info *info, int column, int offset)
 {
-	int	line;
+	int		line;
 	char	*dst;
-	int	color;
-	
-	color = *(unsigned int *)(info->texture[FL].img.addr + (column * info->texture[FL].img.bpp / 8));
-	dst = info->screen.addr + (offset * info->screen.line_len) + (column * info->screen.bpp / 8);
+	int		color;
+
+	color = *(unsigned int *)(info->texture[FL].img.addr
+			+ (column * info->texture[FL].img.bpp / 8));
+	dst = info->screen.addr + (offset * info->screen.line_len)
+		+ (column * info->screen.bpp / 8);
 	line = offset - 1;
 	while (++line < W_HEIGHT)
 	{

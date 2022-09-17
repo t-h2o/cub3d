@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/16 14:21:26 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/17 14:01:18 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	create_image(t_info *info, t_img_data *img, char *path)
 		return (1);
 	img->img = mlx_new_image(info->mlx[INIT], W_WIDTH, W_HEIGHT / 2);
 	img->addr = mlx_get_data_addr(img->img,
-		&(img->bpp), &(img->line_len), &(img->endian));
+			&(img->bpp), &(img->line_len), &(img->endian));
 	y = -1;
 	while (++y < W_HEIGHT / 2)
 	{
@@ -57,7 +57,7 @@ static int	load_xpm_image(t_info *info, t_img_data *img, char *path)
 		return (error_msg("Texture of the mini map is not a square"));
 	}
 	img->addr = mlx_get_data_addr(img->img,
-		&(img->bpp), &(img->line_len), &(img->endian));
+			&(img->bpp), &(img->line_len), &(img->endian));
 	return (0);
 }
 
