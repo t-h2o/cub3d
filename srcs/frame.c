@@ -18,11 +18,11 @@ static void	print_info(t_info *info)
 	char	message[255];
 
 	ft_memset(message, 0, 255);
-	sprintf(message, "Position X: %f", info->player.x);
+	sprintf(message, "Position X: %f", info->player.pos[X]);
 	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW],
 		500, 10, CO_WHITE, message);
 	ft_memset(message, 0, 255);
-	sprintf(message, "Position Y: %f", info->player.y);
+	sprintf(message, "Position Y: %f", info->player.pos[Y]);
 	mlx_string_put(info->mlx[INIT], info->mlx[WINDOW],
 		500, 20, CO_WHITE, message);
 	ft_memset(message, 0, 255);
