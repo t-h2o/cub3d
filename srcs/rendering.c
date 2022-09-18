@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/22 00:32:50 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/22 00:34:23 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ static void	draw_floor(t_info *info, int column, int offset)
 }
 
 // for every column of the screen (window width)
+//   define correct ray distance to fix fisheye effect
 //   define the height of the wall
 //   define the offset of the wall (start position)
 //   draw the column with sky, wall, and floor in the screen
@@ -105,11 +106,14 @@ void	render_screen(t_info *info)
 	int		column;
 	int		wall_height;
 	int		wall_offset;
+	float		correct_distance;
 
 	column = -1;
 	while (++column < W_WIDTH)
 	{
-		wall_height = W_HEIGHT / info->ray[column].distance;
+		correct_distance = info->ray[column].distance
+			* (cos(info->player.angle - info->ray[column].angle));
+		wall_height = W_HEIGHT / correct_distance;
 		if (wall_height > W_HEIGHT)
 			wall_height = W_HEIGHT;
 		wall_offset = (W_HEIGHT / 2) - (wall_height >> 1);
