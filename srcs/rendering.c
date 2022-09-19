@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/22 00:34:23 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/22 00:52:17 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@ static int	get_tx_pixel(t_img_data *tx, float x_scale, float y_scale)
 }
 
 // Draw a column of the sky
+//  adds offset to the sky depending on player orientation
 static void	draw_ceil(t_info *info, int column, int offset)
 {
 	int		line;
 	char	*dst;
 
 	dst = info->screen.addr + (column * info->screen.bpp / 8);
+	//column = (column + (int)(info->player.angle / (M_PI / 2)
+	//			* W_WIDTH)) % W_WIDTH;
 	line = -1;
 	while (++line < offset)
 	{
