@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/25 03:01:04 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/05 17:32:35 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 	char		*dst;
 	t_img_data	*tx;
 	float		x_scale;
+	int		shading;
 
 	tx = &(info->texture[info->ray[column].wall].img);
 	dst = info->screen.addr + (column * info->screen.bpp / 8);
@@ -69,13 +70,18 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 		x_scale = info->ray[column].hit[X] - (int)info->ray[column].hit[X];
 	else
 		x_scale = info->ray[column].hit[Y] - (int)info->ray[column].hit[Y];
+
+		shading = ( 
+					(int)((info->ray[column].distance-3) * 0xFF)
+				+ (((int)((info->ray[column].distance-3) * 0xFF) << 8))
+				+ (((int)((info->ray[column].distance-3) * 0xFF) << 16)));
 	line = -1;
 	if (wall_off < 0)
 		line = -wall_off - 1;
 	while (++line < wall_hei && (line + wall_off) < W_HEIGHT)
 	{	
 		*(unsigned int *)dst = get_tx_pixel(tx, x_scale,
-				(float)line / wall_hei);
+				(float)line / wall_hei) - shading;
 		dst += info->screen.line_len;
 	}
 }
