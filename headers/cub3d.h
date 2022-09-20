@@ -131,6 +131,8 @@ typedef struct s_ray {
 	float	angle;
 	float	delta[2];
 	float	hit[2];
+	float	distance;
+	char	wall;
 }	t_ray;
 
 // mlx: pointer on informations of the window
@@ -187,6 +189,12 @@ void	my_destroy_image(void *mlx, void *img);
 // utils_parsing.c
 char	*skip_whitespaces(char *str);
 int		convert_rgb(char *rgb);
+
+// utils_rays.c
+float	horizontal_up(t_info *info, float hit[2], float dx, float dy);
+float	horizontal_down(t_info *info, float hit[2], float dx, float dy);
+float	vertical_right(t_info *info, float hit[2], float dx, float dy);
+float	vertical_left(t_info *info, float hit[2], float dx, float dy);
 
 // window.c
 int		start_window(t_info *info);

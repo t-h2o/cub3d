@@ -31,7 +31,7 @@ static void	print_info(t_info *info)
 		500, 30, CO_WHITE, message);
 }
 
-// 1. Draw rays to get view informations
+// 1. Draw ray to get view informations
 // 2. Render the view (walls, floor & ceilling)
 // 3. Print minimap
 // 4. Print informations
