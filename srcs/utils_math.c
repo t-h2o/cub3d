@@ -31,3 +31,9 @@ float	angle_sum(float angle_a, float angle_b)
 		sum -= 2 * M_PI;
 	return (sum);
 }
+
+// Origin (x, y) to Destination (x, y)
+float	sqrt_points(float o[2], float d[2])
+{
+	return (sqrt(pow(d[X] - o[X], 2) + pow(d[Y] - o[Y], 2)));
+}

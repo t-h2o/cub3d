@@ -179,6 +179,7 @@ int		load_textures(t_info *info);
 // utils_math.c
 void	angle_delta(float angle, float delta[2]);
 float	angle_sum(float angle_a, float angle_b);
+float	sqrt_points(float o[2], float d[2]);
 
 // utils_mlx.c
 void	my_destroy_image(void *mlx, void *img);
