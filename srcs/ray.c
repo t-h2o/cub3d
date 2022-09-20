@@ -12,12 +12,10 @@
 
 #include	"cub3d.h"
 
-// ray[X, Y]: The position of the ray
-static void	ray(t_info *info, int column, float delta[2])
+static void
+	ray_distance(t_info *info, float distance[2],
+		float hit[2][2], float delta[2])
 {
-	float	hit[2][2];
-	float	distance[2];
-
 	distance[X] = -1.0f;
 	distance[Y] = -1.0f;
 	if (0.0f < delta[X])
@@ -28,6 +26,15 @@ static void	ray(t_info *info, int column, float delta[2])
 		distance[Y] = horizontal_down(info, hit[Y], delta[X], delta[Y]);
 	if (delta[Y] < 0.0f)
 		distance[Y] = horizontal_up(info, hit[Y], delta[X], delta[Y]);
+}
+
+// ray[X, Y]: The position of the ray
+static void	ray(t_info *info, int column, float delta[2])
+{
+	float	hit[2][2];
+	float	distance[2];
+
+	ray_distance(info, distance, hit, delta);
 	if (distance[Y] < distance[X])
 	{
 		ft_memcpy(info->ray[column].hit, hit[Y], 2 * sizeof(float));
