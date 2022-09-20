@@ -20,13 +20,13 @@ static void	ray(t_info *info, int column, float delta[2])
 
 	distance[X] = -1.0f;
 	distance[Y] = -1.0f;
-	if (0 < delta[X])
+	if (0.0f < delta[X])
 		distance[X] = vertical_right(info, hit[X], delta[X], delta[Y]);
-	if (delta[X] < 0)
+	if (delta[X] < 0.0f)
 		distance[X] = vertical_left(info, hit[X], delta[X], delta[Y]);
-	if (0 < delta[Y])
+	if (0.0f < delta[Y])
 		distance[Y] = horizontal_down(info, hit[Y], delta[X], delta[Y]);
-	if (delta[Y] < 0)
+	if (delta[Y] < 0.0f)
 		distance[Y] = horizontal_up(info, hit[Y], delta[X], delta[Y]);
 	if (distance[Y] < distance[X])
 	{
