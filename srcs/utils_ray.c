@@ -15,7 +15,7 @@
 // For tile top left, we need to reduce of a bit
 #define CASE_NEG	0.00001f
 
-//Collision with rising horizontal line
+// Collision with rising horizontal line
 float	horizontal_up(t_info *info, float hit[2], float dx, float dy)
 {
 	float	ratio;

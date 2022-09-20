@@ -12,6 +12,7 @@
 
 #include	"cub3d.h"
 
+// Collect the distance to the next vertical line and the next horizontal line
 static void
 	ray_distance(t_info *info, float distance[2],
 		float hit[2][2], float delta[2])
@@ -28,7 +29,7 @@ static void
 		distance[Y] = horizontal_up(info, hit[Y], delta[X], delta[Y]);
 }
 
-// ray[X, Y]: The position of the ray
+// Collect ray data
 static void	ray(t_info *info, int column, float delta[2])
 {
 	float	hit[2][2];
@@ -55,6 +56,7 @@ static void	ray(t_info *info, int column, float delta[2])
 	}
 }
 
+// Collect ray data for each column of the screen
 void	player_ray(t_info *info)
 {
 	int		column;
