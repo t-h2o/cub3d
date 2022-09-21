@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/20 05:53:39 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/09/21 15:35:07 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static void
 {
 	distance[X] = -1.0f;
 	distance[Y] = -1.0f;
-	if (0.0f < delta[X])
-		distance[X] = vertical_right(info, hit[X], delta[X], delta[Y]);
-	if (delta[X] < 0.0f)
-		distance[X] = vertical_left(info, hit[X], delta[X], delta[Y]);
-	if (0.0f < delta[Y])
-		distance[Y] = horizontal_down(info, hit[Y], delta[X], delta[Y]);
-	if (delta[Y] < 0.0f)
-		distance[Y] = horizontal_up(info, hit[Y], delta[X], delta[Y]);
+	if (0 < delta[X])
+		distance[X] = vertical_right(info, hit[X], delta);
+	if (delta[X] < 0)
+		distance[X] = vertical_left(info, hit[X], delta);
+	if (0 < delta[Y])
+		distance[Y] = horizontal_down(info, hit[Y], delta);
+	if (delta[Y] < 0)
+		distance[Y] = horizontal_up(info, hit[Y], delta);
 }
 
 // Collect ray data

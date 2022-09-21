@@ -191,10 +191,10 @@ char	*skip_whitespaces(char *str);
 int		convert_rgb(char *rgb);
 
 // utils_rays.c
-float	horizontal_up(t_info *info, float hit[2], float dx, float dy);
-float	horizontal_down(t_info *info, float hit[2], float dx, float dy);
-float	vertical_right(t_info *info, float hit[2], float dx, float dy);
-float	vertical_left(t_info *info, float hit[2], float dx, float dy);
+float	horizontal_up(t_info *info, float hit[2], float delta[2]);
+float	horizontal_down(t_info *info, float hit[2], float delta[2]);
+float	vertical_right(t_info *info, float hit[2], float delta[2]);
+float	vertical_left(t_info *info, float hit[2], float delta[2]);
 
 // window.c
 int		start_window(t_info *info);
