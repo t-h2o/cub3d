@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/10 19:09:01 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/15 14:13:18 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@
 //   rotation = (PI / 8)
 # define PS_MOVE	0.5f
 # define PS_ROTATE	0.392699081699f
+
+// Field of view ~70 degrees
+# define FOV		1.2f
 
 // Window size [px]
 # define W_WIDTH	1024
@@ -122,6 +125,16 @@ typedef struct s_player {
 	float	delta[2];
 }	t_player;
 
+// distance between the player and the wall
+// wall: NEWS
+typedef struct s_ray {
+	float	angle;
+	float	delta[2];
+	float	hit[2];
+	float	distance;
+	char	wall;
+}	t_ray;
+
 // mlx: pointer on informations of the window
 typedef struct s_info {
 	void		*mlx[2];
@@ -131,6 +144,7 @@ typedef struct s_info {
 	t_player	player;
 	t_texture	texture[6];
 	bool		active_map;
+	t_ray		ray[1024];
 }	t_info;
 
 // check_map.c
@@ -166,6 +180,8 @@ int		load_textures(t_info *info);
 
 // utils_math.c
 void	angle_delta(float angle, float delta[2]);
+float	angle_sum(float angle_a, float angle_b);
+float	sqrt_points(float o[2], float d[2]);
 
 // utils_mlx.c
 void	my_destroy_image(void *mlx, void *img);
@@ -173,6 +189,12 @@ void	my_destroy_image(void *mlx, void *img);
 // utils_parsing.c
 char	*skip_whitespaces(char *str);
 int		convert_rgb(char *rgb);
+
+// utils_rays.c
+float	horizontal_up(t_info *info, float hit[2], float delta[2]);
+float	horizontal_down(t_info *info, float hit[2], float delta[2]);
+float	vertical_right(t_info *info, float hit[2], float delta[2]);
+float	vertical_left(t_info *info, float hit[2], float delta[2]);
 
 // window.c
 int		start_window(t_info *info);
