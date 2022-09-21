@@ -21,11 +21,11 @@ static void
 	distance[Y] = -1.0f;
 	if (0 < delta[X])
 		distance[X] = vertical_right(info, hit[X], delta);
-	if (delta[X] < 0)
+	else if (delta[X] < 0)
 		distance[X] = vertical_left(info, hit[X], delta);
 	if (0 < delta[Y])
 		distance[Y] = horizontal_down(info, hit[Y], delta);
-	if (delta[Y] < 0)
+	else if (delta[Y] < 0)
 		distance[Y] = horizontal_up(info, hit[Y], delta);
 }
 
