@@ -58,6 +58,26 @@ int	error_msg(char *msg)
 	return (1);
 }
 
+// Usage:
+// if str = "ppt"
+// p is a simple pointer to free
+// t is a table pointer to free
+void	va_free(char *str, ...)
+{
+	va_list	arg;
+
+	va_start(arg, str);
+	while (*str)
+	{
+		if (*str == 'p')
+			free(va_arg(arg, char *));
+		if (*str == 't')
+			free_array(va_arg(arg, char **));
+		++str;
+	}
+	va_end(arg);
+}
+
 void	close_game(t_info *info, int exit_code)
 {
 	free_array(info->map);

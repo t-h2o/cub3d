@@ -19,6 +19,7 @@
 # include	<stdbool.h>
 # include	<fcntl.h>
 # include	<math.h>
+# include	<stdarg.h>
 # include	"keys.h"
 # include	"../libs/libft/includes/libft.h"
 
@@ -155,6 +156,7 @@ int		check_map_data(t_info *info);
 void	free_array(char **array);
 int		error_msg(char *msg);
 void	close_game(t_info *info, int exit_code);
+void	va_free(char *str, ...);
 
 // init.c
 int		init_game(t_info *info, char *mapname);
