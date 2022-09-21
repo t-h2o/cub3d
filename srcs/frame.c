@@ -41,6 +41,7 @@ void	print_frame(t_info *info)
 	if (info->active_map)
 		print_minimap(info);
 	player_ray(info);
+	render(info);
 	//catch ray infos ---> then render stuff
 
 	//here the minimap would be overwritten by what we render

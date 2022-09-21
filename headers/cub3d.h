@@ -50,8 +50,11 @@
 # define MAPSDIR	"assets/maps/"
 
 // Color
-# define CO_WHITE		0x00FFFFFF
-# define CO_BLUE		0x00000070
+# define CO_WHITE	0x00FFFFFF
+# define CO_BLUE	0x0000f0f0
+# define CO_GREEN	0x0000f000
+# define CO_RED		0x00f00000
+# define CO_RAN		0x00f000f0
 
 // Sensibility
 //   rotation = (PI / 8)
@@ -174,6 +177,9 @@ void	player_rotate(t_info *info, float rotation);
 
 // ray.c
 void	player_ray(t_info *info);
+
+// render.c
+void	render(t_info *info);
 
 // textures.c
 int		load_textures(t_info *info);
