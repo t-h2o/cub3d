@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/21 23:44:29 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/21 23:47:43 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	render_screen(t_info *info)
 	int		wall_offset;
 	char	*dst;
 	int		line;
+	int		color;
 
 	column = -1;
 	while (++column < W_WIDTH)
@@ -35,12 +36,19 @@ void	render_screen(t_info *info)
 			wall_height = W_HEIGHT;
 		wall_offset = (W_HEIGHT / 2) - (wall_height >> 1);
 
-
+		if (info->ray[column].wall == 'N')
+			color = CO_YELLOW;
+		else if(info->ray[column].wall == 'S')
+			color = CO_RED;
+		else if(info->ray[column].wall == 'W')
+			color = CO_GREEN;
+		else if(info->ray[column].wall == 'E')
+			color = CO_BLUE;
 		dst = info->screen.addr + (wall_offset * info->screen.line_length)
 			+ (column * info->screen.bits_per_pixel / 8);
 		while (wall_height--)
 		{
-			*(unsigned int *)dst = CO_BLUE;
+			*(unsigned int *)dst = color;
 			dst += info->screen.line_length;
 		}
 
