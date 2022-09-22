@@ -6,58 +6,50 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/05 01:35:43 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/17 19:10:19 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // Create an image from a single color
-static int	create_image(t_info *info, void **img, char *path)
+static int	create_image(t_info *info, t_img_data *img, char *path)
 {
 	int			color;
 	int			x;
 	int			y;
-	t_img_data	new;
 	char		*dst;
 
 	color = convert_rgb(path);
 	if (color == -1)
 		return (1);
-	new.img = mlx_new_image(info->mlx[INIT], 10, 10);
-	new.addr = mlx_get_data_addr(new.img, &(new.bits_per_pixel),
-			&(new.line_length), &(new.endian));
+	img->img = mlx_new_image(info->mlx[INIT], W_WIDTH, W_HEIGHT / 2);
+	img->addr = mlx_get_data_addr(img->img,
+			&(img->bpp), &(img->line_len), &(img->endian));
 	y = -1;
-	while (++y < 10)
+	while (++y < W_HEIGHT / 2)
 	{
 		x = -1;
-		while (++x < 10)
+		while (++x < W_WIDTH)
 		{
-			dst = new.addr + (y * new.line_length
-					+ x * (new.bits_per_pixel / 8));
+			dst = img->addr + (y * img->line_len
+					+ x * (img->bpp / 8));
 			*(unsigned int *)dst = color;
 		}
 	}
-	*img = new.img;
 	return (0);
 }
 
 // Load an image from xpm file
 // Check if the image is a square
-static int	load_xpm_image(t_info *info, void **img, char *path)
+static int	load_xpm_image(t_info *info, t_img_data *img, char *path)
 {
-	int		img_width;
-	int		img_height;
-
-	*img = mlx_xpm_file_to_image
-		(info->mlx[INIT], path, &img_width, &img_height);
-	if (!(*img))
+	img->img = mlx_xpm_file_to_image
+		(info->mlx[INIT], path, &(img->width), &(img->height));
+	if (!(img->img))
 		return (1);
-	if (img_height != img_width)
-	{
-		mlx_destroy_image(info->mlx[INIT], *img);
-		return (error_msg("Texture of the mini map is not a square"));
-	}
+	img->addr = mlx_get_data_addr(img->img,
+			&(img->bpp), &(img->line_len), &(img->endian));
 	return (0);
 }
 
@@ -106,5 +98,10 @@ int	load_textures(t_info *info)
 		return (1);
 	if (load_game_textures(info))
 		return (1);
+	info->screen.img = mlx_new_image(info->mlx[0], W_WIDTH, W_HEIGHT);
+	info->screen.addr = mlx_get_data_addr(info->screen.img,
+			&(info->screen.bpp),
+			&(info->screen.line_len),
+			&(info->screen.endian));
 	return (0);
 }

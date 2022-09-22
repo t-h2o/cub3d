@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/09/10 18:59:24 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/22 00:24:42 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ static void	print_square(t_info *info, char c, int y, int x)
 {
 	if (c == '0')
 		mlx_put_image_to_window(info->mlx[0], info->mlx[1],
-			info->mm_img[GROUND],
+			info->mm_img[GROUND].img,
 			x * MM_SIZE_TILE + MM_POS_X,
 			y * MM_SIZE_TILE + MM_POS_Y);
 	if (c == '1')
 		mlx_put_image_to_window(info->mlx[0], info->mlx[1],
-			info->mm_img[WALL],
+			info->mm_img[WALL].img,
 			x * MM_SIZE_TILE + MM_POS_X,
 			y * MM_SIZE_TILE + MM_POS_Y);
 }
@@ -36,7 +36,7 @@ static void	print_square(t_info *info, char c, int y, int x)
 static void	print_mm_player(t_info *info)
 {
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
-		info->mm_img[PLAYER],
+		info->mm_img[PLAYER].img,
 		MM_POS_X + info->player.pos[X] * MM_SIZE_TILE - MM_SIZE_PLAYER / 2,
 		MM_POS_Y + info->player.pos[Y] * MM_SIZE_TILE - MM_SIZE_PLAYER / 2);
 }

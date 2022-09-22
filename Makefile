@@ -57,11 +57,13 @@ SRCS	+=	$(SRCD)/mini_map.c
 SRCS	+=	$(SRCD)/parsing.c
 SRCS	+=	$(SRCD)/player.c
 SRCS	+=	$(SRCD)/ray.c
+SRCS	+=	$(SRCD)/rendering.c
 SRCS	+=	$(SRCD)/textures.c
 SRCS	+=	$(SRCD)/utils_math.c
 SRCS	+=	$(SRCD)/utils_mlx.c
 SRCS	+=	$(SRCD)/utils_parsing.c
 SRCS	+=	$(SRCD)/utils_ray.c
+SRCS	+=	$(SRCD)/utils_tx.c
 SRCS	+=	$(SRCD)/window.c
 
 

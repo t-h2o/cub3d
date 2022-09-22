@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/07 21:47:53 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/09/19 14:59:57 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static int	save_player_info(t_info *info, int x, int y)
 		info->player.pos[X] = (float) x + 0.5f;
 		info->player.pos[Y] = (float) y + 0.5f;
 		if (info->map[y][x] == 'N')
-			info->player.angle = 0.0f;
-		else if (info->map[y][x] == 'S')
-			info->player.angle = M_PI;
-		else if (info->map[y][x] == 'E')
-			info->player.angle = M_PI / 2;
-		else if (info->map[y][x] == 'W')
 			info->player.angle = (3 * M_PI) / 2;
+		else if (info->map[y][x] == 'S')
+			info->player.angle = M_PI / 2;
+		else if (info->map[y][x] == 'E')
+			info->player.angle = 0.0f;
+		else if (info->map[y][x] == 'W')
+			info->player.angle = M_PI;
 		info->map[y][x] = '0';
 		angle_delta(info->player.angle, info->player.delta);
 	}

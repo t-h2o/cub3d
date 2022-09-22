@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:40:59 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/10 19:25:50 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/22 00:26:01 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,18 @@ static void	print_info(t_info *info)
 		500, 30, CO_WHITE, message);
 }
 
-// 1. Draw ray to get view informations
-// 2. Render the view (walls, floor & ceilling)
-// 3. Print minimap
-// 4. Print informations
+// 1. Cast rays to get view informations
+// 2. Render the view screen
+// 3. Print the screen
+// 4. Print minimap
+// 5. Print informations
 void	print_frame(t_info *info)
 {
+	player_ray(info);
+	render_screen(info);
 	mlx_clear_window(info->mlx[INIT], info->mlx[WINDOW]);
+	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->screen.img, 0, 0);
 	if (info->active_map)
 		print_minimap(info);
-	player_ray(info);
-	//catch ray infos ---> then render stuff
-
-	//here the minimap would be overwritten by what we render
-	//but atm if we print the minimap at the end, it will overwrite the ray
 	print_info(info);
 }
