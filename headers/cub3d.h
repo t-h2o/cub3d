@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/22 00:32:36 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/22 12:37:16 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,9 @@ float	horizontal_up(t_info *info, float hit[2], float delta[2]);
 float	horizontal_down(t_info *info, float hit[2], float delta[2]);
 float	vertical_right(t_info *info, float hit[2], float delta[2]);
 float	vertical_left(t_info *info, float hit[2], float delta[2]);
+
+// utils_tx.c
+t_img_data	*get_wall_tx(t_info *info, char wall);
 
 // window.c
 int		start_window(t_info *info);

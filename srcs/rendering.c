@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/22 11:47:54 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/22 12:28:39 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ static int	get_tx_pixel(t_img_data *tx, float x_scale, float y_scale)
 }
 
 // Draw a column of the sky
-//  adds offset to the sky depending on player orientation
+//  adds offset to the sky depending on player orientation:
+//  column = (column + (int)(info->player.angle / (M_PI / 2)
+//			* W_WIDTH)) % W_WIDTH;
 static void	draw_ceil(t_info *info, int column, int offset)
 {
 	int		line;
 	char	*dst;
 
 	dst = info->screen.addr + (column * info->screen.bpp / 8);
-	//column = (column + (int)(info->player.angle / (M_PI / 2)
-	//			* W_WIDTH)) % W_WIDTH;
 	line = -1;
 	while (++line < offset)
 	{
@@ -56,26 +56,19 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 	int			line;
 	char		*dst;
 	t_img_data	*tx;
-	float		tx_scale;
+	float		x_scale;
 
-	if (info->ray[column].wall == 'N')
-		tx = &(info->texture[NO].img);
-	else if (info->ray[column].wall == 'S')
-		tx = &(info->texture[SO].img);
-	else if (info->ray[column].wall == 'W')
-		tx = &(info->texture[WE].img);
-	else if (info->ray[column].wall == 'E')
-		tx = &(info->texture[EA].img);
+	tx = get_wall_tx(info, info->ray[column].wall);
 	dst = info->screen.addr + (wall_off * info->screen.line_len)
 		+ (column * info->screen.bpp / 8);
 	if (info->ray[column].wall == 'N' || info->ray[column].wall == 'S')
-		tx_scale = info->ray[column].hit[X] - (int)info->ray[column].hit[X];
+		x_scale = info->ray[column].hit[X] - (int)info->ray[column].hit[X];
 	else if (info->ray[column].wall == 'W' || info->ray[column].wall == 'E')
-		tx_scale = info->ray[column].hit[Y] - (int)info->ray[column].hit[Y];
+		x_scale = info->ray[column].hit[Y] - (int)info->ray[column].hit[Y];
 	line = -1;
 	while (++line < wall_hei)
 	{	
-		*(unsigned int *)dst = get_tx_pixel(tx, tx_scale,
+		*(unsigned int *)dst = get_tx_pixel(tx, x_scale,
 				(float)line / wall_hei);
 		dst += info->screen.line_len;
 	}
@@ -109,7 +102,7 @@ void	render_screen(t_info *info)
 	int		column;
 	int		wall_height;
 	int		wall_offset;
-	float		correct_distance;
+	float	correct_distance;
 
 	column = -1;
 	while (++column < W_WIDTH)
