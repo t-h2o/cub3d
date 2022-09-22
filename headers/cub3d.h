@@ -57,9 +57,9 @@
 # define CO_YELLOW		0x00FFFF00
 
 // Sensibility
-//   rotation = (PI / 8)
-# define PS_MOVE	0.5f
-# define PS_ROTATE	0.392699081699f
+// rotation = (2PI / 128)
+# define PS_MOVE	0.1f
+# define PS_ROTATE	0.0490873852123f
 
 // Field of view ~70 degrees
 # define FOV		1.2f
