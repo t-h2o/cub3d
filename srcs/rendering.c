@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/22 00:52:17 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/22 11:47:54 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	render_screen(t_info *info)
 	while (++column < W_WIDTH)
 	{
 		correct_distance = info->ray[column].distance
-			* (cos(info->player.angle - info->ray[column].angle));
+			* cos(info->ray[column].angle);
 		wall_height = W_HEIGHT / correct_distance;
 		if (wall_height > W_HEIGHT)
 			wall_height = W_HEIGHT;
