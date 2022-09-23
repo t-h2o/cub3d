@@ -30,7 +30,7 @@ static void
 }
 
 // Collect ray data
-static void	ray(t_info *info, int column, float delta[2])
+static void	ray(t_info *info, t_ray *ray, float delta[2])
 {
 	float	hit[2][2];
 	float	distance[2];
@@ -38,21 +38,21 @@ static void	ray(t_info *info, int column, float delta[2])
 	ray_distance(info, distance, hit, delta);
 	if (distance[Y] < distance[X])
 	{
-		ft_memcpy(info->ray[column].hit, hit[Y], 2 * sizeof(float));
-		info->ray[column].distance = distance[Y];
+		ft_memcpy(ray->hit, hit[Y], 2 * sizeof(float));
+		ray->distance = distance[Y];
 		if (delta[Y] > 0)
-			info->ray[column].wall = 'S';
+			ray->wall = 'S';
 		else
-			info->ray[column].wall = 'N';
+			ray->wall = 'N';
 	}
 	else
 	{
-		ft_memcpy(info->ray[column].hit, hit[X], 2 * sizeof(float));
-		info->ray[column].distance = distance[X];
+		ft_memcpy(ray->hit, hit[X], 2 * sizeof(float));
+		ray->distance = distance[X];
 		if (delta[X] > 0)
-			info->ray[column].wall = 'E';
+			ray->wall = 'E';
 		else
-			info->ray[column].wall = 'W';
+			ray->wall = 'W';
 	}
 }
 
@@ -66,7 +66,7 @@ void	player_ray(t_info *info)
 	{
 		angle_delta(info->player.angle + info->ray[column].angle,
 			info->ray[column].delta);
-		ray(info, column, info->ray[column].delta);
+		ray(info, &(info->ray[column]), info->ray[column].delta);
 		column++;
 	}
 }
