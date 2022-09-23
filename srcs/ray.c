@@ -14,59 +14,52 @@
 
 // Collect the distance to the next vertical line and the next horizontal line
 static void
-	ray_distance(t_info *info, float distance[2],
-		float hit[2][2], float delta[2])
+	ray_distance(t_info *info, t_ray *ray,
+		float distance[2], float hit[2][2])
 {
 	distance[X] = -1.0f;
 	distance[Y] = -1.0f;
-	if (0 < delta[X])
-		distance[X] = vertical_right(info, hit[X], delta);
-	else if (delta[X] < 0)
-		distance[X] = vertical_left(info, hit[X], delta);
-	if (0 < delta[Y])
-		distance[Y] = horizontal_down(info, hit[Y], delta);
-	else if (delta[Y] < 0)
-		distance[Y] = horizontal_up(info, hit[Y], delta);
+	if (0.0f < ray->delta[X])
+		distance[X] = vertical_right(info, hit[X], ray->delta);
+	else if (ray->delta[X] < 0.0f)
+		distance[X] = vertical_left(info, hit[X], ray->delta);
+	if (0.0f < ray->delta[Y])
+		distance[Y] = horizontal_down(info, hit[Y], ray->delta);
+	else if (ray->delta[Y] < 0.0f)
+		distance[Y] = horizontal_up(info, hit[Y], ray->delta);
+}
+
+// Collect the type of wall and set good values in ray
+static void
+	ray_type(t_ray *ray,
+		float distance[2], float hit[2][2])
+{
+	if (distance[Y] < distance[X])
+	{
+		ft_memcpy(ray->hit, hit[Y], 2 * sizeof(float));
+		ray->distance = distance[Y];
+		if (ray->delta[Y] > 0.0f)
+			ray->wall = 'S';
+		else
+			ray->wall = 'N';
+	}
+	else
+	{
+		ft_memcpy(ray->hit, hit[X], 2 * sizeof(float));
+		ray->distance = distance[X];
+		if (ray->delta[X] > 0.0f)
+			ray->wall = 'E';
+		else
+			ray->wall = 'W';
+	}
 }
 
 // Collect ray data
-static void	ray(t_info *info, int column, float delta[2])
+void	ray(t_info *info, t_ray *ray)
 {
 	float	hit[2][2];
 	float	distance[2];
 
-	ray_distance(info, distance, hit, delta);
-	if (distance[Y] < distance[X])
-	{
-		ft_memcpy(info->ray[column].hit, hit[Y], 2 * sizeof(float));
-		info->ray[column].distance = distance[Y];
-		if (delta[Y] > 0)
-			info->ray[column].wall = 'S';
-		else
-			info->ray[column].wall = 'N';
-	}
-	else
-	{
-		ft_memcpy(info->ray[column].hit, hit[X], 2 * sizeof(float));
-		info->ray[column].distance = distance[X];
-		if (delta[X] > 0)
-			info->ray[column].wall = 'E';
-		else
-			info->ray[column].wall = 'W';
-	}
-}
-
-// Collect ray data for each column of the screen
-void	player_ray(t_info *info)
-{
-	int		column;
-
-	column = 0;
-	while (column < W_WIDTH)
-	{
-		angle_delta(info->player.angle + info->ray[column].angle,
-			info->ray[column].delta);
-		ray(info, column, info->ray[column].delta);
-		column++;
-	}
+	ray_distance(info, ray, distance, hit);
+	ray_type(ray, distance, hit);
 }
