@@ -19,13 +19,13 @@ static void
 {
 	distance[X] = -1.0f;
 	distance[Y] = -1.0f;
-	if (0 < delta[X])
+	if (0.0f < delta[X])
 		distance[X] = vertical_right(info, hit[X], delta);
-	else if (delta[X] < 0)
+	else if (delta[X] < 0.0f)
 		distance[X] = vertical_left(info, hit[X], delta);
-	if (0 < delta[Y])
+	if (0.0f < delta[Y])
 		distance[Y] = horizontal_down(info, hit[Y], delta);
-	else if (delta[Y] < 0)
+	else if (delta[Y] < 0.0f)
 		distance[Y] = horizontal_up(info, hit[Y], delta);
 }
 
@@ -40,7 +40,7 @@ void	ray(t_info *info, t_ray *ray)
 	{
 		ft_memcpy(ray->hit, hit[Y], 2 * sizeof(float));
 		ray->distance = distance[Y];
-		if (ray->delta[Y] > 0)
+		if (ray->delta[Y] > 0.0f)
 			ray->wall = 'S';
 		else
 			ray->wall = 'N';
@@ -49,7 +49,7 @@ void	ray(t_info *info, t_ray *ray)
 	{
 		ft_memcpy(ray->hit, hit[X], 2 * sizeof(float));
 		ray->distance = distance[X];
-		if (ray->delta[X] > 0)
+		if (ray->delta[X] > 0.0f)
 			ray->wall = 'E';
 		else
 			ray->wall = 'W';
