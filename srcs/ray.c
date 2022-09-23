@@ -29,13 +29,11 @@ static void
 		distance[Y] = horizontal_up(info, hit[Y], ray->delta);
 }
 
-// Collect ray data
-void	ray(t_info *info, t_ray *ray)
+// Collect the type of wall and set good values in ray
+static void
+	ray_type(t_ray *ray,
+		float distance[2], float hit[2][2])
 {
-	float	hit[2][2];
-	float	distance[2];
-
-	ray_distance(info, ray, distance, hit);
 	if (distance[Y] < distance[X])
 	{
 		ft_memcpy(ray->hit, hit[Y], 2 * sizeof(float));
@@ -54,4 +52,14 @@ void	ray(t_info *info, t_ray *ray)
 		else
 			ray->wall = 'W';
 	}
+}
+
+// Collect ray data
+void	ray(t_info *info, t_ray *ray)
+{
+	float	hit[2][2];
+	float	distance[2];
+
+	ray_distance(info, ray, distance, hit);
+	ray_type(ray, distance, hit);
 }
