@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/17 19:10:19 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/23 19:53:46 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ int	load_textures(t_info *info)
 		return (1);
 	if (load_game_textures(info))
 		return (1);
+	info->mm_image.img = mlx_new_image(info->mlx[0], 330, MM_SIZE_TILE * info->map_h);
+	info->mm_image.addr = mlx_get_data_addr(info->mm_image.img, &(info->mm_image.bpp), &(info->mm_image.line_len), &(info->mm_image.endian));
 	info->screen.img = mlx_new_image(info->mlx[0], W_WIDTH, W_HEIGHT);
 	info->screen.addr = mlx_get_data_addr(info->screen.img,
 			&(info->screen.bpp),
