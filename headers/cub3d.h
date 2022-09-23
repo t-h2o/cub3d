@@ -179,7 +179,7 @@ void	player_move(t_info *info, float distance);
 void	player_rotate(t_info *info, float rotation);
 
 // ray.c
-void	player_ray(t_info *info);
+void	ray(t_info *info, t_ray *ray);
 
 // rendering.c
 void	render_screen(t_info *info);

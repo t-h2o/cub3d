@@ -12,6 +12,21 @@
 
 #include	"cub3d.h"
 
+// Collect ray data for each column of the screen
+static void	player_ray(t_info *info)
+{
+	int		column;
+
+	column = 0;
+	while (column < W_WIDTH)
+	{
+		angle_delta(info->player.angle + info->ray[column].angle,
+			info->ray[column].delta);
+		ray(info, &(info->ray[column]));
+		column++;
+	}
+}
+
 // Print infos: player position (x, y, angle)
 static void	print_info(t_info *info)
 {
