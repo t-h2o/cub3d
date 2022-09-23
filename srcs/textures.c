@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/23 19:53:46 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/23 22:33:28 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,9 @@ static int	load_xpm_image(t_info *info, t_img_data *img, char *path)
 // Load textures for the minimap
 static int	load_mm_textures(t_info *info)
 {
-	if (load_xpm_image(info, &(info->mm_img[GROUND]), MM_GROUND))
-		return (1);
-	if (load_xpm_image(info, &(info->mm_img[WALL]), MM_WALL))
-		return (1);
 	if (load_xpm_image(info, &(info->mm_img[PLAYER]), MM_PLAYER))
 		return (1);
+	create_minimap(info);
 	return (0);
 }
 
@@ -98,8 +95,6 @@ int	load_textures(t_info *info)
 		return (1);
 	if (load_game_textures(info))
 		return (1);
-	info->mm_image.img = mlx_new_image(info->mlx[0], 330, MM_SIZE_TILE * info->map_h);
-	info->mm_image.addr = mlx_get_data_addr(info->mm_image.img, &(info->mm_image.bpp), &(info->mm_image.line_len), &(info->mm_image.endian));
 	info->screen.img = mlx_new_image(info->mlx[0], W_WIDTH, W_HEIGHT);
 	info->screen.addr = mlx_get_data_addr(info->screen.img,
 			&(info->screen.bpp),

@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/05 09:42:22 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/05 09:44:26 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ int		init_game(t_info *info, char *mapname);
 void	print_frame(t_info *info);
 
 // mini_map.c
+void	create_minimap(t_info *info);
 void	print_minimap(t_info *info);
 
 // parsing.c
