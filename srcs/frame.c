@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:40:59 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/10/21 15:11:10 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:32:47 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,7 @@ void	print_frame(t_info *info)
 	if (info->active_map)
 		print_minimap(info);
 	print_info(info);
+	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
+			info->player.pov.img, (W_WIDTH / 2)
+			- (info->player.pov.width /  2), W_HEIGHT - info->player.pov.height); 
 }

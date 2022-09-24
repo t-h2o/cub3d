@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/07 17:45:41 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:32:35 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@
 # include	"color.h"
 
 // GAME SETTINGS
+
+// POV (hands, weapons, ...)
+# define TX_SHOTGUN	"assets/textures/pov/shotgun.xpm"
+# define TX_KNIFE	"assets/textures/pov/cs_knife.xpm"
+# define TX_GUN		"assets/textures/pov/gun_sprite1.xpm"
+# define TX_BLOODSWORD	"assets/textures/pov/bloody_sword1.xpm"
+# define TX_AKCARTOON	"assets/textures/pov/ak_cartoon.xpm"
+# define TX_HD_SHOTG	"assets/textures/pov/hd_shotgun.xpm"
+# define TX_SWORD	"assets/textures/pov/sword.xpm"
 
 // Maps directory
 # define MAPSDIR	"assets/maps/"
@@ -126,6 +135,7 @@ typedef struct s_player {
 	float	pos[2];
 	float	angle;
 	float	delta[2];
+	t_img_data	pov;
 }	t_player;
 
 // distance between the player and the wall
