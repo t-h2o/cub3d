@@ -14,13 +14,13 @@
 
 t_img_data	*get_wall_tx(t_info *info, char wall)
 {
-	if (wall == 'N')
+	if (wall == NO)
 		return (&(info->texture[NO].img));
-	else if (wall == 'S')
+	else if (wall == SO)
 		return (&(info->texture[SO].img));
-	else if (wall == 'W')
+	else if (wall == WE)
 		return (&(info->texture[WE].img));
-	else if (wall == 'E')
+	else if (wall == EA)
 		return (&(info->texture[EA].img));
 	return (NULL);
 }
