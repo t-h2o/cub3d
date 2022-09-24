@@ -137,7 +137,7 @@ typedef struct s_ray {
 	float	delta[2];
 	float	hit[2];
 	float	distance;
-	char	wall;
+	unsigned char	wall;
 }	t_ray;
 
 // mlx: pointer on informations of the window
