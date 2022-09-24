@@ -133,10 +133,10 @@ typedef struct s_player {
 // distance between the player and the wall
 // wall: NEWS
 typedef struct s_ray {
-	float	angle;
-	float	delta[2];
-	float	hit[2];
-	float	distance;
+	float			angle;
+	float			delta[2];
+	float			hit[2];
+	float			distance;
 	unsigned char	wall;
 }	t_ray;
 
