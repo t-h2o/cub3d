@@ -14,15 +14,21 @@
 #include	<math.h>
 
 // Move player
-// X = X + delta X * PS_MOVE
-// Y = Y + delta Y * PS_MOVE
 void
-	player_move(t_info *info, float distance)
+	player_move(t_info *info, float distance, int side)
 {
 	float	next[2];
 
-	next[X] = info->player.pos[X] + distance * info->player.delta[X];
-	next[Y] = info->player.pos[Y] + distance * info->player.delta[Y];
+	if (side)
+	{
+		next[X] = info->player.pos[X] + distance * info->player.delta[Y];
+		next[Y] = info->player.pos[Y] + distance * -info->player.delta[X];
+	}
+	else
+	{
+		next[X] = info->player.pos[X] + distance * info->player.delta[X];
+		next[Y] = info->player.pos[Y] + distance * info->player.delta[Y];
+	}
 	if (info->map[(int)(next[Y])][(int)(next[X])] == '1')
 		return ;
 	info->player.pos[X] = next[X];
