@@ -39,18 +39,18 @@ static void
 		ft_memcpy(ray->hit, hit[Y], 2 * sizeof(float));
 		ray->distance = distance[Y];
 		if (ray->delta[Y] > 0.0f)
-			ray->wall = 'S';
+			ray->wall = SO;
 		else
-			ray->wall = 'N';
+			ray->wall = NO;
 	}
 	else
 	{
 		ft_memcpy(ray->hit, hit[X], 2 * sizeof(float));
 		ray->distance = distance[X];
 		if (ray->delta[X] > 0.0f)
-			ray->wall = 'E';
+			ray->wall = EA;
 		else
-			ray->wall = 'W';
+			ray->wall = WE;
 	}
 }
 

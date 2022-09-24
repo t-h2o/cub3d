@@ -58,12 +58,12 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 	t_img_data	*tx;
 	float		x_scale;
 
-	tx = get_wall_tx(info, info->ray[column].wall);
+	tx = &(info->texture[info->ray[column].wall].img);
 	dst = info->screen.addr + (wall_off * info->screen.line_len)
 		+ (column * info->screen.bpp / 8);
-	if (info->ray[column].wall == 'N' || info->ray[column].wall == 'S')
+	if (info->ray[column].wall == NO || info->ray[column].wall == SO)
 		x_scale = info->ray[column].hit[X] - (int)info->ray[column].hit[X];
-	else if (info->ray[column].wall == 'W' || info->ray[column].wall == 'E')
+	else if (info->ray[column].wall == WE || info->ray[column].wall == EA)
 		x_scale = info->ray[column].hit[Y] - (int)info->ray[column].hit[Y];
 	line = -1;
 	while (++line < wall_hei)

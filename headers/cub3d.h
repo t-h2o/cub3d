@@ -133,11 +133,11 @@ typedef struct s_player {
 // distance between the player and the wall
 // wall: NEWS
 typedef struct s_ray {
-	float	angle;
-	float	delta[2];
-	float	hit[2];
-	float	distance;
-	char	wall;
+	float			angle;
+	float			delta[2];
+	float			hit[2];
+	float			distance;
+	unsigned char	wall;
 }	t_ray;
 
 // mlx: pointer on informations of the window
@@ -204,9 +204,6 @@ float	horizontal_up(t_info *info, float hit[2], float delta[2]);
 float	horizontal_down(t_info *info, float hit[2], float delta[2]);
 float	vertical_right(t_info *info, float hit[2], float delta[2]);
 float	vertical_left(t_info *info, float hit[2], float delta[2]);
-
-// utils_tx.c
-t_img_data	*get_wall_tx(t_info *info, char wall);
 
 // window.c
 int		start_window(t_info *info);
