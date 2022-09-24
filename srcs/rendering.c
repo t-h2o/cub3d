@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/05 17:32:35 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/05 17:33:19 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 	else
 		x_scale = info->ray[column].hit[Y] - (int)info->ray[column].hit[Y];
 
-		shading = ( 
-					(int)((info->ray[column].distance-3) * 0xFF)
+	shading = ((int)((info->ray[column].distance-3) * 0xFF)
 				+ (((int)((info->ray[column].distance-3) * 0xFF) << 8))
 				+ (((int)((info->ray[column].distance-3) * 0xFF) << 16)));
 	line = -1;
