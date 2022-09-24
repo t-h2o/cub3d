@@ -175,7 +175,7 @@ void	print_minimap(t_info *info);
 int		load_map(t_info *info, char *mapname);
 
 // player.c
-void	player_move(t_info *info, float distance);
+void	player_move(t_info *info, float distance, int side);
 void	player_rotate(t_info *info, float rotation);
 
 // ray.c

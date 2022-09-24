@@ -19,12 +19,16 @@ static int
 	if (key == KEY_ESC)
 		close_game(info, 0);
 	else if (key == KEY_W || key == KEY_UP)
-		player_move(info, PS_MOVE);
+		player_move(info, PS_MOVE, 0);
 	else if (key == KEY_S || key == KEY_DOWN)
-		player_move(info, -PS_MOVE);
-	else if (key == KEY_D || key == KEY_RIGHT)
+		player_move(info, -PS_MOVE, 0);
+	else if (key == KEY_D)
+		player_move(info, -PS_MOVE, 1);
+	else if (key == KEY_A)
+		player_move(info, PS_MOVE, 1);
+	else if (key == KEY_RIGHT)
 		player_rotate(info, PS_ROTATE);
-	else if (key == KEY_A || key == KEY_LEFT)
+	else if (key == KEY_LEFT)
 		player_rotate(info, -PS_ROTATE);
 	else if (key == KEY_TAB)
 	{
