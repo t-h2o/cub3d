@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/22 12:28:39 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/24 19:06:34 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,17 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 	float		x_scale;
 
 	tx = &(info->texture[info->ray[column].wall].img);
-	dst = info->screen.addr + (wall_off * info->screen.line_len)
-		+ (column * info->screen.bpp / 8);
+	dst = info->screen.addr + (column * info->screen.bpp / 8);
+	if (wall_off > 0)
+		dst += (wall_off * info->screen.line_len);
 	if (info->ray[column].wall == NO || info->ray[column].wall == SO)
 		x_scale = info->ray[column].hit[X] - (int)info->ray[column].hit[X];
 	else if (info->ray[column].wall == WE || info->ray[column].wall == EA)
 		x_scale = info->ray[column].hit[Y] - (int)info->ray[column].hit[Y];
 	line = -1;
-	while (++line < wall_hei)
+	if (wall_off < 0)
+		line = -wall_off - 1;
+	while (++line < wall_hei && (line + wall_off) < W_HEIGHT)
 	{	
 		*(unsigned int *)dst = get_tx_pixel(tx, x_scale,
 				(float)line / wall_hei);
@@ -110,9 +113,7 @@ void	render_screen(t_info *info)
 		correct_distance = info->ray[column].distance
 			* cos(info->ray[column].angle);
 		wall_height = W_HEIGHT / correct_distance;
-		if (wall_height > W_HEIGHT)
-			wall_height = W_HEIGHT;
-		wall_offset = (W_HEIGHT / 2) - (wall_height >> 1);
+		wall_offset = (W_HEIGHT - wall_height) / 2;
 		draw_ceil(info, column, wall_offset);
 		draw_wall(info, column, wall_height, wall_offset);
 		draw_floor(info, column, wall_offset + wall_height);
