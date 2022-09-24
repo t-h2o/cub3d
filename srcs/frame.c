@@ -12,6 +12,21 @@
 
 #include	"cub3d.h"
 
+// For three rays, if the middle rays detect another wall than the two others,
+// this rays will take the ray of the two others
+static void	anti_bad(t_info *info)
+{
+	int	column;
+
+	column = 0;
+	while (++column < W_WIDTH)
+	{
+		if (info->ray[column - 1].wall == info->ray[column + 1].wall
+			&& info->ray[column].wall != info->ray[column - 1].wall)
+			info->ray[column].wall = info->ray[column -1].wall;
+	}
+}
+
 // Collect ray data for each column of the screen
 static void	player_ray(t_info *info)
 {
@@ -25,6 +40,7 @@ static void	player_ray(t_info *info)
 		ray(info, &(info->ray[column]));
 		column++;
 	}
+	anti_bad(info);
 }
 
 // Print infos: player position (x, y, angle)
