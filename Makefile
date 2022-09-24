@@ -63,7 +63,6 @@ SRCS	+=	$(SRCD)/utils_math.c
 SRCS	+=	$(SRCD)/utils_mlx.c
 SRCS	+=	$(SRCD)/utils_parsing.c
 SRCS	+=	$(SRCD)/utils_ray.c
-SRCS	+=	$(SRCD)/utils_tx.c
 SRCS	+=	$(SRCD)/window.c
 
 

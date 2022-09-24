@@ -58,7 +58,7 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 	t_img_data	*tx;
 	float		x_scale;
 
-	tx = get_wall_tx(info, info->ray[column].wall);
+	tx = &(info->texture[info->ray[column].wall].img);
 	dst = info->screen.addr + (wall_off * info->screen.line_len)
 		+ (column * info->screen.bpp / 8);
 	if (info->ray[column].wall == NO || info->ray[column].wall == SO)

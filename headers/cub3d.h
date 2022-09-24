@@ -205,9 +205,6 @@ float	horizontal_down(t_info *info, float hit[2], float delta[2]);
 float	vertical_right(t_info *info, float hit[2], float delta[2]);
 float	vertical_left(t_info *info, float hit[2], float delta[2]);
 
-// utils_tx.c
-t_img_data	*get_wall_tx(t_info *info, char wall);
-
 // window.c
 int		start_window(t_info *info);
 
