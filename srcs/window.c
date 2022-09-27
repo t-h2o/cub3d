@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:01:59 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/10/09 03:10:14 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/09 03:10:32 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,20 @@ static int	update_frame(t_info *info)
 // Mouse hook
 static int	mouse_move(int x, int y, t_info *info)
 {
+	static int	last_x = W_WIDTH / 2;
+
 	(void) info;
-	printf("%d, %d\n", x, y);
+	(void) y;
+	if (x < last_x)
+	{
+		player_rotate(info, -PS_ROTATE / 5);
+		last_x = x;
+	}
+	else
+	{
+		player_rotate(info, PS_ROTATE / 5);
+		last_x = x;
+	}
 	return (0);
 }
 
@@ -101,6 +113,8 @@ int	start_window(t_info *info)
 	mlx_hook(info->mlx[WINDOW], 6, 1L << 6, mouse_move, info);
 	mlx_hook(info->mlx[WINDOW], 17, 0L << 0, red_cross, info);
 	mlx_loop_hook(info->mlx[INIT], update_frame, info);
+	mlx_mouse_hide(info->mlx[INIT], info->mlx[WINDOW]);
+	print_frame(info);
 	mlx_loop(info->mlx[INIT]);
 	return (0);
 }
