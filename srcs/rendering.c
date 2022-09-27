@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/24 19:06:34 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/27 13:35:21 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,11 @@ void	render_screen(t_info *info)
 	int		column;
 	int		wall_height;
 	int		wall_offset;
-	float	correct_distance;
 
 	column = -1;
 	while (++column < W_WIDTH)
 	{
-		correct_distance = info->ray[column].distance
-			* cos(info->ray[column].angle);
-		wall_height = W_HEIGHT / correct_distance;
+		wall_height = W_HEIGHT / info->ray[column].distance;
 		wall_offset = (W_HEIGHT - wall_height) / 2;
 		draw_ceil(info, column, wall_offset);
 		draw_wall(info, column, wall_height, wall_offset);

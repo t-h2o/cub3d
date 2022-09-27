@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/22 00:19:00 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/27 13:43:57 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ static void
 }
 
 // Collect ray data
+//   hit distance
+//   wall side
+// Correct fisheye effect
+//   distance * cos(angle)
 void	ray(t_info *info, t_ray *ray)
 {
 	float	hit[2][2];
@@ -62,4 +66,5 @@ void	ray(t_info *info, t_ray *ray)
 
 	ray_distance(info, ray, distance, hit);
 	ray_type(ray, distance, hit);
+	ray->distance = ray->distance * cos(ray->angle);
 }
