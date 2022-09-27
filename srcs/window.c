@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:01:59 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/10/09 03:00:33 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/09 03:10:14 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,14 @@ static int	update_frame(t_info *info)
 	return (0);
 }
 
+// Mouse hook
+static int	mouse_move(int x, int y, t_info *info)
+{
+	(void) info;
+	printf("%d, %d\n", x, y);
+	return (0);
+}
+
 // Init and open a new window
 // Define the fonction deal key for action with keys
 // Start the infinite loop of the window
@@ -90,6 +98,7 @@ int	start_window(t_info *info)
 		return (error_msg("Couldn't create window"));
 	mlx_hook(info->mlx[WINDOW], 2, 1L << 0, deal_key, info);
 	mlx_hook(info->mlx[WINDOW], 3, 1L << 1, release_key, info);
+	mlx_hook(info->mlx[WINDOW], 6, 1L << 6, mouse_move, info);
 	mlx_hook(info->mlx[WINDOW], 17, 0L << 0, red_cross, info);
 	mlx_loop_hook(info->mlx[INIT], update_frame, info);
 	mlx_loop(info->mlx[INIT]);
