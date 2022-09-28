@@ -110,6 +110,7 @@ typedef struct s_player {
 typedef struct s_ray {
 	float			angle;
 	float			delta[2];
+	float			pos[2];
 	float			hit[2];
 	float			distance;
 	unsigned char	wall;
@@ -175,10 +176,10 @@ char	*skip_whitespaces(char *str);
 int		convert_rgb(char *rgb);
 
 // utils_rays.c
-float	horizontal_up(t_info *info, float hit[2], float delta[2]);
-float	horizontal_down(t_info *info, float hit[2], float delta[2]);
-float	vertical_right(t_info *info, float hit[2], float delta[2]);
-float	vertical_left(t_info *info, float hit[2], float delta[2]);
+float	horizontal_up(t_info *info, t_ray *ray, float hit[2], float delta[2]);
+float	horizontal_down(t_info *info, t_ray *ray, float hit[2], float delta[2]);
+float	vertical_right(t_info *info, t_ray *ray, float hit[2], float delta[2]);
+float	vertical_left(t_info *info, t_ray *ray, float hit[2], float delta[2]);
 
 // window.c
 int		start_window(t_info *info);
