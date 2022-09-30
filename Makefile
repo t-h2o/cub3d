@@ -12,6 +12,9 @@ CFLAGS	+=	-g
 
 OFLAGS	=	-fsanitize=address
 
+INCD	=	headers 
+INCD	+=	-Ilibs/libft/includes
+
 # Find the os
 UNAME_S := $(shell uname -s)
 
@@ -21,6 +24,7 @@ ifeq ($(UNAME_S),Linux)
   LIBEXT	+=	libs/mlx-linux/libmlx_Linux.a
   DIR_LIB_MLX	=	libs/mlx-linux
   OFLAGS	   +=	-L$(DIR_LIB_MLX) -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+  INCD	+=	-I/usr/include -Ilibs/mlx-linux -O3
 endif
 
 # Apple
@@ -28,21 +32,13 @@ ifeq ($(UNAME_S),Darwin)
   LIBEXT	+=	libs/mlx-apple/libmlx.a
   DIR_LIB_MLX     =	libs/mlx-apple
   OFLAGS	   +=	-L$(DIR_LIB_MLX) -lmlx -framework OpenGL -framework AppKit
+  INCD	+=	-Ilibs/mlx-apple
 endif
-
 
 #	Libraries
 
 LIBEXT	+=	libs/libft/libft.a
 CLIB	=	-lm
-
-#	Headers
-
-INCD	=	headers
-
-INCS	=	$(INCD)/cub3d.h
-INCS	+=	$(INCD)/keys.h
-
 
 #	Sources
 
@@ -65,7 +61,6 @@ SRCS	+=	$(SRCD)/utils_parsing.c
 SRCS	+=	$(SRCD)/utils_ray.c
 SRCS	+=	$(SRCD)/window.c
 
-
 #	Objets
 
 OBJD	=	objs
@@ -74,7 +69,6 @@ OBJS	=	$(addprefix $(OBJD)/, $(notdir $(SRCS:.c=.o)))
 RM		=	rm -rf
 
 vpath %.c $(SRCD)
-
 
 all : $(NAME)
 
