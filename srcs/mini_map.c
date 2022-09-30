@@ -6,13 +6,13 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/09/23 22:54:07 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/30 17:53:16 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 
-// Print a tile of the minimap
+// Draw a tile of the minimap in the mm image
 static void	draw_mm_tile(t_info *info, char c, int y, int x)
 {
 	int	color;
@@ -20,21 +20,20 @@ static void	draw_mm_tile(t_info *info, char c, int y, int x)
 	int		j;
 	char	*dst;
 
-	color = 0xFF000000;
+	color = 0x70303030;
 	if (c == '0')
-		color = 0x00C1C1C1;
+		color = MM_GROUND;
 	else if (c == '1')
-		color = 0x00000000;
-
+		color = MM_WALL;
 	j = -1;
 	while (++j < MM_SIZE_TILE)
 	{
 		i = -1;
 		while (++i < MM_SIZE_TILE)
 		{
-			dst = info->mm_image.addr
-					+ ((MM_SIZE_TILE * y + j) * info->mm_image.line_len)
-					+ ((MM_SIZE_TILE * x + i) * (info->mm_image.bpp / 8));
+			dst = info->mm_img[MAP].addr
+					+ ((MM_SIZE_TILE * y + j) * info->mm_img[MAP].line_len)
+					+ ((MM_SIZE_TILE * x + i) * (info->mm_img[MAP].bpp / 8));
 			*(unsigned int *)dst = color;
 		}
 	}
@@ -58,10 +57,10 @@ void	create_minimap(t_info *info)
 	int	x;
 	int	y;
 
-	info->mm_image.img = mlx_new_image(info->mlx[0], 330, MM_SIZE_TILE * info->map_h);
-	info->mm_image.addr = mlx_get_data_addr(info->mm_image.img,
-				&(info->mm_image.bpp), &(info->mm_image.line_len),
-				&(info->mm_image.endian));
+	info->mm_img[MAP].img = mlx_new_image(info->mlx[0], 330, MM_SIZE_TILE * info->map_h);
+	info->mm_img[MAP].addr = mlx_get_data_addr(info->mm_img[MAP].img,
+				&(info->mm_img[MAP].bpp), &(info->mm_img[MAP].line_len),
+				&(info->mm_img[MAP].endian));
 	y = -1;
 	while (++y < info->map_h)
 	{
@@ -77,7 +76,7 @@ void	create_minimap(t_info *info)
 void	print_minimap(t_info *info)
 {
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
-		info->mm_image.img, MM_POS_X, MM_POS_Y);
+		info->mm_img[MAP].img, MM_POS_X, MM_POS_Y);
 	print_mm_player(info);
 	draw_mm_rays(info);
 }
