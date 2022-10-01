@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/05 17:33:51 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/05 17:35:29 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,24 +70,26 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 		x_scale = info->ray[column].hit[X] - (int)info->ray[column].hit[X];
 	else
 		x_scale = info->ray[column].hit[Y] - (int)info->ray[column].hit[Y];
-
-//	shading = ((int)((info->ray[column].distance-3) * 0xFF)
-//				+ (((int)(info->ray[column].distance-3) * 0xFF) << 8))
-//				+ (((int)(info->ray[column].distance-3) * 0xFF) << 16)));
-	shading = 1 / info->ray[column].distance;
-	if (shading > 1)
-		shading = 1;
+	if (info->ray[column].distance <= 3.0f)
+		shading = 1.0f;
+	else
+		shading = 1 / (info->ray[column].distance - 2);
 	line = -1;
 	if (wall_off < 0)
 		line = -wall_off - 1;
 	while (++line < wall_hei && (line + wall_off) < W_HEIGHT)
 	{	
-		*(unsigned int *)dst = get_tx_pixel(tx, x_scale,
-				(float)line / wall_hei);
+		if (info->ray[column].distance <= 7.5f)
+		{
+			*(unsigned int *)dst = get_tx_pixel(tx, x_scale,
+					(float)line / wall_hei);
+			dst[0] = (unsigned char)dst[0] * shading;
+			dst[1] = (unsigned char)dst[1] * shading;
+			dst[2] = (unsigned char)dst[2] * shading;
+		}
+		else
+			*(unsigned int *)dst = 0x08080808;
 
-		dst[0] = (unsigned char)dst[0] * shading;
-		dst[1] = (unsigned char)dst[1] * shading;
-		dst[2] = (unsigned char)dst[2] * shading;
 		dst += info->screen.line_len;
 	}
 }
@@ -127,7 +129,10 @@ void	render_screen(t_info *info)
 	{
 		correct_distance = info->ray[column].distance
 			* cos(info->ray[column].angle);
-		wall_height = W_HEIGHT / correct_distance;
+		if (correct_distance > 7.5f)
+			wall_height = W_HEIGHT / 7.5f;
+		else
+			wall_height = W_HEIGHT / correct_distance;
 		wall_offset = (W_HEIGHT - wall_height) / 2;
 		draw_ceil(info, column, wall_offset);
 		draw_wall(info, column, wall_height, wall_offset);
