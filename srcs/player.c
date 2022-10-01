@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 12:26:36 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/10 18:08:01 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/01 18:44:53 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void
 		return ;
 	info->player.pos[X] = next[X];
 	info->player.pos[Y] = next[Y];
-	print_frame(info);
 }
 
 // When the player change his rotation,
@@ -43,5 +42,4 @@ void
 {
 	info->player.angle = angle_sum(info->player.angle, rotation);
 	angle_delta(info->player.angle, info->player.delta);
-	print_frame(info);
 }

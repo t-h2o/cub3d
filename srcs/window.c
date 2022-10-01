@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:01:59 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/09/24 19:32:23 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/06 20:49:54 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ static int
 	else if (key == KEY_LEFT || key == KEY_Q)
 		player_rotate(info, -PS_ROTATE);
 	else if (key == KEY_TAB)
-	{
 		info->active_map = !info->active_map;
-		print_frame(info);
-	}
 	return (0);
 }
 
@@ -42,6 +39,14 @@ static int
 static int	red_cross(t_info *info)
 {
 	close_game(info, 0);
+	return (0);
+}
+
+// Loop hook
+// Update frame
+static int	update_frame(t_info *info)
+{
+	print_frame(info);
 	return (0);
 }
 
@@ -56,7 +61,7 @@ int	start_window(t_info *info)
 		return (error_msg("Couldn't create window"));
 	mlx_hook(info->mlx[WINDOW], 2, 1, deal_key, info);
 	mlx_hook(info->mlx[WINDOW], 17, 0L << 0, red_cross, info);
-	print_frame(info);
+	mlx_loop_hook(info->mlx[INIT], update_frame, info);
 	mlx_loop(info->mlx[INIT]);
 	return (0);
 }
