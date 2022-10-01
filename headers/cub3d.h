@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/09 02:55:14 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/09 03:11:08 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@
 # define FOV		1.2f
 
 // Player settings
-// rotation = (2PI / 128)
+//   player movement speed
+//   player rotation = (2PI / 128)
+//   player mouse sensitivity
 # define PS_MOVE	0.1f
 # define PS_ROTATE	0.0490873852123f
+# define PS_MOUSE	0.2f
 
 // Minimap settings
 // postion
