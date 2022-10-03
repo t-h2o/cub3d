@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLORS_H_
-# define COLORS_H_
+#ifndef COLORS_H
+# define COLORS_H
 
 # define CO_WHITE		0x00FFFFFF
 # define CO_BLUE		0x000000FF
