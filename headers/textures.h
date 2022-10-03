@@ -26,4 +26,4 @@
 # define TX_FLOOR	"assets/textures/dirt1.xpm"
 # define TX_CEIL	"assets/textures/sky2.xpm"
 
-#endif
+#endif /* TEXTURES_H */

@@ -19,4 +19,4 @@
 # define CO_GREEN		0x0000FF00
 # define CO_YELLOW		0x00FFFF00
 
-#endif
+#endif /* COLORS_H */
