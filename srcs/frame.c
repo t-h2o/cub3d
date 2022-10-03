@@ -19,12 +19,18 @@ static void	anti_bad(t_info *info)
 	int	column;
 
 	column = 0;
-	while (++column < W_WIDTH)
+	if (info->ray[column + 1].wall == info->ray[column + 2].wall
+		&& info->ray[column].wall != info->ray[column + 1].wall)
+		info->ray[column].wall = info->ray[column + 1].wall;
+	while (++column < W_WIDTH - 1)
 	{
 		if (info->ray[column - 1].wall == info->ray[column + 1].wall
 			&& info->ray[column].wall != info->ray[column - 1].wall)
 			info->ray[column].wall = info->ray[column -1].wall;
 	}
+	if (info->ray[column - 1].wall == info->ray[column - 2].wall
+		&& info->ray[column].wall != info->ray[column - 1].wall)
+		info->ray[column].wall = info->ray[column - 1].wall;
 }
 
 // Collect ray data for each column of the screen
