@@ -15,7 +15,6 @@
 int	main(int ac, char **av)
 {
 	t_info	info;
-	int		i;
 
 	if (ac != 2)
 		exit(error_msg("Invalid argument"));
