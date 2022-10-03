@@ -12,7 +12,10 @@ CFLAGS	+=	-g
 
 OFLAGS	=	-fsanitize=address
 
-INCD	=	headers 
+NORMD	=	headers
+NORMD	+=	$(SRCD)
+
+INCD	=	headers
 INCD	+=	-Ilibs/libft/includes
 
 # Find the os
@@ -115,7 +118,7 @@ re:	fclean all
 
 norm:
 	@clear
-	@(norminette $(INCS) $(SRCS) | grep -v  OK\!) || true
+	@(norminette $(NORMD) | grep -v  OK\!) || true
 
 db: all
 	$(DB) $(NAME)
