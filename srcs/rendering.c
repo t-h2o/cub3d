@@ -27,6 +27,8 @@ static int	get_tx_pixel(t_img_data *tx, float x_scale, float y_scale)
 
 // Draw a column of the sky
 //  adds offset to the sky depending on player orientation
+//  sky_offset is between 0.0 and 1.0
+//  sky_offset = (player.angle + (column / W_WIDTH) * FOV) / (2 * PI)
 static void	draw_ceil(t_info *info, int column, int offset)
 {
 	int		line;
@@ -34,13 +36,13 @@ static void	draw_ceil(t_info *info, int column, int offset)
 	float	sky_offset;
 
 	dst = info->screen.addr + (column * info->screen.bpp / 8);
-	sky_offset = (column + (int)(info->player.angle / M_PI
-				* W_WIDTH * 2)) % (W_WIDTH * 2);
+	sky_offset = angle_sum(info->player.angle - FOV / 2 + M_PI / 2,
+			((float)column / (float)W_WIDTH) * FOV) / (2 * M_PI);
 	line = -1;
 	while (++line < offset)
 	{
 		*(unsigned int *)dst = get_tx_pixel(&(info->texture[CE].img),
-				sky_offset / (W_WIDTH * 2),
+				sky_offset,
 				(float)line / (W_HEIGHT / 2));
 		dst += info->screen.line_len;
 	}
