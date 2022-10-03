@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		exit(error_msg("Invalid argument"));
 	if (init_game(&info, av[1]))
-		close_game(&info, 1);	
+		close_game(&info, 1);
 	if (start_window(&info))
 		close_game(&info, 1);
 	return (0);
