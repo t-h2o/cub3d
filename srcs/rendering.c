@@ -38,9 +38,7 @@ static void	draw_ceil(t_info *info, int column, int offset)
 	line = -1;
 	while (++line < offset)
 	{
-		*(unsigned int *)dst = get_tx_pixel(&(info->texture[CE].img),
-				(float)column / W_WIDTH,
-				(float)line / (W_HEIGHT / 2));
+		*(unsigned int *)dst = CO_CEIL;
 		dst += info->screen.line_len;
 	}
 }

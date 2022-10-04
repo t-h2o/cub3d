@@ -85,9 +85,6 @@ static int	load_game_textures(t_info *info)
 	if (create_image(info, &(info->texture[FL].img), info->texture[FL].path)
 		&& load_xpm_image(info, &(info->texture[FL].img), TX_FLOOR))
 		return (error_msg("Couldn't load texture"));
-	if (create_image(info, &(info->texture[CE].img), info->texture[CE].path)
-		&& load_xpm_image(info, &(info->texture[CE].img), TX_CEIL))
-		return (error_msg("Couldn't load texture"));
 	return (0);
 }
 
