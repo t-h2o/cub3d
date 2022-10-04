@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:40:59 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/22 00:26:01 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/04 18:59:50 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,4 @@ void	print_frame(t_info *info)
 	render_screen(info);
 	mlx_clear_window(info->mlx[INIT], info->mlx[WINDOW]);
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->screen.img, 0, 0);
-	if (info->active_map)
-		print_minimap(info);
 }
