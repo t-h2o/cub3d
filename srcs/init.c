@@ -31,14 +31,15 @@ int	init_game(t_info *info, char *mapname)
 {
 	ft_memset(info, 0, (sizeof(t_info)));
 	info->active_map = true;
-	info->player.pos[X] = -1.0f;
 	info->player.delta[X] = -1.0f;
 	info->player.delta[Y] = -1.0f;
-	info->mlx[INIT] = mlx_init();
 	init_ray(info);
+	if (load_map(info, mapname))
+		return (1);
+	info->mlx[INIT] = mlx_init();
 	if (!info->mlx[INIT])
 		return (error_msg("Couldn't init mlx"));
-	if (load_map(info, mapname) || load_textures(info))
+	if (load_textures(info))
 		return (1);
 	return (0);
 }

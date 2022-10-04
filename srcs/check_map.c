@@ -14,7 +14,7 @@
 
 static int	save_player_info(t_info *info, int x, int y)
 {
-	if (info->player.pos[X] != -1.0f)
+	if (info->player.pos[X] != 0.0f)
 		return (error_msg("More than 1 player"));
 	else
 	{
@@ -91,7 +91,7 @@ int	check_map_data(t_info *info)
 		if (check_charset(info, y) || check_borders(info, y))
 			return (1);
 	}
-	if (info->player.pos[X] == -1.0f)
+	if (info->player.pos[X] == 0.0f)
 		return (error_msg("No player in the map"));
 	return (0);
 }
