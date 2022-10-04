@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/25 03:01:04 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/06 10:06:48 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,12 @@ static void	draw_ceil(t_info *info, int column, int offset)
 {
 	int		line;
 	char	*dst;
-	float	sky_offset;
 
 	dst = info->screen.addr + (column * info->screen.bpp / 8);
-	sky_offset = angle_sum(info->player.angle - FOV / 2 + M_PI / 2,
-			((float)column / (float)W_WIDTH) * FOV) / (2 * M_PI);
 	line = -1;
 	while (++line < offset)
 	{
-		*(unsigned int *)dst = get_tx_pixel(&(info->texture[CE].img),
-				sky_offset,
-				(float)line / (W_HEIGHT / 2));
+		*(unsigned int *)dst = CO_CEIL;
 		dst += info->screen.line_len;
 	}
 }
