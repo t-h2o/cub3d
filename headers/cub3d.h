@@ -24,7 +24,7 @@
 // HEADERS FILES
 # include	"keys.h"
 # include	"textures.h"
-# include	"colors.h"
+# include	"color.h"
 
 // GAME SETTINGS
 
