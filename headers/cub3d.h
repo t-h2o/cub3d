@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/22 12:37:16 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/04 19:01:08 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,14 @@
 // Define
 
 // Path for textures
-// minimap textures
-# define MM_GROUND	"assets/textures/minimap/ground.xpm"
-# define MM_WALL	"assets/textures/minimap/wall.xpm"
-# define MM_PLAYER	"assets/textures/minimap/player.xpm"
 
 // game textures
 # define TX_NORTH	"assets/textures/dark_brick.xpm"
 # define TX_SOUTH	"assets/textures/jungle.xpm"
 # define TX_EAST	"assets/textures/jungle_brick.xpm"
 # define TX_WEST	"assets/textures/handpainted_brick.xpm"
-# define TX_FLOOR	"assets/textures/dirt1.xpm"
-# define TX_CEIL	"assets/textures/sky2.xpm"
+# define CO_FLOOR	0x009A9991
+# define CO_CEIL	0x0087CEEB
 
 # define MAPSDIR	"assets/maps/"
 
@@ -68,27 +64,12 @@
 # define W_WIDTH	1024
 # define W_HEIGHT	768
 
-// Location of the Minimap from the top left corner
-# define MM_POS_Y	10
-# define MM_POS_X	10
-
-// Size of a square of the mini map
-# define MM_SIZE_TILE	10
-# define MM_SIZE_PLAYER	4
-
 // Structure
 
 // Mlx pointer for the window
 enum e_mlx {
 	INIT,
 	WINDOW
-};
-
-// Mini map texture
-enum e_mm {
-	GROUND,
-	WALL,
-	PLAYER
 };
 
 enum e_tx {
@@ -122,6 +103,7 @@ typedef struct s_img_data {
 typedef struct s_texture {
 	char		*path;
 	t_img_data	img;
+	int			color;
 }	t_texture;
 
 typedef struct s_player {
@@ -144,7 +126,6 @@ typedef struct s_ray {
 typedef struct s_info {
 	void		*mlx[2];
 	char		**map;
-	t_img_data	mm_img[3];
 	int			map_h;
 	t_player	player;
 	t_texture	texture[6];
@@ -167,9 +148,6 @@ int		init_game(t_info *info, char *mapname);
 
 // frame.c
 void	print_frame(t_info *info);
-
-// mini_map.c
-void	print_minimap(t_info *info);
 
 // parsing.c
 int		load_map(t_info *info, char *mapname);

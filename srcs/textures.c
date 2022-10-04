@@ -6,39 +6,11 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/17 19:10:19 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/04 19:01:37 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// Create an image from a single color
-static int	create_image(t_info *info, t_img_data *img, char *path)
-{
-	int			color;
-	int			x;
-	int			y;
-	char		*dst;
-
-	color = convert_rgb(path);
-	if (color == -1)
-		return (1);
-	img->img = mlx_new_image(info->mlx[INIT], W_WIDTH, W_HEIGHT / 2);
-	img->addr = mlx_get_data_addr(img->img,
-			&(img->bpp), &(img->line_len), &(img->endian));
-	y = -1;
-	while (++y < W_HEIGHT / 2)
-	{
-		x = -1;
-		while (++x < W_WIDTH)
-		{
-			dst = img->addr + (y * img->line_len
-					+ x * (img->bpp / 8));
-			*(unsigned int *)dst = color;
-		}
-	}
-	return (0);
-}
 
 // Load an image from xpm file
 // Check if the image is a square
@@ -50,18 +22,6 @@ static int	load_xpm_image(t_info *info, t_img_data *img, char *path)
 		return (1);
 	img->addr = mlx_get_data_addr(img->img,
 			&(img->bpp), &(img->line_len), &(img->endian));
-	return (0);
-}
-
-// Load textures for the minimap
-static int	load_mm_textures(t_info *info)
-{
-	if (load_xpm_image(info, &(info->mm_img[GROUND]), MM_GROUND))
-		return (1);
-	if (load_xpm_image(info, &(info->mm_img[WALL]), MM_WALL))
-		return (1);
-	if (load_xpm_image(info, &(info->mm_img[PLAYER]), MM_PLAYER))
-		return (1);
 	return (0);
 }
 
@@ -82,20 +42,18 @@ static int	load_game_textures(t_info *info)
 	if (load_xpm_image(info, &(info->texture[WE].img), info->texture[WE].path)
 		&& load_xpm_image(info, &(info->texture[WE].img), TX_WEST))
 		return (error_msg("Couldn't load texture"));
-	if (create_image(info, &(info->texture[FL].img), info->texture[FL].path)
-		&& load_xpm_image(info, &(info->texture[FL].img), TX_FLOOR))
-		return (error_msg("Couldn't load texture"));
-	if (create_image(info, &(info->texture[CE].img), info->texture[CE].path)
-		&& load_xpm_image(info, &(info->texture[CE].img), TX_CEIL))
-		return (error_msg("Couldn't load texture"));
+	info->texture[FL].color = convert_rgb(info->texture[FL].path);
+	if (info->texture[FL].color == -1)
+		info->texture[FL].color = CO_FLOOR;
+	info->texture[CE].color = convert_rgb(info->texture[CE].path);
+	if (info->texture[CE].color == -1)
+		info->texture[CE].color = CO_CEIL;
 	return (0);
 }
 
 // Load all the textures
 int	load_textures(t_info *info)
 {
-	if (load_mm_textures(info))
-		return (1);
 	if (load_game_textures(info))
 		return (1);
 	info->screen.img = mlx_new_image(info->mlx[0], W_WIDTH, W_HEIGHT);
