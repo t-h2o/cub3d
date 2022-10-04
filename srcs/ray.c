@@ -34,7 +34,8 @@ static void
 	ray_type(t_ray *ray,
 		float distance[2], float hit[2][2])
 {
-	if (distance[Y] < distance[X])
+	if ((distance[X] == -1.0f || (distance[Y] < distance[X]))
+		&& distance[Y] != -1.0f)
 	{
 		ft_memcpy(ray->hit, hit[Y], 2 * sizeof(float));
 		ray->distance = distance[Y];
