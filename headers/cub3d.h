@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/06 10:06:14 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/10/06 10:08:10 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_img_data {
 typedef struct s_texture {
 	char		*path;
 	t_img_data	img;
+	int			color;
 }	t_texture;
 
 typedef struct s_player {
