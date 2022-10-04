@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/22 12:37:16 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/04 18:54:51 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 # define TX_SOUTH	"assets/textures/jungle.xpm"
 # define TX_EAST	"assets/textures/jungle_brick.xpm"
 # define TX_WEST	"assets/textures/handpainted_brick.xpm"
-# define TX_FLOOR	"assets/textures/dirt1.xpm"
-# define CO_CEIL	0x00000070
+# define CO_FLOOR	0x009A9991
+# define CO_CEIL	0x0087CEEB
 
 # define MAPSDIR	"assets/maps/"
 
@@ -122,6 +122,7 @@ typedef struct s_img_data {
 typedef struct s_texture {
 	char		*path;
 	t_img_data	img;
+	int			color;
 }	t_texture;
 
 typedef struct s_player {

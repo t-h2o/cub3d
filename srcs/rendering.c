@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/24 19:06:34 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/04 18:34:33 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	draw_ceil(t_info *info, int column, int offset)
 	line = -1;
 	while (++line < offset)
 	{
-		*(unsigned int *)dst = CO_CEIL;
+		*(unsigned int *)dst = info->texture[CE].color;
 		dst += info->screen.line_len;
 	}
 }
@@ -86,9 +86,7 @@ static void	draw_floor(t_info *info, int column, int offset)
 	line = offset - 1;
 	while (++line < W_HEIGHT)
 	{
-		*(unsigned int *)dst = get_tx_pixel(&(info->texture[FL].img),
-				(float)column / W_WIDTH,
-				(float)(line - (W_HEIGHT / 2)) / (W_HEIGHT / 2));
+		*(unsigned int *)dst = info->texture[FL].color;
 		dst += info->screen.line_len;
 	}
 }
