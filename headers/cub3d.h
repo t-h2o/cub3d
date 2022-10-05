@@ -42,6 +42,7 @@
 // rotation = (2PI / 128)
 # define PS_MOVE	0.1f
 # define PS_ROTATE	0.0490873852123f
+# define MIN_DISTANCE	0.2f
 
 // Minimap settings
 // postion
