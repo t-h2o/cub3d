@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/09/30 17:53:16 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/05 13:17:10 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Draw a tile of the minimap in the mm image
 static void	draw_mm_tile(t_info *info, char c, int y, int x)
 {
-	int	color;
+	int		color;
 	int		i;
 	int		j;
 	char	*dst;
@@ -32,8 +32,8 @@ static void	draw_mm_tile(t_info *info, char c, int y, int x)
 		while (++i < MM_SIZE_TILE)
 		{
 			dst = info->mm_img[MAP].addr
-					+ ((MM_SIZE_TILE * y + j) * info->mm_img[MAP].line_len)
-					+ ((MM_SIZE_TILE * x + i) * (info->mm_img[MAP].bpp / 8));
+				+ ((MM_SIZE_TILE * y + j) * info->mm_img[MAP].line_len)
+				+ ((MM_SIZE_TILE * x + i) * (info->mm_img[MAP].bpp / 8));
 			*(unsigned int *)dst = color;
 		}
 	}
@@ -57,15 +57,16 @@ void	create_minimap(t_info *info)
 	int	x;
 	int	y;
 
-	info->mm_img[MAP].img = mlx_new_image(info->mlx[0], 330, MM_SIZE_TILE * info->map_h);
+	info->mm_img[MAP].img = mlx_new_image(info->mlx[0],
+			MM_SIZE_TILE * info->map_w, MM_SIZE_TILE * info->map_h);
 	info->mm_img[MAP].addr = mlx_get_data_addr(info->mm_img[MAP].img,
-				&(info->mm_img[MAP].bpp), &(info->mm_img[MAP].line_len),
-				&(info->mm_img[MAP].endian));
+			&(info->mm_img[MAP].bpp), &(info->mm_img[MAP].line_len),
+			&(info->mm_img[MAP].endian));
 	y = -1;
 	while (++y < info->map_h)
 	{
 		x = -1;
-		while (++x < 33)
+		while (++x < info->map_w)
 			draw_mm_tile(info, info->map[y][x], y, x);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/05 16:13:39 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/05 13:15:00 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int	open_map(char *mapname, int *fd)
 static int	save_map_data(t_info *info, char *line)
 {
 	int		i;
+	int		len;
 	char	**tmp;
 
 	info->map_h++;
@@ -47,6 +48,9 @@ static int	save_map_data(t_info *info, char *line)
 	}
 	info->map[i] = line;
 	info->map[i + 1] = NULL;
+	len = ft_strlen(line) - 1;
+	if (len > info->map_w)
+		info->map_w = len;
 	return (0);
 }
 
