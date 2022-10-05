@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/05 17:35:29 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/05 19:15:43 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@ static int	get_tx_pixel(t_img_data *tx, float x_scale, float y_scale)
 			+ ((int)(y_scale * tx->height) * tx->line_len)
 			+ ((int)(x_scale * tx->width) * (tx->bpp / 8)));
 	return (pixel_value);
+}
+
+static void	add_shade(char *dst, float distance)
+{
+	float		shading;
+
+	if (distance <= 3.0f) //FOG MIN
+		return ;
+	shading = 1 / (distance - 2);
+	dst[0] = (unsigned char)dst[0] * shading;
+	dst[1] = (unsigned char)dst[1] * shading;
+	dst[2] = (unsigned char)dst[2] * shading;
 }
 
 // Draw a column of the sky
@@ -60,7 +72,6 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 	char		*dst;
 	t_img_data	*tx;
 	float		x_scale;
-	float		shading;
 
 	tx = &(info->texture[info->ray[column].wall].img);
 	dst = info->screen.addr + (column * info->screen.bpp / 8);
@@ -70,25 +81,19 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 		x_scale = info->ray[column].hit[X] - (int)info->ray[column].hit[X];
 	else
 		x_scale = info->ray[column].hit[Y] - (int)info->ray[column].hit[Y];
-	if (info->ray[column].distance <= 3.0f)
-		shading = 1.0f;
-	else
-		shading = 1 / (info->ray[column].distance - 2);
 	line = -1;
 	if (wall_off < 0)
 		line = -wall_off - 1;
 	while (++line < wall_hei && (line + wall_off) < W_HEIGHT)
 	{	
-		if (info->ray[column].distance <= 7.5f)
+		if (info->ray[column].distance <= 7.5f) //MAX VIEW (FOG MAX)
 		{
 			*(unsigned int *)dst = get_tx_pixel(tx, x_scale,
 					(float)line / wall_hei);
-			dst[0] = (unsigned char)dst[0] * shading;
-			dst[1] = (unsigned char)dst[1] * shading;
-			dst[2] = (unsigned char)dst[2] * shading;
+			add_shade(dst, info->ray[column].distance);
 		}
 		else
-			*(unsigned int *)dst = 0x08080808;
+			*(unsigned int *)dst = 0x08080808; //CO_FOG
 
 		dst += info->screen.line_len;
 	}
