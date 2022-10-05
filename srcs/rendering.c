@@ -67,7 +67,7 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 		dst += (wall_off * info->screen.line_len);
 	if (info->ray[column].wall == NO || info->ray[column].wall == SO)
 		x_scale = info->ray[column].hit[X] - (int)info->ray[column].hit[X];
-	else if (info->ray[column].wall == WE || info->ray[column].wall == EA)
+	else
 		x_scale = info->ray[column].hit[Y] - (int)info->ray[column].hit[Y];
 	line = -1;
 	if (wall_off < 0)

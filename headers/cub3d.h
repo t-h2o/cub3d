@@ -6,73 +6,48 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/25 02:57:40 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/04 20:01:44 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-// HEADERS
-
+// LIBS
 # include	<stdio.h>
 # include	<stdbool.h>
 # include	<fcntl.h>
 # include	<math.h>
+# include	<libft.h>
+# include	<mlx.h>
+
+// HEADERS FILES
 # include	"keys.h"
-# include	"../libs/libft/includes/libft.h"
+# include	"textures.h"
+# include	"color.h"
 
-# ifdef __APPLE__
-#  include	"../libs/mlx-apple/mlx.h"
+// GAME SETTINGS
 
-# elif __linux__
-#  include	"../libs/mlx-linux/mlx.h"
-#  include	"../libs/mlx-linux/mlx_int.h"
-
-# endif
-
-// Define
-
-// Path for textures
-// minimap textures
-# define MM_GROUND	"assets/textures/minimap/ground.xpm"
-# define MM_WALL	"assets/textures/minimap/wall.xpm"
-# define MM_PLAYER	"assets/textures/minimap/player.xpm"
-
-// game textures
-# define TX_NORTH	"assets/textures/dark_brick.xpm"
-# define TX_SOUTH	"assets/textures/jungle.xpm"
-# define TX_EAST	"assets/textures/jungle_brick.xpm"
-# define TX_WEST	"assets/textures/handpainted_brick.xpm"
-# define TX_FLOOR	"assets/textures/dirt1.xpm"
-# define TX_CEIL	"assets/textures/sky_hexa.xpm"
-
+// Maps directory
 # define MAPSDIR	"assets/maps/"
-
-// Color
-# define CO_WHITE		0x00FFFFFF
-# define CO_BLUE		0x000000FF
-# define CO_RED			0x00FF0000
-# define CO_GREEN		0x0000FF00
-# define CO_YELLOW		0x00FFFF00
-
-// Sensibility
-// rotation = (2PI / 128)
-# define PS_MOVE	0.1f
-# define PS_ROTATE	0.0490873852123f
-
-// Field of view ~70 degrees
-# define FOV		1.2f
 
 // Window size [px]
 # define W_WIDTH	1024
 # define W_HEIGHT	768
 
-// Location of the Minimap from the top left corner
+// Field of view ~70 degrees
+# define FOV		1.2f
+
+// Player settings
+// rotation = (2PI / 128)
+# define PS_MOVE	0.1f
+# define PS_ROTATE	0.0490873852123f
+
+// Minimap settings
+// postion
 # define MM_POS_Y	10
 # define MM_POS_X	10
-
-// Size of a square of the mini map
+// size
 # define MM_SIZE_TILE	10
 # define MM_SIZE_PLAYER	4
 
