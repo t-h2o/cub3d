@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:58:14 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/11 16:15:25 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/04 15:36:44 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@
 # define TX_WEST	"assets/textures/handpainted_brick.xpm"
 # define TX_FLOOR	"assets/textures/coord_plane.xpm"
 # define TX_CEIL	"assets/textures/sky_doubled.xpm"
+# define TX_DOOR	"assets/textures/door.xpm"
 
 #endif /* TEXTURES_H */

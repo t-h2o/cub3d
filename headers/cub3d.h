@@ -71,7 +71,8 @@ enum e_tx {
 	EA,
 	WE,
 	FL,
-	CE
+	CE,
+	D
 };
 
 enum e_axis {
@@ -121,7 +122,7 @@ typedef struct s_info {
 	t_img_data	mm_img[2];
 	int			mapsize[2];
 	t_player	player;
-	t_texture	texture[6];
+	t_texture	texture[7];
 	bool		active_map;
 	t_ray		ray[W_WIDTH];
 	t_img_data	screen;
