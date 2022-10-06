@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/05 11:33:44 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/06 14:05:45 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,7 @@ typedef struct s_info {
 	void		*mlx[2];
 	char		**map;
 	t_img_data	mm_img[2];
-	int			map_h;
-	int			map_w;
+	int			mapsize[2];
 	t_player	player;
 	t_texture	texture[6];
 	bool		active_map;

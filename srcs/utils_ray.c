@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 05:43:03 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/21 15:35:42 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/10/06 14:08:43 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ float	horizontal_up(t_info *info, float hit[2], float delta[2])
 	hit[Y] = info->player.pos[Y] + ratio * delta[Y];
 	while (1)
 	{
-		if (hit[X] < 0 || hit[Y] < 0 || info->map_h - 1 < hit[Y]
+		if (hit[X] < 0 || hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y]
 			|| ft_strlen(info->map[(int)hit[Y]]) < hit[X])
 			break ;
 		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
@@ -50,7 +50,7 @@ float	horizontal_down(t_info *info, float hit[2], float delta[2])
 	hit[Y] = info->player.pos[Y] + ratio * delta[Y];
 	while (1)
 	{
-		if (hit[X] < 0 || hit[Y] < 0 || info->map_h - 1 < hit[Y]
+		if (hit[X] < 0 || hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y]
 			|| ft_strlen(info->map[(int)hit[Y]]) < hit[X])
 			break ;
 		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
@@ -73,7 +73,7 @@ float	vertical_right(t_info *info, float hit[2], float delta[2])
 	hit[Y] = info->player.pos[Y] + ratio * delta[Y];
 	while (1)
 	{
-		if (hit[Y] < 0 || info->map_h - 1 < hit[Y])
+		if (hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y])
 			break ;
 		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
 			break ;
@@ -95,7 +95,7 @@ float	vertical_left(t_info *info, float hit[2], float delta[2])
 	hit[Y] = info->player.pos[Y] + ratio * delta[Y];
 	while (1)
 	{
-		if (hit[Y] < 0 || info->map_h - 1 < hit[Y])
+		if (hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y])
 			break ;
 		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
 			break ;

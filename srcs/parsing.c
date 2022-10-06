@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/05 13:15:00 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/06 14:07:45 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ static int	save_map_data(t_info *info, char *line)
 	int		len;
 	char	**tmp;
 
-	info->map_h++;
+	info->mapsize[Y]++;
 	tmp = info->map;
-	info->map = malloc(sizeof (char *) * (info->map_h + 1));
+	info->map = malloc(sizeof (char *) * (info->mapsize[Y] + 1));
 	if (!info->map)
 		return (error_msg("Malloc :x"));
 	i = 0;
 	if (tmp)
 	{
-		while (i < info->map_h - 1)
+		while (i < info->mapsize[Y] - 1)
 		{
 			info->map[i] = tmp[i];
 			i++;
@@ -49,8 +49,8 @@ static int	save_map_data(t_info *info, char *line)
 	info->map[i] = line;
 	info->map[i + 1] = NULL;
 	len = ft_strlen(line) - 1;
-	if (len > info->map_w)
-		info->map_w = len;
+	if (len > info->mapsize[X])
+		info->mapsize[X] = len;
 	return (0);
 }
 

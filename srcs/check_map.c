@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/19 14:59:57 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/06 14:10:28 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,16 @@ static int	check_borders(t_info *info, int y)
 	{	
 		if (info->map[y][x] == '0')
 		{
-			if ((x == 0) || (y == info->map_h - 1)
+			if ((x == 0) || (y == info->mapsize[Y] - 1)
 				|| (x > 0 && info->map[y][x - 1] == ' ') ||
 				(info->map[y][x + 1] != '0' && info->map[y][x + 1] != '1') ||
 				(y > 0 && (int) ft_strlen(info->map[y - 1]) > x
 				&& info->map[y - 1][x] == ' ') ||
 				(y > 0 && (int) ft_strlen(info->map[y - 1]) <= x) ||
-				(y < info->map_h && (int) ft_strlen(info->map[y + 1]) > x
+				(y < info->mapsize[Y] && (int) ft_strlen(info->map[y + 1]) > x
 				&& info->map[y + 1][x] == ' ') ||
-				(y < info->map_h && (int) ft_strlen(info->map[y + 1]) <= x))
+				(y < info->mapsize[Y]
+				&& (int) ft_strlen(info->map[y + 1]) <= x))
 				return (error_msg("Map isn't closed by walls"));
 		}
 	}

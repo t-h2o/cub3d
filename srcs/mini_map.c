@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/10/05 13:17:10 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/06 14:06:39 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,15 @@ void	create_minimap(t_info *info)
 	int	y;
 
 	info->mm_img[MAP].img = mlx_new_image(info->mlx[0],
-			MM_SIZE_TILE * info->map_w, MM_SIZE_TILE * info->map_h);
+			MM_SIZE_TILE * info->mapsize[X], MM_SIZE_TILE * info->mapsize[Y]);
 	info->mm_img[MAP].addr = mlx_get_data_addr(info->mm_img[MAP].img,
 			&(info->mm_img[MAP].bpp), &(info->mm_img[MAP].line_len),
 			&(info->mm_img[MAP].endian));
 	y = -1;
-	while (++y < info->map_h)
+	while (++y < info->mapsize[Y])
 	{
 		x = -1;
-		while (++x < info->map_w)
+		while (++x < info->mapsize[X])
 			draw_mm_tile(info, info->map[y][x], y, x);
 	}
 }
