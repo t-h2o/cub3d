@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/04 20:01:44 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/10/06 14:05:45 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,9 @@ enum e_mlx {
 	WINDOW
 };
 
-// Mini map texture
+// Mini map images
 enum e_mm {
-	GROUND,
-	WALL,
+	MAP,
 	PLAYER
 };
 
@@ -119,8 +118,8 @@ typedef struct s_ray {
 typedef struct s_info {
 	void		*mlx[2];
 	char		**map;
-	t_img_data	mm_img[3];
-	int			map_h;
+	t_img_data	mm_img[2];
+	int			mapsize[2];
 	t_player	player;
 	t_texture	texture[6];
 	bool		active_map;
@@ -144,6 +143,7 @@ int		init_game(t_info *info, char *mapname);
 void	print_frame(t_info *info);
 
 // mini_map.c
+void	create_minimap(t_info *info);
 void	print_minimap(t_info *info);
 
 // parsing.c

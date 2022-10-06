@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/16 14:25:46 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/30 16:27:55 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 static void	destroy_images(t_info *info)
 {
-	my_destroy_image(info->mlx[INIT], info->mm_img[GROUND].img);
-	my_destroy_image(info->mlx[INIT], info->mm_img[WALL].img);
+	my_destroy_image(info->mlx[INIT], info->mm_img[MAP].img);
 	my_destroy_image(info->mlx[INIT], info->mm_img[PLAYER].img);
 	my_destroy_image(info->mlx[INIT], info->texture[NO].img.img);
 	my_destroy_image(info->mlx[INIT], info->texture[SO].img.img);

@@ -6,31 +6,37 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/09/22 00:24:42 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/06 14:06:39 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 
-// Print the texture chosen with the char of the map
-// Position:
-//   x: Size * x_char + distance from the left
-//   y: Size * y_char + distance from the top
-// Get player position:
-//   x: Size * x_char + ((SQUARE_MAP - SQUARE_PLAYER) / 2)
-//   y: Size * y_char + ((SQUARE_MAP - SQUARE_PLAYER) / 2)
-static void	print_square(t_info *info, char c, int y, int x)
+// Draw a tile of the minimap in the mm image
+static void	draw_mm_tile(t_info *info, char c, int y, int x)
 {
+	int		color;
+	int		i;
+	int		j;
+	char	*dst;
+
+	color = 0x70303030;
 	if (c == '0')
-		mlx_put_image_to_window(info->mlx[0], info->mlx[1],
-			info->mm_img[GROUND].img,
-			x * MM_SIZE_TILE + MM_POS_X,
-			y * MM_SIZE_TILE + MM_POS_Y);
-	if (c == '1')
-		mlx_put_image_to_window(info->mlx[0], info->mlx[1],
-			info->mm_img[WALL].img,
-			x * MM_SIZE_TILE + MM_POS_X,
-			y * MM_SIZE_TILE + MM_POS_Y);
+		color = MM_GROUND;
+	else if (c == '1')
+		color = MM_WALL;
+	j = -1;
+	while (++j < MM_SIZE_TILE)
+	{
+		i = -1;
+		while (++i < MM_SIZE_TILE)
+		{
+			dst = info->mm_img[MAP].addr
+				+ ((MM_SIZE_TILE * y + j) * info->mm_img[MAP].line_len)
+				+ ((MM_SIZE_TILE * x + i) * (info->mm_img[MAP].bpp / 8));
+			*(unsigned int *)dst = color;
+		}
+	}
 }
 
 static void	print_mm_player(t_info *info)
@@ -41,21 +47,37 @@ static void	print_mm_player(t_info *info)
 		MM_POS_Y + info->player.pos[Y] * MM_SIZE_TILE - MM_SIZE_PLAYER / 2);
 }
 
-// Clear the window
+static void	draw_mm_rays(t_info *info)
+{
+	(void) info;
+}
+
+void	create_minimap(t_info *info)
+{
+	int	x;
+	int	y;
+
+	info->mm_img[MAP].img = mlx_new_image(info->mlx[0],
+			MM_SIZE_TILE * info->mapsize[X], MM_SIZE_TILE * info->mapsize[Y]);
+	info->mm_img[MAP].addr = mlx_get_data_addr(info->mm_img[MAP].img,
+			&(info->mm_img[MAP].bpp), &(info->mm_img[MAP].line_len),
+			&(info->mm_img[MAP].endian));
+	y = -1;
+	while (++y < info->mapsize[Y])
+	{
+		x = -1;
+		while (++x < info->mapsize[X])
+			draw_mm_tile(info, info->map[y][x], y, x);
+	}
+}
+
 // Print the mini map
 // Print the player
-// Print the data
+// Draw the rays
 void	print_minimap(t_info *info)
 {
-	int		pos_x;
-	int		pos_y;
-
-	pos_y = -1;
-	while (info->map[++pos_y])
-	{
-		pos_x = -1;
-		while (info->map[pos_y][++pos_x])
-			print_square(info, info->map[pos_y][pos_x], pos_y, pos_x);
-	}
+	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
+		info->mm_img[MAP].img, MM_POS_X, MM_POS_Y);
 	print_mm_player(info);
+	draw_mm_rays(info);
 }

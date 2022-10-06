@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/17 19:10:19 by gudias           ###   ########.fr       */
+/*   Updated: 2022/09/30 16:43:55 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,51 +53,41 @@ static int	load_xpm_image(t_info *info, t_img_data *img, char *path)
 	return (0);
 }
 
-// Load textures for the minimap
-static int	load_mm_textures(t_info *info)
-{
-	if (load_xpm_image(info, &(info->mm_img[GROUND]), MM_GROUND))
-		return (1);
-	if (load_xpm_image(info, &(info->mm_img[WALL]), MM_WALL))
-		return (1);
-	if (load_xpm_image(info, &(info->mm_img[PLAYER]), MM_PLAYER))
-		return (1);
-	return (0);
-}
-
 // Load textures for the game
+//	mm player, walls, pov
 // 	try to load from path defined in mapfile
 // 	or fallback to default texture if failed
 static int	load_game_textures(t_info *info)
 {
 	if (load_xpm_image(info, &(info->texture[NO].img), info->texture[NO].path)
 		&& load_xpm_image(info, &(info->texture[NO].img), TX_NORTH))
-		return (error_msg("Couldn't load texture"));
+		return (1);
 	if (load_xpm_image(info, &(info->texture[SO].img), info->texture[SO].path)
 		&& load_xpm_image(info, &(info->texture[SO].img), TX_SOUTH))
-		return (error_msg("Couldn't load texture"));
+		return (1);
 	if (load_xpm_image(info, &(info->texture[EA].img), info->texture[EA].path)
 		&& load_xpm_image(info, &(info->texture[EA].img), TX_EAST))
-		return (error_msg("Couldn't load texture"));
+		return (1);
 	if (load_xpm_image(info, &(info->texture[WE].img), info->texture[WE].path)
 		&& load_xpm_image(info, &(info->texture[WE].img), TX_WEST))
-		return (error_msg("Couldn't load texture"));
+		return (1);
 	if (create_image(info, &(info->texture[FL].img), info->texture[FL].path)
 		&& load_xpm_image(info, &(info->texture[FL].img), TX_FLOOR))
-		return (error_msg("Couldn't load texture"));
+		return (1);
 	if (create_image(info, &(info->texture[CE].img), info->texture[CE].path)
 		&& load_xpm_image(info, &(info->texture[CE].img), TX_CEIL))
-		return (error_msg("Couldn't load texture"));
+		return (1);
+	if (load_xpm_image(info, &(info->mm_img[PLAYER]), MM_PLAYER))
+		return (1);
 	return (0);
 }
 
 // Load all the textures
 int	load_textures(t_info *info)
 {
-	if (load_mm_textures(info))
-		return (1);
 	if (load_game_textures(info))
-		return (1);
+		return (error_msg("Couldn't load texture"));
+	create_minimap(info);
 	info->screen.img = mlx_new_image(info->mlx[0], W_WIDTH, W_HEIGHT);
 	info->screen.addr = mlx_get_data_addr(info->screen.img,
 			&(info->screen.bpp),
