@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/05 19:15:43 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/06 18:40:19 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	add_shade(char *dst, float distance)
 {
 	float		shading;
 
-	if (distance <= 3.0f) //FOG MIN
+	if (distance <= FOG_MIN)
 		return ;
-	shading = 1 / (distance - 2);
+	shading = 1 / (distance - FOG_MIN + 1);
 	dst[0] = (unsigned char)dst[0] * shading;
 	dst[1] = (unsigned char)dst[1] * shading;
 	dst[2] = (unsigned char)dst[2] * shading;
@@ -86,15 +86,14 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 		line = -wall_off - 1;
 	while (++line < wall_hei && (line + wall_off) < W_HEIGHT)
 	{	
-		if (info->ray[column].distance <= 7.5f) //MAX VIEW (FOG MAX)
+		if (info->ray[column].distance <= FOG_MAX)
 		{
 			*(unsigned int *)dst = get_tx_pixel(tx, x_scale,
 					(float)line / wall_hei);
 			add_shade(dst, info->ray[column].distance);
 		}
 		else
-			*(unsigned int *)dst = 0x08080808; //CO_FOG
-
+			*(unsigned int *)dst = CO_FOG;
 		dst += info->screen.line_len;
 	}
 }
@@ -134,8 +133,8 @@ void	render_screen(t_info *info)
 	{
 		correct_distance = info->ray[column].distance
 			* cos(info->ray[column].angle);
-		if (correct_distance > 7.5f)
-			wall_height = W_HEIGHT / 7.5f;
+		if (correct_distance > FOG_MAX)
+			wall_height = W_HEIGHT / FOG_MAX;
 		else
 			wall_height = W_HEIGHT / correct_distance;
 		wall_offset = (W_HEIGHT - wall_height) / 2;

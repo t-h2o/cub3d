@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/06 14:05:45 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/06 18:45:18 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@
 // rotation = (2PI / 128)
 # define PS_MOVE	0.1f
 # define PS_ROTATE	0.0490873852123f
+
+// Shading settings
+// fog start
+# define FOG_MIN	3.5f
+// max view distance
+# define FOG_MAX	10.0f
 
 // Minimap settings
 // postion
