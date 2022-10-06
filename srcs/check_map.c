@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/06 14:10:28 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/06 21:55:46 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	check_charset(t_info *info, int y)
 	while (info->map[y][++x] && info->map[y][x] != '\n')
 	{	
 		data = info->map[y][x];
-		if (data != '0' && data != '1')
+		if (data != '0' && data != '1' && data != 'D')
 		{
 			if (data != 'N' && data != 'S' && data != 'E'
 				&& data != 'W' && data != ' ')
@@ -66,7 +66,7 @@ static int	check_borders(t_info *info, int y)
 		{
 			if ((x == 0) || (y == info->mapsize[Y] - 1)
 				|| (x > 0 && info->map[y][x - 1] == ' ') ||
-				(info->map[y][x + 1] != '0' && info->map[y][x + 1] != '1') ||
+				(info->map[y][x + 1] == ' ') || (info->map[y][x + 1] == '\n') ||
 				(y > 0 && (int) ft_strlen(info->map[y - 1]) > x
 				&& info->map[y - 1][x] == ' ') ||
 				(y > 0 && (int) ft_strlen(info->map[y - 1]) <= x) ||
