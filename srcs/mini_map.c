@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/10/06 14:06:39 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/07 16:52:20 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	draw_mm_tile(t_info *info, char c, int y, int x)
 		color = MM_GROUND;
 	else if (c == '1')
 		color = MM_WALL;
+	else if (c == 'D')
+		color = MM_DOOR;
 	j = -1;
 	while (++j < MM_SIZE_TILE)
 	{

@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:58:14 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/04 15:36:44 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/04 15:38:07 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define MM_PLAYER	"assets/textures/minimap/player.xpm"
 # define MM_GROUND	0x00C1C1C1
 # define MM_WALL	0x00000000
+# define MM_DOOR	0x007C503F
 
 // game textures
 # define TX_NORTH	"assets/textures/dark_brick.xpm"
