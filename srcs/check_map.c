@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/06 21:55:46 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/07 20:09:58 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ int	check_map_data(t_info *info)
 	y = -1;
 	while (info->map[++y])
 	{
-		if (check_charset(info, y) || check_borders(info, y))
+		if (check_charset(info, y) || check_borders(info, y)
+			|| check_doors(info, y))
 			return (1);
 	}
 	if (info->player.pos[X] == 0.0f)
