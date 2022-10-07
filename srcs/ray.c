@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/10/07 01:10:17 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/07 16:50:43 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void
 {
 	if (distance[Y] < distance[X])
 	{
+		ray->hitdir = 1;
 		ft_memcpy(ray->hit, hit[Y], 2 * sizeof(float));
 		ray->distance = distance[Y];
 		if (info->map[(int)ray->hit[Y]][(int)ray->hit[X]] == 'D')
@@ -47,6 +48,7 @@ static void
 	}
 	else
 	{
+		ray->hitdir = 0;
 		ft_memcpy(ray->hit, hit[X], 2 * sizeof(float));
 		ray->distance = distance[X];
 		if (info->map[(int)ray->hit[Y]][(int)ray->hit[X]] == 'D')

@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/14 17:02:48 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/04 15:37:38 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 	dst = info->screen.addr + (column * info->screen.bpp / 8);
 	if (wall_off > 0)
 		dst += (wall_off * info->screen.line_len);
-	if (info->ray[column].wall == NO || info->ray[column].wall == SO)
+	if (info->ray[column].hitdir)
 		x_scale = info->ray[column].hit[X] - (int)info->ray[column].hit[X];
 	else
 		x_scale = info->ray[column].hit[Y] - (int)info->ray[column].hit[Y];

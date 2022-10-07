@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/06 14:05:45 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/07 16:30:44 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct s_ray {
 	float			hit[2];
 	float			distance;
 	unsigned char	wall;
+	int				hitdir;
 }	t_ray;
 
 // mlx: pointer on informations of the window
