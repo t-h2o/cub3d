@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 12:26:36 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/10/07 02:15:31 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/07 17:33:55 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,20 @@ void
 	info->player.angle = angle_sum(info->player.angle, rotation);
 	angle_delta(info->player.angle, info->player.delta);
 	print_frame(info);
+}
+
+// Player Action
+// When player press 'E'
+void
+	player_action(t_info *info)
+{
+	t_ray	*mid_ray;
+
+	mid_ray = &(info->ray[W_WIDTH / 2]);
+	if (mid_ray->distance < 1.2f && mid_ray->wall == D)
+	{
+		info->map[(int)mid_ray->hit[Y]][(int)mid_ray->hit[X]] = '0';
+		create_minimap(info);
+		print_frame(info);
+	}
 }

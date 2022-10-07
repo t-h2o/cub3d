@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/07 16:30:44 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/07 17:17:23 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ int		load_map(t_info *info, char *mapname);
 // player.c
 void	player_move(t_info *info, float distance, int side);
 void	player_rotate(t_info *info, float rotation);
+void	player_action(t_info *info);
 
 // ray.c
 void	ray(t_info *info, t_ray *ray);
