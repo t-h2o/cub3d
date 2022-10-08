@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:21:52 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/07 20:10:41 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/07 20:24:40 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,40 @@ int	check_doors(t_info *info, int y)
 				|| (info->map[y][x + 1] == '1' && (info->map[y][x - 1] != '1'
 				|| info->map[y + 1][x] != '0' || info->map[y - 1][x] != '0')))
 				return (error_msg("Invalid door position"));
+			//add_door(info->doors, x, y)
 		}
 	}
 	return (0);
 }
+
+/*
+void	add_door(info->doors, pos[2])
+{
+	t_door	*ptr;
+	t_door	*new_door;
+
+	new_door = malloc...
+	new_door.x = pos[X];
+	new_door.y = pos[Y];
+	new_door.open = 0;
+
+	ptr = info->doors;
+	while (ptr->next)
+		ptr = ptr->next;
+	ptr->next = new_door;
+}
+
+t_door	*find_door(info->doors, pos[2])
+{
+	t_door	*door;
+
+	door = info->doors;
+	while (door)
+	{
+		if (door.pos == pos[2])
+			return (door)
+		door = door->next;
+	}
+	return (NULL);
+}
+*/
