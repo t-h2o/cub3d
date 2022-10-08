@@ -20,13 +20,13 @@ static void
 	distance[X] = -1.0f;
 	distance[Y] = -1.0f;
 	if (0.0f < ray->delta[X])
-		distance[X] = vertical_right(info, hit[X], ray->delta);
+		distance[X] = vertical_right(info, ray, hit[X], ray->delta);
 	else if (ray->delta[X] < 0.0f)
-		distance[X] = vertical_left(info, hit[X], ray->delta);
+		distance[X] = vertical_left(info, ray, hit[X], ray->delta);
 	if (0.0f < ray->delta[Y])
-		distance[Y] = horizontal_down(info, hit[Y], ray->delta);
+		distance[Y] = horizontal_down(info, ray, hit[Y], ray->delta);
 	else if (ray->delta[Y] < 0.0f)
-		distance[Y] = horizontal_up(info, hit[Y], ray->delta);
+		distance[Y] = horizontal_up(info, ray, hit[Y], ray->delta);
 }
 
 // Collect the type of wall and set good values in ray
@@ -34,7 +34,8 @@ static void
 	ray_type(t_ray *ray,
 		float distance[2], float hit[2][2])
 {
-	if (distance[Y] < distance[X])
+	if ((distance[X] == -1.0f || (distance[Y] < distance[X]))
+		&& distance[Y] != -1.0f)
 	{
 		ft_memcpy(ray->hit, hit[Y], 2 * sizeof(float));
 		ray->distance = distance[Y];

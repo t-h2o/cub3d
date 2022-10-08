@@ -41,6 +41,8 @@ static void	player_ray(t_info *info)
 	column = 0;
 	while (column < W_WIDTH)
 	{
+		info->ray[column].pos[X] = info->player.pos[X];
+		info->ray[column].pos[Y] = info->player.pos[Y];
 		angle_delta(info->player.angle + info->ray[column].angle,
 			info->ray[column].delta);
 		ray(info, &(info->ray[column]));
