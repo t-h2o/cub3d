@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/06 14:05:45 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/09 02:55:14 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,15 @@ typedef struct s_texture {
 	t_img_data	img;
 }	t_texture;
 
+typedef struct s_inputs {
+	bool	forward;
+	bool	back;
+	bool	m_left;
+	bool	m_right;
+	bool	r_left;
+	bool	r_right;
+}	t_inputs;
+
 typedef struct s_player {
 	float	pos[2];
 	float	angle;
@@ -121,6 +130,7 @@ typedef struct s_info {
 	t_img_data	mm_img[2];
 	int			mapsize[2];
 	t_player	player;
+	t_inputs	inputs;
 	t_texture	texture[6];
 	bool		active_map;
 	t_ray		ray[W_WIDTH];
