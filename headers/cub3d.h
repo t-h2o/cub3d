@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/09 03:11:08 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/10 16:30:41 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ float	sqrt_points(float o[2], float d[2]);
 
 // utils_mlx.c
 void	my_destroy_image(void *mlx, void *img);
+void	my_mouse_move(void *mlx, void *win, int x, int y);
 
 // utils_parsing.c
 char	*skip_whitespaces(char *str);

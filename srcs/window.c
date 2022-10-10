@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:01:59 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/10/09 03:10:49 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/10 16:45:57 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int	mouse_move(int x, int y, t_info *info)
 		player_rotate(info, -PS_ROTATE * PS_MOUSE);
 	else if (x > last_x)
 		player_rotate(info, PS_ROTATE * PS_MOUSE);
-	mlx_mouse_move(info->mlx[0], info->mlx[WINDOW], W_WIDTH/2,W_HEIGHT/2);
+	my_mouse_move(info->mlx[0], info->mlx[1], W_WIDTH / 2, W_HEIGHT / 2);
 	return (0);
 }
 
