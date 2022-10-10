@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:01:59 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/10/10 17:32:40 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/10 19:25:49 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ static void	mouse_move(t_info *info)
 	int	x;
 	int	y;
 
-	mlx_mouse_get_pos(info->mlx[WINDOW], &x, &y);
+	my_mouse_get_pos(info->mlx[INIT], info->mlx[WINDOW], &x, &y);
 	if (x == W_WIDTH / 2)
 		return ;	
 	player_rotate(info, (x - (W_WIDTH / 2)) * (FOV / W_WIDTH));
-	my_mouse_move(info->mlx[0], info->mlx[1], W_WIDTH / 2, W_HEIGHT / 2);
+	my_mouse_move(info->mlx[INIT], info->mlx[WINDOW], W_WIDTH / 2, W_HEIGHT / 2);
 }
 
 // Loop hook
