@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/25 03:01:04 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/12 02:03:57 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,41 @@ static void	draw_floor(t_info *info, int column, int offset)
 	int		line;
 	char	*dst;
 
+	float x_scale;
+	float y_scale;
+	float max_Xscale;
+	float max_Yscale;
+
 	dst = info->screen.addr + (offset * info->screen.line_len)
 		+ (column * info->screen.bpp / 8);
+	
+	if (info->ray[column].wall == NO || info->ray[column].wall == SO)
+	{
+		x_scale = info->ray[column].hit[X] / info->mapsize[X];
+		y_scale = info->ray[column].hit[Y] / info->mapsize[Y];
+		//max_Xscale = info->player.pos[Y] / info->mapsize[Y];
+		max_Xscale = info->player.pos[X] / info->mapsize[X];
+		max_Yscale = info->player.pos[Y] / info->mapsize[Y];
+	}
+	else
+	{
+		y_scale = (info->ray[column].hit[Y] / info->mapsize[Y]);
+		x_scale = (info->ray[column].hit[X] / info->mapsize[X]);
+		max_Xscale = (info->player.pos[X] / info->mapsize[X]);
+		max_Yscale = (info->player.pos[Y] / info->mapsize[Y]);
+		//max_Yscale = y_scale;
+	}
+
 	line = offset - 1;
 	while (++line < W_HEIGHT)
 	{
 		*(unsigned int *)dst = get_tx_pixel(&(info->texture[FL].img),
-				(float)column / W_WIDTH,
-				(float)(line - (W_HEIGHT / 2)) / (W_HEIGHT / 2));
-		dst += info->screen.line_len;
+				x_scale
+				+ (((line - (offset)) / (float)(W_HEIGHT - offset))
+				* (max_Xscale - x_scale)), (y_scale
+				+ (((line - (offset)) / (float)(W_HEIGHT - offset))
+				* (max_Yscale - y_scale))));
+				dst += info->screen.line_len;
 	}
 }
 
