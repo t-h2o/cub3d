@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/12 02:03:57 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/12 12:23:27 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ static void	draw_floor(t_info *info, int column, int offset)
 
 	float x_scale;
 	float y_scale;
-	float max_Xscale;
-	float max_Yscale;
+	float	dist;
 
 	dst = info->screen.addr + (offset * info->screen.line_len)
 		+ (column * info->screen.bpp / 8);
@@ -98,28 +97,28 @@ static void	draw_floor(t_info *info, int column, int offset)
 	{
 		x_scale = info->ray[column].hit[X] / info->mapsize[X];
 		y_scale = info->ray[column].hit[Y] / info->mapsize[Y];
-		//max_Xscale = info->player.pos[Y] / info->mapsize[Y];
-		max_Xscale = info->player.pos[X] / info->mapsize[X];
-		max_Yscale = info->player.pos[Y] / info->mapsize[Y];
 	}
 	else
 	{
 		y_scale = (info->ray[column].hit[Y] / info->mapsize[Y]);
 		x_scale = (info->ray[column].hit[X] / info->mapsize[X]);
-		max_Xscale = (info->player.pos[X] / info->mapsize[X]);
-		max_Yscale = (info->player.pos[Y] / info->mapsize[Y]);
-		//max_Yscale = y_scale;
 	}
-
+	float we;
+	float floorX;
+	float floorY;
 	line = offset - 1;
 	while (++line < W_HEIGHT)
 	{
+		dist = W_HEIGHT / (2.0f * line - W_HEIGHT);
+		we = dist / (info->ray[column].distance
+			* cos(info->ray[column].angle));
+
+		floorX = we * info->ray[column].hit[X] + (1.0f - we) * info->player.pos[X];
+		floorY = we * info->ray[column].hit[Y] + (1.0f - we) * info->player.pos[Y];
+		x_scale = floorX / info->mapsize[X];
+		y_scale = floorY / info->mapsize[Y];
 		*(unsigned int *)dst = get_tx_pixel(&(info->texture[FL].img),
-				x_scale
-				+ (((line - (offset)) / (float)(W_HEIGHT - offset))
-				* (max_Xscale - x_scale)), (y_scale
-				+ (((line - (offset)) / (float)(W_HEIGHT - offset))
-				* (max_Yscale - y_scale))));
+				x_scale, y_scale);
 				dst += info->screen.line_len;
 	}
 }
