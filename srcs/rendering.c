@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/12 12:23:27 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/14 17:02:48 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,45 +80,33 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 	}
 }
 
-// Draw a column of the floor (single color atm)
+// Draw a column of the floor
+//  calculate distance of the floor line
+//  define X and Y position of that floor pixel
+//  get corresponding pixel in texture
+//  draw the pixel
 static void	draw_floor(t_info *info, int column, int offset)
 {
 	int		line;
 	char	*dst;
-
-	float x_scale;
-	float y_scale;
-	float	dist;
+	float	distance;
+	float	scale;
+	float	floor[2];
 
 	dst = info->screen.addr + (offset * info->screen.line_len)
 		+ (column * info->screen.bpp / 8);
-	
-	if (info->ray[column].wall == NO || info->ray[column].wall == SO)
-	{
-		x_scale = info->ray[column].hit[X] / info->mapsize[X];
-		y_scale = info->ray[column].hit[Y] / info->mapsize[Y];
-	}
-	else
-	{
-		y_scale = (info->ray[column].hit[Y] / info->mapsize[Y]);
-		x_scale = (info->ray[column].hit[X] / info->mapsize[X]);
-	}
-	float we;
-	float floorX;
-	float floorY;
 	line = offset - 1;
 	while (++line < W_HEIGHT)
 	{
-		dist = W_HEIGHT / (2.0f * line - W_HEIGHT);
-		we = dist / (info->ray[column].distance
-			* cos(info->ray[column].angle));
-
-		floorX = we * info->ray[column].hit[X] + (1.0f - we) * info->player.pos[X];
-		floorY = we * info->ray[column].hit[Y] + (1.0f - we) * info->player.pos[Y];
-		x_scale = floorX / info->mapsize[X];
-		y_scale = floorY / info->mapsize[Y];
+		distance = W_HEIGHT / (2.0f * line - W_HEIGHT);
+		scale = distance / (info->ray[column].distance);
+		floor[X] = scale * info->ray[column].hit[X]
+			+ (1.0f - scale) * info->player.pos[X];
+		floor[Y] = scale * info->ray[column].hit[Y]
+			+ (1.0f - scale) * info->player.pos[Y];
 		*(unsigned int *)dst = get_tx_pixel(&(info->texture[FL].img),
-				x_scale, y_scale);
+				floor[X] / info->mapsize[X],
+				floor[Y] / info->mapsize[Y]);
 				dst += info->screen.line_len;
 	}
 }
@@ -133,14 +121,13 @@ void	render_screen(t_info *info)
 	int		column;
 	int		wall_height;
 	int		wall_offset;
-	float	correct_distance;
 
 	column = -1;
 	while (++column < W_WIDTH)
 	{
-		correct_distance = info->ray[column].distance
+		info->ray[column].distance = info->ray[column].distance
 			* cos(info->ray[column].angle);
-		wall_height = W_HEIGHT / correct_distance;
+		wall_height = W_HEIGHT / info->ray[column].distance;
 		wall_offset = (W_HEIGHT - wall_height) / 2;
 		draw_ceil(info, column, wall_offset);
 		draw_wall(info, column, wall_height, wall_offset);
