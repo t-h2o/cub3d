@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/10 19:30:46 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/14 20:24:20 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 //   player mouse sensitivity
 # define PS_MOVE	0.1f
 # define PS_ROTATE	0.0490873852123f
-# define PS_MOUSE	0.2f
+# define PS_MOUSE	1.0f
 
 // Minimap settings
 // postion
@@ -174,6 +174,9 @@ void	render_screen(t_info *info);
 
 // textures.c
 int		load_textures(t_info *info);
+
+// update.c
+int		update_game(t_info *info);
 
 // utils_math.c
 void	angle_delta(float angle, float delta[2]);
