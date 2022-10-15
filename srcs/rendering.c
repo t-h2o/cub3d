@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 14:20:59 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:24:58 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ static void	draw_floor(t_info *info, int column, int offset)
 		*(unsigned int *)dst = get_tx_pixel(&(info->texture[FL].img),
 				floor[X] - (int)floor[X],
 				floor[Y] - (int)floor[Y]);
+		add_shade(dst, distance);
 		dst += info->screen.line_len;
 	}
 }
