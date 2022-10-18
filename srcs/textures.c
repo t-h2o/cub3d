@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/07 00:52:05 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/18 13:53:26 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ static int	load_game_textures(t_info *info)
 		&& load_xpm_image(info, &(info->texture[CE].img), TX_CEIL))
 		return (1);
 	if (load_xpm_image(info, &(info->texture[D].img), TX_DOOR))
+		return (1);
+	if (load_xpm_image(info, &(info->texture[T].img), TX_TORCH))
 		return (1);
 	if (load_xpm_image(info, &(info->mm_img[PLAYER]), MM_PLAYER))
 		return (1);

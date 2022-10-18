@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:58:14 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/04 15:38:07 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:36:42 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@
 # define TX_FLOOR	"assets/textures/coord_plane.xpm"
 # define TX_CEIL	"assets/textures/sky_doubled.xpm"
 # define TX_DOOR	"assets/textures/door.xpm"
+# define TX_TORCH	"assets/textures/sprites/torch_01.xpm"
 
 #endif /* TEXTURES_H */
