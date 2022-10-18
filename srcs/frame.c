@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:40:59 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/22 00:26:01 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/21 15:11:10 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static void	player_ray(t_info *info)
 	int		column;
 
 	column = 0;
+	free_sprite_list(info->spriteview);
+	info->spriteview = NULL;
 	while (column < W_WIDTH)
 	{
 		angle_delta(info->player.angle + info->ray[column].angle,
