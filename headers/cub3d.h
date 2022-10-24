@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 13:36:26 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:41:37 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct s_inputs {
 	bool	m_right;
 	bool	r_left;
 	bool	r_right;
+	bool	attack;
 }	t_inputs;
 
 typedef struct s_player {
