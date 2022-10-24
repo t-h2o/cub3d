@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 13:33:08 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:40:42 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static int	load_game_textures(t_info *info)
 		return (1);
 	if (load_xpm_image(info, &(info->mm_img[PLAYER]), MM_PLAYER))
 		return (1);
-	if (load_xpm_image(info, &(info->player.pov), TX_HD_SHOTG))
+	if (load_xpm_image(info, &(info->texture[PISTOL1].img), TX_PISTOL1))
 		return (1);
 	return (0);
 }
@@ -101,11 +101,42 @@ static int	load_sprites(t_info *info)
 	return (0);
 }
 
+//create scaled image for the pov 
+void	scale_pov_sprite(t_info *info)
+{
+	char		*dst;
+	float		scale;
+	int			x;
+	int			y;
+
+	info->player.pov.width = W_WIDTH / 2;
+	scale = (float)info->player.pov.width / info->texture[PISTOL1].img.width;
+	info->player.pov.height = info->texture[PISTOL1].img.height * scale;
+	info->player.pov.img = mlx_new_image(info->mlx[0],
+			info->player.pov.width, info->player.pov.height);
+	info->player.pov.addr = mlx_get_data_addr(info->player.pov.img, &(info->player.pov.bpp),
+			&(info->player.pov.line_len), &(info->player.pov.endian));
+	dst = info->player.pov.addr;
+	y = -1;
+	while (++y < info->player.pov.height)
+	{
+		x = -1;
+		while (++x < info->player.pov.width)
+		{
+			*(unsigned int *)dst = get_tx_pixel(&(info->texture[PISTOL1].img),
+					(float)x / info->player.pov.width,
+					(float)y / info->player.pov.height);
+			dst += (info->player.pov.bpp / 8);
+		}
+	}
+}
+
 // Load all the textures
 int	load_textures(t_info *info)
 {
 	if (load_game_textures(info) || load_sprites(info))
 		return (error_msg("Couldn't load texture"));
+	scale_pov_sprite(info);
 	create_minimap(info);
 	info->screen.img = mlx_new_image(info->mlx[0], W_WIDTH, W_HEIGHT);
 	info->screen.addr = mlx_get_data_addr(info->screen.img,

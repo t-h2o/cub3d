@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/28 19:33:05 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:36:46 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void	destroy_images(t_info *info)
 	my_destroy_image(info->mlx[INIT], info->texture[T1].img.img);
 	my_destroy_image(info->mlx[INIT], info->texture[T2].img.img);
 	my_destroy_image(info->mlx[INIT], info->texture[T3].img.img);
+	my_destroy_image(info->mlx[INIT], info->texture[PISTOL1].img.img);
+	my_destroy_image(info->mlx[INIT], info->player.pov.img);
 }
 
 static void	free_textures_path(t_info *info)
