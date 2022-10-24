@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 13:42:08 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:44:44 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@
 # include	"color.h"
 
 // GAME SETTINGS
-
-// POV (hands, weapons, ...)
-# define TX_PISTOL1	"assets/textures/pistol1/01.xpm"
 
 // Maps directory
 # define MAPSDIR	"assets/maps/"
@@ -90,7 +87,12 @@ enum e_tx {
 	T3,
 	B,
 	ENEMY,
-	PISTOL1
+	PISTOL1,
+	PISTOL2,
+	PISTOL3,
+	PISTOL4,
+	PISTOL5,
+	PISTOL6
 };
 
 enum e_axis {
@@ -131,7 +133,7 @@ typedef struct s_player {
 	float	pos[2];
 	float	angle;
 	float	delta[2];
-	t_img_data	pov;
+	t_img_data	pov[TX_PISTOL_NB];
 	int		attack_frame;
 }	t_player;
 
@@ -167,7 +169,7 @@ typedef struct s_info {
 	int				mapsize[2];
 	t_player		player;
 	t_inputs		inputs;
-	t_texture		texture[13];
+	t_texture		texture[18];
 	bool			active_map;
 	t_ray			ray[W_WIDTH];
 	t_img_data		screen;

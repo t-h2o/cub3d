@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:58:14 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/07 17:45:53 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:45:16 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,15 @@
 
 # define TX_BARREL	"assets/textures/sprites/barrel.xpm"
 # define TX_ENEMY	"assets/textures/sprites/golem.xpm"
+
+// POV (hands, weapons, ...)
+# define TX_PISTOL_NB	6
+
+# define TX_PISTOL1	"assets/textures/pistol1/01.xpm"
+# define TX_PISTOL2	"assets/textures/pistol1/02.xpm"
+# define TX_PISTOL3	"assets/textures/pistol1/03.xpm"
+# define TX_PISTOL4	"assets/textures/pistol1/04.xpm"
+# define TX_PISTOL5	"assets/textures/pistol1/05.xpm"
+# define TX_PISTOL6	"assets/textures/pistol1/06.xpm"
 
 #endif /* TEXTURES_H */

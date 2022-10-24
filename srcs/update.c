@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 20:19:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 13:43:13 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:46:36 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	handle_anim(t_info *info)
 	int		anim_speed_attack;
 	static int		start = 0;
 
-	anim_speed_attack = 5;
+	anim_speed_attack = 3;
 	if (frame > 1000000000)
 		frame = 0;
 	if (info->inputs.attack)
@@ -64,8 +64,7 @@ static void	handle_anim(t_info *info)
 		if (!((frame - start) % anim_speed_attack))
 		{
 			info->player.attack_frame++;
-			printf("sprite %d\n", info->player.attack_frame);
-			if (info->player.attack_frame == 5)
+			if (info->player.attack_frame == TX_PISTOL_NB)
 			{
 				info->inputs.attack = 0;
 				info->player.attack_frame = 0;
