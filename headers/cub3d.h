@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 13:41:37 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:42:08 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ typedef struct s_player {
 	float	angle;
 	float	delta[2];
 	t_img_data	pov;
+	int		attack_frame;
 }	t_player;
 
 // distance between the player and the wall
@@ -203,6 +204,7 @@ int		load_map(t_info *info, char *mapname);
 void	player_move(t_info *info, float distance, int side);
 void	player_rotate(t_info *info, float rotation);
 void	player_action(t_info *info);
+void	player_attack(t_info *info);
 
 // ray.c
 void	ray(t_info *info, t_ray *ray);

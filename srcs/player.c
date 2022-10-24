@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 12:26:36 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/11/07 17:46:02 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:42:36 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,11 @@ void
 		create_minimap(info);
 		print_frame(info);
 	}
+}
+
+void
+	player_attack(t_info *info)
+{
+	(void) info;
+	printf("SHOOT\n");
 }
