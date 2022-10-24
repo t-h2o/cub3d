@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 20:19:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 13:46:36 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:55:43 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static void	handle_mouse_move(t_info *info)
 static void	handle_anim(t_info *info)
 {
 	static int	frame = 0;
-	int		anim_speed_attack;
-	static int		start = 0;
+	int			anim_speed_attack;
+	static int	start = 0;
 
 	anim_speed_attack = 3;
 	if (frame > 1000000000)

@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 13:46:19 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:55:19 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,43 @@ static int	load_xpm_image(t_info *info, t_img_data *img, char *path)
 	return (0);
 }
 
+//create scaled image for the pov 
+static void	scale_pov_sprites(t_info *info)
+{
+	char		*dst;
+	float		scale;
+	int			x;
+	int			y;
+	int			i;
+
+	i = -1;
+	while (++i < TX_PISTOL_NB)
+	{
+		info->player.pov[i].width = W_WIDTH / 2;
+		scale = (float)info->player.pov[i].width / info->texture[PISTOL1].img.width;
+		info->player.pov[i].height = info->texture[PISTOL1].img.height * scale;
+		info->player.pov[i].img = mlx_new_image(info->mlx[0],
+				info->player.pov[i].width, info->player.pov[i].height);
+		info->player.pov[i].addr = mlx_get_data_addr(info->player.pov[i].img,
+				&(info->player.pov[i].bpp),
+				&(info->player.pov[i].line_len),
+				&(info->player.pov[i].endian));
+		dst = info->player.pov[i].addr;
+		y = -1;
+		while (++y < info->player.pov[i].height)
+		{
+			x = -1;
+			while (++x < info->player.pov[i].width)
+			{
+				*(unsigned int *)dst = get_tx_pixel(&(info->texture[PISTOL1 + i].img),
+						(float)x / info->player.pov[i].width,
+						(float)y / info->player.pov[i].height);
+				dst += (info->player.pov[i].bpp / 8);
+			}
+		}
+	}
+}
+
 // Load textures for the game
 //	mm player, walls, pov
 // 	try to load from path defined in mapfile
@@ -81,18 +118,6 @@ static int	load_game_textures(t_info *info)
 		return (1);
 	if (load_xpm_image(info, &(info->mm_img[PLAYER]), MM_PLAYER))
 		return (1);
-	if (load_xpm_image(info, &(info->texture[PISTOL1].img), TX_PISTOL1))
-		return (1);
-	if (load_xpm_image(info, &(info->texture[PISTOL2].img), TX_PISTOL2))
-		return (1);
-	if (load_xpm_image(info, &(info->texture[PISTOL3].img), TX_PISTOL3))
-		return (1);
-	if (load_xpm_image(info, &(info->texture[PISTOL4].img), TX_PISTOL4))
-		return (1);
-	if (load_xpm_image(info, &(info->texture[PISTOL5].img), TX_PISTOL5))
-		return (1);
-	if (load_xpm_image(info, &(info->texture[PISTOL6].img), TX_PISTOL6))
-		return (1);
 	return (0);
 }
 
@@ -108,50 +133,28 @@ static int	load_sprites(t_info *info)
 		return (1);
 	if (load_xpm_image(info, &(info->texture[ENEMY].img), TX_ENEMY))
 		return (1);
+	if (load_xpm_image(info, &(info->texture[PISTOL1].img), TX_PISTOL1))
+		return (1);
+	if (load_xpm_image(info, &(info->texture[PISTOL2].img), TX_PISTOL2))
+		return (1);
+	if (load_xpm_image(info, &(info->texture[PISTOL3].img), TX_PISTOL3))
+		return (1);
+	if (load_xpm_image(info, &(info->texture[PISTOL4].img), TX_PISTOL4))
+		return (1);
+	if (load_xpm_image(info, &(info->texture[PISTOL5].img), TX_PISTOL5))
+		return (1);
+	if (load_xpm_image(info, &(info->texture[PISTOL6].img), TX_PISTOL6))
+		return (1);
+	scale_pov_sprites(info);
 	return (0);
 }
 
-//create scaled image for the pov 
-static void	scale_pov_sprites(t_info *info)
-{
-	char		*dst;
-	float		scale;
-	int			x;
-	int			y;
-	int			i;
-
-	i = -1;
-	while (++i < TX_PISTOL_NB)
-	{
-		info->player.pov[i].width = W_WIDTH / 2;
-		scale = (float)info->player.pov[i].width / info->texture[PISTOL1].img.width;
-		info->player.pov[i].height = info->texture[PISTOL1].img.height * scale;
-		info->player.pov[i].img = mlx_new_image(info->mlx[0],
-				info->player.pov[i].width, info->player.pov[i].height);
-		info->player.pov[i].addr = mlx_get_data_addr(info->player.pov[i].img, &(info->player.pov[i].bpp),
-				&(info->player.pov[i].line_len), &(info->player.pov[i].endian));
-		dst = info->player.pov[i].addr;
-		y = -1;
-		while (++y < info->player.pov[i].height)
-		{
-			x = -1;
-			while (++x < info->player.pov[i].width)
-			{
-				*(unsigned int *)dst = get_tx_pixel(&(info->texture[PISTOL1 + i].img),
-						(float)x / info->player.pov[i].width,
-						(float)y / info->player.pov[i].height);
-				dst += (info->player.pov[i].bpp / 8);
-			}
-		}
-	}
-}
 
 // Load all the textures
 int	load_textures(t_info *info)
 {
 	if (load_game_textures(info) || load_sprites(info))
 		return (error_msg("Couldn't load texture"));
-	scale_pov_sprites(info);
 	create_minimap(info);
 	info->screen.img = mlx_new_image(info->mlx[0], W_WIDTH, W_HEIGHT);
 	info->screen.addr = mlx_get_data_addr(info->screen.img,
