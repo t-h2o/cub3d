@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 13:54:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/26 04:19:56 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/26 18:06:42 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	sort_sprites(t_info *info)
 	ptr = info->spriteview;
 	while (ptr->next)
 	{
-		if (ptr->transform[Y] < ptr->next->transform[Y])
+		if (ptr->distance < ptr->next->distance)
 		{
 
 		}
@@ -52,7 +52,7 @@ void	sort_sprites(t_info *info)
 
 void	free_sprite_list(t_spriteview *list)
 {
-	t_spriteview *tmp;
+	t_spriteview	*tmp;
 
 	while (list)
 	{

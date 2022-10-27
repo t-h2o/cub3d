@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/07 17:42:09 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:42:41 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ typedef struct s_player {
 // distance between the player and the wall
 // wall: NEWS
 typedef struct s_ray {
-	int			column;
+	int				column;
 	float			angle;
 	float			delta[2];
 	float			hit[2];
@@ -137,27 +137,27 @@ typedef struct s_ray {
 }	t_ray;
 
 typedef struct s_spriteview {
-	float	pos[2];
-	int		draw_start[2];
-	int		draw_end[2];
-	float	transform[2];
-	int		width;
-	int		height;
+	float				pos[2];
+	float				distance;
+	int					draw_start[2];
+	int					draw_end[2];
+	int					width;
+	int					height;
 	struct s_spriteview	*next;
 }	t_spriteview;
 
 // mlx: pointer on informations of the window
 typedef struct s_info {
-	void		*mlx[2];
-	char		**map;
-	t_img_data	mm_img[2];
-	int			mapsize[2];
-	t_player	player;
-	t_inputs	inputs;
-	t_texture	texture[8];
-	bool		active_map;
-	t_ray		ray[W_WIDTH];
-	t_img_data	screen;
+	void			*mlx[2];
+	char			**map;
+	t_img_data		mm_img[2];
+	int				mapsize[2];
+	t_player		player;
+	t_inputs		inputs;
+	t_texture		texture[8];
+	bool			active_map;
+	t_ray			ray[W_WIDTH];
+	t_img_data		screen;
 	t_spriteview	*spriteview;
 }	t_info;
 
@@ -195,12 +195,16 @@ void	player_action(t_info *info);
 void	ray(t_info *info, t_ray *ray);
 
 // rendering.c
+int	get_tx_pixel(t_img_data *tx, float x_scale, float y_scale);
 void	render_screen(t_info *info);
 
 // sprites.c
 void	add_sprite(t_info *info, float pos[2]);
 void	sort_sprites(t_info *info);
 void	free_sprite_list(t_spriteview *list);
+
+// sprites_render.c
+void	render_sprites(t_info *info);
 
 // textures.c
 int		load_textures(t_info *info);

@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/07 17:42:20 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:43:03 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Get the value (color) of a pixel in a texture
 // The position (x,y) in the texture is given by
 // the scaling and the texture size
-static int	get_tx_pixel(t_img_data *tx, float x_scale, float y_scale)
+int	get_tx_pixel(t_img_data *tx, float x_scale, float y_scale)
 {
 	int	pixel_value;
 
@@ -111,89 +111,6 @@ static void	draw_floor(t_info *info, int column, int offset)
 				floor[X] / info->mapsize[X],
 				floor[Y] / info->mapsize[Y]);
 				dst += info->screen.line_len;
-	}
-}
-
-void	draw_sprite(t_info *info, t_spriteview *sprite)
-{
-	char	*dst;
-	int	line;
-	int	col;
-
-	col = sprite->draw_start[X] - 1;
-	while (++col < sprite->draw_end[X])
-	{
-		if (info->ray[col].distance < sprite->transform[Y])
-			continue ;
-		dst = info->screen.addr + (sprite->draw_start[Y] * info->screen.line_len)
-			+ (col * info->screen.bpp / 8);
-		line = sprite->draw_start[Y] - 1;
-		while (++line < sprite->draw_end[Y])
-		{
-			*(unsigned int *)dst = get_tx_pixel(&(info->texture[T].img),
-					(float)(col - sprite->draw_start[X]) / sprite->width,
-					(float)(line - sprite->draw_start[Y]) / sprite->height);
-			dst += info->screen.line_len;
-		}
-	}
-}
-
-	/*
-	distance = sqrt_points(info->player.pos, sprite->pos);
-	//fisseye ? (*cos)
-	height = (W_HEIGHT / distance);
-	offset = (W_HEIGHT - height) / 2;
-	offset = offset + height;
-	height = height / 4;
-	offset = offset - height;
-	*/
-void	render_sprites(t_info *info)
-{	
-	t_spriteview	*sprite;
-	float	invDet;
-	int		spriteScreenX;
-
-	sprite = info->spriteview;
-	while (sprite)
-	{
-		sprite->pos[X] = sprite->pos[X] - info->player.pos[X];
-		sprite->pos[Y] = sprite->pos[Y] - info->player.pos[Y];
-		invDet = 1.0f / ((-info->player.delta[Y] * tan(FOV/2)) * info->player.delta[Y]
-				- info->player.delta[X] * (info->player.delta[X] * tan(FOV/2)));
-		sprite->transform[X] =  invDet * (info->player.delta[Y] * sprite->pos[X]
-				- info->player.delta[X] * sprite->pos[Y]);
-		sprite->transform[Y] = invDet * (-(info->player.delta[X] * tan(FOV/2)) * sprite->pos[X] + (-info->player.delta[Y] * tan(FOV/2)) * sprite->pos[Y]);
-
-
-		spriteScreenX = (int)((W_WIDTH / 2)
-				* (1 + sprite->transform[X] / sprite->transform[Y]));
-
-
-		sprite->height = abs((int)(W_HEIGHT / sprite->transform[Y]));
-		sprite->draw_end[Y] = sprite->height / 2 + W_HEIGHT / 2;
-		if (sprite->draw_end[Y] >= W_HEIGHT)
-			sprite->draw_end[Y] = W_HEIGHT - 1;
-		sprite->height = sprite->height / 2;
-		sprite->draw_start[Y] = sprite->draw_end[Y] - sprite->height;
-		if (sprite->draw_start[Y] < 0)
-			sprite->draw_start[Y] = 0;
-
-		sprite->width = ((float)sprite->height / info->texture[T].img.height)
-				* info->texture[T].img.width;
-		sprite->draw_start[X] = -sprite->width / 2 + spriteScreenX;
-		if (sprite->draw_start[X] < 0)
-			sprite->draw_start[X] = 0;
-		sprite->draw_end[X] = sprite->width / 2 + spriteScreenX;
-		if (sprite->draw_end[X] >= W_WIDTH)
-			sprite->draw_end[X] = W_WIDTH - 1;
-		sprite = sprite->next;
-	}
-	sort_sprites(info);
-	sprite = info->spriteview;
-	while (sprite)
-	{
-		draw_sprite(info, sprite);
-		sprite = sprite->next;
 	}
 }
 

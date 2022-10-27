@@ -59,6 +59,7 @@ SRCS	+=	$(SRCD)/player.c
 SRCS	+=	$(SRCD)/ray.c
 SRCS	+=	$(SRCD)/rendering.c
 SRCS	+=	$(SRCD)/sprites.c
+SRCS	+=	$(SRCD)/sprites_render.c
 SRCS	+=	$(SRCD)/textures.c
 SRCS	+=	$(SRCD)/update.c
 SRCS	+=	$(SRCD)/utils_math.c
