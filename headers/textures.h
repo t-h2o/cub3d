@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:58:14 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/07 17:42:52 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:43:52 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 # define TX_DOOR	"assets/textures/door.xpm"
 
 // sprites
-# define TX_TORCH	"assets/textures/sprites/golem.xpm"
+# define TX_TORCH_NB	3
+
+# define TX_TORCH1	"assets/textures/sprites/torch_01.xpm"
+# define TX_TORCH2	"assets/textures/sprites/torch_02.xpm"
+# define TX_TORCH3	"assets/textures/sprites/torch_03.xpm"
 
 #endif /* TEXTURES_H */

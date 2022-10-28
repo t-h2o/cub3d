@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 20:07:27 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/28 18:59:32 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/28 19:47:47 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	draw_sprite_pixel(t_info *info, t_spriteview *sprite, int x, int y)
 
 	dst = info->screen.addr + (y * info->screen.line_len)
 		+ (x * info->screen.bpp / 8);
-	tx_color = get_tx_pixel(&(info->texture[T].img),
+	tx_color = get_tx_pixel(&(info->texture[T1 + info->torch_frame].img),
 			(float)(x - sprite->draw_start[X]) / sprite->width,
 			(float)(y - sprite->draw_start[Y]) / sprite->height);
 	if (tx_color != 0xFF000000 && tx_color != 0)
@@ -66,8 +66,9 @@ static void	calc_sprite_view(t_info *info, t_spriteview *sprite)
 	sprite->draw_end[Y] = sprite->height / 2 + W_HEIGHT / 2;
 	//sprite->height = sprite->height / 2;
 	sprite->draw_start[Y] = sprite->draw_end[Y] - sprite->height;
-	sprite->width = ((float)sprite->height / info->texture[T].img.height)
-		* info->texture[T].img.width;
+	sprite->width = ((float)sprite->height
+			/ info->texture[T1 + info->torch_frame].img.height)
+		* info->texture[T1 + info->torch_frame].img.width;
 	sprite->draw_start[X] = -sprite->width / 2 + screen_x;
 	sprite->draw_end[X] = sprite->width / 2 + screen_x;
 }
