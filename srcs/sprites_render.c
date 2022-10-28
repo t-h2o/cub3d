@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 20:07:27 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/28 19:47:47 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/28 20:33:23 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ static void	draw_sprite_pixel(t_info *info, t_spriteview *sprite, int x, int y)
 			(float)(x - sprite->draw_start[X]) / sprite->width,
 			(float)(y - sprite->draw_start[Y]) / sprite->height);
 	if (tx_color != 0xFF000000 && tx_color != 0)
+	{
 		*(unsigned int *)dst = tx_color;
+		add_shade(dst, sprite->distance / 1.5f);
+	}
 }
 
 static void	draw_sprite(t_info *info, t_spriteview *sprite)
@@ -31,6 +34,8 @@ static void	draw_sprite(t_info *info, t_spriteview *sprite)
 	int			line;
 	int			col;
 
+	if (sprite->distance > FOG_MAX)
+		return ;
 	col = sprite->draw_start[X] - 1;
 	while (++col < sprite->draw_end[X] && col < W_WIDTH)
 	{
