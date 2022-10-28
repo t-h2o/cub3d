@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 14:05:17 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:06:21 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@
 # define FOG_MIN	3.5f
 // max view distance
 # define FOG_MAX	10.0f
+
+// Crosshair settings
+# define CROSSHAIR_SIZE		5
+# define CROSSHAIR_GAP		5
+# define CROSSHAIR_COLOR	0x0000FF00
 
 // Minimap settings
 // postion
@@ -130,11 +135,11 @@ typedef struct s_inputs {
 }	t_inputs;
 
 typedef struct s_player {
-	float	pos[2];
-	float	angle;
-	float	delta[2];
+	float		pos[2];
+	float		angle;
+	float		delta[2];
 	t_img_data	pov[TX_PISTOL_NB];
-	int		attack_frame;
+	int			attack_frame;
 }	t_player;
 
 // distance between the player and the wall
@@ -253,6 +258,7 @@ float	vertical_left(t_info *info, t_ray *ray, float hit[2]);
 // utils_render.c
 void	add_shade(char *dst, float distance);
 float	calc_x_scaling(t_ray *ray);
+void	draw_crosshair(t_info *info);
 
 // window.c
 int		start_window(t_info *info);
