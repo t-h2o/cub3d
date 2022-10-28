@@ -6,38 +6,42 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 20:07:27 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/26 22:31:11 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/28 18:59:32 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	draw_sprite_pixel(t_info *info, t_spriteview *sprite, int x, int y)
+{
+	char			*dst;
+	unsigned int	tx_color;
+
+	dst = info->screen.addr + (y * info->screen.line_len)
+		+ (x * info->screen.bpp / 8);
+	tx_color = get_tx_pixel(&(info->texture[T].img),
+			(float)(x - sprite->draw_start[X]) / sprite->width,
+			(float)(y - sprite->draw_start[Y]) / sprite->height);
+	if (tx_color != 0xFF000000 && tx_color != 0)
+		*(unsigned int *)dst = tx_color;
+}
+
 static void	draw_sprite(t_info *info, t_spriteview *sprite)
 {
-	char	*dst;
 	int			line;
 	int			col;
-	unsigned int	pixelcol;
 
 	col = sprite->draw_start[X] - 1;
 	while (++col < sprite->draw_end[X] && col < W_WIDTH)
 	{
 		if (col < 0 || info->ray[col].distance < sprite->distance)
 			continue ;
-		dst = info->screen.addr + (col * info->screen.bpp / 8);
-		if (sprite->draw_start[Y] > 0)
-			dst += sprite->draw_start[Y] * info->screen.line_len;
 		line = sprite->draw_start[Y] - 1;
 		while (++line < sprite->draw_end[Y] && line < W_HEIGHT)
 		{
 			if (line < 0)
 				continue ;
-			pixelcol = get_tx_pixel(&(info->texture[T].img),
-					(float)(col - sprite->draw_start[X]) / sprite->width,
-					(float)(line - sprite->draw_start[Y]) / sprite->height);
-			if (pixelcol != 0xFF000000)
-				*(unsigned int *)dst = pixelcol;
-			dst += info->screen.line_len;
+			draw_sprite_pixel(info, sprite, col, line);
 		}
 	}
 }
