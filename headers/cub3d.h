@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 13:47:35 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:05:17 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ typedef struct s_ray {
 	float			distance;
 	unsigned char	wall;
 	int				hitdir;
+	bool			enemy_hit;
 }	t_ray;
 
 typedef struct s_spriteview {

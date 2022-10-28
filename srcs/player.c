@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 12:26:36 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/11/08 13:42:36 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:05:33 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ void
 void
 	player_attack(t_info *info)
 {
-	(void) info;
-	printf("SHOOT\n");
+	t_ray	*mid_ray;
+
+	mid_ray = &(info->ray[W_WIDTH / 2]);
+	if (mid_ray->enemy_hit)
+		printf("\t HIT\n");
+	else
+		printf("\tP A N !\n");
 }
