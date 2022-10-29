@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 14:13:56 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:14:37 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,12 @@ static int	check_borders(t_info *info, int y)
 		if (info->map[y][x] == '0' || info->map[y][x] == 'T'
 				|| info->map[y][x] == 'X' || info->map[y][x] == 'B')
 		{
-			if ((x == 0) || (y == info->mapsize[Y] - 1)
-				|| (x > 0 && info->map[y][x - 1] == ' ') ||
-				(info->map[y][x + 1] == ' ') || (info->map[y][x + 1] == '\n') ||
-				(y > 0 && (int)ft_strlen(info->map[y - 1]) > x
-				&& (info->map[y - 1][x] == ' ' || info->map[y - 1][x] == '\n')) ||
-				(y > 0 && (int)ft_strlen(info->map[y - 1]) <= x) ||
-				(y < info->mapsize[Y] && (int)ft_strlen(info->map[y + 1]) > x
-				&& (info->map[y + 1][x] == ' ' || info->map[y + 1][x] == '\n')) ||
-				(y < info->mapsize[Y] && (int)ft_strlen(info->map[y + 1]) <= x))
+			if (x == 0 || y == 0 || y == info->mapsize[Y] - 1
+				|| info->map[y][x + 1] == '\n'
+				|| (int)ft_strlen(info->map[y - 1]) - 1 <= x
+				|| (int)ft_strlen(info->map[y + 1]) - 1 <= x
+				|| info->map[y][x - 1] == ' ' || info->map[y][x + 1] == ' '
+				|| info->map[y - 1][x] == ' ' || info->map[y + 1][x] == ' ')
 				return (error_msg("Map isn't closed by walls"));
 		}
 	}
