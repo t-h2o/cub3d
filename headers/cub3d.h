@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/07 17:44:20 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:44:45 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ typedef struct s_ray {
 typedef struct s_spriteview {
 	float				pos[2];
 	float				distance;
+	char				type;
 	int					draw_start[2];
 	int					draw_end[2];
 	int					width;
@@ -203,7 +204,7 @@ int		get_tx_pixel(t_img_data *tx, float x_scale, float y_scale);
 void	render_screen(t_info *info);
 
 // sprites.c
-void	add_sprite(t_info *info, float pos[2]);
+void	add_sprite(t_info *info, float pos[2], char type);
 void	sort_sprites(t_info *info);
 void	free_sprite_list(t_spriteview *list);
 

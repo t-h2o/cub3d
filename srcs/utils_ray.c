@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 05:43:03 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/10/26 00:50:02 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/29 20:35:49 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ float	horizontal_up(t_info *info, t_ray *ray, float hit[2])
 			|| ft_strlen(info->map[(int)hit[Y]]) < hit[X])
 			break ;
 		if (info->map[(int)hit[Y]][(int)hit[X]] == '1'
-				|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
+			|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T')
-			add_sprite(info, hit);
+		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T'
+			|| info->map[(int)hit[Y]][(int)hit[X]] == 'X')
+			add_sprite(info, hit, info->map[(int)hit[Y]][(int)hit[X]]);
 		hit[Y] = hit[Y] - 1;
 		hit[X] = hit[X] - (ray->delta[X] / ray->delta[Y]);
 	}
@@ -57,10 +58,11 @@ float	horizontal_down(t_info *info, t_ray *ray, float hit[2])
 			|| ft_strlen(info->map[(int)hit[Y]]) < hit[X])
 			break ;
 		if (info->map[(int)hit[Y]][(int)hit[X]] == '1'
-				|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
+			|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T')
-			add_sprite(info, hit);
+		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T'
+			|| info->map[(int)hit[Y]][(int)hit[X]] == 'X')
+			add_sprite(info, hit, info->map[(int)hit[Y]][(int)hit[X]]);
 		hit[Y] = hit[Y] + 1;
 		hit[X] = hit[X] + (ray->delta[X] / ray->delta[Y]);
 	}
@@ -82,10 +84,11 @@ float	vertical_right(t_info *info, t_ray *ray, float hit[2])
 		if (hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y])
 			break ;
 		if (info->map[(int)hit[Y]][(int)hit[X]] == '1'
-				|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
+			|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T')
-			add_sprite(info, hit);
+		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T'
+			|| info->map[(int)hit[Y]][(int)hit[X]] == 'X')
+			add_sprite(info, hit, info->map[(int)hit[Y]][(int)hit[X]]);
 		hit[X] = hit[X] + 1;
 		hit[Y] = hit[Y] + (ray->delta[Y] / ray->delta[X]);
 	}
@@ -107,10 +110,11 @@ float	vertical_left(t_info *info, t_ray *ray, float hit[2])
 		if (hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y])
 			break ;
 		if (info->map[(int)hit[Y]][(int)hit[X]] == '1'
-				|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
+			|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T')
-			add_sprite(info, hit);
+		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T'
+			|| info->map[(int)hit[Y]][(int)hit[X]] == 'X')
+			add_sprite(info, hit, info->map[(int)hit[Y]][(int)hit[X]]);
 		hit[X] = hit[X] - 1;
 		hit[Y] = hit[Y] - (ray->delta[Y] / ray->delta[X]);
 	}

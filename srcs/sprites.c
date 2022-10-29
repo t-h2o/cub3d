@@ -6,13 +6,13 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 13:54:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/26 18:06:42 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/29 18:12:02 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	add_sprite(t_info *info, float pos[2])
+void	add_sprite(t_info *info, float pos[2], char type)
 {
 	t_spriteview	*new;
 	t_spriteview	*ptr;
@@ -30,6 +30,7 @@ void	add_sprite(t_info *info, float pos[2])
 		return ;
 	new->pos[X] = (int)pos[X] + 0.5f;
 	new->pos[Y] = (int)pos[Y] + 0.5f;
+	new->type = type;
 	new->next = info->spriteview;
 	info->spriteview = new;
 }
