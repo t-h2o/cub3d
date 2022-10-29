@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:40:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/18 13:28:24 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/29 17:44:03 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ static int	check_charset(t_info *info, int y)
 	while (info->map[y][++x] && info->map[y][x] != '\n')
 	{	
 		data = info->map[y][x];
-		if (data != '0' && data != '1' && data != 'D' && data != 'T')
+		if (data != '0' && data != '1' && data != 'D'
+			&& data != 'T' && data != 'X')
 		{
 			if (data != 'N' && data != 'S' && data != 'E'
 				&& data != 'W' && data != ' ')
@@ -62,7 +63,8 @@ static int	check_borders(t_info *info, int y)
 	x = -1;
 	while (info->map[y][++x] && info->map[y][x] != '\n')
 	{	
-		if (info->map[y][x] == '0' || info->map[y][x] == 'T')
+		if (info->map[y][x] == '0' || info->map[y][x] == 'T'
+				|| info->map[y][x] == 'X')
 		{
 			if ((x == 0) || (y == info->mapsize[Y] - 1)
 				|| (x > 0 && info->map[y][x - 1] == ' ') ||

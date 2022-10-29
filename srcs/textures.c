@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/28 19:49:45 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/29 17:49:13 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ static int	load_sprites(t_info *info)
 	if (load_xpm_image(info, &(info->texture[T2].img), TX_TORCH2))
 		return (1);
 	if (load_xpm_image(info, &(info->texture[T3].img), TX_TORCH3))
+		return (1);
+	if (load_xpm_image(info, &(info->texture[ENEMY].img), TX_ENEMY))
 		return (1);
 	return (0);
 }
