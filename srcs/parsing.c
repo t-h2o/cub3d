@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/06 14:07:45 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/29 03:35:46 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ static int	save_map_info(t_info *info, char *line)
 			info->texture[FL].path = skip_whitespaces(str + 1);
 		else if (*str == 'C')
 			info->texture[CE].path = skip_whitespaces(str + 1);
+		else if (*str == 'D')
+			info->texture[D].path = skip_whitespaces(str + 1);
 		else
 			ret = 1;
 		free(str);
