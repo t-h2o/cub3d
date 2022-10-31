@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 20:07:27 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/29 20:42:49 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/31 01:03:05 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,46 +56,11 @@ static void	draw_sprite(t_info *info, t_spriteview *sprite)
 	}
 }
 
-static void	calc_sprite_view(t_info *info, t_spriteview *sprite)
-{
-	int		screen_x;
-	float	det;
-	float	x_transform;
-
-	det = 1.0f / ((-info->player.delta[Y] * tan(FOV / 2))
-			* info->player.delta[Y] - info->player.delta[X]
-			* (info->player.delta[X] * tan(FOV / 2)));
-	x_transform = det * (info->player.delta[Y] * sprite->pos[X]
-			- info->player.delta[X] * sprite->pos[Y]);
-	sprite->distance = det * (-(info->player.delta[X] * tan(FOV / 2))
-			* sprite->pos[X] + (-info->player.delta[Y] * tan(FOV / 2))
-			* sprite->pos[Y]);
-	screen_x = (int)((W_WIDTH / 2) * (1 + x_transform
-				/ sprite->distance));
-	sprite->height = W_HEIGHT / sprite->distance;
-	sprite->draw_end[Y] = sprite->height / 2 + W_HEIGHT / 2;
-	//sprite->height = sprite->height / 2;
-	sprite->draw_start[Y] = sprite->draw_end[Y] - sprite->height;
-	sprite->width = ((float)sprite->height
-			/ info->texture[T1 + info->torch_frame].img.height)
-		* info->texture[T1 + info->torch_frame].img.width;
-	sprite->draw_start[X] = -sprite->width / 2 + screen_x;
-	sprite->draw_end[X] = sprite->width / 2 + screen_x;
-}
-
 void	render_sprites(t_info *info)
 {	
 	t_spriteview	*sprite;
 
 	sprite = info->spriteview;
-	while (sprite)
-	{
-		sprite->pos[X] = sprite->pos[X] - info->player.pos[X];
-		sprite->pos[Y] = sprite->pos[Y] - info->player.pos[Y];
-		calc_sprite_view(info, sprite);
-		sprite = sprite->next;
-	}
-	//sort_sprites(info);
 	sprite = info->spriteview;
 	while (sprite)
 	{

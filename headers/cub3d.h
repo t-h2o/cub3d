@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/07 17:44:45 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:45:03 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ typedef struct s_ray {
 }	t_ray;
 
 typedef struct s_spriteview {
+	int					origin[2];
 	float				pos[2];
 	float				distance;
 	char				type;
