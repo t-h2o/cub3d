@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 13:37:23 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:19:37 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,9 @@ static void	draw_floor(t_info *info, int column, int offset)
 		floor[Y] = scale * info->ray[column].hit[Y]
 			+ (1.0f - scale) * info->player.pos[Y];
 		*(unsigned int *)dst = get_tx_pixel(&(info->texture[FL].img),
-				floor[X] / info->mapsize[X],
-				floor[Y] / info->mapsize[Y]);
-				dst += info->screen.line_len;
+				floor[X] - (int)floor[X],
+				floor[Y] - (int)floor[Y]);
+		dst += info->screen.line_len;
 	}
 }
 
