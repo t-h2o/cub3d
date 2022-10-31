@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 20:07:27 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/31 01:03:05 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/31 13:43:40 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	draw_sprite_pixel(t_info *info, t_spriteview *sprite, int x, int y)
 	tx_color = get_tx_pixel(tx,
 			(float)(x - sprite->draw_start[X]) / sprite->width,
 			(float)(y - sprite->draw_start[Y]) / sprite->height);
-	if (tx_color != 0xFF000000 && tx_color != 0)
+	if (tx_color != 0xFF000000)
 	{
 		*(unsigned int *)dst = tx_color;
 		add_shade(dst, sprite->distance / 1.5f);
