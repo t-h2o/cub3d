@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:40:59 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/11/08 14:34:12 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:38:52 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	player_ray(t_info *info)
 	column = 0;
 	free_sprite_list(info->spriteview);
 	info->spriteview = NULL;
+	info->ray[W_WIDTH / 2].enemy_hit[X] = 0;
 	while (column < W_WIDTH)
 	{
 		angle_delta(info->player.angle + info->ray[column].angle,
