@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:54:39 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/07 17:59:31 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:36:47 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,26 @@ void	draw_crosshair(t_info *info)
 				* info->screen.line_len) = CROSSHAIR_COLOR;
 		h_dst += info->screen.bpp / 8;
 		v_dst += info->screen.line_len;
+	}
+}
+
+void	copy_image(t_img_data *dst_img, t_img_data *src_img)
+{
+	char		*dst;
+	int			x;
+	int			y;
+
+	dst = dst_img->addr;
+	y = -1;
+	while (++y < dst_img->height)
+	{
+		x = -1;
+		while (++x < dst_img->width)
+		{
+			*(unsigned int *)dst = get_tx_pixel(src_img,
+					(float)x / dst_img->width,
+					(float)y / dst_img->height);
+			dst += (dst_img->bpp / 8);
+		}
 	}
 }

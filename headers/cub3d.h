@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 14:06:21 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:32:44 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,6 @@ typedef struct s_player {
 	float		pos[2];
 	float		angle;
 	float		delta[2];
-	t_img_data	pov[TX_PISTOL_NB];
 	int			attack_frame;
 }	t_player;
 
@@ -225,6 +224,7 @@ void	render_screen(t_info *info);
 void	add_sprite(t_info *info, float pos[2], char type);
 void	sort_sprites(t_info *info);
 void	free_sprite_list(t_spriteview *list);
+void	scale_pov_sprites(t_info *info);
 
 // sprites_render.c
 void	render_sprites(t_info *info);
@@ -258,6 +258,7 @@ float	vertical_left(t_info *info, t_ray *ray, float hit[2]);
 // utils_render.c
 void	add_shade(char *dst, float distance);
 float	calc_x_scaling(t_ray *ray);
+void	copy_image(t_img_data *dst, t_img_data *src);
 void	draw_crosshair(t_info *info);
 
 // window.c
