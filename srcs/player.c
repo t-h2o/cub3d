@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 12:26:36 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/11/08 14:39:45 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:42:58 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,10 @@ void
 
 	mid_ray = &(info->ray[W_WIDTH / 2]);
 	if (mid_ray->enemy_hit[X])
+	{
 		info->map[(int)mid_ray->enemy_hit[Y]][(int)mid_ray->enemy_hit[X]] = '0';
+		create_minimap(info);
+	}
 	else
 		printf("\tP A N !\n");
 }

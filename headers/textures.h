@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:58:14 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 14:06:30 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:42:25 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 // minimap textures
 # define MM_PLAYER	"assets/textures/minimap/player.xpm"
+# define MM_EMPTY	0x70303030
 # define MM_GROUND	0x00C1C1C1
 # define MM_WALL	0x00000000
 # define MM_DOOR	0x007C503F
+# define MM_TORCH	0x00222222
 # define MM_BARREL	0x00B8B8B8
+# define MM_ENEMY	0x00660000
 
 // default game textures
 # define TX_NORTH	"assets/textures/dark_brick.xpm"
