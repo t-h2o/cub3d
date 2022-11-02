@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 14:38:37 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:47:29 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,6 +260,7 @@ void	add_shade(char *dst, float distance);
 float	calc_x_scaling(t_ray *ray);
 void	copy_image(t_img_data *dst, t_img_data *src);
 void	draw_crosshair(t_info *info);
+void	draw_pov(t_info *info);
 
 // window.c
 int		start_window(t_info *info);
