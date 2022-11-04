@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 05:43:03 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/10/06 14:08:43 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/07 00:40:45 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ float	horizontal_up(t_info *info, float hit[2], float delta[2])
 		if (hit[X] < 0 || hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y]
 			|| ft_strlen(info->map[(int)hit[Y]]) < hit[X])
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
+		if (info->map[(int)hit[Y]][(int)hit[X]] == '1'
+				|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
 			break ;
 		hit[Y] = hit[Y] - 1;
 		hit[X] = hit[X] - (delta[X] / delta[Y]);
@@ -53,7 +54,8 @@ float	horizontal_down(t_info *info, float hit[2], float delta[2])
 		if (hit[X] < 0 || hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y]
 			|| ft_strlen(info->map[(int)hit[Y]]) < hit[X])
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
+		if (info->map[(int)hit[Y]][(int)hit[X]] == '1'
+				|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
 			break ;
 		hit[Y] = hit[Y] + 1;
 		hit[X] = hit[X] + (delta[X] / delta[Y]);
@@ -75,7 +77,8 @@ float	vertical_right(t_info *info, float hit[2], float delta[2])
 	{
 		if (hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y])
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
+		if (info->map[(int)hit[Y]][(int)hit[X]] == '1'
+				|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
 			break ;
 		hit[X] = hit[X] + 1;
 		hit[Y] = hit[Y] + (delta[Y] / delta[X]);
@@ -97,7 +100,8 @@ float	vertical_left(t_info *info, float hit[2], float delta[2])
 	{
 		if (hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y])
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
+		if (info->map[(int)hit[Y]][(int)hit[X]] == '1'
+				|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
 			break ;
 		hit[X] = hit[X] - 1;
 		hit[Y] = hit[Y] - (delta[Y] / delta[X]);

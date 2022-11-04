@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/06 19:48:48 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/04 16:13:08 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,21 +83,34 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 	}
 }
 
-// Draw a column of the floor (single color atm)
+// Draw a column of the floor
+//  calculate distance of the floor line
+//  define X and Y position of that floor pixel
+//  get corresponding pixel in texture
+//  draw the pixel
 static void	draw_floor(t_info *info, int column, int offset)
 {
 	int		line;
 	char	*dst;
+	float	distance;
+	float	scale;
+	float	floor[2];
 
 	dst = info->screen.addr + (offset * info->screen.line_len)
 		+ (column * info->screen.bpp / 8);
 	line = offset - 1;
 	while (++line < W_HEIGHT)
 	{
+		distance = W_HEIGHT / (2.0f * line - W_HEIGHT);
+		scale = distance / (info->ray[column].distance);
+		floor[X] = scale * info->ray[column].hit[X]
+			+ (1.0f - scale) * info->player.pos[X];
+		floor[Y] = scale * info->ray[column].hit[Y]
+			+ (1.0f - scale) * info->player.pos[Y];
 		*(unsigned int *)dst = get_tx_pixel(&(info->texture[FL].img),
-				(float)column / W_WIDTH,
-				(float)(line - (W_HEIGHT / 2)) / (W_HEIGHT / 2));
-		dst += info->screen.line_len;
+				floor[X] / info->mapsize[X],
+				floor[Y] / info->mapsize[Y]);
+				dst += info->screen.line_len;
 	}
 }
 
@@ -111,17 +124,16 @@ void	render_screen(t_info *info)
 	int		column;
 	int		wall_height;
 	int		wall_offset;
-	float	correct_distance;
 
 	column = -1;
 	while (++column < W_WIDTH)
 	{
-		correct_distance = info->ray[column].distance
+		info->ray[column].distance = info->ray[column].distance
 			* cos(info->ray[column].angle);
-		if (correct_distance > FOG_MAX)
+		if (info->ray[column].distance > FOG_MAX)
 			wall_height = W_HEIGHT / FOG_MAX;
 		else
-			wall_height = W_HEIGHT / correct_distance;
+			wall_height = W_HEIGHT / info->ray[column].distance;
 		wall_offset = (W_HEIGHT - wall_height) / 2;
 		draw_ceil(info, column, wall_offset);
 		draw_wall(info, column, wall_height, wall_offset);

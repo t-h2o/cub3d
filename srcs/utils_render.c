@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:54:39 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/06 19:52:08 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/04 16:08:49 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 float	calc_x_scaling(t_ray *ray)
 {
-	if (ray->wall == NO || ray->wall == SO)
+	if (ray->hitdir)
 		return (ray->hit[X] - (int)ray->hit[X]);
 	else
 		return (ray->hit[Y] - (int)ray->hit[Y]);

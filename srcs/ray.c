@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/09/22 00:19:00 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/07 16:50:43 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,29 @@ static void
 
 // Collect the type of wall and set good values in ray
 static void
-	ray_type(t_ray *ray,
+	ray_type(t_info *info, t_ray *ray,
 		float distance[2], float hit[2][2])
 {
 	if (distance[Y] < distance[X])
 	{
+		ray->hitdir = 1;
 		ft_memcpy(ray->hit, hit[Y], 2 * sizeof(float));
 		ray->distance = distance[Y];
-		if (ray->delta[Y] > 0.0f)
+		if (info->map[(int)ray->hit[Y]][(int)ray->hit[X]] == 'D')
+			ray->wall = D;
+		else if (ray->delta[Y] > 0.0f)
 			ray->wall = SO;
 		else
 			ray->wall = NO;
 	}
 	else
 	{
+		ray->hitdir = 0;
 		ft_memcpy(ray->hit, hit[X], 2 * sizeof(float));
 		ray->distance = distance[X];
-		if (ray->delta[X] > 0.0f)
+		if (info->map[(int)ray->hit[Y]][(int)ray->hit[X]] == 'D')
+			ray->wall = D;
+		else if (ray->delta[X] > 0.0f)
 			ray->wall = EA;
 		else
 			ray->wall = WE;
@@ -61,5 +67,5 @@ void	ray(t_info *info, t_ray *ray)
 	float	distance[2];
 
 	ray_distance(info, ray, distance, hit);
-	ray_type(ray, distance, hit);
+	ray_type(info, ray, distance, hit);
 }
