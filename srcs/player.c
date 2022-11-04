@@ -34,7 +34,6 @@ void
 		return ;
 	info->player.pos[X] = next[X];
 	info->player.pos[Y] = next[Y];
-	print_frame(info);
 }
 
 // When the player change his rotation,
@@ -44,7 +43,6 @@ void
 {
 	info->player.angle = angle_sum(info->player.angle, rotation);
 	angle_delta(info->player.angle, info->player.delta);
-	print_frame(info);
 }
 
 // Player Action

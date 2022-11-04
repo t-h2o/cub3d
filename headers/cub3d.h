@@ -99,6 +99,15 @@ typedef struct s_texture {
 	t_img_data	img;
 }	t_texture;
 
+typedef struct s_inputs {
+	bool	forward;
+	bool	back;
+	bool	m_left;
+	bool	m_right;
+	bool	r_left;
+	bool	r_right;
+}	t_inputs;
+
 typedef struct s_player {
 	float	pos[2];
 	float	angle;
@@ -123,6 +132,7 @@ typedef struct s_info {
 	t_img_data	mm_img[2];
 	int			mapsize[2];
 	t_player	player;
+	t_inputs	inputs;
 	t_texture	texture[7];
 	bool		active_map;
 	t_ray		ray[W_WIDTH];

@@ -12,31 +12,45 @@
 
 #include	"cub3d.h"
 
-// If the ESC key is pressed, the window closes
 static int
 	deal_key(int key, t_info *info)
 {
 	if (key == KEY_ESC)
 		close_game(info, 0);
 	else if (key == KEY_W || key == KEY_UP)
-		player_move(info, PS_MOVE, 0);
+		info->inputs.forward = 1;
 	else if (key == KEY_S || key == KEY_DOWN)
-		player_move(info, -PS_MOVE, 0);
+		info->inputs.back = 1;
 	else if (key == KEY_D)
-		player_move(info, -PS_MOVE, 1);
+		info->inputs.m_right = 1;
 	else if (key == KEY_A)
-		player_move(info, PS_MOVE, 1);
+		info->inputs.m_left = 1;
 	else if (key == KEY_RIGHT)
-		player_rotate(info, PS_ROTATE);
+		info->inputs.r_right = 1;
 	else if (key == KEY_LEFT)
-		player_rotate(info, -PS_ROTATE);
+		info->inputs.r_left = 1;
 	else if (key == KEY_E)
 		player_action(info);
 	else if (key == KEY_TAB)
-	{
 		info->active_map = !info->active_map;
-		print_frame(info);
-	}
+	return (0);
+}
+
+static int
+	release_key(int key, t_info *info)
+{
+	if (key == KEY_W || key == KEY_UP)
+		info->inputs.forward = 0;
+	else if (key == KEY_S || key == KEY_DOWN)
+		info->inputs.back = 0;
+	else if (key == KEY_D)
+		info->inputs.m_right = 0;
+	else if (key == KEY_A)
+		info->inputs.m_left = 0;
+	else if (key == KEY_RIGHT)
+		info->inputs.r_right = 0;
+	else if (key == KEY_LEFT)
+		info->inputs.r_left = 0;
 	return (0);
 }
 
@@ -44,6 +58,26 @@ static int
 static int	red_cross(t_info *info)
 {
 	close_game(info, 0);
+	return (0);
+}
+
+// Loop hook
+// Update frame
+static int	update_frame(t_info *info)
+{
+	if (info->inputs.forward)
+		player_move(info, PS_MOVE, 0);
+	else if (info->inputs.back)
+		player_move(info, -PS_MOVE, 0);
+	if (info->inputs.m_right)
+		player_move(info, -PS_MOVE, 1);
+	else if (info->inputs.m_left)
+		player_move(info, PS_MOVE, 1);
+	if (info->inputs.r_right)
+		player_rotate(info, PS_ROTATE);
+	else if (info->inputs.r_left)
+		player_rotate(info, -PS_ROTATE);
+	print_frame(info);
 	return (0);
 }
 
@@ -56,9 +90,10 @@ int	start_window(t_info *info)
 		(info->mlx[INIT], W_WIDTH, W_HEIGHT, "Cub3D");
 	if (!info->mlx[WINDOW])
 		return (error_msg("Couldn't create window"));
-	mlx_hook(info->mlx[WINDOW], 2, 1, deal_key, info);
+	mlx_hook(info->mlx[WINDOW], 2, 1L << 0, deal_key, info);
+	mlx_hook(info->mlx[WINDOW], 3, 1L << 1, release_key, info);
 	mlx_hook(info->mlx[WINDOW], 17, 0L << 0, red_cross, info);
-	print_frame(info);
+	mlx_loop_hook(info->mlx[INIT], update_frame, info);
 	mlx_loop(info->mlx[INIT]);
 	return (0);
 }
