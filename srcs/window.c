@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:01:59 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/09/24 19:32:23 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/07 17:12:31 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ static int
 		player_move(info, -PS_MOVE, 1);
 	else if (key == KEY_A)
 		player_move(info, PS_MOVE, 1);
-	else if (key == KEY_RIGHT || key == KEY_E)
+	else if (key == KEY_RIGHT)
 		player_rotate(info, PS_ROTATE);
-	else if (key == KEY_LEFT || key == KEY_Q)
+	else if (key == KEY_LEFT)
 		player_rotate(info, -PS_ROTATE);
+	else if (key == KEY_E)
+		player_action(info);
 	else if (key == KEY_TAB)
 	{
 		info->active_map = !info->active_map;
