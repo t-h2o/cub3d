@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/14 20:24:20 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/07 19:55:07 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ enum e_tx {
 	EA,
 	WE,
 	FL,
-	CE
+	CE,
+	D
 };
 
 enum e_axis {
@@ -124,6 +125,7 @@ typedef struct s_ray {
 	float			hit[2];
 	float			distance;
 	unsigned char	wall;
+	int				hitdir;
 }	t_ray;
 
 // mlx: pointer on informations of the window
@@ -134,7 +136,7 @@ typedef struct s_info {
 	int			mapsize[2];
 	t_player	player;
 	t_inputs	inputs;
-	t_texture	texture[6];
+	t_texture	texture[7];
 	bool		active_map;
 	t_ray		ray[W_WIDTH];
 	t_img_data	screen;
@@ -148,6 +150,9 @@ int		check_map_data(t_info *info);
 void	free_array(char **array);
 int		error_msg(char *msg);
 void	close_game(t_info *info, int exit_code);
+
+// doors.c
+int		check_doors(t_info *info, int y);
 
 // init.c
 int		init_game(t_info *info, char *mapname);
@@ -165,6 +170,7 @@ int		load_map(t_info *info, char *mapname);
 // player.c
 void	player_move(t_info *info, float distance, int side);
 void	player_rotate(t_info *info, float rotation);
+void	player_action(t_info *info);
 
 // ray.c
 void	ray(t_info *info, t_ray *ray);

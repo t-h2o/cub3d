@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/10/06 14:06:39 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/07 18:01:26 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	draw_mm_tile(t_info *info, char c, int y, int x)
 		color = MM_GROUND;
 	else if (c == '1')
 		color = MM_WALL;
+	else if (c == 'D')
+		color = MM_DOOR;
 	j = -1;
 	while (++j < MM_SIZE_TILE)
 	{
@@ -57,11 +59,15 @@ void	create_minimap(t_info *info)
 	int	x;
 	int	y;
 
-	info->mm_img[MAP].img = mlx_new_image(info->mlx[0],
-			MM_SIZE_TILE * info->mapsize[X], MM_SIZE_TILE * info->mapsize[Y]);
-	info->mm_img[MAP].addr = mlx_get_data_addr(info->mm_img[MAP].img,
-			&(info->mm_img[MAP].bpp), &(info->mm_img[MAP].line_len),
-			&(info->mm_img[MAP].endian));
+	if (!info->mm_img[MAP].img)
+	{
+		info->mm_img[MAP].img = mlx_new_image(info->mlx[0],
+				MM_SIZE_TILE * info->mapsize[X],
+				MM_SIZE_TILE * info->mapsize[Y]);
+		info->mm_img[MAP].addr = mlx_get_data_addr(info->mm_img[MAP].img,
+				&(info->mm_img[MAP].bpp), &(info->mm_img[MAP].line_len),
+				&(info->mm_img[MAP].endian));
+	}
 	y = -1;
 	while (++y < info->mapsize[Y])
 	{
