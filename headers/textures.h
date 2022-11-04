@@ -24,7 +24,7 @@
 # define TX_SOUTH	"assets/textures/jungle.xpm"
 # define TX_EAST	"assets/textures/jungle_brick.xpm"
 # define TX_WEST	"assets/textures/handpainted_brick.xpm"
-# define TX_FLOOR	"assets/textures/dirt1.xpm"
+# define TX_FLOOR	"assets/textures/coord_plane.xpm"
 # define TX_CEIL	"assets/textures/sky_doubled.xpm"
 # define TX_DOOR	"assets/textures/door.xpm"
 
