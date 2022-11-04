@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:58:14 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/07 17:44:29 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:45:53 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define MM_GROUND	0x00C1C1C1
 # define MM_WALL	0x00000000
 # define MM_DOOR	0x007C503F
+# define MM_BARREL	0x00B8B8B8
 
 // default game textures
 # define TX_NORTH	"assets/textures/dark_brick.xpm"
@@ -35,6 +36,7 @@
 # define TX_TORCH2	"assets/textures/sprites/torch_02.xpm"
 # define TX_TORCH3	"assets/textures/sprites/torch_03.xpm"
 
+# define TX_BARREL	"assets/textures/sprites/barrel.xpm"
 # define TX_ENEMY	"assets/textures/sprites/golem.xpm"
 
 #endif /* TEXTURES_H */

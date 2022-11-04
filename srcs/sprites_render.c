@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 20:07:27 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/31 13:43:40 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/04 18:29:17 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	draw_sprite_pixel(t_info *info, t_spriteview *sprite, int x, int y)
 		+ (x * info->screen.bpp / 8);
 	if (sprite->type == 'T')
 		tx = &(info->texture[T1 + info->torch_frame].img);
+	else if (sprite->type == 'B')
+		tx = &(info->texture[B].img);
 	else
 		tx = &(info->texture[ENEMY].img);
 	tx_color = get_tx_pixel(tx,

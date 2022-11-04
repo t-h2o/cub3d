@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 12:26:36 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/11/07 17:45:21 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:46:02 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void
 	if (info->map[(int)(next[Y])][(int)(next[X])] == '1'
 			|| info->map[(int)(next[Y])][(int)(next[X])] == 'D'
 			|| info->map[(int)(next[Y])][(int)(next[X])] == 'T'
+			|| info->map[(int)(next[Y])][(int)(next[X])] == 'B'
 			|| info->map[(int)(next[Y])][(int)(next[X])] == 'X')
 		return ;
 	info->player.pos[X] = next[X];

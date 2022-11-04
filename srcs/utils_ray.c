@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 05:43:03 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/10/29 20:35:49 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/04 18:37:06 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ float	horizontal_up(t_info *info, t_ray *ray, float hit[2])
 			|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
 			break ;
 		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T'
+			|| info->map[(int)hit[Y]][(int)hit[X]] == 'B'
 			|| info->map[(int)hit[Y]][(int)hit[X]] == 'X')
 			add_sprite(info, hit, info->map[(int)hit[Y]][(int)hit[X]]);
 		hit[Y] = hit[Y] - 1;
@@ -61,6 +62,7 @@ float	horizontal_down(t_info *info, t_ray *ray, float hit[2])
 			|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
 			break ;
 		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T'
+			|| info->map[(int)hit[Y]][(int)hit[X]] == 'B'
 			|| info->map[(int)hit[Y]][(int)hit[X]] == 'X')
 			add_sprite(info, hit, info->map[(int)hit[Y]][(int)hit[X]]);
 		hit[Y] = hit[Y] + 1;
@@ -87,6 +89,7 @@ float	vertical_right(t_info *info, t_ray *ray, float hit[2])
 			|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
 			break ;
 		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T'
+			|| info->map[(int)hit[Y]][(int)hit[X]] == 'B'
 			|| info->map[(int)hit[Y]][(int)hit[X]] == 'X')
 			add_sprite(info, hit, info->map[(int)hit[Y]][(int)hit[X]]);
 		hit[X] = hit[X] + 1;
@@ -113,6 +116,7 @@ float	vertical_left(t_info *info, t_ray *ray, float hit[2])
 			|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
 			break ;
 		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T'
+			|| info->map[(int)hit[Y]][(int)hit[X]] == 'B'
 			|| info->map[(int)hit[Y]][(int)hit[X]] == 'X')
 			add_sprite(info, hit, info->map[(int)hit[Y]][(int)hit[X]]);
 		hit[X] = hit[X] - 1;
