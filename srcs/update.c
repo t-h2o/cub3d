@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 20:19:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 13:55:43 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:13:20 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,12 @@ static void	handle_mouse_move(t_info *info)
 		W_WIDTH / 2, W_HEIGHT / 2);
 }
 
-static void	handle_anim(t_info *info)
+static void	handle_anim(t_info *info, int frame)
 {
-	static int	frame = 0;
 	int			anim_speed_attack;
 	static int	start = 0;
 
 	anim_speed_attack = 3;
-	if (frame > 1000000000)
-		frame = 0;
 	if (info->inputs.attack)
 	{
 		if (start == 0)
@@ -72,7 +69,28 @@ static void	handle_anim(t_info *info)
 			}
 		}
 	}
-	frame++;
+}
+
+static void	handle_doors(t_info *info, int frame)
+{
+	t_door	*door;
+	int		anim_speed;
+
+	anim_speed = 5; 
+	door = info->doors;
+	if (frame % anim_speed)
+		return ;
+	while (door)
+	{
+		if (door->open > 0 && door->open < TX_DOOR_NB)
+			door->open++;
+		if (door->open == TX_DOOR_NB)
+		{
+			info->map[door->pos[Y]][door->pos[X]] = '0';
+			create_minimap(info);
+		}
+		door = door->next;
+	}
 }
 
 // Loop hook
@@ -95,7 +113,8 @@ int	update_game(t_info *info)
 	}
 	handle_inputs(info);
 	handle_mouse_move(info);
-	handle_anim(info);
+	handle_anim(info, frame);
+	handle_doors(info, frame);
 	print_frame(info);
 	frame++;
 	return (0);

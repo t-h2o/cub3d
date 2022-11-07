@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 14:47:29 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:12:17 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,14 @@ enum e_tx {
 	FL,
 	CE,
 	D,
+	D2,
+	D3,
+	D4,
+	D5,
+	D6,
+	D7,
+	D8,
+	D9,
 	T1,
 	T2,
 	T3,
@@ -166,6 +174,12 @@ typedef struct s_spriteview {
 	struct s_spriteview	*next;
 }	t_spriteview;
 
+typedef struct s_door {
+	int				pos[2];
+	int				open;
+	struct s_door	*next;
+}	t_door;
+
 // mlx: pointer on informations of the window
 typedef struct s_info {
 	void			*mlx[2];
@@ -174,12 +188,13 @@ typedef struct s_info {
 	int				mapsize[2];
 	t_player		player;
 	t_inputs		inputs;
-	t_texture		texture[18];
+	t_texture		texture[26];
 	bool			active_map;
 	t_ray			ray[W_WIDTH];
 	t_img_data		screen;
 	t_spriteview	*spriteview;
 	int				torch_frame;
+	t_door			*doors;
 }	t_info;
 
 // check_map.c
@@ -192,7 +207,10 @@ int		error_msg(char *msg);
 void	close_game(t_info *info, int exit_code);
 
 // doors.c
+void		add_door(t_info *info, int x, int y);
 int		check_doors(t_info *info, int y);
+t_door		*find_door(t_info *info, float pos[2]);
+int		load_doors(t_info *info);
 
 // init.c
 int		init_game(t_info *info, char *mapname);
@@ -231,6 +249,7 @@ void	render_sprites(t_info *info);
 
 // textures.c
 int		load_textures(t_info *info);
+int		load_xpm_image(t_info *info, t_img_data *img, char *path);
 
 // update.c
 int		update_game(t_info *info);
