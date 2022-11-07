@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 05:43:03 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/11/04 18:37:06 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:22:09 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ float	horizontal_up(t_info *info, t_ray *ray, float hit[2])
 	ratio = -side / ray->delta[Y];
 	hit[X] = info->player.pos[X] + ratio * ray->delta[X];
 	hit[Y] = info->player.pos[Y] + ratio * ray->delta[Y];
-	while (1)
+	while (info->player.pos[Y] - hit[Y] <= FOG_MAX + 2)
 	{
 		if (hit[X] < 0 || hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y]
 			|| ft_strlen(info->map[(int)hit[Y]]) < hit[X])
@@ -53,7 +53,7 @@ float	horizontal_down(t_info *info, t_ray *ray, float hit[2])
 	ratio = side / ray->delta[Y];
 	hit[X] = info->player.pos[X] + ratio * ray->delta[X];
 	hit[Y] = info->player.pos[Y] + ratio * ray->delta[Y];
-	while (1)
+	while (hit[Y] - info->player.pos[Y] <= FOG_MAX + 2)
 	{
 		if (hit[X] < 0 || hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y]
 			|| ft_strlen(info->map[(int)hit[Y]]) < hit[X])
@@ -81,7 +81,7 @@ float	vertical_right(t_info *info, t_ray *ray, float hit[2])
 	ratio = side / ray->delta[X];
 	hit[X] = info->player.pos[X] + ratio * ray->delta[X];
 	hit[Y] = info->player.pos[Y] + ratio * ray->delta[Y];
-	while (1)
+	while (hit[X] - info->player.pos[X] <= FOG_MAX + 2)
 	{
 		if (hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y])
 			break ;
@@ -108,7 +108,7 @@ float	vertical_left(t_info *info, t_ray *ray, float hit[2])
 	ratio = -side / ray->delta[X];
 	hit[X] = info->player.pos[X] + ratio * ray->delta[X];
 	hit[Y] = info->player.pos[Y] + ratio * ray->delta[Y];
-	while (1)
+	while (info->player.pos[X] - hit[X] <= FOG_MAX + 2)
 	{
 		if (hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y])
 			break ;

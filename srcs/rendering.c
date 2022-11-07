@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 14:19:37 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:20:59 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 		line = -wall_off - 1;
 	while (++line < wall_hei && (line + wall_off) < W_HEIGHT)
 	{	
-		if (info->ray[column].distance <= FOG_MAX)
+		if (info->ray[column].distance < FOG_MAX)
 		{
 			*(unsigned int *)dst = get_tx_pixel(tx, x_scale,
 					(float)line / wall_hei);
