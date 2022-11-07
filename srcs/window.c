@@ -61,26 +61,6 @@ static int	red_cross(t_info *info)
 	return (0);
 }
 
-// Loop hook
-// Update frame
-static int	update_frame(t_info *info)
-{
-	if (info->inputs.forward)
-		player_move(info, PS_MOVE, 0);
-	else if (info->inputs.back)
-		player_move(info, -PS_MOVE, 0);
-	if (info->inputs.m_right)
-		player_move(info, -PS_MOVE, 1);
-	else if (info->inputs.m_left)
-		player_move(info, PS_MOVE, 1);
-	if (info->inputs.r_right)
-		player_rotate(info, PS_ROTATE);
-	else if (info->inputs.r_left)
-		player_rotate(info, -PS_ROTATE);
-	print_frame(info);
-	return (0);
-}
-
 // Init and open a new window
 // Define the fonction deal key for action with keys
 // Start the infinite loop of the window
@@ -93,7 +73,9 @@ int	start_window(t_info *info)
 	mlx_hook(info->mlx[WINDOW], 2, 1L << 0, deal_key, info);
 	mlx_hook(info->mlx[WINDOW], 3, 1L << 1, release_key, info);
 	mlx_hook(info->mlx[WINDOW], 17, 0L << 0, red_cross, info);
-	mlx_loop_hook(info->mlx[INIT], update_frame, info);
+	mlx_loop_hook(info->mlx[INIT], update_game, info);
+	mlx_mouse_hide(info->mlx[INIT], info->mlx[WINDOW]);
+	my_mouse_move(info->mlx[0], info->mlx[1], W_WIDTH / 2, W_HEIGHT / 2);
 	mlx_loop(info->mlx[INIT]);
 	return (0);
 }

@@ -39,9 +39,12 @@
 # define FOV		1.2f
 
 // Player settings
-// rotation = (2PI / 128)
+//   player movement speed
+//   player rotation = (2PI / 128)
+//   player mouse sensitivity
 # define PS_MOVE	0.1f
 # define PS_ROTATE	0.0490873852123f
+# define PS_MOUSE	1.0f
 
 // Shading settings
 // fog start
@@ -184,6 +187,9 @@ void	render_screen(t_info *info);
 // textures.c
 int		load_textures(t_info *info);
 
+// update.c
+int		update_game(t_info *info);
+
 // utils_math.c
 void	angle_delta(float angle, float delta[2]);
 float	angle_sum(float angle_a, float angle_b);
@@ -191,6 +197,8 @@ float	sqrt_points(float o[2], float d[2]);
 
 // utils_mlx.c
 void	my_destroy_image(void *mlx, void *img);
+void	my_mouse_move(void *mlx, void *win, int x, int y);
+void	my_mouse_get_pos(void *mlx, void *win, int *x, int *y);
 
 // utils_parsing.c
 char	*skip_whitespaces(char *str);
