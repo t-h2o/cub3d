@@ -65,17 +65,20 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 	dst = info->screen.addr + (column * info->screen.bpp / 8);
 	if (wall_off > 0)
 		dst += (wall_off * info->screen.line_len);
-	if (info->ray[column].hitdir)
-		x_scale = info->ray[column].hit[X] - (int)info->ray[column].hit[X];
-	else
-		x_scale = info->ray[column].hit[Y] - (int)info->ray[column].hit[Y];
+	x_scale = calc_x_scaling(&(info->ray[column]));
 	line = -1;
 	if (wall_off < 0)
 		line = -wall_off - 1;
 	while (++line < wall_hei && (line + wall_off) < W_HEIGHT)
 	{	
-		*(unsigned int *)dst = get_tx_pixel(tx, x_scale,
-				(float)line / wall_hei);
+		if (info->ray[column].distance <= FOG_MAX)
+		{
+			*(unsigned int *)dst = get_tx_pixel(tx, x_scale,
+					(float)line / wall_hei);
+			add_shade(dst, info->ray[column].distance);
+		}
+		else
+			*(unsigned int *)dst = CO_FOG;
 		dst += info->screen.line_len;
 	}
 }
@@ -127,7 +130,10 @@ void	render_screen(t_info *info)
 	{
 		info->ray[column].distance = info->ray[column].distance
 			* cos(info->ray[column].angle);
-		wall_height = W_HEIGHT / info->ray[column].distance;
+		if (info->ray[column].distance > FOG_MAX)
+			wall_height = W_HEIGHT / FOG_MAX;
+		else
+			wall_height = W_HEIGHT / info->ray[column].distance;
 		wall_offset = (W_HEIGHT - wall_height) / 2;
 		draw_ceil(info, column, wall_offset);
 		draw_wall(info, column, wall_height, wall_offset);

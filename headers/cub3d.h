@@ -43,6 +43,12 @@
 # define PS_MOVE	0.1f
 # define PS_ROTATE	0.0490873852123f
 
+// Shading settings
+// fog start
+# define FOG_MIN	3.5f
+// max view distance
+# define FOG_MAX	10.0f
+
 // Minimap settings
 // postion
 # define MM_POS_Y	10
@@ -195,6 +201,10 @@ float	horizontal_up(t_info *info, float hit[2], float delta[2]);
 float	horizontal_down(t_info *info, float hit[2], float delta[2]);
 float	vertical_right(t_info *info, float hit[2], float delta[2]);
 float	vertical_left(t_info *info, float hit[2], float delta[2]);
+
+// utils_render.c
+void	add_shade(char *dst, float distance);
+float	calc_x_scaling(t_ray *ray);
 
 // window.c
 int		start_window(t_info *info);
