@@ -83,7 +83,6 @@ void	print_frame(t_info *info)
 	player_ray(info);
 	render_screen(info);
 	draw_crosshair(info);
-	mlx_clear_window(info->mlx[INIT], info->mlx[WINDOW]);
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->screen.img, 0, 0);
 	if (info->active_map)
 		print_minimap(info);
@@ -102,7 +101,6 @@ void	print_frame(t_info *info)
 	render_screen(info);
 	draw_crosshair(info);
 	draw_pov(info);
-	mlx_clear_window(info->mlx[INIT], info->mlx[WINDOW]);
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->screen.img, 0, 0);
 	if (info->active_map)
 		print_minimap(info);
