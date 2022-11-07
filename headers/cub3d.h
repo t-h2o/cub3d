@@ -124,6 +124,11 @@ typedef struct s_texture {
 	t_img_data	img;
 }	t_texture;
 
+typedef struct s_time {
+	struct timeval	last;
+	struct timeval	now;
+}	t_time;
+
 typedef struct s_inputs {
 	bool	forward;
 	bool	back;
@@ -180,6 +185,7 @@ typedef struct s_info {
 	t_img_data		screen;
 	t_spriteview	*spriteview;
 	int				torch_frame;
+	t_time			time;
 }	t_info;
 
 // check_map.c
@@ -261,6 +267,9 @@ float	calc_x_scaling(t_ray *ray);
 void	copy_image(t_img_data *dst, t_img_data *src);
 void	draw_crosshair(t_info *info);
 void	draw_pov(t_info *info);
+
+// wait_next_frame.c
+void	wait_next_frame(t_info *info);
 
 // window.c
 int		start_window(t_info *info);

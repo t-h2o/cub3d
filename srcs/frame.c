@@ -101,6 +101,7 @@ void	print_frame(t_info *info)
 	render_screen(info);
 	draw_crosshair(info);
 	draw_pov(info);
+	wait_next_frame(info);
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->screen.img, 0, 0);
 	if (info->active_map)
 		print_minimap(info);
