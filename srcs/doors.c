@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:21:52 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/07 01:08:20 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/07 12:14:58 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ void	add_door(t_info *info, int x, int y)
 		return ;
 	new_door->pos[X] = x;
 	new_door->pos[Y] = y;
-	new_door->open = 0;
+	new_door->frame = 0;
+	new_door->opening = 0;
+	new_door->closing = 0;
 	new_door->next = info->doors;
 	info->doors = new_door;
 }

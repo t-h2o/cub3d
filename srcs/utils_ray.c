@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 05:43:03 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/11/08 15:25:48 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:19:16 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ float	horizontal_up(t_info *info, t_ray *ray, float hit[2])
 			|| ft_strlen(info->map[(int)hit[Y]]) < hit[X])
 			break ;
 		data = info->map[(int)hit[Y]][(int)hit[X]];
-		if (data == '1' || data == 'D')
+		if (data == '1')
 			break ;
+		if (data == 'D')
+			ft_memcpy(ray->door_hit, hit, 2 * sizeof(float));
 		if (data == 'T' || data == 'B' || data == 'X')
 			add_sprite(info, hit, data);
 		if (ray->column == W_WIDTH / 2 && data == 'X'
@@ -62,8 +64,10 @@ float	horizontal_down(t_info *info, t_ray *ray, float hit[2])
 			|| ft_strlen(info->map[(int)hit[Y]]) < hit[X])
 			break ;
 		data = info->map[(int)hit[Y]][(int)hit[X]];
-		if (data == '1' || data == 'D')
+		if (data == '1')
 			break ;
+		if (data == 'D')
+			ft_memcpy(ray->door_hit, hit, 2 * sizeof(float));
 		if (data == 'T' || data == 'B' || data == 'X')
 			add_sprite(info, hit, data);
 		if (ray->column == W_WIDTH / 2 && data == 'X'
@@ -91,8 +95,10 @@ float	vertical_right(t_info *info, t_ray *ray, float hit[2])
 		if (hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y])
 			break ;
 		data = info->map[(int)hit[Y]][(int)hit[X]];
-		if (data == '1' || data == 'D')
+		if (data == '1')
 			break ;
+		if (data == 'D')
+			ft_memcpy(ray->door_hit, hit, 2 * sizeof(float));
 		if (data == 'T' || data == 'B' || data == 'X')
 			add_sprite(info, hit, data);
 		if (ray->column == W_WIDTH / 2 && data == 'X'
@@ -120,8 +126,10 @@ float	vertical_left(t_info *info, t_ray *ray, float hit[2])
 		if (hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y])
 			break ;
 		data = info->map[(int)hit[Y]][(int)hit[X]];
-		if (data == '1' || data == 'D')
+		if (data == '1')
 			break ;
+		if (data == 'D')
+			ft_memcpy(ray->door_hit, hit, 2 * sizeof(float));
 		if (data == 'T' || data == 'B' || data == 'X')
 			add_sprite(info, hit, data);
 		if (ray->column == W_WIDTH / 2 && data == 'X'

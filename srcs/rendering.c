@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 20:12:53 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:15:31 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 	t_img_data	*tx;
 	float		x_scale;
 	
-	if (info->ray[column].wall == D)
-		tx = &(info->texture[D + find_door(info, info->ray[column].hit)->open].img);
+	if (info->ray[column].door_hit[X] > 0)
+		tx = &(info->texture[D + find_door(info, info->ray[column].door_hit)->frame].img);
 	else
 		tx = &(info->texture[info->ray[column].wall].img);
 	dst = info->screen.addr + (column * info->screen.bpp / 8);

@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 20:19:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 20:13:20 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:15:41 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	handle_inputs(t_info *info)
 		player_rotate(info, -PS_ROTATE);
 	if (info->inputs.attack && info->player.attack_frame == 0)
 		player_attack(info);
+	if (info->inputs.action)
+		player_action(info);
 }
 
 // Mouse movement
@@ -77,17 +79,22 @@ static void	handle_doors(t_info *info, int frame)
 	int		anim_speed;
 
 	anim_speed = 5; 
-	door = info->doors;
 	if (frame % anim_speed)
 		return ;
+	door = info->doors;
 	while (door)
 	{
-		if (door->open > 0 && door->open < TX_DOOR_NB)
-			door->open++;
-		if (door->open == TX_DOOR_NB)
+		if (door->opening)
 		{
-			info->map[door->pos[Y]][door->pos[X]] = '0';
-			create_minimap(info);
+			door->frame++;
+			if (door->frame == TX_DOOR_NB - 1)
+				door->opening = 0;
+		}
+		else if (door->closing)
+		{
+			door->frame--;
+			if (door->frame == 0)
+				door->closing = 0;
 		}
 		door = door->next;
 	}

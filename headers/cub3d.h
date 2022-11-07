@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 20:12:17 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:14:59 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ typedef struct s_inputs {
 	bool	r_left;
 	bool	r_right;
 	bool	attack;
+	bool	action;
 }	t_inputs;
 
 typedef struct s_player {
@@ -160,6 +161,7 @@ typedef struct s_ray {
 	unsigned char	wall;
 	int				hitdir;
 	float			enemy_hit[2];
+	float			door_hit[2];
 }	t_ray;
 
 typedef struct s_spriteview {
@@ -176,7 +178,9 @@ typedef struct s_spriteview {
 
 typedef struct s_door {
 	int				pos[2];
-	int				open;
+	bool		opening;
+	bool		closing;
+	int				frame;
 	struct s_door	*next;
 }	t_door;
 

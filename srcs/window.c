@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:01:59 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/11/07 17:53:32 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:19:27 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int
 	else if (key == KEY_LEFT)
 		info->inputs.r_left = 1;
 	else if (key == KEY_E)
-		player_action(info);
+		info->inputs.action = 1;
 	else if (key == KEY_TAB)
 		info->active_map = !info->active_map;
 	return (0);
@@ -51,6 +51,8 @@ static int
 		info->inputs.r_right = 0;
 	else if (key == KEY_LEFT)
 		info->inputs.r_left = 0;
+	else if (key == KEY_E)
+		info->inputs.action = 0;
 	return (0);
 }
 
