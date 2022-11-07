@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 20:19:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/14 20:26:58 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/28 19:50:20 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,21 @@ static void	handle_mouse_move(t_info *info)
 // Refresh screen
 int	update_game(t_info *info)
 {
+	static int	frame = 0;
+	int			anim_speed_torch;
+
+	anim_speed_torch = 10;
+	if (frame > 100000000)
+		frame = 0;
+	if (!(frame % anim_speed_torch))
+	{
+		info->torch_frame++;
+		if (info->torch_frame == TX_TORCH_NB)
+			info->torch_frame = 0;
+	}
 	handle_key_inputs(info);
 	handle_mouse_move(info);
 	print_frame(info);
+	frame++;
 	return (0);
 }

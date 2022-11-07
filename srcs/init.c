@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:44:17 by gudias            #+#    #+#             */
-/*   Updated: 2022/09/10 23:01:16 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/10/21 12:43:54 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ static void	init_ray(t_info *info)
 
 	column = -1;
 	while (++column < W_WIDTH)
+	{
+		info->ray[column].column = column;
 		info->ray[column].angle = FOV
 			* ((float)column / (float)(W_WIDTH - 1) - 0.5f);
+	}
 }
 
 // Init default value of the struct

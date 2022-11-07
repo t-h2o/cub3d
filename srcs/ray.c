@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 17:04:24 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/10/07 16:50:43 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/21 12:31:39 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static void
 	distance[X] = -1.0f;
 	distance[Y] = -1.0f;
 	if (0.0f < ray->delta[X])
-		distance[X] = vertical_right(info, hit[X], ray->delta);
+		distance[X] = vertical_right(info, ray, hit[X]);
 	else if (ray->delta[X] < 0.0f)
-		distance[X] = vertical_left(info, hit[X], ray->delta);
+		distance[X] = vertical_left(info, ray, hit[X]);
 	if (0.0f < ray->delta[Y])
-		distance[Y] = horizontal_down(info, hit[Y], ray->delta);
+		distance[Y] = horizontal_down(info, ray, hit[Y]);
 	else if (ray->delta[Y] < 0.0f)
-		distance[Y] = horizontal_up(info, hit[Y], ray->delta);
+		distance[Y] = horizontal_up(info, ray, hit[Y]);
 }
 
 // Collect the type of wall and set good values in ray

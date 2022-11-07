@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/07 19:55:07 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:45:41 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,12 @@ enum e_tx {
 	WE,
 	FL,
 	CE,
-	D
+	D,
+	T1,
+	T2,
+	T3,
+	B,
+	ENEMY
 };
 
 enum e_axis {
@@ -126,6 +131,7 @@ typedef struct s_player {
 // distance between the player and the wall
 // wall: NEWS
 typedef struct s_ray {
+	int				column;
 	float			angle;
 	float			delta[2];
 	float			hit[2];
@@ -134,18 +140,32 @@ typedef struct s_ray {
 	int				hitdir;
 }	t_ray;
 
+typedef struct s_spriteview {
+	int					origin[2];
+	float				pos[2];
+	float				distance;
+	char				type;
+	int					draw_start[2];
+	int					draw_end[2];
+	int					width;
+	int					height;
+	struct s_spriteview	*next;
+}	t_spriteview;
+
 // mlx: pointer on informations of the window
 typedef struct s_info {
-	void		*mlx[2];
-	char		**map;
-	t_img_data	mm_img[2];
-	int			mapsize[2];
-	t_player	player;
-	t_inputs	inputs;
-	t_texture	texture[7];
-	bool		active_map;
-	t_ray		ray[W_WIDTH];
-	t_img_data	screen;
+	void			*mlx[2];
+	char			**map;
+	t_img_data		mm_img[2];
+	int				mapsize[2];
+	t_player		player;
+	t_inputs		inputs;
+	t_texture		texture[12];
+	bool			active_map;
+	t_ray			ray[W_WIDTH];
+	t_img_data		screen;
+	t_spriteview	*spriteview;
+	int				torch_frame;
 }	t_info;
 
 // check_map.c
@@ -182,7 +202,16 @@ void	player_action(t_info *info);
 void	ray(t_info *info, t_ray *ray);
 
 // rendering.c
+int		get_tx_pixel(t_img_data *tx, float x_scale, float y_scale);
 void	render_screen(t_info *info);
+
+// sprites.c
+void	add_sprite(t_info *info, float pos[2], char type);
+void	sort_sprites(t_info *info);
+void	free_sprite_list(t_spriteview *list);
+
+// sprites_render.c
+void	render_sprites(t_info *info);
 
 // textures.c
 int		load_textures(t_info *info);
@@ -205,10 +234,10 @@ char	*skip_whitespaces(char *str);
 int		convert_rgb(char *rgb);
 
 // utils_rays.c
-float	horizontal_up(t_info *info, float hit[2], float delta[2]);
-float	horizontal_down(t_info *info, float hit[2], float delta[2]);
-float	vertical_right(t_info *info, float hit[2], float delta[2]);
-float	vertical_left(t_info *info, float hit[2], float delta[2]);
+float	horizontal_up(t_info *info, t_ray *ray, float hit[2]);
+float	horizontal_down(t_info *info, t_ray *ray, float hit[2]);
+float	vertical_right(t_info *info, t_ray *ray, float hit[2]);
+float	vertical_left(t_info *info, t_ray *ray, float hit[2]);
 
 // utils_render.c
 void	add_shade(char *dst, float distance);

@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/04 15:37:38 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:43:03 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Get the value (color) of a pixel in a texture
 // The position (x,y) in the texture is given by
 // the scaling and the texture size
-static int	get_tx_pixel(t_img_data *tx, float x_scale, float y_scale)
+int	get_tx_pixel(t_img_data *tx, float x_scale, float y_scale)
 {
 	int	pixel_value;
 
@@ -139,4 +139,6 @@ void	render_screen(t_info *info)
 		draw_wall(info, column, wall_height, wall_offset);
 		draw_floor(info, column, wall_offset + wall_height);
 	}
+	if (info->spriteview)
+		render_sprites(info);
 }

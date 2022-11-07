@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/07 00:52:41 by gudias           ###   ########.fr       */
+/*   Updated: 2022/10/28 19:33:05 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ static void	destroy_images(t_info *info)
 	my_destroy_image(info->mlx[INIT], info->texture[FL].img.img);
 	my_destroy_image(info->mlx[INIT], info->texture[CE].img.img);
 	my_destroy_image(info->mlx[INIT], info->texture[D].img.img);
+	my_destroy_image(info->mlx[INIT], info->texture[T1].img.img);
+	my_destroy_image(info->mlx[INIT], info->texture[T2].img.img);
+	my_destroy_image(info->mlx[INIT], info->texture[T3].img.img);
 }
 
 static void	free_textures_path(t_info *info)

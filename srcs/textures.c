@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:02:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/07 00:52:05 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/04 18:26:12 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,25 @@ static int	load_game_textures(t_info *info)
 	return (0);
 }
 
+static int	load_sprites(t_info *info)
+{
+	if (load_xpm_image(info, &(info->texture[T1].img), TX_TORCH1))
+		return (1);
+	if (load_xpm_image(info, &(info->texture[T2].img), TX_TORCH2))
+		return (1);
+	if (load_xpm_image(info, &(info->texture[T3].img), TX_TORCH3))
+		return (1);
+	if (load_xpm_image(info, &(info->texture[B].img), TX_BARREL))
+		return (1);
+	if (load_xpm_image(info, &(info->texture[ENEMY].img), TX_ENEMY))
+		return (1);
+	return (0);
+}
+
 // Load all the textures
 int	load_textures(t_info *info)
 {
-	if (load_game_textures(info))
+	if (load_game_textures(info) || load_sprites(info))
 		return (error_msg("Couldn't load texture"));
 	create_minimap(info);
 	info->screen.img = mlx_new_image(info->mlx[0], W_WIDTH, W_HEIGHT);
