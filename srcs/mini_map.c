@@ -6,27 +6,41 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/10/07 18:01:26 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:56:29 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 
+static int	get_mm_color(t_info *info, int y, int x)
+{
+	if (x >= (int)ft_strlen(info->map[y]) - 1)
+		return (MM_EMPTY);
+	else if (info->map[y][x] == '0')
+		return (MM_GROUND);
+	else if (info->map[y][x] == '1')
+		return (MM_WALL);
+	else if (info->map[y][x] == 'D')
+		return (MM_DOOR);
+	else if (info->map[y][x] == 'T')
+		return (MM_TORCH);
+	else if (info->map[y][x] == 'B')
+		return (MM_BARREL);
+	else if (info->map[y][x] == 'X')
+		return (MM_ENEMY);
+	else
+		return (MM_EMPTY);
+}
+
 // Draw a tile of the minimap in the mm image
-static void	draw_mm_tile(t_info *info, char c, int y, int x)
+static void	draw_mm_tile(t_info *info, int y, int x)
 {
 	int		color;
 	int		i;
 	int		j;
 	char	*dst;
 
-	color = 0x70303030;
-	if (c == '0')
-		color = MM_GROUND;
-	else if (c == '1')
-		color = MM_WALL;
-	else if (c == 'D')
-		color = MM_DOOR;
+	color = get_mm_color(info, y, x);
 	j = -1;
 	while (++j < MM_SIZE_TILE)
 	{
@@ -39,19 +53,6 @@ static void	draw_mm_tile(t_info *info, char c, int y, int x)
 			*(unsigned int *)dst = color;
 		}
 	}
-}
-
-static void	print_mm_player(t_info *info)
-{
-	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
-		info->mm_img[PLAYER].img,
-		MM_POS_X + info->player.pos[X] * MM_SIZE_TILE - MM_SIZE_PLAYER / 2,
-		MM_POS_Y + info->player.pos[Y] * MM_SIZE_TILE - MM_SIZE_PLAYER / 2);
-}
-
-static void	draw_mm_rays(t_info *info)
-{
-	(void) info;
 }
 
 void	create_minimap(t_info *info)
@@ -73,7 +74,7 @@ void	create_minimap(t_info *info)
 	{
 		x = -1;
 		while (++x < info->mapsize[X])
-			draw_mm_tile(info, info->map[y][x], y, x);
+			draw_mm_tile(info, y, x);
 	}
 }
 
@@ -84,6 +85,8 @@ void	print_minimap(t_info *info)
 {
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
 		info->mm_img[MAP].img, MM_POS_X, MM_POS_Y);
-	print_mm_player(info);
-	draw_mm_rays(info);
+	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
+		info->mm_img[PLAYER].img,
+		MM_POS_X + info->player.pos[X] * MM_SIZE_TILE - MM_SIZE_PLAYER / 2,
+		MM_POS_Y + info->player.pos[Y] * MM_SIZE_TILE - MM_SIZE_PLAYER / 2);
 }

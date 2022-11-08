@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:58:14 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 14:06:30 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:56:03 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,20 @@
 
 // minimap textures
 # define MM_PLAYER	"assets/textures/minimap/player.xpm"
+# define MM_EMPTY	0x70303030
 # define MM_GROUND	0x00C1C1C1
 # define MM_WALL	0x00000000
 # define MM_DOOR	0x007C503F
+# define MM_TORCH	0x00222222
 # define MM_BARREL	0x00B8B8B8
+# define MM_ENEMY	0x00660000
 
 // default game textures
 # define TX_NORTH	"assets/textures/dark_brick.xpm"
 # define TX_SOUTH	"assets/textures/jungle.xpm"
 # define TX_EAST	"assets/textures/jungle_brick.xpm"
 # define TX_WEST	"assets/textures/handpainted_brick.xpm"
-# define TX_FLOOR	"assets/textures/coord_plane.xpm"
+# define TX_FLOOR	"assets/textures/dirt1.xpm"
 # define TX_CEIL	"assets/textures/sky_doubled.xpm"
 # define TX_DOOR	"assets/textures/door.xpm"
 

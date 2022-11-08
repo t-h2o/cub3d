@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 13:45:31 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:33:53 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,6 @@ static void	destroy_images(t_info *info)
 	my_destroy_image(info->mlx[INIT], info->texture[PISTOL4].img.img);
 	my_destroy_image(info->mlx[INIT], info->texture[PISTOL5].img.img);
 	my_destroy_image(info->mlx[INIT], info->texture[PISTOL6].img.img);
-	my_destroy_image(info->mlx[INIT], info->player.pov[0].img);
-	my_destroy_image(info->mlx[INIT], info->player.pov[1].img);
-	my_destroy_image(info->mlx[INIT], info->player.pov[2].img);
-	my_destroy_image(info->mlx[INIT], info->player.pov[3].img);
-	my_destroy_image(info->mlx[INIT], info->player.pov[4].img);
-	my_destroy_image(info->mlx[INIT], info->player.pov[5].img);
 }
 
 static void	free_textures_path(t_info *info)
@@ -48,6 +42,7 @@ static void	free_textures_path(t_info *info)
 	free(info->texture[WE].path);
 	free(info->texture[FL].path);
 	free(info->texture[CE].path);
+	free(info->texture[D].path);
 }
 
 void	free_array(char **array)

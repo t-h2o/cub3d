@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:42:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/29 03:35:46 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/01 14:42:33 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,25 @@ static int	save_map_info(t_info *info, char *line)
 
 	ret = 0;
 	str = skip_whitespaces(line);
-	if (str)
-	{
-		if (ft_strncmp(str, "NO", 2) == 0)
-			info->texture[NO].path = skip_whitespaces(str + 2);
-		else if (ft_strncmp(str, "SO", 2) == 0)
-			info->texture[SO].path = skip_whitespaces(str + 2);
-		else if (ft_strncmp(str, "EA", 2) == 0)
-			info->texture[EA].path = skip_whitespaces(str + 2);
-		else if (ft_strncmp(str, "WE", 2) == 0)
-			info->texture[WE].path = skip_whitespaces(str + 2);
-		else if (*str == 'F')
-			info->texture[FL].path = skip_whitespaces(str + 1);
-		else if (*str == 'C')
-			info->texture[CE].path = skip_whitespaces(str + 1);
-		else if (*str == 'D')
-			info->texture[D].path = skip_whitespaces(str + 1);
-		else
-			ret = 1;
-		free(str);
-	}
+	if (!str)
+		return (0);
+	if (ft_strncmp(str, "NO", 2) == 0)
+		info->texture[NO].path = skip_whitespaces(str + 2);
+	else if (ft_strncmp(str, "SO", 2) == 0)
+		info->texture[SO].path = skip_whitespaces(str + 2);
+	else if (ft_strncmp(str, "EA", 2) == 0)
+		info->texture[EA].path = skip_whitespaces(str + 2);
+	else if (ft_strncmp(str, "WE", 2) == 0)
+		info->texture[WE].path = skip_whitespaces(str + 2);
+	else if (*str == 'F')
+		info->texture[FL].path = skip_whitespaces(str + 1);
+	else if (*str == 'C')
+		info->texture[CE].path = skip_whitespaces(str + 1);
+	else if (*str == 'D')
+		info->texture[D].path = skip_whitespaces(str + 1);
+	else
+		ret = 1;
+	free(str);
 	return (ret);
 }
 

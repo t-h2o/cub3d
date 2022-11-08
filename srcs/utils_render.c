@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:54:39 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/07 17:59:31 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:48:51 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,53 @@ void	draw_crosshair(t_info *info)
 				* info->screen.line_len) = CROSSHAIR_COLOR;
 		h_dst += info->screen.bpp / 8;
 		v_dst += info->screen.line_len;
+	}
+}
+
+void	copy_image(t_img_data *dst_img, t_img_data *src_img)
+{
+	char		*dst;
+	int			x;
+	int			y;
+
+	dst = dst_img->addr;
+	y = -1;
+	while (++y < dst_img->height)
+	{
+		x = -1;
+		while (++x < dst_img->width)
+		{
+			*(unsigned int *)dst = get_tx_pixel(src_img,
+					(float)x / dst_img->width,
+					(float)y / dst_img->height);
+			dst += (dst_img->bpp / 8);
+		}
+	}
+}
+
+void	draw_pov(t_info *info)
+{
+	t_img_data	*tx;
+	char		*dst;
+	char		*src;
+	int			x;
+	int			y;
+
+	tx = &(info->texture[PISTOL1 + info->player.attack_frame].img);
+	src = tx->addr;
+	y = -1;
+	while (++y < tx->height)
+	{
+		dst = info->screen.addr
+			+ ((W_HEIGHT - tx->height + y) * info->screen.line_len)
+			+ ((W_WIDTH / 4) * (info->screen.bpp / 8));
+		x = -1;
+		while (++x < tx->width)
+		{
+			if (*(unsigned int *)src != 0xFF000000)
+				*(unsigned int *)dst = *(unsigned int *)src;
+			dst += info->screen.bpp / 8;
+			src += tx->bpp / 8;
+		}
 	}
 }

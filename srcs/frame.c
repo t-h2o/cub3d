@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:40:59 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/11/08 14:06:41 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:48:32 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	player_ray(t_info *info)
 	column = 0;
 	free_sprite_list(info->spriteview);
 	info->spriteview = NULL;
+	info->ray[W_WIDTH / 2].enemy_hit[X] = 0;
 	while (column < W_WIDTH)
 	{
 		angle_delta(info->player.angle + info->ray[column].angle,
@@ -70,6 +71,8 @@ static void	print_info(t_info *info)
 		500, 30, CO_WHITE, message);
 }
 
+#ifdef __APPLE__
+
 // 1. Cast rays to get view informations
 // 2. Render the view screen
 // 3. Print the screen
@@ -86,6 +89,24 @@ void	print_frame(t_info *info)
 		print_minimap(info);
 	print_info(info);
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
-		info->player.pov[info->player.attack_frame].img, W_WIDTH / 4,
-		W_HEIGHT - info->player.pov[info->player.attack_frame].height);
+		info->texture[PISTOL1 + info->player.attack_frame].img.img,
+		W_WIDTH / 4, W_HEIGHT - info->texture[PISTOL1
+		+ info->player.attack_frame].img.height);
 }
+
+#else
+
+void	print_frame(t_info *info)
+{
+	player_ray(info);
+	render_screen(info);
+	draw_crosshair(info);
+	draw_pov(info);
+	mlx_clear_window(info->mlx[INIT], info->mlx[WINDOW]);
+	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->screen.img, 0, 0);
+	if (info->active_map)
+		print_minimap(info);
+	print_info(info);
+}
+
+#endif

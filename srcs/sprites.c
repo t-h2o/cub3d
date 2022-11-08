@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 13:54:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/04 18:35:25 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:35:02 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,28 @@ void	free_sprite_list(t_spriteview *list)
 		tmp = list->next;
 		free(list);
 		list = tmp;
+	}
+}
+
+//create scaled image for the pov 
+void	scale_pov_sprites(t_info *info)
+{
+	float		scale;
+	int			i;
+	t_img_data	new;
+
+	i = -1;
+	while (++i < TX_PISTOL_NB)
+	{
+		new.width = W_WIDTH / 2;
+		scale = (float)new.width / info->texture[PISTOL1 + i].img.width;
+		new.height = scale * info->texture[PISTOL1 + i].img.height;
+		new.img = mlx_new_image(info->mlx[0], new.width, new.height);
+		new.addr = mlx_get_data_addr(new.img, &(new.bpp),
+				&(new.line_len), &(new.endian));
+		copy_image(&(new), &(info->texture[PISTOL1 + i].img));
+		my_destroy_image(info->mlx[0], info->texture[PISTOL1 + i].img.img);
+		ft_memcpy(&(info->texture[PISTOL1 + i].img), &(new),
+			sizeof (t_img_data));
 	}
 }
