@@ -6,14 +6,14 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 20:19:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/28 19:50:20 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:55:43 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // Checks keys inputs and move the player
-static void	handle_key_inputs(t_info *info)
+static void	handle_inputs(t_info *info)
 {
 	if (info->inputs.forward && !info->inputs.back)
 		player_move(info, PS_MOVE, 0);
@@ -27,6 +27,8 @@ static void	handle_key_inputs(t_info *info)
 		player_rotate(info, PS_ROTATE);
 	else if (info->inputs.r_left && !info->inputs.r_right)
 		player_rotate(info, -PS_ROTATE);
+	if (info->inputs.attack && info->player.attack_frame == 0)
+		player_attack(info);
 }
 
 // Mouse movement
@@ -44,6 +46,33 @@ static void	handle_mouse_move(t_info *info)
 	player_rotate(info, (x - (W_WIDTH / 2)) * (FOV / W_WIDTH) * PS_MOUSE);
 	my_mouse_move(info->mlx[INIT], info->mlx[WINDOW],
 		W_WIDTH / 2, W_HEIGHT / 2);
+}
+
+static void	handle_anim(t_info *info)
+{
+	static int	frame = 0;
+	int			anim_speed_attack;
+	static int	start = 0;
+
+	anim_speed_attack = 3;
+	if (frame > 1000000000)
+		frame = 0;
+	if (info->inputs.attack)
+	{
+		if (start == 0)
+			start = frame;
+		if (!((frame - start) % anim_speed_attack))
+		{
+			info->player.attack_frame++;
+			if (info->player.attack_frame == TX_PISTOL_NB)
+			{
+				info->inputs.attack = 0;
+				info->player.attack_frame = 0;
+				start = 0;
+			}
+		}
+	}
+	frame++;
 }
 
 // Loop hook
@@ -64,8 +93,9 @@ int	update_game(t_info *info)
 		if (info->torch_frame == TX_TORCH_NB)
 			info->torch_frame = 0;
 	}
-	handle_key_inputs(info);
+	handle_inputs(info);
 	handle_mouse_move(info);
+	handle_anim(info);
 	print_frame(info);
 	frame++;
 	return (0);

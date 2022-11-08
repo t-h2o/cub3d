@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:40:59 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/10/21 15:11:10 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:06:41 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,13 @@ void	print_frame(t_info *info)
 {
 	player_ray(info);
 	render_screen(info);
+	draw_crosshair(info);
 	mlx_clear_window(info->mlx[INIT], info->mlx[WINDOW]);
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->screen.img, 0, 0);
 	if (info->active_map)
 		print_minimap(info);
 	print_info(info);
+	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
+		info->player.pov[info->player.attack_frame].img, W_WIDTH / 4,
+		W_HEIGHT - info->player.pov[info->player.attack_frame].height);
 }

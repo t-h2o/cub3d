@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:45:50 by gudias            #+#    #+#             */
-/*   Updated: 2022/10/28 19:33:05 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:45:31 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@ static void	destroy_images(t_info *info)
 	my_destroy_image(info->mlx[INIT], info->texture[T1].img.img);
 	my_destroy_image(info->mlx[INIT], info->texture[T2].img.img);
 	my_destroy_image(info->mlx[INIT], info->texture[T3].img.img);
+	my_destroy_image(info->mlx[INIT], info->texture[PISTOL1].img.img);
+	my_destroy_image(info->mlx[INIT], info->texture[PISTOL2].img.img);
+	my_destroy_image(info->mlx[INIT], info->texture[PISTOL3].img.img);
+	my_destroy_image(info->mlx[INIT], info->texture[PISTOL4].img.img);
+	my_destroy_image(info->mlx[INIT], info->texture[PISTOL5].img.img);
+	my_destroy_image(info->mlx[INIT], info->texture[PISTOL6].img.img);
+	my_destroy_image(info->mlx[INIT], info->player.pov[0].img);
+	my_destroy_image(info->mlx[INIT], info->player.pov[1].img);
+	my_destroy_image(info->mlx[INIT], info->player.pov[2].img);
+	my_destroy_image(info->mlx[INIT], info->player.pov[3].img);
+	my_destroy_image(info->mlx[INIT], info->player.pov[4].img);
+	my_destroy_image(info->mlx[INIT], info->player.pov[5].img);
 }
 
 static void	free_textures_path(t_info *info)

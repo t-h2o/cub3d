@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/07 17:45:41 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:06:21 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@
 // max view distance
 # define FOG_MAX	10.0f
 
+// Crosshair settings
+# define CROSSHAIR_SIZE		5
+# define CROSSHAIR_GAP		5
+# define CROSSHAIR_COLOR	0x0000FF00
+
 // Minimap settings
 // postion
 # define MM_POS_Y	10
@@ -86,7 +91,13 @@ enum e_tx {
 	T2,
 	T3,
 	B,
-	ENEMY
+	ENEMY,
+	PISTOL1,
+	PISTOL2,
+	PISTOL3,
+	PISTOL4,
+	PISTOL5,
+	PISTOL6
 };
 
 enum e_axis {
@@ -120,12 +131,15 @@ typedef struct s_inputs {
 	bool	m_right;
 	bool	r_left;
 	bool	r_right;
+	bool	attack;
 }	t_inputs;
 
 typedef struct s_player {
-	float	pos[2];
-	float	angle;
-	float	delta[2];
+	float		pos[2];
+	float		angle;
+	float		delta[2];
+	t_img_data	pov[TX_PISTOL_NB];
+	int			attack_frame;
 }	t_player;
 
 // distance between the player and the wall
@@ -138,6 +152,7 @@ typedef struct s_ray {
 	float			distance;
 	unsigned char	wall;
 	int				hitdir;
+	bool			enemy_hit;
 }	t_ray;
 
 typedef struct s_spriteview {
@@ -160,7 +175,7 @@ typedef struct s_info {
 	int				mapsize[2];
 	t_player		player;
 	t_inputs		inputs;
-	t_texture		texture[12];
+	t_texture		texture[18];
 	bool			active_map;
 	t_ray			ray[W_WIDTH];
 	t_img_data		screen;
@@ -197,6 +212,7 @@ int		load_map(t_info *info, char *mapname);
 void	player_move(t_info *info, float distance, int side);
 void	player_rotate(t_info *info, float rotation);
 void	player_action(t_info *info);
+void	player_attack(t_info *info);
 
 // ray.c
 void	ray(t_info *info, t_ray *ray);
@@ -242,6 +258,7 @@ float	vertical_left(t_info *info, t_ray *ray, float hit[2]);
 // utils_render.c
 void	add_shade(char *dst, float distance);
 float	calc_x_scaling(t_ray *ray);
+void	draw_crosshair(t_info *info);
 
 // window.c
 int		start_window(t_info *info);

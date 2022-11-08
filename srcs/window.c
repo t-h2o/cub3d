@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:01:59 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/10/07 17:12:31 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:53:32 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,16 @@ static int
 	return (0);
 }
 
+static int
+	mouse_click(int button, int x, int y, t_info *info)
+{
+	(void) x;
+	(void) y;
+	if (button == 1)
+		info->inputs.attack = 1;
+	return (0);
+}
+
 // Close the game with  an exit code of 0
 static int	red_cross(t_info *info)
 {
@@ -72,6 +82,7 @@ int	start_window(t_info *info)
 		return (error_msg("Couldn't create window"));
 	mlx_hook(info->mlx[WINDOW], 2, 1L << 0, deal_key, info);
 	mlx_hook(info->mlx[WINDOW], 3, 1L << 1, release_key, info);
+	mlx_hook(info->mlx[WINDOW], 4, 1L << 2, mouse_click, info);
 	mlx_hook(info->mlx[WINDOW], 17, 0L << 0, red_cross, info);
 	mlx_loop_hook(info->mlx[INIT], update_game, info);
 	mlx_mouse_hide(info->mlx[INIT], info->mlx[WINDOW]);
