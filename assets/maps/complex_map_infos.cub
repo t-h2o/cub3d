@@ -15,10 +15,9 @@ EA   this should be erased
 
 
 
-F	255,30,30		
-C 122, 112, 112
+F	./assets/textures/jungle.xpm		
+C ./assets/textures/sky_hexa.xpm
 
-EA./assets/textures/default_east.xpm
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
