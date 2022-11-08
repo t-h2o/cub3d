@@ -50,6 +50,7 @@ SRCD	=	srcs
 SRCS	=	$(SRCD)/main.c
 SRCS	+=	$(SRCD)/check_map.c
 SRCS	+=	$(SRCD)/close.c
+SRCS	+=	$(SRCD)/delta_time.c
 SRCS	+=	$(SRCD)/doors.c
 SRCS	+=	$(SRCD)/frame.c
 SRCS	+=	$(SRCD)/init.c

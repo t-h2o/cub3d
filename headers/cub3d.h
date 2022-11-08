@@ -124,6 +124,12 @@ typedef struct s_texture {
 	t_img_data	img;
 }	t_texture;
 
+typedef struct s_time {
+	struct timeval	last;
+	struct timeval	now;
+	unsigned int	delta_time;
+}	t_time;
+
 typedef struct s_inputs {
 	bool	forward;
 	bool	back;
@@ -180,6 +186,7 @@ typedef struct s_info {
 	t_img_data		screen;
 	t_spriteview	*spriteview;
 	int				torch_frame;
+	t_time			time;
 }	t_info;
 
 // check_map.c
@@ -190,6 +197,9 @@ int		check_map_data(t_info *info);
 void	free_array(char **array);
 int		error_msg(char *msg);
 void	close_game(t_info *info, int exit_code);
+
+// delta_time.c
+void	delta_time(t_info *info);
 
 // doors.c
 int		check_doors(t_info *info, int y);
