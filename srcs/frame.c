@@ -71,6 +71,21 @@ static void	print_info(t_info *info)
 		500, 30, CO_WHITE, message);
 }
 
+static void
+	example_regularity(t_info *info)
+{
+	static unsigned int	last = 0;
+	static unsigned int	time = 0;
+
+	time += info->time.delta_time;
+	//printf("coucou %d\n", time);
+	if (last + 500 < time)
+	{
+		last = time;
+		printf("coucou %d\n", time);
+	}
+}
+
 #ifdef __APPLE__
 
 // 1. Cast rays to get view informations
@@ -88,6 +103,7 @@ void	print_frame(t_info *info)
 	if (info->active_map)
 		print_minimap(info);
 	print_info(info);
+	example_regularity(info);
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1],
 		info->texture[PISTOL1 + info->player.attack_frame].img.img,
 		W_WIDTH / 4, W_HEIGHT - info->texture[PISTOL1
@@ -106,6 +122,7 @@ void	print_frame(t_info *info)
 	mlx_put_image_to_window(info->mlx[0], info->mlx[1], info->screen.img, 0, 0);
 	if (info->active_map)
 		print_minimap(info);
+	example_regularity(info);
 	print_info(info);
 }
 
