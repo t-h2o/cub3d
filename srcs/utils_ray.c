@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 05:43:03 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/11/08 14:40:15 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 15:25:48 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ float	horizontal_up(t_info *info, t_ray *ray, float hit[2])
 {
 	float	ratio;
 	float	side;
+	char	data;
 
 	side = info->player.pos[Y] - (int)(info->player.pos[Y]) + CASE_NEG;
 	ratio = -side / ray->delta[Y];
@@ -30,15 +31,13 @@ float	horizontal_up(t_info *info, t_ray *ray, float hit[2])
 		if (hit[X] < 0 || hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y]
 			|| ft_strlen(info->map[(int)hit[Y]]) < hit[X])
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == '1'
-			|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
+		data = info->map[(int)hit[Y]][(int)hit[X]];
+		if (data == '1' || data == 'D')
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T'
-			|| info->map[(int)hit[Y]][(int)hit[X]] == 'B'
-			|| info->map[(int)hit[Y]][(int)hit[X]] == 'X')
-			add_sprite(info, hit, info->map[(int)hit[Y]][(int)hit[X]]);
-		if (ray->column == W_WIDTH / 2 && !ray->enemy_hit[X]
-			&& info->map[(int)hit[Y]][(int)hit[X]] == 'X')
+		if (data == 'T' || data == 'B' || data == 'X')
+			add_sprite(info, hit, data);
+		if (ray->column == W_WIDTH / 2 && data == 'X'
+			&& !ray->enemy_hit[X])
 			ft_memcpy(ray->enemy_hit, hit, 2 * sizeof(float));
 		hit[Y] = hit[Y] - 1;
 		hit[X] = hit[X] - (ray->delta[X] / ray->delta[Y]);
@@ -51,6 +50,7 @@ float	horizontal_down(t_info *info, t_ray *ray, float hit[2])
 {
 	float	ratio;
 	float	side;
+	char	data;
 
 	side = (int)(info->player.pos[Y]) + 1 - info->player.pos[Y];
 	ratio = side / ray->delta[Y];
@@ -61,15 +61,13 @@ float	horizontal_down(t_info *info, t_ray *ray, float hit[2])
 		if (hit[X] < 0 || hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y]
 			|| ft_strlen(info->map[(int)hit[Y]]) < hit[X])
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == '1'
-			|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
+		data = info->map[(int)hit[Y]][(int)hit[X]];
+		if (data == '1' || data == 'D')
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T'
-			|| info->map[(int)hit[Y]][(int)hit[X]] == 'B'
-			|| info->map[(int)hit[Y]][(int)hit[X]] == 'X')
-			add_sprite(info, hit, info->map[(int)hit[Y]][(int)hit[X]]);
-		if (ray->column == W_WIDTH / 2 && !ray->enemy_hit[X]
-			&& info->map[(int)hit[Y]][(int)hit[X]] == 'X')
+		if (data == 'T' || data == 'B' || data == 'X')
+			add_sprite(info, hit, data);
+		if (ray->column == W_WIDTH / 2 && data == 'X'
+			&& !ray->enemy_hit[X])
 			ft_memcpy(ray->enemy_hit, hit, 2 * sizeof(float));
 		hit[Y] = hit[Y] + 1;
 		hit[X] = hit[X] + (ray->delta[X] / ray->delta[Y]);
@@ -82,6 +80,7 @@ float	vertical_right(t_info *info, t_ray *ray, float hit[2])
 {
 	float	ratio;
 	float	side;
+	char	data;
 
 	side = (int)(info->player.pos[X]) + 1 - info->player.pos[X];
 	ratio = side / ray->delta[X];
@@ -91,15 +90,13 @@ float	vertical_right(t_info *info, t_ray *ray, float hit[2])
 	{
 		if (hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y])
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == '1'
-			|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
+		data = info->map[(int)hit[Y]][(int)hit[X]];
+		if (data == '1' || data == 'D')
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T'
-			|| info->map[(int)hit[Y]][(int)hit[X]] == 'B'
-			|| info->map[(int)hit[Y]][(int)hit[X]] == 'X')
-			add_sprite(info, hit, info->map[(int)hit[Y]][(int)hit[X]]);
-		if (ray->column == W_WIDTH / 2 && !ray->enemy_hit[X]
-			&& info->map[(int)hit[Y]][(int)hit[X]] == 'X')
+		if (data == 'T' || data == 'B' || data == 'X')
+			add_sprite(info, hit, data);
+		if (ray->column == W_WIDTH / 2 && data == 'X'
+			&& !ray->enemy_hit[X])
 			ft_memcpy(ray->enemy_hit, hit, 2 * sizeof(float));
 		hit[X] = hit[X] + 1;
 		hit[Y] = hit[Y] + (ray->delta[Y] / ray->delta[X]);
@@ -112,6 +109,7 @@ float	vertical_left(t_info *info, t_ray *ray, float hit[2])
 {
 	float	ratio;
 	float	side;
+	char	data;
 
 	side = info->player.pos[X] - (int)(info->player.pos[X]) + CASE_NEG;
 	ratio = -side / ray->delta[X];
@@ -121,15 +119,13 @@ float	vertical_left(t_info *info, t_ray *ray, float hit[2])
 	{
 		if (hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y])
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == '1'
-			|| info->map[(int)hit[Y]][(int)hit[X]] == 'D')
+		data = info->map[(int)hit[Y]][(int)hit[X]];
+		if (data == '1' || data == 'D')
 			break ;
-		if (info->map[(int)hit[Y]][(int)hit[X]] == 'T'
-			|| info->map[(int)hit[Y]][(int)hit[X]] == 'B'
-			|| info->map[(int)hit[Y]][(int)hit[X]] == 'X')
-			add_sprite(info, hit, info->map[(int)hit[Y]][(int)hit[X]]);
-		if (ray->column == W_WIDTH / 2 && !ray->enemy_hit[X]
-			&& info->map[(int)hit[Y]][(int)hit[X]] == 'X')
+		if (data == 'T' || data == 'B' || data == 'X')
+			add_sprite(info, hit, data);
+		if (ray->column == W_WIDTH / 2 && data == 'X'
+			&& !ray->enemy_hit[X])
 			ft_memcpy(ray->enemy_hit, hit, 2 * sizeof(float));
 		hit[X] = hit[X] - 1;
 		hit[Y] = hit[Y] - (ray->delta[Y] / ray->delta[X]);

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 12:16:47 by user42            #+#    #+#             */
-/*   Updated: 2022/11/02 08:54:08 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:56:29 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int	get_mm_color(t_info *info, int y, int x)
 		return (MM_DOOR);
 	else if (info->map[y][x] == 'T')
 		return (MM_TORCH);
+	else if (info->map[y][x] == 'B')
+		return (MM_BARREL);
 	else if (info->map[y][x] == 'X')
 		return (MM_ENEMY);
 	else

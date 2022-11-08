@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 14:24:58 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:57:39 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static void	draw_floor(t_info *info, int column, int offset)
 	while (++line < W_HEIGHT)
 	{
 		distance = W_HEIGHT / (2.0f * line - W_HEIGHT);
-		scale = distance / (info->ray[column].distance);
+		scale = distance / info->ray[column].distance;
 		floor[X] = scale * info->ray[column].hit[X]
 			+ (1.0f - scale) * info->player.pos[X];
 		floor[Y] = scale * info->ray[column].hit[Y]
