@@ -1,19 +1,8 @@
 
-NO	./assets/textures/wrong_path.xpm
-
-		SO ./assets/textures/defablshitth.xpm      
-
-
-
-
-    WE				 ./assets/textures/default_west.xpm
-EA   this should be erased
-
-
-
-
-
-
+	EA	./assets/textures/jungl_stone2.xpm
+	SO	./assets/textures/jgl_door.xpm      
+	NO	./assets/textures/brwn_jgl_stone.xpm
+    	WE	./assets/textures/jungl_stone.xpm
 
 F	./assets/textures/jungle.xpm		
 C ./assets/textures/sky_hexa.xpm
@@ -23,7 +12,7 @@ C ./assets/textures/sky_hexa.xpm
         1011000001110000000000001
         1001000000000000000000001
 111111111011000001110000000000001
-100000000011000001110111111111111
+100000000011000001110111100111111
 11110111111111011100000010001
 11110111111111011101010010001
 11000000110101011100000010001
