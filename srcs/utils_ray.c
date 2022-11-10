@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 05:43:03 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/11/08 20:19:16 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/10 18:42:29 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,26 @@
 // For tile top left, we need to reduce of a bit
 #define CASE_NEG	0.00001f
 
+static void
+	check_hit_data(t_info *info, t_ray *ray, float hit[2], float door[2])
+{
+	char	data;
+
+	data = info->map[(int)hit[Y]][(int)hit[X]];
+	if (data == 'D' && !door[X])
+		ft_memcpy(door, hit, 2 * sizeof(float));
+	if (!door[X] && (data == 'T' || data == 'B' || data == 'X'))
+		add_sprite(info, hit, data);
+	if (ray->column == W_WIDTH / 2 && data == 'X'
+		&& !ray->enemy_hit[X] && !door[X])
+		ft_memcpy(ray->enemy_hit, hit, 2 * sizeof(float));
+}
+
 //Collision with rising horizontal line
-float	horizontal_up(t_info *info, t_ray *ray, float hit[2])
+void	horizontal_up(t_info *info, t_ray *ray, float hit[2], float door[2])
 {
 	float	ratio;
 	float	side;
-	char	data;
 
 	side = info->player.pos[Y] - (int)(info->player.pos[Y]) + CASE_NEG;
 	ratio = -side / ray->delta[Y];
@@ -31,28 +45,20 @@ float	horizontal_up(t_info *info, t_ray *ray, float hit[2])
 		if (hit[X] < 0 || hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y]
 			|| ft_strlen(info->map[(int)hit[Y]]) < hit[X])
 			break ;
-		data = info->map[(int)hit[Y]][(int)hit[X]];
-		if (data == '1')
+		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
 			break ;
-		if (data == 'D')
-			ft_memcpy(ray->door_hit, hit, 2 * sizeof(float));
-		if (data == 'T' || data == 'B' || data == 'X')
-			add_sprite(info, hit, data);
-		if (ray->column == W_WIDTH / 2 && data == 'X'
-			&& !ray->enemy_hit[X])
-			ft_memcpy(ray->enemy_hit, hit, 2 * sizeof(float));
+		check_hit_data(info, ray, hit, door);
 		hit[Y] = hit[Y] - 1;
 		hit[X] = hit[X] - (ray->delta[X] / ray->delta[Y]);
 	}
-	return (sqrt_points(info->player.pos, hit));
+	return ;
 }
 
 // Collision with the descending horizontal line
-float	horizontal_down(t_info *info, t_ray *ray, float hit[2])
+void	horizontal_down(t_info *info, t_ray *ray, float hit[2], float door[2])
 {
 	float	ratio;
 	float	side;
-	char	data;
 
 	side = (int)(info->player.pos[Y]) + 1 - info->player.pos[Y];
 	ratio = side / ray->delta[Y];
@@ -63,28 +69,20 @@ float	horizontal_down(t_info *info, t_ray *ray, float hit[2])
 		if (hit[X] < 0 || hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y]
 			|| ft_strlen(info->map[(int)hit[Y]]) < hit[X])
 			break ;
-		data = info->map[(int)hit[Y]][(int)hit[X]];
-		if (data == '1')
+		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
 			break ;
-		if (data == 'D')
-			ft_memcpy(ray->door_hit, hit, 2 * sizeof(float));
-		if (data == 'T' || data == 'B' || data == 'X')
-			add_sprite(info, hit, data);
-		if (ray->column == W_WIDTH / 2 && data == 'X'
-			&& !ray->enemy_hit[X])
-			ft_memcpy(ray->enemy_hit, hit, 2 * sizeof(float));
+		check_hit_data(info, ray, hit, door);
 		hit[Y] = hit[Y] + 1;
 		hit[X] = hit[X] + (ray->delta[X] / ray->delta[Y]);
 	}
-	return (sqrt_points(info->player.pos, hit));
+	return ;
 }
 
 // Collision with right vertical line
-float	vertical_right(t_info *info, t_ray *ray, float hit[2])
+void	vertical_right(t_info *info, t_ray *ray, float hit[2], float door[2])
 {
 	float	ratio;
 	float	side;
-	char	data;
 
 	side = (int)(info->player.pos[X]) + 1 - info->player.pos[X];
 	ratio = side / ray->delta[X];
@@ -94,28 +92,20 @@ float	vertical_right(t_info *info, t_ray *ray, float hit[2])
 	{
 		if (hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y])
 			break ;
-		data = info->map[(int)hit[Y]][(int)hit[X]];
-		if (data == '1')
+		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
 			break ;
-		if (data == 'D')
-			ft_memcpy(ray->door_hit, hit, 2 * sizeof(float));
-		if (data == 'T' || data == 'B' || data == 'X')
-			add_sprite(info, hit, data);
-		if (ray->column == W_WIDTH / 2 && data == 'X'
-			&& !ray->enemy_hit[X])
-			ft_memcpy(ray->enemy_hit, hit, 2 * sizeof(float));
+		check_hit_data(info, ray, hit, door);
 		hit[X] = hit[X] + 1;
 		hit[Y] = hit[Y] + (ray->delta[Y] / ray->delta[X]);
 	}
-	return (sqrt_points(info->player.pos, hit));
+	return ;
 }
 
 // Collision with left vertical line
-float	vertical_left(t_info *info, t_ray *ray, float hit[2])
+void	vertical_left(t_info *info, t_ray *ray, float hit[2], float door[2])
 {
 	float	ratio;
 	float	side;
-	char	data;
 
 	side = info->player.pos[X] - (int)(info->player.pos[X]) + CASE_NEG;
 	ratio = -side / ray->delta[X];
@@ -125,18 +115,11 @@ float	vertical_left(t_info *info, t_ray *ray, float hit[2])
 	{
 		if (hit[Y] < 0 || info->mapsize[Y] - 1 < hit[Y])
 			break ;
-		data = info->map[(int)hit[Y]][(int)hit[X]];
-		if (data == '1')
+		if (info->map[(int)hit[Y]][(int)hit[X]] == '1')
 			break ;
-		if (data == 'D')
-			ft_memcpy(ray->door_hit, hit, 2 * sizeof(float));
-		if (data == 'T' || data == 'B' || data == 'X')
-			add_sprite(info, hit, data);
-		if (ray->column == W_WIDTH / 2 && data == 'X'
-			&& !ray->enemy_hit[X])
-			ft_memcpy(ray->enemy_hit, hit, 2 * sizeof(float));
+		check_hit_data(info, ray, hit, door);
 		hit[X] = hit[X] - 1;
 		hit[Y] = hit[Y] - (ray->delta[Y] / ray->delta[X]);
 	}
-	return (sqrt_points(info->player.pos, hit));
+	return ;
 }

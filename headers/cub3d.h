@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:51:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 20:14:59 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/10 18:49:47 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,8 @@ typedef struct s_ray {
 	int				hitdir;
 	float			enemy_hit[2];
 	float			door_hit[2];
+	int				doordir;
+	float			door_dist;
 }	t_ray;
 
 typedef struct s_spriteview {
@@ -178,8 +180,8 @@ typedef struct s_spriteview {
 
 typedef struct s_door {
 	int				pos[2];
-	bool		opening;
-	bool		closing;
+	bool			opening;
+	bool			closing;
 	int				frame;
 	struct s_door	*next;
 }	t_door;
@@ -211,10 +213,11 @@ int		error_msg(char *msg);
 void	close_game(t_info *info, int exit_code);
 
 // doors.c
-void		add_door(t_info *info, int x, int y);
+void	add_door(t_info *info, int x, int y);
 int		check_doors(t_info *info, int y);
-t_door		*find_door(t_info *info, float pos[2]);
+t_door	*find_door(t_info *info, float pos[2]);
 int		load_doors(t_info *info);
+void	draw_door(t_info *info, int column, int height, int offset);
 
 // init.c
 int		init_game(t_info *info, char *mapname);
@@ -273,14 +276,14 @@ char	*skip_whitespaces(char *str);
 int		convert_rgb(char *rgb);
 
 // utils_rays.c
-float	horizontal_up(t_info *info, t_ray *ray, float hit[2]);
-float	horizontal_down(t_info *info, t_ray *ray, float hit[2]);
-float	vertical_right(t_info *info, t_ray *ray, float hit[2]);
-float	vertical_left(t_info *info, t_ray *ray, float hit[2]);
+void	horizontal_up(t_info *info, t_ray *ray, float hit[2], float door[2]);
+void	horizontal_down(t_info *info, t_ray *ray, float hit[2], float door[2]);
+void	vertical_right(t_info *info, t_ray *ray, float hit[2], float door[2]);
+void	vertical_left(t_info *info, t_ray *ray, float hit[2], float door[2]);
 
 // utils_render.c
 void	add_shade(char *dst, float distance);
-float	calc_x_scaling(t_ray *ray);
+float	calc_x_scaling(t_ray *ray, bool is_door);
 void	copy_image(t_img_data *dst, t_img_data *src);
 void	draw_crosshair(t_info *info);
 void	draw_pov(t_info *info);

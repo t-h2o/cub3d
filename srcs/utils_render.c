@@ -6,18 +6,28 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:54:39 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 14:48:51 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/10 18:09:14 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-float	calc_x_scaling(t_ray *ray)
+float	calc_x_scaling(t_ray *ray, bool is_door)
 {
-	if (ray->hitdir)
-		return (ray->hit[X] - (int)ray->hit[X]);
+	if (!is_door)
+	{
+		if (ray->hitdir)
+			return (ray->hit[X] - (int)ray->hit[X]);
+		else
+			return (ray->hit[Y] - (int)ray->hit[Y]);
+	}
 	else
-		return (ray->hit[Y] - (int)ray->hit[Y]);
+	{
+		if (ray->doordir)
+			return (ray->door_hit[X] - (int)ray->door_hit[X]);
+		else
+			return (ray->door_hit[Y] - (int)ray->door_hit[Y]);
+	}
 }
 
 void	add_shade(char *dst, float distance)

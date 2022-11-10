@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 20:07:27 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/04 18:29:17 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/10 14:50:12 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ static void	draw_sprite(t_info *info, t_spriteview *sprite)
 	while (++col < sprite->draw_end[X] && col < W_WIDTH)
 	{
 		if (col < 0 || info->ray[col].distance < sprite->distance)
+			continue ;
+		if (info->ray[col].door_hit[X] > 0
+			&& info->ray[col].door_dist < sprite->distance)
 			continue ;
 		line = sprite->draw_start[Y] - 1;
 		while (++line < sprite->draw_end[Y] && line < W_HEIGHT)

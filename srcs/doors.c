@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:21:52 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/07 12:14:58 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/10 18:54:42 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,33 @@ int	load_doors(t_info *info)
 		|| load_xpm_image(info, &(info->texture[D9].img), TX_DOOR9))
 		return (1);
 	return (0);
+}
+
+void	draw_door(t_info *info, int column, int door_height, int door_offset)
+{
+	char			*dst;
+	float			x_scale;
+	int				line;
+	t_door			*door;
+	unsigned int	px;
+
+	dst = info->screen.addr + (column * info->screen.bpp / 8);
+	if (door_offset > 0)
+		dst += (door_offset * info->screen.line_len);
+	x_scale = calc_x_scaling(&(info->ray[column]), 1);
+	line = -1;
+	if (door_offset < 0)
+		line = -door_offset - 1;
+	door = find_door(info, info->ray[column].door_hit);
+	while (++line < door_height && (line + door_offset) < W_HEIGHT)
+	{
+		px = get_tx_pixel(&(info->texture[D + door->frame].img),
+				x_scale, (float)line / door_height);
+		if (px != 0xFF000000)
+		{
+			*(unsigned int *)dst = px;
+			add_shade(dst, info->ray[column].door_dist);
+		}
+		dst += info->screen.line_len;
+	}
 }

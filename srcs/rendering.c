@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:50:53 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 20:15:31 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/10 18:58:52 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,12 @@ static void	draw_wall(t_info *info, int column, int wall_hei, int wall_off)
 	char		*dst;
 	t_img_data	*tx;
 	float		x_scale;
-	
-	if (info->ray[column].door_hit[X] > 0)
-		tx = &(info->texture[D + find_door(info, info->ray[column].door_hit)->frame].img);
-	else
-		tx = &(info->texture[info->ray[column].wall].img);
+
+	tx = &(info->texture[info->ray[column].wall].img);
 	dst = info->screen.addr + (column * info->screen.bpp / 8);
 	if (wall_off > 0)
 		dst += (wall_off * info->screen.line_len);
-	x_scale = calc_x_scaling(&(info->ray[column]));
+	x_scale = calc_x_scaling(&(info->ray[column]), 0);
 	line = -1;
 	if (wall_off < 0)
 		line = -wall_off - 1;
@@ -142,6 +139,10 @@ void	render_screen(t_info *info)
 		draw_ceil(info, column, wall_offset);
 		draw_wall(info, column, wall_height, wall_offset);
 		draw_floor(info, column, wall_offset + wall_height);
+		if (info->ray[column].door_hit[X] > 0
+			&& info->ray[column].door_dist < FOG_MAX)
+			draw_door(info, column, W_HEIGHT / info->ray[column].door_dist,
+				(W_HEIGHT - (W_HEIGHT / info->ray[column].door_dist)) / 2);
 	}
 	if (info->spriteview)
 		render_sprites(info);

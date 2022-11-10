@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 12:26:36 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/11/08 20:15:20 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/09 20:13:47 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void
 			|| info->map[(int)(next[Y])][(int)(next[X])] == 'B'
 			|| info->map[(int)(next[Y])][(int)(next[X])] == 'X'
 			|| (info->map[(int)(next[Y])][(int)(next[X])] == 'D'
-			&& find_door(info, next)->frame < TX_DOOR_NB - 1)) 
+			&& find_door(info, next)->frame < TX_DOOR_NB - 1))
 		return ;
 	info->player.pos[X] = next[X];
 	info->player.pos[Y] = next[Y];
@@ -58,7 +58,7 @@ void
 	t_door	*door;
 
 	mid_ray = &(info->ray[W_WIDTH / 2]);
-	if (/*mid_ray->distance < 1.5f &&*/ mid_ray->door_hit[X])
+	if (mid_ray->door_hit[X] && mid_ray->door_dist < 1.5f)
 	{
 		door = find_door(info, mid_ray->door_hit);
 		if (door->frame == 0)

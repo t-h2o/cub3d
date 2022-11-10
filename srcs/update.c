@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 20:19:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 20:15:41 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/09 18:01:57 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	handle_doors(t_info *info, int frame)
 	t_door	*door;
 	int		anim_speed;
 
-	anim_speed = 5; 
+	anim_speed = 5;
 	if (frame % anim_speed)
 		return ;
 	door = info->doors;
