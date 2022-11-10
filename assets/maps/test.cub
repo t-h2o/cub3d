@@ -3,9 +3,6 @@ SO ./assets/textures/def_stone.xpm
 WE ./assets/textures/paved.xpm
 EA ./assets/textures/jgl_stone.xpm
 
-C 50,50,200
-F 50,50,50
-
 111111111111111
 100000000000001
 100000000000001111111111
