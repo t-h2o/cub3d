@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:58:14 by gudias            #+#    #+#             */
-/*   Updated: 2022/11/08 14:56:03 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:12:26 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,19 @@
 # define TX_WEST	"assets/textures/handpainted_brick.xpm"
 # define TX_FLOOR	"assets/textures/dirt1.xpm"
 # define TX_CEIL	"assets/textures/sky_doubled.xpm"
-# define TX_DOOR	"assets/textures/door.xpm"
+
+// doors
+# define TX_DOOR_NB	9
+
+# define TX_DOOR	"assets/textures/doorend1.xpm"
+# define TX_DOOR2	"assets/textures/doorend2.xpm"
+# define TX_DOOR3	"assets/textures/doorend3.xpm"
+# define TX_DOOR4	"assets/textures/doorend4.xpm"
+# define TX_DOOR5	"assets/textures/doorend5.xpm"
+# define TX_DOOR6	"assets/textures/doorend6.xpm"
+# define TX_DOOR7	"assets/textures/doorend7.xpm"
+# define TX_DOOR8	"assets/textures/doorend8.xpm"
+# define TX_DOOR9	"assets/textures/doorend9.xpm"
 
 // sprites
 # define TX_TORCH_NB	3

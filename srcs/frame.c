@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:40:59 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/11/08 14:48:32 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:15:10 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	player_ray(t_info *info)
 	info->ray[W_WIDTH / 2].enemy_hit[X] = 0;
 	while (column < W_WIDTH)
 	{
+		info->ray[column].door_hit[X] = 0;
 		angle_delta(info->player.angle + info->ray[column].angle,
 			info->ray[column].delta);
 		ray(info, &(info->ray[column]));
