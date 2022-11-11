@@ -6,7 +6,7 @@
 /*   By: melogr@phy <tgrivel@student.42lausanne.ch  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:01:59 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/11/08 20:19:27 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/11 14:10:35 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ static int
 		info->inputs.r_right = 0;
 	else if (key == KEY_LEFT)
 		info->inputs.r_left = 0;
-	else if (key == KEY_E)
-		info->inputs.action = 0;
 	return (0);
 }
 
@@ -88,6 +86,7 @@ int	start_window(t_info *info)
 	mlx_hook(info->mlx[WINDOW], 17, 0L << 0, red_cross, info);
 	mlx_loop_hook(info->mlx[INIT], update_game, info);
 	mlx_mouse_hide(info->mlx[INIT], info->mlx[WINDOW]);
+	mlx_do_key_autorepeatoff(info->mlx[INIT]);
 	my_mouse_move(info->mlx[0], info->mlx[1], W_WIDTH / 2, W_HEIGHT / 2);
 	mlx_loop(info->mlx[INIT]);
 	return (0);

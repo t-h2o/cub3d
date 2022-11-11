@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 12:26:36 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/11/09 20:13:47 by gudias           ###   ########.fr       */
+/*   Updated: 2022/11/11 14:02:07 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void
 		else if (door->frame == TX_DOOR_NB - 1)
 			door->closing = 1;
 	}
+	info->inputs.action = 0;
 }
 
 void
